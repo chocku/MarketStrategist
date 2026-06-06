@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Breadth Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #0d0f12;
+  --bg2:     #151820;
+  --bg3:     #1c2028;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #eef0f4;
+  --text2:   #8a92a2;
+  --text3:   #4e5668;
+  --green:   #22c87a;
+  --red:     #f04f4f;
+  --amber:   #f0a020;
+  --blue:    #4a9eff;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+  padding: 28px 24px;
+}
+.wrap { max-width: 1440px; margin: 0 auto; }
+
+/* Header */
+.topbar { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; gap:16px; flex-wrap:wrap; }
+.title  { font-size:22px; font-weight:700; letter-spacing:-0.02em; }
+.sub    { font-size:12px; color:var(--text2); margin-top:4px; }
+.topbar-right { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+.btn {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  color: var(--text2); font-size:12px; padding:7px 14px;
+  border-radius:8px; cursor:pointer; transition:all 0.15s; white-space:nowrap;
+}
+.btn:hover { background:var(--bg2); color:var(--text); }
+
+.ctrl-input {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  color: var(--text); font-size:12px; padding:7px 12px;
+  border-radius:8px; outline:none; transition:border-color 0.15s;
+}
+.ctrl-input:focus { border-color: var(--blue); }
+.ctrl-input::placeholder { color: var(--text3); }
+
+select.ctrl-input { cursor:pointer; padding-right:28px; appearance:none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a92a2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 10px center; }
+
+/* Regime */
+.regime {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 20px; border-radius:12px;
+  border:0.5px solid var(--border); background:var(--bg2);
+  margin-bottom:20px;
+}
+.rdot  { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.rname { font-size:15px; font-weight:700; }
+.rsig  { font-size:12px; color:var(--text2); margin-left:auto; }
+
+/* Metric cards */
+.cards { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
+.card  { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:16px 18px; }
+.clbl  { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:8px; }
+.cval  { font-size:30px; font-weight:700; line-height:1; }
+.csub  { font-size:11px; color:var(--text2); margin-top:6px; }
+.hl-row { display:flex; gap:16px; margin-top:6px; }
+.hl-item { font-size:13px; font-weight:700; }
+
+/* Two column */
+.two   { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+.panel { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:20px; }
+.ptitle{ font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:16px; }
+
+/* Gauges */
+.gauge-row  { display:flex; align-items:center; gap:10px; margin-bottom:11px; }
+.gname      { font-size:12px; color:var(--text2); min-width:145px; }
+.gtrack     { flex:1; height:7px; background:var(--bg3); border-radius:4px; overflow:hidden; }
+.gfill      { height:100%; border-radius:4px; transition:width 1s ease; }
+.gpct       { font-size:13px; font-weight:700; min-width:38px; text-align:right; }
+
+/* Zone legend */
+.zones  { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; padding-top:12px; border-top:0.5px solid var(--border); }
+.zitem  { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text2); }
+.zdot   { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+/* Sector histogram */
+.sector-panel { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
+
+/* Table */
+.tpanel  { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; overflow-x:auto; }
+.tbar    { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+table    { width:100%; border-collapse:collapse; min-width:900px; }
+th {
+  font-size:11px; color:var(--text3); text-transform:uppercase;
+  letter-spacing:.06em; padding:0 10px 10px; text-align:left;
+  border-bottom:0.5px solid var(--border);
+  white-space:nowrap;
+}
+th[data-col] { cursor:pointer; user-select:none; }
+th[data-col]:hover { color:var(--text2); }
+th[data-col].sort-active { color:var(--blue); }
+.sort-ind { font-size:10px; }
+td { font-size:13px; padding:9px 10px; border-bottom:0.5px solid var(--border); vertical-align:middle; white-space:nowrap; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:rgba(255,255,255,0.02); }
+
+/* Badges */
+.badge { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:6px; }
+.bg    { background:rgba(34,200,122,.12); color:#22c87a; }
+.br    { background:rgba(240,79,79,.12);  color:#f04f4f; }
+.ba    { background:rgba(240,160,32,.12); color:#f0a020; }
+.bb    { background:rgba(74,158,255,.12); color:#4a9eff; }
+
+.up    { color:var(--green); }
+.dn    { color:var(--red);   }
+.muted { color:var(--text2); font-size:12px; }
+.sector-tag { font-size:11px; color:var(--text2); max-width:140px; overflow:hidden; text-overflow:ellipsis; }
+
+/* RS bar */
+.rsrow { display:flex; align-items:center; gap:8px; }
+.rsb   { height:4px; border-radius:2px; }
+
+/* New high/low tag */
+.htag { font-size:10px; font-weight:700; }
+
+/* Note */
+.note {
+  font-size:11px; color:var(--text3); line-height:1.7;
+  background:var(--bg2); border:0.5px solid var(--border);
+  border-radius:8px; padding:12px 16px;
+}
+
+/* Loading */
+.loading { text-align:center; padding:80px 0; color:var(--text2); }
+.spinner {
+  width:22px; height:22px;
+  border:2px solid var(--border2); border-top-color:var(--blue);
+  border-radius:50%; animation:spin .7s linear infinite;
+  margin:0 auto 14px;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.err { text-align:center; padding:60px; color:var(--red); line-height:2; }
+
+@media(max-width:900px) {
+  .cards { grid-template-columns:repeat(3,1fr); }
+  .two   { grid-template-columns:1fr; }
+}
+@media(max-width:600px) {
+  .cards { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <div class="title">Market Breadth</div>
+      <div class="sub" id="sub">Loading...</div>
+    </div>
+    <div class="topbar-right">
+      <select id="sectorSelect" class="ctrl-input" onchange="onSectorChange(this.value)" style="width:200px">
+        <option value="all">All Sectors</option>
+      </select>
+      <button class="btn" onclick="init()">↻ Refresh</button>
+    </div>
+  </div>
+  <div id="root">
+    <div class="loading"><div class="spinner"></div>Loading market data...</div>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────
+let chart1 = null, chart2 = null, chart3 = null;
+let _data = null;
+let sortCol = 'rsScore', sortDir = -1;
+let filterSector = 'all';
+let searchTicker = '';
+
+// ── Helpers ────────────────────────────────────────────────────────────
+function regime(p) {
+  if (p < 20) return { label:'Capitulation',        color:'#f04f4f', signal:'Stay in cash — deeply oversold' };
+  if (p < 40) return { label:'Bear market',          color:'#f0a020', signal:'Avoid new longs' };
+  if (p < 60) return { label:'Neutral / transition', color:'#f0d040', signal:'Selective — top RS stocks only' };
+  if (p < 80) return { label:'Healthy bull',         color:'#22c87a', signal:'Safe to be long' };
+  return             { label:'Overbought',            color:'#4a9eff', signal:'Watch for reversal' };
+}
+function rsCol(s)   { return s>=80?'#22c87a': s>=60?'#f0a020':'#f04f4f'; }
+function rsBadge(s) {
+  const [c,t] = s>=80?['bg','Strong']: s>=60?['ba','Moderate']:['br','Weak'];
+  return `<span class="badge ${c}">RS ${s} · ${t}</span>`;
+}
+function maBadge(a,b) {
+  if (a&&b) return `<span class="badge bg">Both MAs</span>`;
+  if (a)    return `<span class="badge ba">50-MA only</span>`;
+  if (b)    return `<span class="badge ba">200-MA only</span>`;
+  return          `<span class="badge br">Below both</span>`;
+}
+function pct(a,b)            { return Math.round(a/b*100); }
+function pp(n, sign=false)   { const s=n.toFixed(1); return sign&&n>0?'+'+s:s; }
+function vsPct(price, ma)    { return pp((price-ma)/ma*100, true)+'%'; }
+function fmtMcap(v) {
+  if (!v) return '—';
+  if (v >= 1e12) return '$'+(v/1e12).toFixed(1)+'T';
+  if (v >= 1e9)  return '$'+(v/1e9).toFixed(0)+'B';
+  return '$'+(v/1e6).toFixed(0)+'M';
+}
+
+// ── Data load ─────────────────────────────────────────────────────────
+async function init() {
+  document.getElementById('sub').textContent = 'Loading...';
+  document.getElementById('root').innerHTML = `<div class="loading"><div class="spinner"></div>Fetching data.json...</div>`;
+  let d;
+  try {
+    const r = await fetch('data.json?t=' + Date.now());
+    if (!r.ok) throw new Error('data.json not found');
+    d = await r.json();
+  } catch(e) {
+    document.getElementById('root').innerHTML = `
+      <div class="err">
+        <strong>data.json not found</strong><br>
+        Run the Python fetcher first:<br><br>
+        <code style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:6px;font-size:13px">
+          pip install yfinance pandas requests<br>
+          python fetch_breadth.py
+        </code><br><br>
+        Then refresh this page.
+      </div>`;
+    return;
+  }
+  _data = d;
+  filterSector = document.getElementById('sectorSelect').value || 'all';
+  searchTicker = '';
+  populateSectorDropdown(d.stocks);
+  render();
+}
+
+function populateSectorDropdown(stocks) {
+  const sel = document.getElementById('sectorSelect');
+  const current = sel.value;
+  const sectors = [...new Set(stocks.map(s=>s.sector||'Unknown').filter(Boolean))].sort();
+  sel.innerHTML = '<option value="all">All Sectors</option>' +
+    sectors.map(s=>`<option value="${s}"${s===current?' selected':''}>${s}</option>`).join('');
+}
+
+// ── Event handlers ─────────────────────────────────────────────────────
+function onSectorChange(val) {
+  filterSector = val;
+  render();
+}
+
+function onSearch(val) {
+  searchTicker = val.trim().toUpperCase();
+  renderTable(getFilteredStocks());
+}
+
+function setSort(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  renderTable(getFilteredStocks());
+}
+
+// ── Filtered stock list ────────────────────────────────────────────────
+function getFilteredStocks() {
+  if (!_data) return [];
+  let stocks = _data.stocks;
+  if (filterSector !== 'all') stocks = stocks.filter(s => s.sector === filterSector);
+  return stocks;
+}
+
+// ── Full render ────────────────────────────────────────────────────────
+function render() {
+  if (!_data) return;
+  const { stocks: allStocks, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
+  const stocks = getFilteredStocks();
+  const n     = stocks.length;
+  const a50   = stocks.filter(s=>s.above50).length;
+  const a200  = stocks.filter(s=>s.above200).length;
+  const aBoth = stocks.filter(s=>s.above50&&s.above200).length;
+  const topRS = stocks.filter(s=>s.rsScore>=80).length;
+  const p50   = n ? pct(a50,n) : 0;
+  const p200  = n ? pct(a200,n) : 0;
+  const pBoth = n ? pct(aBoth,n) : 0;
+  const reg   = regime(p50);
+
+  const label = filterSector==='all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
+  document.getElementById('sub').textContent = `${label} · ${asOf} · SPX 12m: ${pp(spxReturn12m,true)}%`;
+
+  if (chart1) { chart1.destroy(); chart1=null; }
+  if (chart2) { chart2.destroy(); chart2=null; }
+  if (chart3) { chart3.destroy(); chart3=null; }
+
+  document.getElementById('root').innerHTML = `
+
+    <div class="regime" style="border-color:${reg.color}33">
+      <div class="rdot" style="background:${reg.color}"></div>
+      <span class="rname" style="color:${reg.color}">${reg.label}</span>
+      <span class="rsig">${reg.signal}</span>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="clbl">Above 50-MA</div>
+        <div class="cval" style="color:${regime(p50).color}">${p50}%</div>
+        <div class="csub">${a50} of ${n} stocks</div>
+      </div>
+      <div class="card">
+        <div class="clbl">Above 200-MA</div>
+        <div class="cval" style="color:${regime(p200).color}">${p200}%</div>
+        <div class="csub">${a200} of ${n} stocks</div>
+      </div>
+      <div class="card">
+        <div class="clbl">Investable Universe</div>
+        <div class="cval" style="color:${regime(pBoth).color}">${pBoth}%</div>
+        <div class="csub">Above both MAs · ${aBoth} stocks</div>
+      </div>
+      <div class="card">
+        <div class="clbl">Top RS Stocks</div>
+        <div class="cval" style="color:#22c87a">${topRS}</div>
+        <div class="csub">RS score ≥ 80 (top quintile)</div>
+      </div>
+      <div class="card">
+        <div class="clbl">52-Week Extremes</div>
+        <div class="hl-row">
+          <div>
+            <div class="hl-item" style="color:#22c87a">${newHighCount ?? '—'}</div>
+            <div class="csub">New Highs</div>
+          </div>
+          <div>
+            <div class="hl-item" style="color:#f04f4f">${newLowCount ?? '—'}</div>
+            <div class="csub">New Lows</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="panel">
+        <div class="ptitle">Breadth Gauges</div>
+        ${[
+          {name:'% above 50-MA',    v:p50,   c:regime(p50).color},
+          {name:'% above 200-MA',   v:p200,  c:regime(p200).color},
+          {name:'% above both MAs', v:pBoth, c:regime(pBoth).color}
+        ].map(g=>`
+          <div class="gauge-row">
+            <span class="gname">${g.name}</span>
+            <div class="gtrack"><div class="gfill" style="width:${g.v}%;background:${g.c}"></div></div>
+            <span class="gpct" style="color:${g.c}">${g.v}%</span>
+          </div>`).join('')}
+        <div class="zones">
+          ${[
+            ['#f04f4f','< 20% Capitulation'],
+            ['#f0a020','20–40% Bear'],
+            ['#f0d040','40–60% Neutral'],
+            ['#22c87a','60–80% Bull'],
+            ['#4a9eff','> 80% Overbought']
+          ].map(([c,l])=>`<div class="zitem"><div class="zdot" style="background:${c}"></div>${l}</div>`).join('')}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ptitle">12-Month Return vs SPX (${pp(spxReturn12m,true)}%)</div>
+        <div style="position:relative;height:210px">
+          <canvas id="c1" role="img" aria-label="12-month returns"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="sector-panel">
+      <div class="ptitle">Sector Breadth — % Above Both MAs${filterSector !== 'all' ? ' · ' + filterSector : ' · All Sectors'}</div>
+      <div style="position:relative;height:320px">
+        <canvas id="c2" role="img" aria-label="Sector breadth histogram"></canvas>
+      </div>
+    </div>
+
+    <div class="tpanel">
+      <div class="tbar">
+        <div class="ptitle" style="margin:0">Relative Strength Ranking</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input id="searchInput" class="ctrl-input" type="text" placeholder="Search ticker…" style="width:140px" oninput="onSearch(this.value)">
+          <div style="font-size:11px;color:var(--text3)">Click headers to sort</div>
+        </div>
+      </div>
+      <table>
+        <thead><tr id="tableHead">
+          <th>#</th>
+          <th data-col="ticker" onclick="setSort('ticker')"><span>Ticker</span><span class="sort-ind"></span></th>
+          <th data-col="price" onclick="setSort('price')"><span>Price</span><span class="sort-ind"></span></th>
+          <th data-col="marketCap" onclick="setSort('marketCap')"><span>Mkt Cap</span><span class="sort-ind"></span></th>
+          <th>Sector</th>
+          <th data-col="above50" onclick="setSort('above50')"><span>vs 50-MA</span><span class="sort-ind"></span></th>
+          <th data-col="above200" onclick="setSort('above200')"><span>vs 200-MA</span><span class="sort-ind"></span></th>
+          <th data-col="return1m" onclick="setSort('return1m')"><span>1m</span><span class="sort-ind"></span></th>
+          <th data-col="return3m" onclick="setSort('return3m')"><span>3m</span><span class="sort-ind"></span></th>
+          <th data-col="returnYtd" onclick="setSort('returnYtd')"><span>YTD</span><span class="sort-ind"></span></th>
+          <th data-col="return12m" onclick="setSort('return12m')"><span>12m</span><span class="sort-ind"></span></th>
+          <th data-col="rsScore" onclick="setSort('rsScore')"><span>RS Score</span><span class="sort-ind"></span></th>
+          <th>Status</th>
+        </tr></thead>
+        <tbody id="stockTbody"></tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      Data: Yahoo Finance via yfinance &nbsp;·&nbsp;
+      Run <code>python fetch_breadth.py</code> to refresh &nbsp;·&nbsp;
+      RS score = relative 12m performance vs SPX, normalized 1–100 &nbsp;·&nbsp;
+      New Highs/Lows = within 2% of 52-week extreme
+    </div>
+  `;
+
+  // ── 12m returns chart (filtered stocks) ──
+  const byRet = [...stocks].sort((a,b)=>b.return12m-a.return12m);
+  chart1 = new Chart(document.getElementById('c1'), {
+    type:'bar',
+    data:{
+      labels: byRet.map(s=>s.ticker),
+      datasets:[
+        {
+          label:'12m return',
+          data: byRet.map(s=>parseFloat(s.return12m.toFixed(1))),
+          backgroundColor: byRet.map(s=>s.return12m>=spxReturn12m?'rgba(34,200,122,0.5)':'rgba(240,79,79,0.5)'),
+          borderColor:     byRet.map(s=>s.return12m>=spxReturn12m?'#22c87a':'#f04f4f'),
+          borderWidth:1, borderRadius:3
+        },
+        {
+          label:`SPX ${pp(spxReturn12m,true)}%`,
+          data: byRet.map(()=>parseFloat(spxReturn12m.toFixed(1))),
+          type:'line', borderColor:'#4a9eff', borderWidth:1.5,
+          borderDash:[4,3], pointRadius:0, fill:false
+        }
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false},
+        tooltip:{ callbacks:{ label:c=>`${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y}%` }}},
+      scales:{
+        x:{ ticks:{color:'#555e6e',font:{size:10},maxRotation:0}, grid:{color:'rgba(255,255,255,0.04)'} },
+        y:{ ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'}, grid:{color:'rgba(255,255,255,0.04)'} }
+      }
+    }
+  });
+
+  // ── Sector histogram (uses filtered stocks) ──
+  const sectorMap = {};
+  stocks.forEach(s => {
+    const sec = s.sector || 'Unknown';
+    if (!sectorMap[sec]) sectorMap[sec] = { total:0, both:0 };
+    sectorMap[sec].total++;
+    if (s.above50 && s.above200) sectorMap[sec].both++;
+  });
+  const sectorRows = Object.entries(sectorMap)
+    .map(([name, v]) => ({ name, pct: Math.round(v.both/v.total*100), total:v.total, both:v.both }))
+    .sort((a,b)=>b.pct-a.pct);
+
+  chart2 = new Chart(document.getElementById('c2'), {
+    type:'bar',
+    data:{
+      labels: sectorRows.map(s=>s.name),
+      datasets:[{
+        label:'% above both MAs',
+        data: sectorRows.map(s=>s.pct),
+        backgroundColor: sectorRows.map(s=>regime(s.pct).color+'99'),
+        borderColor:     sectorRows.map(s=>regime(s.pct).color),
+        borderWidth:1, borderRadius:4
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{ callbacks:{ label:c=>{
+          const row = sectorRows[c.dataIndex];
+          return `${c.parsed.x}% above both MAs (${row.both}/${row.total})`;
+        }}}
+      },
+      scales:{
+        x:{
+          min:0, max:100,
+          ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'},
+          grid:{color:'rgba(255,255,255,0.06)'}
+        },
+        y:{ ticks:{color:'#8a92a2',font:{size:12}}, grid:{display:false} }
+      }
+    }
+  });
+
+  // ── Table ──
+  renderTable(stocks);
+}
+
+// ── Table-only render ─────────────────────────────────────────────────
+function renderTable(stocks) {
+  // Sort
+  const getValue = (s, col) => {
+    if (col==='above50')  return (s.price-s.ma50)/s.ma50;
+    if (col==='above200') return (s.price-s.ma200)/s.ma200;
+    return s[col] ?? (typeof s[col]==='string' ? '' : -Infinity);
+  };
+  const sorted = [...stocks].sort((a,b) => {
+    const av = getValue(a, sortCol), bv = getValue(b, sortCol);
+    if (av === bv) return 0;
+    if (typeof av === 'string') return sortDir * av.localeCompare(bv);
+    return sortDir * (av > bv ? 1 : -1);
+  });
+
+  // Ticker search filter
+  const q = searchTicker;
+  const rows = q ? sorted.filter(s => s.ticker.includes(q)) : sorted;
+
+  // Update sort indicators on headers
+  document.querySelectorAll('th[data-col]').forEach(th => {
+    const col = th.dataset.col;
+    const ind = th.querySelector('.sort-ind');
+    th.classList.toggle('sort-active', col === sortCol);
+    if (ind) ind.textContent = col===sortCol ? (sortDir>0?' ▲':' ▼') : '';
+  });
+
+  // Render rows
+  document.getElementById('stockTbody').innerHTML = rows.map((s,i) => {
+    const hlTag = s.newHigh
+      ? ` <span class="htag" style="color:#22c87a">↑H</span>`
+      : s.newLow
+        ? ` <span class="htag" style="color:#f04f4f">↓L</span>`
+        : '';
+    return `<tr data-ticker="${s.ticker}">
+      <td class="muted">${i+1}</td>
+      <td style="font-weight:700;letter-spacing:.02em">${s.ticker}${hlTag}</td>
+      <td>$${s.price.toFixed(2)}</td>
+      <td class="muted">${fmtMcap(s.marketCap)}</td>
+      <td class="sector-tag" title="${s.sector||''}">${s.sector||'—'}</td>
+      <td class="${s.above50?'up':'dn'}">${vsPct(s.price,s.ma50)}</td>
+      <td class="${s.above200?'up':'dn'}">${vsPct(s.price,s.ma200)}</td>
+      <td class="${s.return1m>=0?'up':'dn'}">${pp(s.return1m,true)}%</td>
+      <td class="${s.return3m>=0?'up':'dn'}">${pp(s.return3m,true)}%</td>
+      <td class="${(s.returnYtd||0)>=0?'up':'dn'}">${pp(s.returnYtd||0,true)}%</td>
+      <td class="${s.return12m>=0?'up':'dn'}">${pp(s.return12m,true)}%</td>
+      <td>
+        <div class="rsrow">
+          <div class="rsb" style="width:${Math.round(s.rsScore*.65)}px;background:${rsCol(s.rsScore)}"></div>
+          ${rsBadge(s.rsScore)}
+        </div>
+      </td>
+      <td>${maBadge(s.above50,s.above200)}</td>
+    </tr>`;
+  }).join('');
+}
+
+init();
+</script>
+</body>
+</html>

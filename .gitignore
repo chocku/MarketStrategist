@@ -1,0 +1,6 @@
+data.json
+.claude/
+*.pyc
+__pycache__/
+market_breadth_mvp.html
+market-breadth-dashboard.md
