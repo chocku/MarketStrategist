@@ -512,7 +512,15 @@ function renderBreadth() {
   const rspVsSpx12m = hasRsp ? rspReturn12m - spxReturn12m : null;
 
   const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
-  const ewnGrade    = rspVsSpxYtd == null ? 'unknown' : rspVsSpxYtd >= -2 ? 'aligned' : rspVsSpxYtd >= -6 ? 'lagging' : 'diverging';
+  // Use the worst spread across timeframes as the signal — if ANY window shows divergence, flag it
+  const rspVsSpxFromLow = (rspFromLow != null && spxFromLow != null) ? rspFromLow - spxFromLow : null;
+  const worstSpread = [rspVsSpxYtd, rspVsSpx12m, rspVsSpxFromLow].filter(v => v != null)
+                        .reduce((worst, v) => v < worst ? v : worst, 0);
+  const ewnGrade = (rspVsSpxYtd == null && rspVsSpxFromLow == null)
+    ? 'unknown'
+    : worstSpread >= -2 ? 'aligned'
+    : worstSpread >= -6 ? 'lagging'
+    : 'diverging';
   const nhiGrade    = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
 
   let verdict, vColor, vMeaning, vAction;
@@ -542,13 +550,20 @@ function renderBreadth() {
     {lbl:`From low (${recentLowDate})`, rsp:rspFromLow,   spx:spxFromLow,   diff:rspFromLow - spxFromLow, highlight:true},
   ] : null;
 
+  // Pick the spread label that best explains the grade
+  const spreadLabel = (() => {
+    if (rspVsSpxFromLow != null && rspVsSpxFromLow <= -2) return `${pp(rspVsSpxFromLow,true)}% from low`;
+    if (rspVsSpx12m != null && rspVsSpx12m <= -2)         return `${pp(rspVsSpx12m,true)}% 12m`;
+    if (rspVsSpxYtd != null)                               return `${pp(rspVsSpxYtd,true)}% YTD`;
+    return '';
+  })();
   const ewInterpText = !hasRsp
     ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
     : ewnGrade === 'aligned'
-      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight performance is close to cap-weight. The rally isn't just mega-cap driven — the average stock is keeping up.`
+      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight and cap-weight are moving together. The rally isn't just mega-cap driven — the average stock is keeping up.`
       : ewnGrade === 'lagging'
-      ? `<strong style="color:#f0d040">RSP lagging SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> Cap-weighted index is outrunning the average stock. Some concentration, but not yet alarming.`
-      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> A handful of large-caps are holding up the index while most stocks underperform. Classic late-stage concentration.`;
+      ? `<strong style="color:#f0d040">RSP lagging SPX (${spreadLabel}).</strong> The cap-weighted index is outrunning the average stock. Concentration is building — the big names are doing more of the work.`
+      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${spreadLabel}).</strong> A handful of large-caps are holding up the index while most stocks lag. Classic concentration — the rally is narrowing.`;
 
   const nhiInterpText = nhiGrade === 'broad'
     ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
