@@ -311,6 +311,7 @@ let chart2 = null, chart3 = null;
 let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
+let industryFilterSector = 'all';
 let searchTicker = '';
 let activeTab = 'breadth';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
@@ -365,6 +366,7 @@ async function init() {
   _data = d;
   document.getElementById('dataDate').textContent = d.asOf || '—';
   filterSector = 'all';
+  industryFilterSector = 'all';
   searchTicker = '';
   // Stale data warning
   const banner = document.getElementById('stale-banner');
@@ -393,6 +395,10 @@ function populateSectorDropdown(stocks) {
 function onSectorChange(val) {
   filterSector = val;
   renderCurrent();
+}
+function onIndustryFilter(val) {
+  industryFilterSector = val;
+  renderBreadth();
 }
 
 function onSearch(val) {
@@ -834,25 +840,49 @@ function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalA
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
       <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
       ${indCallout}
-      ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, spyReturnYtd)}
-      <div style="font-size:10px;color:var(--text3);margin-top:6px">Wt>MAs = % of industry market cap above both MAs · RS = return minus SPY · Contrib = YTD attribution to SPY return</div>
+      ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate)}
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Return = mcap-weighted avg · RS vs SPY = industry return minus SPY return · Contrib = beginning-of-period weighted attribution summing to actual SPY · Wt%↑MA = % of industry market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of industry</div>
     </div>`;
 }
 
-function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, spyReturnYtd) {
-  const si = col => industryBreadthSortCol === col ? (industryBreadthSortDir > 0 ? ' ▲' : ' ▼') : '';
-  const th = (col, label, title='') =>
-    `<th onclick="sortIndustry('${col}')" style="cursor:pointer;white-space:normal;line-height:1.3;padding:0 6px 8px;font-size:10px${col===industryBreadthSortCol?';color:var(--blue)':''}" title="${title}">${label}${si(col)}</th>`;
+function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate) {
+  const sectors = [...new Set(Object.values(indMap).map(d => d.sector).filter(Boolean))].sort();
+  const filteredEntries = industryFilterSector === 'all'
+    ? Object.entries(indMap)
+    : Object.entries(indMap).filter(([, d]) => d.sector === industryFilterSector);
 
-  const rows = Object.entries(indMap).map(([name, d]) => {
-    const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
-    const wtPctAbove = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
-    const contribYtd = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
-    const rsYtd      = retYtd - (spyReturnYtd || 0);
-    const pct        = Math.round(d.both / d.total * 100);
-    return { name, sector: d.sector || '', total: d.total, both: d.both, wtPctAbove: +wtPctAbove.toFixed(1), pct,
-             retYtd: +retYtd.toFixed(2), rsYtd: +rsYtd.toFixed(2), contribYtd: +contribYtd.toFixed(2),
-             newHighs: d.newHighs, newLows: d.newLows };
+  const si = col => industryBreadthSortCol === col ? (industryBreadthSortDir > 0 ? ' ▲' : ' ▼') : '';
+  const thStyle = (col, extra='') =>
+    `cursor:pointer;white-space:normal;line-height:1.3;padding:2px 5px 6px;font-size:9.5px;color:${col===industryBreadthSortCol?'var(--blue)':'var(--text3)'};letter-spacing:0.04em;text-transform:uppercase${extra}`;
+  const th = (col, label, extra='') =>
+    `<th onclick="sortIndustry('${col}')" style="${thStyle(col,extra)}">${label}${si(col)}</th>`;
+  const grp = (colspan, label, borderLeft=false) =>
+    `<th colspan="${colspan}" style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;text-align:center;padding-bottom:2px;border-bottom:none${borderLeft?';border-left:0.5px solid var(--border)':''}">${label}</th>`;
+
+  const rows = filteredEntries.map(([name, d]) => {
+    const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
+    const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
+    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
+    const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
+    const pct            = Math.round(d.both / d.total * 100);
+    return {
+      name, sector: d.sector || '',
+      total: d.total, both: d.both, pct,
+      weight: +(wt * 100).toFixed(1),
+      mcap: d.mcap,
+      mcapAboveBoth: d.mcapAboveBoth,
+      wtPctAbove: +wtPctAbove.toFixed(1),
+      retYtd: +retYtd.toFixed(2),
+      retFromLow: +retFromLow.toFixed(2),
+      rsYtd: +(retYtd - (spyReturnYtd || 0)).toFixed(2),
+      rsFromLow: +(retFromLow - (spyFromLow || 0)).toFixed(2),
+      contribYtd: +contribYtd.toFixed(2),
+      contribFromLow: +contribFromLow.toFixed(2),
+      newHighs: d.newHighs,
+      newLows: d.newLows,
+    };
   }).sort((a, b) => {
     const av = a[industryBreadthSortCol] ?? -Infinity;
     const bv = b[industryBreadthSortCol] ?? -Infinity;
@@ -860,38 +890,75 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, spyReturnYtd) {
   });
 
   const cc = v => v > 0 ? C.green : v < 0 ? C.red : 'var(--text2)';
-  const tbody = rows.map(r => {
-    const bar = `<div style="display:flex;align-items:center;gap:3px"><div style="width:44px;height:5px;border-radius:2px;background:var(--border);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${r.pct>=60?C.green:r.pct>=40?C.amber:C.red}"></div></div><span style="font-size:10px">${r.pct}%</span></div>`;
-    return `<tr>
-      <td style="font-size:11px;font-weight:600;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.name}">${r.name}</td>
-      <td style="font-size:10px;color:var(--text3);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.sector}">${r.sector}</td>
-      <td style="font-size:11px;text-align:center;color:var(--text2)">${r.total}</td>
-      <td style="font-size:11px;text-align:center;color:var(--text2)">${r.both}</td>
-      <td style="font-size:11px;font-weight:700;color:${r.pct>=60?C.green:r.pct>=40?C.amber:C.red}">${r.wtPctAbove}%</td>
-      <td>${bar}</td>
-      <td style="font-size:11px;text-align:right;color:${cc(r.retYtd)}">${pp(r.retYtd,true)}%</td>
-      <td style="font-size:11px;text-align:right;color:${cc(r.rsYtd)}">${pp(r.rsYtd,true)}%</td>
-      <td style="font-size:11px;text-align:right;font-weight:600;color:${cc(r.contribYtd)}">${pp(r.contribYtd,true)}%</td>
-      <td style="font-size:11px;text-align:center;color:${r.newHighs>0?C.green:'var(--text3)'}">${r.newHighs||'—'}</td>
-      <td style="font-size:11px;text-align:center;color:${r.newLows>0?C.red:'var(--text3)'}">${r.newLows||'—'}</td>
-    </tr>`;
-  }).join('');
+  const fs = 'font-size:11px;';
 
-  return `<div style="overflow-x:auto;margin-top:8px"><table style="width:100%;border-collapse:collapse;min-width:600px">
-    <thead><tr style="color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;border-bottom:0.5px solid var(--border)">
+  const sectorFilter = `<div style="display:flex;align-items:center;gap:8px;margin:12px 0 6px">
+    <span style="font-size:12px;color:var(--text2)">Sector:</span>
+    <select onchange="onIndustryFilter(this.value)" class="ctrl-input" style="width:200px">
+      <option value="all"${industryFilterSector==='all'?' selected':''}>All Sectors</option>
+      ${sectors.map(s=>`<option value="${s}"${s===industryFilterSector?' selected':''}>${s}</option>`).join('')}
+    </select>
+    ${industryFilterSector!=='all'?`<span style="font-size:11px;color:var(--text2)">${rows.length} industries</span>`:''}
+  </div>`;
+
+  const thead = `<thead>
+    <tr style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em">
+      <th colspan="2" style="border-bottom:none"></th>
+      ${grp(3,'Size',true)}
+      ${grp(4,'Trend Health',true)}
+      ${grp(2,'Return',true)}
+      ${grp(2,'RS vs SPY',true)}
+      ${grp(2,'Contrib',true)}
+      ${grp(2,'52W',true)}
+    </tr>
+    <tr>
       ${th('name','Industry')}
       ${th('sector','Sector')}
-      ${th('total','#Stks','Total stocks')}
-      ${th('both','Both MAs','Stocks above both 50 & 200-MA')}
-      ${th('wtPctAbove','Wt>MAs%','% of industry market cap above both MAs')}
-      <th style="font-size:10px;padding:0 6px 8px">Breadth</th>
-      ${th('retYtd','YTD Ret','Market-cap weighted YTD return')}
-      ${th('rsYtd','RS YTD','Return minus SPY YTD')}
-      ${th('contribYtd','Contrib','% pts of SPY YTD return')}
-      ${th('newHighs','Highs','Stocks near 52W high')}
-      ${th('newLows','Lows','Stocks near 52W low')}
-    </tr></thead>
-    <tbody>${tbody}</tbody>
+      ${th('total','#',';border-left:0.5px solid var(--border)')}
+      ${th('mcap','MCap')}
+      ${th('weight','Wt%')}
+      ${th('both','Both',';border-left:0.5px solid var(--border)')}
+      ${th('mcapAboveBoth','MCap↑MA')}
+      ${th('wtPctAbove','Wt%↑MA')}
+      <th style="font-size:9.5px;color:var(--text3);padding:2px 5px 6px;text-transform:uppercase;letter-spacing:0.04em">Bar</th>
+      ${th('retYtd','YTD',';border-left:0.5px solid var(--border)')}
+      ${th('retFromLow','Fr Low')}
+      ${th('rsYtd','YTD',';border-left:0.5px solid var(--border)')}
+      ${th('rsFromLow','Fr Low')}
+      ${th('contribYtd','YTD',';border-left:0.5px solid var(--border)')}
+      ${th('contribFromLow','Fr Low')}
+      ${th('newHighs','Highs',';border-left:0.5px solid var(--border)')}
+      ${th('newLows','Lows')}
+    </tr>
+  </thead>`;
+
+  const tbody = `<tbody>${rows.map(r => {
+    const reg = regime(r.pct);
+    const realHighs = r.newHighs >= 3 && (r.newHighs / r.total) >= 0.05;
+    const bar = `<div style="width:40px;height:4px;border-radius:2px;background:var(--bg3);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${reg.color}"></div></div>`;
+    return `<tr>
+      <td style="${fs}font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.name}">${r.name}</td>
+      <td style="${fs}color:var(--text3);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.sector}">${r.sector}</td>
+      <td style="${fs}color:var(--text2);border-left:0.5px solid var(--border)">${r.total}</td>
+      <td style="${fs}color:var(--text2)">${fmtMcap(r.mcap)}</td>
+      <td style="${fs}color:var(--text2)">${r.weight}%</td>
+      <td style="${fs}text-align:center;color:var(--text2);border-left:0.5px solid var(--border)">${r.both}</td>
+      <td style="${fs}color:var(--text2)">${fmtMcap(r.mcapAboveBoth)}</td>
+      <td style="${fs}font-weight:700;color:${reg.color}">${r.wtPctAbove.toFixed(1)}%</td>
+      <td>${bar}</td>
+      <td style="${fs}color:${cc(r.retYtd)};border-left:0.5px solid var(--border)">${pp(r.retYtd,true)}%</td>
+      <td style="${fs}color:${cc(r.retFromLow)}">${pp(r.retFromLow,true)}%</td>
+      <td style="${fs}color:${cc(r.rsYtd)};border-left:0.5px solid var(--border)">${pp(r.rsYtd,true)}%</td>
+      <td style="${fs}color:${cc(r.rsFromLow)}">${pp(r.rsFromLow,true)}%</td>
+      <td style="${fs}font-weight:600;color:${cc(r.contribYtd)};border-left:0.5px solid var(--border)">${r.contribYtd>=0?'+':''}${r.contribYtd}%</td>
+      <td style="${fs}font-weight:600;color:${cc(r.contribFromLow)}">${r.contribFromLow>=0?'+':''}${r.contribFromLow}%</td>
+      <td style="${fs}color:${realHighs?C.green:r.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${r.newHighs||'—'}${realHighs?' ★':''}</td>
+      <td style="${fs}color:${r.newLows>0?C.red:'var(--text3)'};font-weight:${r.newLows>0?700:400}">${r.newLows||'—'}</td>
+    </tr>`;
+  }).join('')}</tbody>`;
+
+  return sectorFilter + `<div style="overflow-x:auto;margin-top:4px"><table style="width:100%;border-collapse:collapse;min-width:1000px">
+    ${thead}${tbody}
   </table></div>`;
 }
 
