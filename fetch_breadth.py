@@ -26,6 +26,7 @@ def get_sp500_info():
     for _, row in table.iterrows():
         ticker = str(row['Symbol']).replace('.', '-')
         info[ticker] = {
+            'name':     str(row['Security']),
             'sector':   str(row['GICS Sector']),
             'industry': str(row['GICS Sub-Industry'])
         }
@@ -196,6 +197,7 @@ def fetch():
                 "low52":      round(low52, 2),
                 "newHigh":    new_high,
                 "newLow":     new_low,
+                "name":       meta.get('name', ''),
                 "sector":     meta.get('sector', 'Unknown'),
                 "industry":   meta.get('industry', 'Unknown'),
                 "marketCap":  ticker_meta.get(ticker, {}).get('mcap'),
