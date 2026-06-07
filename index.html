@@ -50,6 +50,13 @@ body {
 }
 .ctrl-input:focus { border-color: var(--blue); }
 .ctrl-input::placeholder { color: var(--text3); }
+#feedback-overlay input, #feedback-overlay select, #feedback-overlay textarea {
+  background:var(--bg3); border:0.5px solid var(--border2); color:var(--text);
+  font-size:13px; padding:8px 12px; border-radius:8px; outline:none;
+  transition:border-color 0.15s; font-family:inherit;
+}
+#feedback-overlay input:focus, #feedback-overlay select:focus, #feedback-overlay textarea:focus { border-color:var(--blue); }
+#feedback-overlay input::placeholder, #feedback-overlay textarea::placeholder { color:var(--text3); }
 
 select.ctrl-input { cursor:pointer; padding-right:28px; appearance:none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a92a2'/%3E%3C/svg%3E");
@@ -276,6 +283,50 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
       </div>
       <button class="btn" onclick="init()">↻ Refresh</button>
+      <button class="btn" onclick="openFeedback()" style="background:rgba(74,158,255,0.12);border-color:rgba(74,158,255,0.4);color:#4a9eff">✉ Feedback</button>
+    </div>
+  </div>
+
+  <!-- Feedback modal -->
+  <div id="feedback-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:none;align-items:center;justify-content:center">
+    <div style="background:#1a1f2e;border:0.5px solid var(--border);border-radius:14px;padding:28px 32px;width:460px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,0.5)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div style="font-size:16px;font-weight:600;color:#fff">Send Feedback</div>
+        <button onclick="closeFeedback()" style="background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:0 4px;line-height:1">✕</button>
+      </div>
+      <div id="feedback-form">
+        <div style="margin-bottom:14px">
+          <label style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em">Name <span style="color:var(--text3);font-style:italic">(optional)</span></label>
+          <input id="fb-name" type="text" placeholder="Your name" style="width:100%;margin-top:6px;box-sizing:border-box">
+        </div>
+        <div style="margin-bottom:14px">
+          <label style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em">Email <span style="color:var(--text3);font-style:italic">(optional)</span></label>
+          <input id="fb-email" type="email" placeholder="your@email.com" style="width:100%;margin-top:6px;box-sizing:border-box">
+        </div>
+        <div style="margin-bottom:14px">
+          <label style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em">Type</label>
+          <select id="fb-type" style="width:100%;margin-top:6px;box-sizing:border-box">
+            <option value="Feature Request">Feature Request</option>
+            <option value="Bug Report">Bug Report</option>
+            <option value="General Feedback">General Feedback</option>
+          </select>
+        </div>
+        <div style="margin-bottom:20px">
+          <label style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em">Feedback <span style="color:#f04f4f">*</span></label>
+          <textarea id="fb-message" rows="4" placeholder="Tell us what you think or what you'd like to see…" style="width:100%;margin-top:6px;box-sizing:border-box;resize:vertical"></textarea>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end">
+          <button class="btn" onclick="closeFeedback()">Cancel</button>
+          <button class="btn" onclick="submitFeedback()" style="background:rgba(74,158,255,0.2);border-color:rgba(74,158,255,0.5);color:#4a9eff">Send</button>
+        </div>
+        <div id="fb-error" style="display:none;margin-top:12px;font-size:12px;color:#f04f4f"></div>
+      </div>
+      <div id="feedback-success" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:32px;margin-bottom:12px">✓</div>
+        <div style="font-size:15px;font-weight:600;color:#22c87a;margin-bottom:8px">Thanks for your feedback!</div>
+        <div style="font-size:13px;color:var(--text3)">We'll review it and get back to you if needed.</div>
+        <button class="btn" onclick="closeFeedback()" style="margin-top:20px">Close</button>
+      </div>
     </div>
   </div>
   <div id="stale-banner" style="display:none;margin-bottom:16px;padding:10px 16px;background:rgba(240,160,32,0.1);border:0.5px solid rgba(240,160,32,0.4);border-radius:8px;font-size:12px;color:#f0a020"></div>
@@ -313,6 +364,56 @@ document.getElementById('currentDate').textContent =
 
 // ── Color constants ────────────────────────────────────────────────────
 const C = { green:'#22c87a', red:'#f04f4f', amber:'#f0a020', blue:'#4a9eff', yellow:'#f0d040' };
+
+// ── Feedback modal ─────────────────────────────────────────────────────
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID'; // replace after creating form at formspree.io
+function openFeedback() {
+  document.getElementById('feedback-overlay').style.display = 'flex';
+  document.getElementById('feedback-form').style.display = 'block';
+  document.getElementById('feedback-success').style.display = 'none';
+  document.getElementById('fb-error').style.display = 'none';
+  document.getElementById('fb-message').value = '';
+}
+function closeFeedback() {
+  document.getElementById('feedback-overlay').style.display = 'none';
+}
+async function submitFeedback() {
+  const msg = document.getElementById('fb-message').value.trim();
+  if (!msg) {
+    const err = document.getElementById('fb-error');
+    err.textContent = 'Please enter your feedback before sending.';
+    err.style.display = 'block';
+    return;
+  }
+  const btn = document.querySelector('#feedback-form .btn:last-of-type');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    const res = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:     document.getElementById('fb-name').value.trim() || 'Anonymous',
+        email:    document.getElementById('fb-email').value.trim() || '(not provided)',
+        type:     document.getElementById('fb-type').value,
+        message:  msg,
+      })
+    });
+    if (res.ok) {
+      document.getElementById('feedback-form').style.display = 'none';
+      document.getElementById('feedback-success').style.display = 'block';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    const err = document.getElementById('fb-error');
+    err.textContent = 'Could not send — please try again or email feedback directly.';
+    err.style.display = 'block';
+  }
+  btn.textContent = 'Send'; btn.disabled = false;
+}
+document.getElementById('feedback-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('feedback-overlay')) closeFeedback();
+});
 
 // ── State ──────────────────────────────────────────────────────────────
 let chart2 = null, chart3 = null;
