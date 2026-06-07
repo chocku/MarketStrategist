@@ -541,19 +541,19 @@ function renderBreadth() {
   });
 
   const totalSectors = sectors.length;
+  const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
+
   // SPY totals row — use actual SPY return values, not the computed sum
-  // (current-weight sum drifts because winner stocks have higher current market caps)
   const totals = {
     total:          allStocks.length,
     both:           allStocks.filter(s => s.above50 && s.above200).length,
     weight:         100,
-    contribYtd:     hasRsp ? spyReturnYtd : null,       // actual SPY YTD
-    contribFromLow: hasRsp ? spyFromLow   : null,       // actual SPY from low
+    contribYtd:     hasRsp ? spyReturnYtd : null,
+    contribFromLow: hasRsp ? spyFromLow   : null,
     newHighs:       allStocks.filter(s => s.newHigh).length,
     newLows:        allStocks.filter(s => s.newLow).length,
   };
 
-  const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
   const rspVsSpyYtd    = hasRsp ? rspReturnYtd - spyReturnYtd : null;
   const rspVsSpy12m    = hasRsp ? rspReturn12m  - spyReturn12m  : null;
   const rspVsSpyFromLow = (rspFromLow != null && spyFromLow != null) ? rspFromLow - spyFromLow : null;
