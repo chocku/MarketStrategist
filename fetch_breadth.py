@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 SPX = '^GSPC'
+RSP = 'RSP'   # Invesco S&P 500 Equal Weight ETF — equal-weight proxy
 
 def get_sp500_info():
     import requests
@@ -44,9 +45,9 @@ def fetch():
     end = datetime.today()
     start = end - timedelta(days=400)
     current_year = end.year
-    all_tickers = TICKERS + [SPX]
+    all_tickers = TICKERS + [SPX, RSP]
 
-    print(f"Downloading price history for {len(TICKERS)} stocks + SPX (this may take a few minutes)...")
+    print(f"Downloading price history for {len(TICKERS)} stocks + SPX + RSP (this may take a few minutes)...")
     raw = yf.download(all_tickers, start=start, end=end, auto_adjust=True, progress=False)
     closes = raw['Close']
 
@@ -59,6 +60,20 @@ def fetch():
     spx_ytd = float((spx_prices.iloc[-1] / spx_ytd_prices.iloc[0] - 1) * 100)
     spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0]  - 1) * 100)
     print(f"SPX: 1d {spx_1d:+.2f}%  1w {spx_1w:+.2f}%  1m {spx_1m:+.1f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  {last_date}")
+
+    # RSP — equal-weight S&P 500 (measures breadth at the index level)
+    rsp_1d = rsp_1w = rsp_1m = rsp_ytd = rsp_12m = None
+    try:
+        rsp_prices = closes[RSP].dropna()
+        rsp_ytd_prices = rsp_prices[rsp_prices.index.year == current_year]
+        rsp_1d  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-2]  - 1) * 100)
+        rsp_1w  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-5]  - 1) * 100)
+        rsp_1m  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-21] - 1) * 100)
+        rsp_ytd = float((rsp_prices.iloc[-1] / rsp_ytd_prices.iloc[0] - 1) * 100)
+        rsp_12m = float((rsp_prices.iloc[-1] / rsp_prices.iloc[0]  - 1) * 100)
+        print(f"RSP: 1d {rsp_1d:+.2f}%  1w {rsp_1w:+.2f}%  1m {rsp_1m:+.1f}%  YTD {rsp_ytd:+.1f}%  12m {rsp_12m:+.1f}%")
+    except Exception as e:
+        print(f"  RSP fetch failed (non-critical): {e}")
 
     print(f"Fetching market caps for {len(TICKERS)} tickers (parallelized)...")
     mcap_map = {}
@@ -149,6 +164,11 @@ def fetch():
         "spxReturn1m":   round(spx_1m, 2),
         "spxReturnYtd":  round(spx_ytd, 2),
         "spxReturn12m":  round(spx_12m, 2),
+        "rspReturn1d":   round(rsp_1d, 2) if rsp_1d is not None else None,
+        "rspReturn1w":   round(rsp_1w, 2) if rsp_1w is not None else None,
+        "rspReturn1m":   round(rsp_1m, 2) if rsp_1m is not None else None,
+        "rspReturnYtd":  round(rsp_ytd, 2) if rsp_ytd is not None else None,
+        "rspReturn12m":  round(rsp_12m, 2) if rsp_12m is not None else None,
         "newHighCount":  new_highs,
         "newLowCount":   new_lows,
         "stocks":        results

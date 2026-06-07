@@ -67,14 +67,16 @@ select.ctrl-input { cursor:pointer; padding-right:28px; appearance:none;
 .rname { font-size:15px; font-weight:700; }
 .rsig  { font-size:12px; color:var(--text2); margin-left:auto; }
 
-/* Metric cards */
-.cards { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
-.card  { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:16px 18px; }
-.clbl  { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:8px; }
-.cval  { font-size:30px; font-weight:700; line-height:1; }
-.csub  { font-size:11px; color:var(--text2); margin-top:6px; }
-.hl-row { display:flex; gap:16px; margin-top:6px; }
-.hl-item { font-size:13px; font-weight:700; }
+/* Signal boxes */
+.signal-boxes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+.signal-box   { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:18px 20px; }
+.signal-title { font-size:12px; font-weight:700; color:var(--text); margin-bottom:12px; padding-bottom:10px; border-bottom:0.5px solid var(--border); }
+.signal-row   { display:flex; align-items:center; gap:6px; padding:5px 0; border-bottom:0.5px solid var(--border); }
+.signal-row:last-of-type { border-bottom:none; }
+.signal-lbl   { font-size:12px; color:var(--text2); flex:1; }
+.signal-sub   { font-size:10px; color:var(--text3); }
+.signal-val   { font-size:14px; font-weight:700; min-width:40px; text-align:right; }
+.signal-interp{ font-size:11px; color:var(--text2); margin-top:12px; padding-top:10px; border-top:0.5px solid var(--border); line-height:1.6; }
 
 /* Two column */
 .two   { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
@@ -136,6 +138,57 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 /* New high/low tag */
 .htag { font-size:10px; font-weight:700; }
 
+/* Tab navigation */
+.tab-nav { display:flex; gap:4px; }
+.tab-btn {
+  background:transparent; border:0.5px solid transparent;
+  color:var(--text3); font-size:12px; font-weight:500;
+  padding:7px 16px; border-radius:8px; cursor:pointer; transition:all 0.15s;
+}
+.tab-btn:hover { color:var(--text2); background:var(--bg3); }
+.tab-btn.active {
+  background:var(--bg3); border-color:var(--border2);
+  color:var(--text); font-weight:600;
+}
+
+/* Participation tab */
+.verdict-banner {
+  display:flex; align-items:center; gap:16px;
+  padding:16px 22px; border-radius:12px;
+  border:0.5px solid var(--border); background:var(--bg2);
+  margin-bottom:20px;
+}
+.verdict-dot  { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.verdict-label{ font-size:16px; font-weight:700; }
+.verdict-meaning { font-size:12px; color:var(--text2); }
+.verdict-action  { font-size:11px; padding:4px 12px; border-radius:6px; margin-left:auto; font-weight:600; }
+
+.part-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+.part-box  { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:18px 20px; }
+.part-title{ font-size:12px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.part-sub  { font-size:11px; color:var(--text3); margin-bottom:14px; padding-bottom:10px; border-bottom:0.5px solid var(--border); }
+.part-row  { display:flex; align-items:center; gap:8px; padding:5px 0; border-bottom:0.5px solid var(--border); }
+.part-row:last-of-type { border-bottom:none; }
+.part-lbl  { font-size:12px; color:var(--text2); flex:1; }
+.part-rsp  { font-size:11px; color:var(--text3); min-width:70px; text-align:right; }
+.part-spx  { font-size:11px; color:var(--text3); min-width:70px; text-align:right; }
+.part-diff { font-size:13px; font-weight:700; min-width:55px; text-align:right; }
+.part-interp { font-size:11px; color:var(--text2); margin-top:12px; padding-top:10px; border-top:0.5px solid var(--border); line-height:1.6; }
+
+/* Sector health table */
+.sec-health { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
+.sec-health table { min-width:600px; }
+.sec-health th { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:.06em; padding:0 12px 10px; text-align:left; border-bottom:0.5px solid var(--border); white-space:nowrap; }
+.sec-health td { font-size:12px; padding:8px 12px; border-bottom:0.5px solid var(--border); vertical-align:middle; }
+.sec-health tr:last-child td { border-bottom:none; }
+.sec-health tr:hover td { background:rgba(255,255,255,0.02); }
+.health-bar { height:6px; background:var(--bg3); border-radius:3px; width:120px; overflow:hidden; }
+.health-fill{ height:100%; border-radius:3px; }
+.health-pill{ display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:5px; }
+.nh-spread-good { color:#22c87a; }
+.nh-spread-warn { color:#f0d040; }
+.nh-spread-bad  { color:#f04f4f; }
+
 /* Note */
 .note {
   font-size:11px; color:var(--text3); line-height:1.7;
@@ -171,6 +224,10 @@ tr:hover td { background:rgba(255,255,255,0.02); }
       <div class="sub" id="sub">Loading...</div>
     </div>
     <div class="topbar-right">
+      <div class="tab-nav">
+        <button class="tab-btn active" id="tab-overview" onclick="switchTab('overview')">Overview</button>
+        <button class="tab-btn" id="tab-participation" onclick="switchTab('participation')">Participation</button>
+      </div>
       <select id="sectorSelect" class="ctrl-input" onchange="onSectorChange(this.value)" style="width:200px">
         <option value="all">All Sectors</option>
       </select>
@@ -180,6 +237,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   <div id="root">
     <div class="loading"><div class="spinner"></div>Loading market data...</div>
   </div>
+  <div id="root2" style="display:none"></div>
 </div>
 
 <script>
@@ -189,6 +247,7 @@ let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
+let activeTab = 'overview';
 
 // ── Helpers ────────────────────────────────────────────────────────────
 function regime(p) {
@@ -313,37 +372,32 @@ function render() {
       </div>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <div class="clbl">Above 50-MA</div>
-        <div class="cval" style="color:${regime(p50).color}">${p50}%</div>
-        <div class="csub">${a50} of ${n} stocks</div>
+    <div class="signal-boxes">
+
+      <!-- Box 1: Is the market trending? -->
+      <div class="signal-box">
+        <div class="signal-title">Is the market trending?</div>
+        ${[
+          {lbl:'Short-term (50-MA)',  pct:p50,   n:a50,   c:regime(p50).color},
+          {lbl:'Long-term (200-MA)',  pct:p200,  n:a200,  c:regime(p200).color},
+          {lbl:'Clean trend (both)', pct:pBoth, n:aBoth, c:regime(pBoth).color}
+        ].map(r=>`
+          <div class="signal-row">
+            <span class="signal-lbl">${r.lbl}</span>
+            <span class="signal-sub">${r.n} stocks</span>
+            <span class="signal-val" style="color:${r.c}">${r.pct}%</span>
+          </div>`).join('')}
+        <div class="signal-interp">${
+          pBoth >= 60 ? `<strong style="color:#22c87a">Broad trend intact.</strong> ${pBoth}% of stocks are above both MAs — the majority of the market is in an established uptrend.` :
+          pBoth >= 40 ? `<strong style="color:#f0d040">Mixed signals.</strong> ${pBoth}% above both MAs. The market lacks a clear directional conviction — roughly half trending, half not.` :
+          pBoth >= 20 ? `<strong style="color:#f0a020">Trend deteriorating.</strong> Only ${pBoth}% hold both MAs. Most stocks are broken from their trend — risk-off conditions prevail.` :
+          `<strong style="color:#f04f4f">Capitulation territory.</strong> ${pBoth}% above both MAs. Broad trend breakdown — historically a potential washout or reversal zone.`
+        }</div>
       </div>
-      <div class="card">
-        <div class="clbl">Above 200-MA</div>
-        <div class="cval" style="color:${regime(p200).color}">${p200}%</div>
-        <div class="csub">${a200} of ${n} stocks</div>
-      </div>
-      <div class="card">
-        <div class="clbl">Investable Universe</div>
-        <div class="cval" style="color:${regime(pBoth).color}">${pBoth}%</div>
-        <div class="csub">Above both MAs · ${aBoth} stocks</div>
-      </div>
-      <div class="card">
-        <div class="clbl">52-Week Extremes</div>
-        <div class="hl-row">
-          <div>
-            <div class="hl-item" style="color:#22c87a">${newHighCount ?? '—'}</div>
-            <div class="csub">New Highs</div>
-          </div>
-          <div>
-            <div class="hl-item" style="color:#f04f4f">${newLowCount ?? '—'}</div>
-            <div class="csub">New Lows</div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="clbl">Beating SPX</div>
+
+      <!-- Box 2: Are stocks beating the index? -->
+      <div class="signal-box">
+        <div class="signal-title">Are stocks beating the index?</div>
         ${[
           {label:'1d',  v:beat1d,  spx:spxReturn1d},
           {label:'1w',  v:beat1w,  spx:spxReturn1w},
@@ -351,12 +405,42 @@ function render() {
           {label:'YTD', v:beatYtd, spx:spxReturnYtd},
           {label:'12m', v:beat12m, spx:spxReturn12m}
         ].map(r=>`
-          <div class="beat-row">
-            <span class="beat-lbl">${r.label}</span>
-            <span class="beat-spx">SPX ${pp(r.spx??0,true)}%</span>
-            <span class="beat-val" style="color:${r.v>n/2?'#22c87a':'#f04f4f'}">${r.v}</span>
+          <div class="signal-row">
+            <span class="signal-lbl">${r.label}</span>
+            <span class="signal-sub">SPX ${pp(r.spx??0,true)}%</span>
+            <span class="signal-val" style="color:${r.v>n/2?'#22c87a':'#f04f4f'}">${r.v} <span style="font-size:10px;font-weight:400;color:var(--text3)">of ${n}</span></span>
           </div>`).join('')}
+        <div class="signal-interp">${(()=>{
+          const r12 = n ? beat12m/n : 0;
+          const rYtd = n ? beatYtd/n : 0;
+          if (r12 >= 0.5 && rYtd >= 0.5) return `<strong style="color:#22c87a">Wide participation.</strong> More than half the index is outperforming SPX on both a YTD and 12-month basis — breadth is supporting the rally.`;
+          if (r12 >= 0.5) return `<strong style="color:#22c87a">Long-run leaders.</strong> ${beat12m} stocks beat SPX over 12m, but YTD breadth is narrower (${beatYtd}). Recent leadership may be concentrated.`;
+          if (rYtd >= 0.5) return `<strong style="color:#f0d040">Recovering breadth.</strong> ${beatYtd} stocks beat SPX YTD despite weaker 12m numbers — rotation or mean reversion underway.`;
+          return `<strong style="color:#f04f4f">Narrow market.</strong> Fewer than half beat SPX over both YTD and 12m — the index return is being driven by a small group of outperformers.`;
+        })()}</div>
       </div>
+
+      <!-- Box 3: Is the trend making new ground? -->
+      <div class="signal-box">
+        <div class="signal-title">Is the trend making new ground?</div>
+        <div class="signal-row">
+          <span class="signal-lbl">New 52-week highs</span>
+          <span class="signal-val" style="color:#22c87a">${newHighCount ?? '—'}</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-lbl">New 52-week lows</span>
+          <span class="signal-val" style="color:#f04f4f">${newLowCount ?? '—'}</span>
+        </div>
+        <div class="signal-interp">${(()=>{
+          const nh = newHighCount ?? 0, nl = newLowCount ?? 0;
+          const ratio = (nh + nl) > 0 ? nh / (nh + nl) : 0.5;
+          if (ratio >= 0.7) return `<strong style="color:#22c87a">Expansion in progress.</strong> New highs dominate (${nh} vs ${nl} lows) — fresh breakouts are leading the market forward.`;
+          if (ratio >= 0.5) return `<strong style="color:#f0d040">Modest expansion.</strong> More highs than lows (${nh} vs ${nl}), but not a decisive surge. The trend is advancing but without strong conviction.`;
+          if (ratio >= 0.3) return `<strong style="color:#f0a020">Contraction warning.</strong> Lows are outpacing highs (${nh} highs vs ${nl} lows) — the trend is losing new leadership and may be stalling.`;
+          return `<strong style="color:#f04f4f">Broad breakdown.</strong> New lows dominate (${nl} vs ${nh} highs) — stocks are making fresh 52-week lows at an alarming rate.`;
+        })()}</div>
+      </div>
+
     </div>
 
     <div class="sector-panel">
@@ -507,6 +591,235 @@ function renderTable(stocks) {
       <td>${maBadge(s.above50,s.above200)}</td>
     </tr>`;
   }).join('');
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('root').style.display  = tab === 'overview'     ? '' : 'none';
+  document.getElementById('root2').style.display = tab === 'participation' ? '' : 'none';
+  document.getElementById('tab-overview').classList.toggle('active', tab === 'overview');
+  document.getElementById('tab-participation').classList.toggle('active', tab === 'participation');
+  // Sector filter only meaningful on Overview tab
+  document.getElementById('sectorSelect').style.display = tab === 'overview' ? '' : 'none';
+  if (tab === 'participation' && _data) renderParticipation();
+}
+
+// ── Participation tab ─────────────────────────────────────────────────
+function renderParticipation() {
+  if (!_data) return;
+  const {
+    stocks,
+    spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
+    rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m
+  } = _data;
+
+  // ── Sector-level analysis ──────────────────────────────────────────
+  const secMap = {};
+  stocks.forEach(s => {
+    const sec = s.sector || 'Unknown';
+    if (!secMap[sec]) secMap[sec] = { total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0 };
+    secMap[sec].total++;
+    if (s.above50) secMap[sec].above50++;
+    if (s.above200) secMap[sec].above200++;
+    if (s.above50 && s.above200) secMap[sec].both++;
+    if (s.newHigh) secMap[sec].newHighs++;
+    if (s.newLow)  secMap[sec].newLows++;
+  });
+  const sectors = Object.entries(secMap)
+    .map(([name, d]) => ({ name, ...d, pct: Math.round(d.both / d.total * 100) }))
+    .sort((a,b) => b.pct - a.pct);
+
+  const healthySectors  = sectors.filter(s => s.pct >= 50).length;
+  const newHighSectors  = sectors.filter(s => s.newHighs > 0).length;
+  const totalSectors    = sectors.length;
+
+  // ── Equal-weight signal ────────────────────────────────────────────
+  const hasRsp = rspReturnYtd != null;
+  const rspVsSpxYtd = hasRsp ? rspReturnYtd - spxReturnYtd : null;
+  const rspVsSpx12m = hasRsp ? rspReturn12m - spxReturn12m : null;
+  const rspVsSpx1m  = hasRsp ? rspReturn1m  - spxReturn1m  : null;
+
+  // ── Verdict ────────────────────────────────────────────────────────
+  // Grade sector health: strong 7+, moderate 4-6, weak 0-3
+  const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
+  // Equal-weight signal: aligned (RSP close to SPX), lagging, diverging
+  const ewnGrade = rspVsSpxYtd == null ? 'unknown'
+    : rspVsSpxYtd >= -2  ? 'aligned'
+    : rspVsSpxYtd >= -6  ? 'lagging'
+    : 'diverging';
+  // New high spread: 5+ sectors = broad, 3-4 = moderate, <3 = clustered
+  const nhiGrade = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
+
+  let verdict, vColor, vMeaning, vAction;
+  if (sectorGrade === 'strong' && ewnGrade !== 'diverging' && nhiGrade === 'broad') {
+    verdict='Broad'; vColor='#22c87a';
+    vMeaning='Most sectors and stocks are participating in the move.';
+    vAction='Full size · Diversify across sectors';
+  } else if (sectorGrade === 'weak' && (ewnGrade === 'diverging' || nhiGrade === 'clustered')) {
+    verdict='Concentrated'; vColor='#f0a020';
+    vMeaning='1–2 sectors or mega-caps are carrying the index. The average stock is not participating.';
+    vAction='Small size · Only hold sector leaders';
+  } else if (sectorGrade !== 'strong' && ewnGrade === 'diverging') {
+    verdict='Deteriorating'; vColor='#f04f4f';
+    vMeaning='Breadth is falling while price may still hold. Distribution is likely underway.';
+    vAction='Start reducing · Watch for breakdown';
+  } else {
+    verdict='Mixed'; vColor='#f0d040';
+    vMeaning='Some sectors are healthy, others are not. The rally has partial participation.';
+    vAction='Normal size · Stick to healthy sectors';
+  }
+
+  // ── Equal-weight rows ──────────────────────────────────────────────
+  const ewRows = hasRsp
+    ? [
+        {lbl:'1-day',    rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
+        {lbl:'1-month',  rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
+        {lbl:'YTD',      rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
+        {lbl:'12-month', rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
+      ]
+    : null;
+
+  const ewInterpText = !hasRsp
+    ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
+    : ewnGrade === 'aligned'
+      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight performance is close to cap-weight. Broad participation — the rally isn't just mega-cap driven.`
+      : ewnGrade === 'lagging'
+      ? `<strong style="color:#f0d040">RSP lagging SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> Cap-weighted index is outrunning the average stock. Some concentration, but not yet alarming.`
+      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> A handful of large-caps are holding up the index while most stocks underperform. Classic late-stage concentration — high risk.`;
+
+  // ── New highs by sector text ───────────────────────────────────────
+  const nhiInterpText = nhiGrade === 'broad'
+    ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
+    : nhiGrade === 'moderate'
+    ? `<strong style="color:#f0d040">New highs in ${newHighSectors} of ${totalSectors} sectors.</strong> Moderate spread — some sectors leading but others stalling out.`
+    : `<strong style="color:#f04f4f">New highs clustered in ${newHighSectors} sector${newHighSectors === 1 ? '' : 's'}.</strong> Breakouts are heavily concentrated. Late-stage warning — few names carrying the narrative.`;
+
+  document.getElementById('root2').innerHTML = `
+
+    <!-- Verdict banner -->
+    <div class="verdict-banner" style="border-color:${vColor}33">
+      <div class="verdict-dot" style="background:${vColor}"></div>
+      <div>
+        <div class="verdict-label" style="color:${vColor}">${verdict}</div>
+        <div class="verdict-meaning">${vMeaning}</div>
+      </div>
+      <div class="verdict-action" style="background:${vColor}18;color:${vColor}">${vAction}</div>
+    </div>
+
+    <!-- Two-column metric boxes -->
+    <div class="part-grid">
+
+      <!-- Equal-weight vs Cap-weight -->
+      <div class="part-box">
+        <div class="part-title">Equal-weight vs Cap-weight</div>
+        <div class="part-sub">RSP (equal-weight) vs SPX — is the average stock keeping up?</div>
+        ${hasRsp ? `
+          <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
+            <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
+            <span class="part-rsp" style="font-size:10px;color:var(--text3)">RSP</span>
+            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPX</span>
+            <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
+          </div>
+          ${ewRows.map(r => `
+            <div class="part-row">
+              <span class="part-lbl">${r.lbl}</span>
+              <span class="part-rsp">${pp(r.rsp,true)}%</span>
+              <span class="part-spx">${pp(r.spx,true)}%</span>
+              <span class="part-diff" style="color:${r.diff >= -2 ? '#22c87a' : r.diff >= -6 ? '#f0d040' : '#f04f4f'}">${pp(r.diff,true)}%</span>
+            </div>`).join('')}
+        ` : `<div style="color:var(--text3);font-size:12px;padding:16px 0">RSP data not loaded yet — re-run fetch_breadth.py</div>`}
+        <div class="part-interp">${ewInterpText}</div>
+      </div>
+
+      <!-- New highs by sector -->
+      <div class="part-box">
+        <div class="part-title">New 52-week highs by sector</div>
+        <div class="part-sub">Are breakouts spread across sectors or clustering in one?</div>
+        ${sectors.filter(s => s.newHighs > 0 || s.newLows > 0).length === 0
+          ? `<div style="color:var(--text3);font-size:12px;padding:16px 0">No new highs or lows recorded.</div>`
+          : sectors.filter(s => s.newHighs > 0).sort((a,b) => b.newHighs - a.newHighs).map(s => {
+            const totalNH = stocks.filter(x => x.newHigh).length || 1;
+            const barW = Math.round(s.newHighs / totalNH * 100);
+            return `
+              <div class="part-row">
+                <span class="part-lbl">${s.name}</span>
+                <span style="font-size:11px;color:#22c87a;min-width:28px;text-align:right">${s.newHighs}</span>
+                <div style="width:80px;margin-left:8px">
+                  <div class="health-bar"><div class="health-fill" style="width:${barW}%;background:#22c87a88"></div></div>
+                </div>
+              </div>`}).join('')
+        }
+        <div class="part-interp">${nhiInterpText}</div>
+      </div>
+
+    </div>
+
+    <!-- Sector health table -->
+    <div class="sec-health">
+      <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth threshold</div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Sector</th>
+            <th>Stocks</th>
+            <th>% Both MAs</th>
+            <th style="width:140px">Breadth bar</th>
+            <th>Status</th>
+            <th>New Highs</th>
+            <th>New Lows</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sectors.map(s => {
+            const reg = regime(s.pct);
+            const pill = s.pct >= 60
+              ? `<span class="health-pill" style="background:#22c87a18;color:#22c87a">Healthy</span>`
+              : s.pct >= 40
+              ? `<span class="health-pill" style="background:#f0d04018;color:#f0d040">Neutral</span>`
+              : `<span class="health-pill" style="background:#f04f4f18;color:#f04f4f">Weak</span>`;
+            return `<tr>
+              <td style="font-weight:600">${s.name}</td>
+              <td class="muted">${s.total}</td>
+              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
+              <td>
+                <div class="health-bar" style="width:100%">
+                  <div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div>
+                </div>
+              </td>
+              <td>${pill}</td>
+              <td style="color:${s.newHighs > 0 ? '#22c87a' : 'var(--text3)'};font-weight:${s.newHighs > 0 ? 700 : 400}">${s.newHighs || '—'}</td>
+              <td style="color:${s.newLows > 0 ? '#f04f4f' : 'var(--text3)'};font-weight:${s.newLows > 0 ? 700 : 400}">${s.newLows || '—'}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- Signal summary -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Healthy Sectors</div>
+        <div style="font-size:32px;font-weight:700;color:${healthySectors >= 7 ? '#22c87a' : healthySectors >= 4 ? '#f0d040' : '#f04f4f'}">${healthySectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:4px">${healthySectors >= 7 ? 'Broadly healthy' : healthySectors >= 4 ? 'Mixed — some at risk' : 'Most sectors weak'}</div>
+      </div>
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors Making Highs</div>
+        <div style="font-size:32px;font-weight:700;color:${newHighSectors >= 5 ? '#22c87a' : newHighSectors >= 3 ? '#f0d040' : '#f04f4f'}">${newHighSectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:4px">${newHighSectors >= 5 ? 'Broad breakout leadership' : newHighSectors >= 3 ? 'Partial spread' : 'Concentrated highs'}</div>
+      </div>
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Equal-weight Spread (YTD)</div>
+        ${hasRsp
+          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpxYtd >= -2 ? '#22c87a' : rspVsSpxYtd >= -6 ? '#f0d040' : '#f04f4f'}">${pp(rspVsSpxYtd,true)}%</div>
+             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPX · ${rspVsSpxYtd >= -2 ? 'Broad rally' : rspVsSpxYtd >= -6 ? 'Slight narrowing' : 'Cap-weight dominated'}</div>`
+          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP data</div>`
+        }
+      </div>
+    </div>
+  `;
 }
 
 init();
