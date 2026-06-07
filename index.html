@@ -226,12 +226,34 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 </head>
 <body>
 <div class="wrap">
+  <!-- Disclaimer modal -->
+  <div id="disclaimer-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="background:#151820;border:0.5px solid rgba(255,255,255,0.13);border-radius:16px;max-width:560px;width:100%;padding:36px 40px">
+      <div style="font-size:18px;font-weight:700;color:#eef0f4;margin-bottom:6px">Not Investment Advice</div>
+      <div style="font-size:12px;color:#f0a020;margin-bottom:20px;font-weight:600">Please read before continuing</div>
+      <div style="font-size:13px;color:#8a92a2;line-height:1.8;margin-bottom:28px">
+        This dashboard is provided for <strong style="color:#eef0f4">informational and educational purposes only</strong>. Nothing on this site constitutes investment advice, a recommendation to buy or sell any security, or an offer to provide investment advisory services.<br><br>
+        Market data is sourced from public sources and may be delayed or inaccurate. Past performance is not indicative of future results. All investments involve risk, including the possible loss of principal.<br><br>
+        By continuing, you confirm that you understand this tool is for <strong style="color:#eef0f4">personal research only</strong> and that you take full responsibility for any investment decisions you make.
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <input type="checkbox" id="disclaimer-check" style="width:16px;height:16px;cursor:pointer;accent-color:#4a9eff">
+        <label for="disclaimer-check" style="font-size:13px;color:#eef0f4;cursor:pointer">I understand this is not investment advice</label>
+      </div>
+      <button onclick="acceptDisclaimer()" id="disclaimer-btn" style="width:100%;padding:12px;background:#4a9eff;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;opacity:0.4;transition:opacity 0.2s" disabled>Continue to Dashboard</button>
+    </div>
+  </div>
+
   <div class="topbar">
     <div>
       <div class="title">Market Health - Overview</div>
       <div class="sub" id="sub">Loading...</div>
     </div>
     <div class="topbar-right">
+      <div style="text-align:right;font-size:11px;color:var(--text3);line-height:1.7">
+        <div>Today: <span style="color:var(--text2)" id="currentDate"></span></div>
+        <div>Data as of: <span style="color:var(--text2)" id="dataDate">—</span></div>
+      </div>
       <div class="tab-nav">
         <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
@@ -249,6 +271,30 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 </div>
 
 <script>
+// ── Disclaimer ────────────────────────────────────────────────────────
+function showDisclaimerIfNeeded() {
+  const overlay = document.getElementById('disclaimer-overlay');
+  if (localStorage.getItem('disclaimer-accepted') === 'yes') {
+    overlay.style.display = 'none';
+    init();
+  } else {
+    overlay.style.display = 'flex';
+    document.getElementById('disclaimer-check').addEventListener('change', function() {
+      document.getElementById('disclaimer-btn').disabled = !this.checked;
+      document.getElementById('disclaimer-btn').style.opacity = this.checked ? '1' : '0.4';
+    });
+  }
+}
+function acceptDisclaimer() {
+  localStorage.setItem('disclaimer-accepted', 'yes');
+  document.getElementById('disclaimer-overlay').style.display = 'none';
+  init();
+}
+
+// ── Current date display ──────────────────────────────────────────────
+document.getElementById('currentDate').textContent =
+  new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
 // ── State ──────────────────────────────────────────────────────────────
 let chart2 = null, chart3 = null;
 let _data = null;
@@ -305,6 +351,7 @@ async function init() {
     return;
   }
   _data = d;
+  document.getElementById('dataDate').textContent = d.asOf || '—';
   filterSector = 'all';
   searchTicker = '';
   populateSectorDropdown(d.stocks);
@@ -945,5 +992,5 @@ function renderTable(stocks) {
 }
 
 
-init();
+showDisclaimerIfNeeded();
 </script>
