@@ -682,8 +682,8 @@ function renderBreadth() {
           ${sectors.map(s => {
             const reg        = regime(s.pct);
             const realHighs  = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
-            const cYtdC  = s.contribYtd     > 0.1 ? '#22c87a' : s.contribYtd     < -0.1 ? '#f04f4f' : 'var(--text2)';
-            const cLowC  = s.contribFromLow > 0.1 ? '#22c87a' : s.contribFromLow < -0.1 ? '#f04f4f' : 'var(--text2)';
+            const cYtdC  = s.contribYtd     > 0 ? '#22c87a' : s.contribYtd     < 0 ? '#f04f4f' : 'var(--text2)';
+            const cLowC  = s.contribFromLow > 0 ? '#22c87a' : s.contribFromLow < 0 ? '#f04f4f' : 'var(--text2)';
             return `<tr>
               <td style="font-weight:600">${s.name}</td>
               <td class="muted">${s.total}</td>
