@@ -257,6 +257,7 @@ let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
 let activeTab = 'regime';
+let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 
 // ── Helpers ────────────────────────────────────────────────────────────
 function regime(p) {
@@ -342,6 +343,14 @@ function getFilteredStocks() {
   let stocks = _data.stocks;
   if (filterSector !== 'all') stocks = stocks.filter(s => s.sector === filterSector);
   return stocks;
+}
+
+// ── Breadth table sort ────────────────────────────────────────────────
+function sortBreadth(col) {
+  if (breadthSortCol === col) breadthSortDir *= -1;
+  else { breadthSortCol = col; breadthSortDir = -1; }
+  if (chart3) { chart3.destroy(); chart3 = null; }
+  renderBreadth();
 }
 
 // ── Tab switching ─────────────────────────────────────────────────────
@@ -522,7 +531,14 @@ function renderBreadth() {
       contribYtd:     +(wt * retYtd).toFixed(2),
       contribFromLow: +(wt * retFromLow).toFixed(2),
     };
-  }).sort((a,b) => b.pct - a.pct);
+  });
+
+  // Apply current sort
+  sectors.sort((a, b) => {
+    const av = a[breadthSortCol] ?? -Infinity;
+    const bv = b[breadthSortCol] ?? -Infinity;
+    return breadthSortDir * (bv - av);
+  });
 
   const totalSectors = sectors.length;
   // SPY totals row
@@ -549,9 +565,23 @@ function renderBreadth() {
     {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
+  // ── Interpretation strings (factual, no verdict) ──
+  const rspInterpYtd  = hasRsp ? `RSP ${pp(rspReturnYtd,true)}%  ·  SPY ${pp(spyReturnYtd,true)}%  ·  Spread ${pp(rspVsSpyYtd,true)}% YTD` : '';
+  const rspInterpLow  = hasRsp ? `From ${recentLowDate} low — RSP ${pp(rspFromLow,true)}%  ·  SPY ${pp(spyFromLow,true)}%  ·  Spread ${pp(rspVsSpyFromLow,true)}%` : '';
+
+  const topContrib    = [...sectors].sort((a,b) => b.contribYtd - a.contribYtd)[0];
+  const bottomContrib = [...sectors].sort((a,b) => a.contribYtd - b.contribYtd)[0];
+  const secInterpYtd  = `YTD: biggest contributor <strong>${topContrib.name}</strong> (${pp(topContrib.contribYtd,true)}%)${bottomContrib.contribYtd < 0 ? ` · biggest drag <strong>${bottomContrib.name}</strong> (${pp(bottomContrib.contribYtd,true)}%)` : ''}`;
+  const topLow        = [...sectors].sort((a,b) => b.contribFromLow - a.contribFromLow)[0];
+  const bottomLow     = [...sectors].sort((a,b) => a.contribFromLow - b.contribFromLow)[0];
+  const secInterpLow  = `From low: biggest contributor <strong>${topLow.name}</strong> (${pp(topLow.contribFromLow,true)}%)${bottomLow.contribFromLow < 0 ? ` · biggest drag <strong>${bottomLow.name}</strong> (${pp(bottomLow.contribFromLow,true)}%)` : ''}`;
+
+  // sort indicator helper
+  const si = col => breadthSortCol === col ? (breadthSortDir > 0 ? ' ▲' : ' ▼') : '';
+
   document.getElementById('root').innerHTML = tabHdr(
     'Is the rally broad or carried by a few names?',
-    'Start with RSP vs SPY to see if the average stock is keeping up with the index, then drill into the sector table to see where participation is concentrated.'
+    'RSP vs SPY shows whether the average stock keeps up with the index. The sector table shows which sectors are driving the move and how wide the participation is within each.'
   ) + `
     <!-- Row 1: RSP vs SPY table (left) + 90-day chart (right) -->
     <div style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
@@ -572,6 +602,9 @@ function renderBreadth() {
               <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spy,true)}%</span>
               <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
+          <div style="margin-top:10px;padding-top:8px;border-top:0.5px solid var(--border);font-size:11px;color:var(--text2);line-height:1.7">
+            ${rspInterpYtd}<br>${rspInterpLow}
+          </div>
         ` : `
           <div style="padding:20px 0;text-align:center">
             <div style="font-size:28px;color:var(--text3);margin-bottom:8px">—</div>
@@ -582,28 +615,34 @@ function renderBreadth() {
 
       <div class="sector-panel" style="margin-bottom:0">
         <div class="ptitle">RSP vs SPY — 90-day % return${chartDates ? ` (since ${chartDates[0]})` : ''}</div>
-        <div style="position:relative;height:260px">
+        <div style="position:relative;height:240px">
           ${chartDates ? `<canvas id="c3" role="img" aria-label="RSP vs SPY performance chart"></canvas>`
                        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-size:13px">No chart data — re-run fetch_breadth.py</div>`}
         </div>
+        ${hasRsp && chartDates ? `
+        <div style="margin-top:8px;font-size:11px;color:var(--text2);line-height:1.7">
+          SPY ${pp(chartSpy[chartSpy.length-1],true)}% from chart start · RSP ${pp(chartRsp[chartRsp.length-1],true)}%
+          · gap <span style="color:${(chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1])>=-2?'#22c87a':
+                                     (chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1])>=-6?'#f0d040':'#f04f4f'};font-weight:600">${pp(chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1],true)}%</span>
+        </div>` : ''}
       </div>
     </div>
 
     <!-- Row 2: Sector drill-down -->
     <div class="sec-health">
-      <div class="ptitle">Sector participation — sorted by breadth (% stocks above both MAs)</div>
+      <div class="ptitle">Sector participation — click any column header to sort</div>
       <div style="overflow-x:auto"><table>
         <thead><tr>
-          <th>Sector</th>
-          <th title="Total stocks in sector">Stocks</th>
-          <th title="Stocks above both 50-MA and 200-MA">Above Both MAs</th>
-          <th title="% of sector stocks above both MAs">%</th>
+          <th onclick="sortBreadth('name')" style="cursor:pointer">Sector${si('name')}</th>
+          <th onclick="sortBreadth('total')" style="cursor:pointer" title="Total stocks in sector">Stocks${si('total')}</th>
+          <th onclick="sortBreadth('both')" style="cursor:pointer" title="Stocks above both 50-MA and 200-MA">Above Both MAs${si('both')}</th>
+          <th onclick="sortBreadth('pct')" style="cursor:pointer" title="% of sector stocks above both MAs">% Both MAs${si('pct')}</th>
           <th style="width:90px">Breadth</th>
-          <th title="Sector weight in S&P 500 by market cap">Wt %</th>
-          <th title="Sector's contribution to SPY YTD return (weight × mcap-wtd return)" style="border-left:0.5px solid var(--border)">Contrib YTD</th>
-          <th title="Sector's contribution to SPY return since ${recentLowDate} (weight × mcap-wtd return)">Contrib From Low</th>
-          <th title="Stocks within 2% of 52-week high · ★ = ≥3 stocks &amp; ≥5% of sector" style="border-left:0.5px solid var(--border)">52W Highs</th>
-          <th title="Stocks within 2% of 52-week low">52W Lows</th>
+          <th onclick="sortBreadth('weight')" style="cursor:pointer" title="Sector weight in S&P 500 by market cap">Wt %${si('weight')}</th>
+          <th onclick="sortBreadth('contribYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Sector weight × mcap-wtd YTD return = % pts added to SPY YTD">YTD Contrib${si('contribYtd')}</th>
+          <th onclick="sortBreadth('contribFromLow')" style="cursor:pointer" title="Sector weight × mcap-wtd return since ${recentLowDate} = % pts added to SPY since low">From-Low Contrib${si('contribFromLow')}</th>
+          <th onclick="sortBreadth('newHighs')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Stocks within 2% of 52W high · ★ = ≥3 stocks &amp; ≥5% of sector">52W Highs${si('newHighs')}</th>
+          <th onclick="sortBreadth('newLows')" style="cursor:pointer" title="Stocks within 2% of 52W low">52W Lows${si('newLows')}</th>
         </tr></thead>
         <tbody>
           ${sectors.map(s => {
@@ -616,13 +655,7 @@ function renderBreadth() {
               <td class="muted">${s.total}</td>
               <td style="text-align:center;color:var(--text2)">${s.both}</td>
               <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
-              <td>
-                <div style="display:flex;align-items:center;gap:5px">
-                  <div style="flex:1;height:4px;background:var(--bg3);border-radius:2px">
-                    <div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div>
-                  </div>
-                </div>
-              </td>
+              <td><div style="height:4px;background:var(--bg3);border-radius:2px"><div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div></div></td>
               <td class="muted">${s.weight}%</td>
               <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
               <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
@@ -632,7 +665,7 @@ function renderBreadth() {
         </tbody>
         <tfoot>
           <tr style="border-top:1.5px solid var(--border2);background:var(--bg2)">
-            <td style="font-weight:700;color:var(--text)">SPY (total)</td>
+            <td style="font-weight:700;color:var(--text)">SPY (sum)</td>
             <td class="muted">${totals.total}</td>
             <td style="text-align:center;color:var(--text2)">${totals.both}</td>
             <td style="font-weight:700;color:${regime(Math.round(totals.both/totals.total*100)).color}">${Math.round(totals.both/totals.total*100)}%</td>
@@ -645,7 +678,10 @@ function renderBreadth() {
           </tr>
         </tfoot>
       </table></div>
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">Contrib = sector weight × mcap-weighted return · SPY row = sum across all sectors · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+      <div style="margin-top:10px;font-size:11px;color:var(--text2);line-height:1.9">
+        ${secInterpYtd}<br>${secInterpLow}
+      </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Contrib = sector weight × mcap-weighted return · SPY (sum) row should ≈ actual SPY return · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
     </div>
   `;
 
