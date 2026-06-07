@@ -513,36 +513,6 @@ function renderBreadth() {
   const rspVsSpy12m    = hasRsp ? rspReturn12m  - spyReturn12m  : null;
   const rspVsSpyFromLow = (rspFromLow != null && spyFromLow != null) ? rspFromLow - spyFromLow : null;
 
-  const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
-  // Use the worst spread across timeframes — if ANY window shows divergence, flag it
-  const worstSpread = [rspVsSpyYtd, rspVsSpy12m, rspVsSpyFromLow].filter(v => v != null)
-                        .reduce((worst, v) => v < worst ? v : worst, 0);
-  const ewnGrade = !hasRsp
-    ? 'unknown'
-    : worstSpread >= -2 ? 'aligned'
-    : worstSpread >= -6 ? 'lagging'
-    : 'diverging';
-  const nhiGrade = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
-
-  let verdict, vColor, vMeaning, vAction;
-  if (sectorGrade === 'strong' && ewnGrade !== 'diverging' && nhiGrade === 'broad') {
-    verdict='Broad'; vColor='#22c87a';
-    vMeaning='Most sectors and stocks are participating in the move.';
-    vAction='Full size · Diversify across sectors';
-  } else if (sectorGrade === 'weak' && (ewnGrade === 'diverging' || nhiGrade === 'clustered')) {
-    verdict='Concentrated'; vColor='#f0a020';
-    vMeaning='1–2 sectors or mega-caps are carrying the index. The average stock is not participating.';
-    vAction='Small size · Only hold sector leaders';
-  } else if (sectorGrade !== 'strong' && ewnGrade === 'diverging') {
-    verdict='Deteriorating'; vColor='#f04f4f';
-    vMeaning='Breadth is falling while price may still hold. Distribution is likely underway.';
-    vAction='Start reducing · Watch for breakdown';
-  } else {
-    verdict='Mixed'; vColor='#f0d040';
-    vMeaning='Some sectors are healthy, others are not. The rally has partial participation.';
-    vAction='Normal size · Stick to healthy sectors';
-  }
-
   const ewRows = hasRsp ? [
     {lbl:'1-day',                        rsp:rspReturn1d,  spy:spyReturn1d,  diff:rspReturn1d  - spyReturn1d},
     {lbl:'1-month',                      rsp:rspReturn1m,  spy:spyReturn1m,  diff:rspReturn1m  - spyReturn1m},
@@ -551,45 +521,15 @@ function renderBreadth() {
     {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
-  // Pick the spread label that best explains the grade
-  const spreadLabel = (() => {
-    if (rspVsSpyFromLow != null && rspVsSpyFromLow <= -2) return `${pp(rspVsSpyFromLow,true)}% from low`;
-    if (rspVsSpy12m    != null && rspVsSpy12m    <= -2)   return `${pp(rspVsSpy12m,true)}% 12m`;
-    if (rspVsSpyYtd    != null)                            return `${pp(rspVsSpyYtd,true)}% YTD`;
-    return '';
-  })();
-  const ewInterpText = !hasRsp
-    ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
-    : ewnGrade === 'aligned'
-      ? `<strong style="color:#22c87a">RSP tracking SPY.</strong> Equal-weight and cap-weight ETFs are moving together. The rally isn't just mega-cap driven — the average stock is keeping up.`
-      : ewnGrade === 'lagging'
-      ? `<strong style="color:#f0d040">RSP lagging SPY (${spreadLabel}).</strong> The cap-weighted ETF is outrunning the average stock. Concentration is building — the big names are doing more of the work.`
-      : `<strong style="color:#f04f4f">RSP significantly behind SPY (${spreadLabel}).</strong> A handful of large-caps are holding up the index while most stocks lag. Classic concentration — the rally is narrowing.`;
-
-  const nhiInterpText = nhiGrade === 'broad'
-    ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
-    : nhiGrade === 'moderate'
-    ? `<strong style="color:#f0d040">New highs in ${newHighSectors} of ${totalSectors} sectors.</strong> Moderate spread — some sectors leading but others stalling out.`
-    : `<strong style="color:#f04f4f">New highs clustered in ${newHighSectors} sector${newHighSectors===1?'':'s'}.</strong> Breakouts are heavily concentrated. Late-stage warning.`;
-
   document.getElementById('root').innerHTML = tabHdr(
     'Is the rally broad or carried by a few names?',
-    'The index number hides what\'s underneath. This tab tells you if most stocks are participating or if 10 mega-caps are doing all the work. The index can look perfectly healthy while only a handful of stocks drive the move — this is how market tops form.'
+    'Start with RSP vs SPY to see if the average stock is keeping up with the index, then drill into the sector table to see where participation is concentrated.'
   ) + `
-    <div class="verdict-banner" style="border-color:${vColor}33">
-      <div class="verdict-dot" style="background:${vColor}"></div>
-      <div>
-        <div class="verdict-label" style="color:${vColor}">${verdict}</div>
-        <div class="verdict-meaning">${vMeaning}</div>
-      </div>
-      <div class="verdict-action" style="background:${vColor}18;color:${vColor}">${vAction}</div>
-    </div>
-
     <!-- Row 1: RSP vs SPY table (left) + 90-day chart (right) -->
-    <div style="display:grid;grid-template-columns:320px 1fr;gap:14px;margin-bottom:20px;align-items:start">
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
       <div class="part-box" style="margin-bottom:0">
-        <div class="part-title">RSP vs SPY</div>
-        <div class="part-sub">Equal-weight ETF vs cap-weight ETF · Spread = RSP minus SPY</div>
+        <div class="part-title">RSP vs SPY — Equal-weight vs Cap-weight</div>
+        <div class="part-sub">Spread = RSP minus SPY · positive = average stock outperforming</div>
         ${hasRsp ? `
           <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
             <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
@@ -610,7 +550,6 @@ function renderBreadth() {
             <div style="font-size:12px;color:var(--text2)">RSP / SPY data not in current snapshot</div>
             <div style="font-size:11px;color:var(--text3);margin-top:6px">Re-run <code style="background:var(--bg3);padding:1px 6px;border-radius:4px">python fetch_breadth.py</code> to load</div>
           </div>`}
-        <div class="part-interp">${ewInterpText}</div>
       </div>
 
       <div class="sector-panel" style="margin-bottom:0">
@@ -622,32 +561,18 @@ function renderBreadth() {
       </div>
     </div>
 
-    <!-- Row 2: New highs & lows by sector -->
-    <div class="part-box" style="margin-bottom:20px">
-      <div class="part-title">New highs &amp; lows by sector</div>
-      <div class="part-sub">All 11 sectors · New high = within 2% of 52-week high · New low = within 2% of 52-week low</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px">
-        ${[...sectors].sort((a,b)=>b.newHighs-a.newHighs).map(s => {
-          const nhColor = s.newHighs > 0 ? '#22c87a' : 'var(--text3)';
-          const nlColor = s.newLows  > 0 ? '#f04f4f' : 'var(--text3)';
-          return `<div style="background:var(--bg3);border-radius:8px;padding:8px 10px">
-            <div style="font-size:10px;color:var(--text3);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</div>
-            <div style="display:flex;gap:12px">
-              <div><span style="font-size:18px;font-weight:700;color:${nhColor}">${s.newHighs||'0'}</span><span style="font-size:10px;color:#22c87a;margin-left:3px">↑</span></div>
-              <div><span style="font-size:18px;font-weight:700;color:${nlColor}">${s.newLows||'0'}</span><span style="font-size:10px;color:#f04f4f;margin-left:3px">↓</span></div>
-            </div>
-          </div>`;}).join('')}
-      </div>
-      <div class="part-interp" style="margin-top:12px">${nhiInterpText}</div>
-    </div>
-
+    <!-- Row 2: Sector drill-down -->
     <div class="sec-health">
-      <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth</div>
+      <div class="ptitle">Sector participation — % of stocks above both MAs · sorted by breadth</div>
       <div style="overflow-x:auto"><table>
         <thead><tr>
-          <th>Sector</th><th>Stocks</th><th>% Both MAs</th>
-          <th style="width:140px">Breadth bar</th><th>Status</th>
-          <th>New Highs</th><th>New Lows</th>
+          <th>Sector</th>
+          <th>Stocks</th>
+          <th>% Both MAs</th>
+          <th style="width:140px">Breadth</th>
+          <th>Status</th>
+          <th title="Stocks within 2% of 52-week high (≥3 &amp; ≥5% of sector = real leadership)">52W Highs</th>
+          <th title="Stocks within 2% of 52-week low">52W Lows</th>
         </tr></thead>
         <tbody>
           ${sectors.map(s => {
@@ -657,39 +582,19 @@ function renderBreadth() {
               : s.pct>=40
               ? `<span class="health-pill" style="background:#f0d04018;color:#f0d040">Neutral</span>`
               : `<span class="health-pill" style="background:#f04f4f18;color:#f04f4f">Weak</span>`;
+            const realHighs = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
             return `<tr>
               <td style="font-weight:600">${s.name}</td>
               <td class="muted">${s.total}</td>
               <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
-              <td><div class="health-bar" style="width:100%"><div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div></div></td>
+              <td><div class="health-bar"><div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div></div></td>
               <td>${pill}</td>
-              <td style="color:${s.newHighs>0?'#22c87a':'var(--text3)'};font-weight:${s.newHighs>0?700:400}">${s.newHighs||'—'}</td>
+              <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400}">${s.newHighs||'—'}${realHighs?' ★':''}</td>
               <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
             </tr>`;}).join('')}
         </tbody>
       </table></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Healthy Sectors</div>
-        <div style="font-size:32px;font-weight:700;color:${healthySectors>=7?'#22c87a':healthySectors>=4?'#f0d040':'#f04f4f'}">${healthySectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
-        <div style="font-size:11px;color:var(--text2);margin-top:4px">${healthySectors>=7?'Broadly healthy':healthySectors>=4?'Mixed — some at risk':'Most sectors weak'}</div>
-      </div>
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors With Real Highs</div>
-        <div style="font-size:32px;font-weight:700;color:${newHighSectors>=5?'#22c87a':newHighSectors>=3?'#f0d040':'#f04f4f'}">${newHighSectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
-        <div style="font-size:11px;color:var(--text2);margin-top:4px">${newHighSectors>=5?'Broad breakout leadership':newHighSectors>=3?'Partial spread':'Concentrated highs'}</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:3px">≥3 stocks &amp; ≥5% of sector</div>
-      </div>
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">RSP vs SPY Spread (YTD)</div>
-        ${hasRsp
-          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpyYtd>=-2?'#22c87a':rspVsSpyYtd>=-6?'#f0d040':'#f04f4f'}">${pp(rspVsSpyYtd,true)}%</div>
-             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPY · ${rspVsSpyYtd>=-2?'Broad rally':rspVsSpyYtd>=-6?'Slight narrowing':'Cap-weight dominated'}</div>`
-          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP/SPY data</div>`
-        }
-      </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">★ Real leadership = ≥3 stocks making new highs AND ≥5% of sector</div>
     </div>
   `;
 
