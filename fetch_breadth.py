@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 SPX = '^GSPC'
+SPY = 'SPY'   # SPDR S&P 500 ETF — cap-weight benchmark (ETF, comparable to RSP)
 RSP = 'RSP'   # Invesco S&P 500 Equal Weight ETF — equal-weight proxy
 
 def get_sp500_info():
@@ -45,9 +46,9 @@ def fetch():
     end = datetime.today()
     start = end - timedelta(days=400)
     current_year = end.year
-    all_tickers = TICKERS + [SPX, RSP]
+    all_tickers = TICKERS + [SPX, SPY, RSP]
 
-    print(f"Downloading price history for {len(TICKERS)} stocks + SPX + RSP (this may take a few minutes)...")
+    print(f"Downloading price history for {len(TICKERS)} stocks + SPX + SPY + RSP (this may take a few minutes)...")
     raw = yf.download(all_tickers, start=start, end=end, auto_adjust=True, progress=False)
     closes = raw['Close']
 
@@ -61,9 +62,24 @@ def fetch():
     spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0]  - 1) * 100)
     print(f"SPX: 1d {spx_1d:+.2f}%  1w {spx_1w:+.2f}%  1m {spx_1m:+.1f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  {last_date}")
 
-    # RSP — equal-weight S&P 500 (measures breadth at the index level)
+    # SPY — cap-weight ETF benchmark (used for RSP comparison; ETF vs ETF is apples-to-apples)
+    spy_1d = spy_1w = spy_1m = spy_ytd = spy_12m = None
+    spy_from_low = None
+    # RSP + SPY chart series
     rsp_1d = rsp_1w = rsp_1m = rsp_ytd = rsp_12m = None
+    rsp_from_low = None
+    recent_low_date = None
+    chart_dates = chart_spy = chart_rsp = None
     try:
+        spy_prices = closes[SPY].dropna()
+        spy_ytd_prices = spy_prices[spy_prices.index.year == current_year]
+        spy_1d  = float((spy_prices.iloc[-1] / spy_prices.iloc[-2]  - 1) * 100)
+        spy_1w  = float((spy_prices.iloc[-1] / spy_prices.iloc[-5]  - 1) * 100)
+        spy_1m  = float((spy_prices.iloc[-1] / spy_prices.iloc[-21] - 1) * 100)
+        spy_ytd = float((spy_prices.iloc[-1] / spy_ytd_prices.iloc[0] - 1) * 100)
+        spy_12m = float((spy_prices.iloc[-1] / spy_prices.iloc[0]  - 1) * 100)
+        print(f"SPY: 1d {spy_1d:+.2f}%  1w {spy_1w:+.2f}%  1m {spy_1m:+.1f}%  YTD {spy_ytd:+.1f}%  12m {spy_12m:+.1f}%")
+
         rsp_prices = closes[RSP].dropna()
         rsp_ytd_prices = rsp_prices[rsp_prices.index.year == current_year]
         rsp_1d  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-2]  - 1) * 100)
@@ -72,8 +88,25 @@ def fetch():
         rsp_ytd = float((rsp_prices.iloc[-1] / rsp_ytd_prices.iloc[0] - 1) * 100)
         rsp_12m = float((rsp_prices.iloc[-1] / rsp_prices.iloc[0]  - 1) * 100)
         print(f"RSP: 1d {rsp_1d:+.2f}%  1w {rsp_1w:+.2f}%  1m {rsp_1m:+.1f}%  YTD {rsp_ytd:+.1f}%  12m {rsp_12m:+.1f}%")
+
+        # Recent low — lowest SPY close in last 63 trading days (~3 months)
+        spy_3m = spy_prices.iloc[-63:]
+        low_ts  = spy_3m.idxmin()
+        recent_low_date = str(low_ts.date())
+        spy_from_low = float((spy_prices.iloc[-1] / spy_3m.min() - 1) * 100)
+        rsp_from_low = float((rsp_prices.iloc[-1] / rsp_prices.loc[low_ts] - 1) * 100)
+        print(f"Recent low: {recent_low_date}  SPY from low: {spy_from_low:+.1f}%  RSP from low: {rsp_from_low:+.1f}%")
+
+        # 90-day chart series — % return from first day of window (actual cumulative return)
+        spy_90  = spy_prices.iloc[-90:]
+        rsp_90  = rsp_prices.reindex(spy_90.index).ffill()
+        spy_base = float(spy_90.iloc[0])
+        rsp_base = float(rsp_90.iloc[0])
+        chart_dates = [str(d.date()) for d in spy_90.index]
+        chart_spy   = [round((float(p) / spy_base - 1) * 100, 2) for p in spy_90.values]
+        chart_rsp   = [round((float(p) / rsp_base - 1) * 100, 2) for p in rsp_90.values]
     except Exception as e:
-        print(f"  RSP fetch failed (non-critical): {e}")
+        print(f"  SPY/RSP fetch failed (non-critical): {e}")
 
     print(f"Fetching market caps for {len(TICKERS)} tickers (parallelized)...")
     mcap_map = {}
@@ -164,11 +197,22 @@ def fetch():
         "spxReturn1m":   round(spx_1m, 2),
         "spxReturnYtd":  round(spx_ytd, 2),
         "spxReturn12m":  round(spx_12m, 2),
-        "rspReturn1d":   round(rsp_1d, 2) if rsp_1d is not None else None,
-        "rspReturn1w":   round(rsp_1w, 2) if rsp_1w is not None else None,
-        "rspReturn1m":   round(rsp_1m, 2) if rsp_1m is not None else None,
+        "spyReturn1d":   round(spy_1d,  2) if spy_1d  is not None else None,
+        "spyReturn1w":   round(spy_1w,  2) if spy_1w  is not None else None,
+        "spyReturn1m":   round(spy_1m,  2) if spy_1m  is not None else None,
+        "spyReturnYtd":  round(spy_ytd, 2) if spy_ytd is not None else None,
+        "spyReturn12m":  round(spy_12m, 2) if spy_12m is not None else None,
+        "rspReturn1d":   round(rsp_1d,  2) if rsp_1d  is not None else None,
+        "rspReturn1w":   round(rsp_1w,  2) if rsp_1w  is not None else None,
+        "rspReturn1m":   round(rsp_1m,  2) if rsp_1m  is not None else None,
         "rspReturnYtd":  round(rsp_ytd, 2) if rsp_ytd is not None else None,
         "rspReturn12m":  round(rsp_12m, 2) if rsp_12m is not None else None,
+        "recentLowDate": recent_low_date,
+        "spyFromLow":    round(spy_from_low, 2) if spy_from_low is not None else None,
+        "rspFromLow":    round(rsp_from_low, 2) if rsp_from_low is not None else None,
+        "chartDates":    chart_dates,
+        "chartSpy":      chart_spy,
+        "chartRsp":      chart_rsp,
         "newHighCount":  new_highs,
         "newLowCount":   new_lows,
         "stocks":        results

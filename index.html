@@ -485,7 +485,8 @@ function renderRegime() {
 function renderBreadth() {
   const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
           rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m,
-          recentLowDate, spxFromLow, rspFromLow, chartDates, chartSpx, chartRsp } = _data;
+          recentLowDate, spyFromLow, rspFromLow, chartDates, chartSpy, chartRsp,
+          spyReturn1d, spyReturn1w, spyReturn1m, spyReturnYtd, spyReturn12m } = _data;
 
   const secMap = {};
   allStocks.forEach(s => {
@@ -507,21 +508,21 @@ function renderBreadth() {
   const newHighSectors = sectors.filter(s => s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05).length;
   const totalSectors   = sectors.length;
 
-  const hasRsp = rspReturnYtd != null;
-  const rspVsSpxYtd = hasRsp ? rspReturnYtd - spxReturnYtd : null;
-  const rspVsSpx12m = hasRsp ? rspReturn12m - spxReturn12m : null;
+  const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
+  const rspVsSpyYtd    = hasRsp ? rspReturnYtd - spyReturnYtd : null;
+  const rspVsSpy12m    = hasRsp ? rspReturn12m  - spyReturn12m  : null;
+  const rspVsSpyFromLow = (rspFromLow != null && spyFromLow != null) ? rspFromLow - spyFromLow : null;
 
   const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
-  // Use the worst spread across timeframes as the signal — if ANY window shows divergence, flag it
-  const rspVsSpxFromLow = (rspFromLow != null && spxFromLow != null) ? rspFromLow - spxFromLow : null;
-  const worstSpread = [rspVsSpxYtd, rspVsSpx12m, rspVsSpxFromLow].filter(v => v != null)
+  // Use the worst spread across timeframes — if ANY window shows divergence, flag it
+  const worstSpread = [rspVsSpyYtd, rspVsSpy12m, rspVsSpyFromLow].filter(v => v != null)
                         .reduce((worst, v) => v < worst ? v : worst, 0);
-  const ewnGrade = (rspVsSpxYtd == null && rspVsSpxFromLow == null)
+  const ewnGrade = !hasRsp
     ? 'unknown'
     : worstSpread >= -2 ? 'aligned'
     : worstSpread >= -6 ? 'lagging'
     : 'diverging';
-  const nhiGrade    = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
+  const nhiGrade = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
 
   let verdict, vColor, vMeaning, vAction;
   if (sectorGrade === 'strong' && ewnGrade !== 'diverging' && nhiGrade === 'broad') {
@@ -543,27 +544,27 @@ function renderBreadth() {
   }
 
   const ewRows = hasRsp ? [
-    {lbl:'1-day',                        rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
-    {lbl:'1-month',                      rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
-    {lbl:'YTD',                          rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
-    {lbl:'12-month',                     rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
-    {lbl:`From low (${recentLowDate})`, rsp:rspFromLow,   spx:spxFromLow,   diff:rspFromLow - spxFromLow, highlight:true},
+    {lbl:'1-day',                        rsp:rspReturn1d,  spy:spyReturn1d,  diff:rspReturn1d  - spyReturn1d},
+    {lbl:'1-month',                      rsp:rspReturn1m,  spy:spyReturn1m,  diff:rspReturn1m  - spyReturn1m},
+    {lbl:'YTD',                          rsp:rspReturnYtd, spy:spyReturnYtd, diff:rspVsSpyYtd},
+    {lbl:'12-month',                     rsp:rspReturn12m, spy:spyReturn12m, diff:rspVsSpy12m},
+    {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
   // Pick the spread label that best explains the grade
   const spreadLabel = (() => {
-    if (rspVsSpxFromLow != null && rspVsSpxFromLow <= -2) return `${pp(rspVsSpxFromLow,true)}% from low`;
-    if (rspVsSpx12m != null && rspVsSpx12m <= -2)         return `${pp(rspVsSpx12m,true)}% 12m`;
-    if (rspVsSpxYtd != null)                               return `${pp(rspVsSpxYtd,true)}% YTD`;
+    if (rspVsSpyFromLow != null && rspVsSpyFromLow <= -2) return `${pp(rspVsSpyFromLow,true)}% from low`;
+    if (rspVsSpy12m    != null && rspVsSpy12m    <= -2)   return `${pp(rspVsSpy12m,true)}% 12m`;
+    if (rspVsSpyYtd    != null)                            return `${pp(rspVsSpyYtd,true)}% YTD`;
     return '';
   })();
   const ewInterpText = !hasRsp
     ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
     : ewnGrade === 'aligned'
-      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight and cap-weight are moving together. The rally isn't just mega-cap driven — the average stock is keeping up.`
+      ? `<strong style="color:#22c87a">RSP tracking SPY.</strong> Equal-weight and cap-weight ETFs are moving together. The rally isn't just mega-cap driven — the average stock is keeping up.`
       : ewnGrade === 'lagging'
-      ? `<strong style="color:#f0d040">RSP lagging SPX (${spreadLabel}).</strong> The cap-weighted index is outrunning the average stock. Concentration is building — the big names are doing more of the work.`
-      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${spreadLabel}).</strong> A handful of large-caps are holding up the index while most stocks lag. Classic concentration — the rally is narrowing.`;
+      ? `<strong style="color:#f0d040">RSP lagging SPY (${spreadLabel}).</strong> The cap-weighted ETF is outrunning the average stock. Concentration is building — the big names are doing more of the work.`
+      : `<strong style="color:#f04f4f">RSP significantly behind SPY (${spreadLabel}).</strong> A handful of large-caps are holding up the index while most stocks lag. Classic concentration — the rally is narrowing.`;
 
   const nhiInterpText = nhiGrade === 'broad'
     ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
@@ -584,60 +585,61 @@ function renderBreadth() {
       <div class="verdict-action" style="background:${vColor}18;color:${vColor}">${vAction}</div>
     </div>
 
-    <div class="part-grid">
-      <div class="part-box">
-        <div class="part-title">Equal-weight vs Cap-weight (RSP vs SPX)</div>
-        <div class="part-sub">RSP = Invesco Equal Weight S&amp;P 500 · SPX = cap-weighted index · Spread = RSP minus SPX</div>
+    <!-- Row 1: RSP vs SPY table (left) + 90-day chart (right) -->
+    <div style="display:grid;grid-template-columns:320px 1fr;gap:14px;margin-bottom:20px;align-items:start">
+      <div class="part-box" style="margin-bottom:0">
+        <div class="part-title">RSP vs SPY</div>
+        <div class="part-sub">Equal-weight ETF vs cap-weight ETF · Spread = RSP minus SPY</div>
         ${hasRsp ? `
           <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
             <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
             <span class="part-rsp" style="font-size:10px;color:var(--text3)">RSP</span>
-            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPX</span>
+            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPY</span>
             <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
           </div>
           ${ewRows.map(r=>`
             <div class="part-row" style="${r.highlight?'border-top:0.5px solid var(--border2);margin-top:4px;padding-top:8px;':''}">
               <span class="part-lbl" style="${r.highlight?'font-weight:600;color:var(--text)':''}">${r.lbl}</span>
               <span class="part-rsp" style="${r.highlight?'font-weight:600':''}">${pp(r.rsp,true)}%</span>
-              <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spx,true)}%</span>
+              <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spy,true)}%</span>
               <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
         ` : `
           <div style="padding:20px 0;text-align:center">
             <div style="font-size:28px;color:var(--text3);margin-bottom:8px">—</div>
-            <div style="font-size:12px;color:var(--text2)">RSP data not in current snapshot</div>
+            <div style="font-size:12px;color:var(--text2)">RSP / SPY data not in current snapshot</div>
             <div style="font-size:11px;color:var(--text3);margin-top:6px">Re-run <code style="background:var(--bg3);padding:1px 6px;border-radius:4px">python fetch_breadth.py</code> to load</div>
           </div>`}
         <div class="part-interp">${ewInterpText}</div>
       </div>
 
-      <div class="part-box">
-        <div class="part-title">New highs &amp; lows by sector</div>
-        <div class="part-sub">All 11 sectors · 0 = sector not making new ground · New high = within 2% of 52-week high</div>
-        <div style="display:grid;grid-template-columns:1fr auto auto;gap:0;margin-bottom:4px;padding-bottom:6px;border-bottom:0.5px solid var(--border)">
-          <span style="font-size:10px;color:var(--text3)">Sector</span>
-          <span style="font-size:10px;color:#22c87a;min-width:40px;text-align:right">Highs</span>
-          <span style="font-size:10px;color:#f04f4f;min-width:40px;text-align:right">Lows</span>
+      <div class="sector-panel" style="margin-bottom:0">
+        <div class="ptitle">RSP vs SPY — 90-day % return${chartDates ? ` (since ${chartDates[0]})` : ''}</div>
+        <div style="position:relative;height:260px">
+          ${chartDates ? `<canvas id="c3" role="img" aria-label="RSP vs SPY performance chart"></canvas>`
+                       : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-size:13px">No chart data — re-run fetch_breadth.py</div>`}
         </div>
-        ${[...sectors].sort((a,b)=>b.newHighs-a.newHighs).map(s => {
-          const nhColor  = s.newHighs > 0 ? '#22c87a' : 'var(--text3)';
-          const nlColor  = s.newLows  > 0 ? '#f04f4f' : 'var(--text3)';
-          return `<div style="display:grid;grid-template-columns:1fr auto auto;gap:0;padding:4px 0;border-bottom:0.5px solid var(--border)">
-            <span style="font-size:11px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</span>
-            <span style="font-size:12px;font-weight:${s.newHighs>0?700:400};color:${nhColor};min-width:40px;text-align:right">${s.newHighs||'—'}</span>
-            <span style="font-size:12px;font-weight:${s.newLows>0?700:400};color:${nlColor};min-width:40px;text-align:right">${s.newLows||'—'}</span>
-          </div>`;}).join('')}
-        <div class="part-interp">${nhiInterpText}</div>
       </div>
     </div>
 
-    ${chartDates ? `
-    <div class="sector-panel" style="margin-bottom:20px">
-      <div class="ptitle">RSP vs SPX — 90-day performance (normalized to 0% at start)</div>
-      <div style="position:relative;height:260px">
-        <canvas id="c3" role="img" aria-label="RSP vs SPX performance chart"></canvas>
+    <!-- Row 2: New highs & lows by sector -->
+    <div class="part-box" style="margin-bottom:20px">
+      <div class="part-title">New highs &amp; lows by sector</div>
+      <div class="part-sub">All 11 sectors · New high = within 2% of 52-week high · New low = within 2% of 52-week low</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px">
+        ${[...sectors].sort((a,b)=>b.newHighs-a.newHighs).map(s => {
+          const nhColor = s.newHighs > 0 ? '#22c87a' : 'var(--text3)';
+          const nlColor = s.newLows  > 0 ? '#f04f4f' : 'var(--text3)';
+          return `<div style="background:var(--bg3);border-radius:8px;padding:8px 10px">
+            <div style="font-size:10px;color:var(--text3);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</div>
+            <div style="display:flex;gap:12px">
+              <div><span style="font-size:18px;font-weight:700;color:${nhColor}">${s.newHighs||'0'}</span><span style="font-size:10px;color:#22c87a;margin-left:3px">↑</span></div>
+              <div><span style="font-size:18px;font-weight:700;color:${nlColor}">${s.newLows||'0'}</span><span style="font-size:10px;color:#f04f4f;margin-left:3px">↓</span></div>
+            </div>
+          </div>`;}).join('')}
       </div>
-    </div>` : ''}
+      <div class="part-interp" style="margin-top:12px">${nhiInterpText}</div>
+    </div>
 
     <div class="sec-health">
       <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth</div>
@@ -681,53 +683,47 @@ function renderBreadth() {
         <div style="font-size:10px;color:var(--text3);margin-top:3px">≥3 stocks &amp; ≥5% of sector</div>
       </div>
       <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Equal-weight Spread (YTD)</div>
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">RSP vs SPY Spread (YTD)</div>
         ${hasRsp
-          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpxYtd>=-2?'#22c87a':rspVsSpxYtd>=-6?'#f0d040':'#f04f4f'}">${pp(rspVsSpxYtd,true)}%</div>
-             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPX · ${rspVsSpxYtd>=-2?'Broad rally':rspVsSpxYtd>=-6?'Slight narrowing':'Cap-weight dominated'}</div>`
-          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP data</div>`
+          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpyYtd>=-2?'#22c87a':rspVsSpyYtd>=-6?'#f0d040':'#f04f4f'}">${pp(rspVsSpyYtd,true)}%</div>
+             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPY · ${rspVsSpyYtd>=-2?'Broad rally':rspVsSpyYtd>=-6?'Slight narrowing':'Cap-weight dominated'}</div>`
+          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP/SPY data</div>`
         }
       </div>
     </div>
   `;
 
-  // ── RSP vs SPX line chart ──
-  if (chartDates && document.getElementById('c3')) {
+  // ── RSP vs SPY line chart ──
+  if (chartDates && chartSpy && document.getElementById('c3')) {
     if (chart3) { chart3.destroy(); chart3 = null; }
-    // Normalize both series to 0% at start
-    const spxBase = chartSpx[0], rspBase = chartRsp[0];
-    const spxNorm = chartSpx.map(p => +((p / spxBase - 1) * 100).toFixed(2));
-    const rspNorm = chartRsp.map(p => +((p / rspBase - 1) * 100).toFixed(2));
-    // Find recent low index for annotation
-    const lowIdx = spxNorm.indexOf(Math.min(...spxNorm));
+    // Data already pre-computed as % return from window start in fetch_breadth.py
+    const lowIdx = chartSpy.indexOf(Math.min(...chartSpy));
     chart3 = new Chart(document.getElementById('c3'), {
       type: 'line',
       data: {
         labels: chartDates,
         datasets: [
           {
-            label: 'SPX (cap-weight)',
-            data: spxNorm,
+            label: 'SPY (cap-weight)',
+            data: chartSpy,
             borderColor: '#4a9eff',
             backgroundColor: 'transparent',
             borderWidth: 2, pointRadius: 0, tension: 0.3
           },
           {
             label: 'RSP (equal-weight)',
-            data: rspNorm,
+            data: chartRsp,
             borderColor: '#f0a020',
             backgroundColor: 'transparent',
             borderWidth: 2, pointRadius: 0, tension: 0.3
           },
           // Dot marking the recent low
           {
-            label: `Recent low (${recentLowDate})`,
-            data: spxNorm.map((v,i) => i === lowIdx ? v : null),
-            borderColor: '#f04f4f',
-            backgroundColor: '#f04f4f',
-            pointRadius: spxNorm.map((_,i) => i === lowIdx ? 6 : 0),
-            pointHoverRadius: 8,
-            showLine: false, type: 'scatter'
+            label: `Low (${recentLowDate})`,
+            data: chartSpy.map((v,i) => i === lowIdx ? v : null),
+            borderColor: '#f04f4f', backgroundColor: '#f04f4f',
+            pointRadius: chartSpy.map((_,i) => i === lowIdx ? 6 : 0),
+            pointHoverRadius: 8, showLine: false, type: 'scatter'
           }
         ]
       },
@@ -738,7 +734,7 @@ function renderBreadth() {
           legend: { display: true, labels: { color: '#8a92a2', font: { size: 11 }, boxWidth: 20 } },
           tooltip: {
             callbacks: {
-              label: ctx => ctx.dataset.label.includes('low') ? null
+              label: ctx => ctx.dataset.label.startsWith('Low') ? null
                 : `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%`
             }
           }
