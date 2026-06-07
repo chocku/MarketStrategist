@@ -343,7 +343,7 @@ function maBadge(a,b) {
 }
 function pct(a,b)            { return Math.round(a/b*100); }
 function pp(n, sign=false)   { const s=n.toFixed(1); return sign&&n>0?'+'+s:s; }
-function fmtDate(s)          { return s ? new Date(s).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—'; }
+function fmtDate(s)          { return s ? new Date(s + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—'; }
 function vsPct(price, ma)    { return pp((price-ma)/ma*100, true)+'%'; }
 function fmtMcap(v) {
   if (!v) return '—';
