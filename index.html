@@ -488,7 +488,7 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
         <th colspan="3" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Size</th>
         <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Trend Health</th>
         <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Return</th>
-        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">RS vs SPY</th>
+        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Relative Strength (vs SPY)</th>
         <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Contribution</th>
         <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Current 52W</th>
       </tr>
@@ -833,11 +833,11 @@ function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalA
       ${secCallout}
       <div class="ptitle" style="margin-top:8px">Sector participation — click any column header to sort</div>
       ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · Relative Strength (vs SPY) = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
       <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
       ${indCallout}
       ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate)}
-      <div style="font-size:10px;color:var(--text3);margin-top:6px">Return = mcap-weighted avg · RS vs SPY = industry return minus SPY return · Contrib = beginning-of-period weighted attribution summing to actual SPY · Wt%↑MA = % of industry market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of industry</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Return = mcap-weighted avg · Relative Strength (vs SPY) = industry return minus SPY return · Contrib = beginning-of-period weighted attribution summing to actual SPY · Wt%↑MA = % of industry market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of industry</div>
     </div>`;
 }
 
@@ -903,7 +903,7 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
       ${grp(3,'Size',true)}
       ${grp(4,'Trend Health',true)}
       ${grp(2,'Return',true)}
-      ${grp(2,'RS vs SPY',true)}
+      ${grp(2,'Relative Strength (vs SPY)',true)}
       ${grp(2,'Contrib',true)}
       ${grp(2,'52W',true)}
     </tr>
@@ -1024,7 +1024,7 @@ function renderLeaders() {
   document.getElementById('root').innerHTML = `
     <div class="tab-header">
       <div class="th-question">Which stocks are driving the market?</div>
-      <div class="th-why">Sort by <strong>RS vs SPY 12m</strong> or <strong>YTD</strong> to find the leaders. Use the sector and industry filters to focus on groups in accumulation.</div>
+      <div class="th-why">Sort by <strong>Relative Strength (vs SPY) 12m</strong> or <strong>YTD</strong> to find the leaders. Use the sector and industry filters to focus on groups in accumulation.</div>
     </div>
     <div class="tpanel">
       <div class="tbar">
@@ -1047,7 +1047,7 @@ function renderLeaders() {
             ${grpTh('', 5)}
             ${grpTh('MA Status', 3, ';border-left:0.5px solid var(--border)')}
             ${grpTh('Return Profile', 5, ';border-left:0.5px solid var(--border)')}
-            ${grpTh('RS vs SPY', 3, ';border-left:0.5px solid var(--border)')}
+            ${grpTh('Relative Strength (vs SPY)', 4, ';border-left:0.5px solid var(--border)')}
             ${grpTh('Contribution to SPY', 2, ';border-left:0.5px solid var(--border)')}
           </tr>
           <tr id="tableHead">
@@ -1067,6 +1067,7 @@ function renderLeaders() {
             <th style="border-left:0.5px solid var(--border)" data-col="vsSpx1d"  onclick="setSort('vsSpx1d')"  title="Excess return vs SPY"><span>1D</span><span class="sort-ind"></span></th>
             ${sh('vsSpxYtd','YTD','Excess return vs SPY YTD')}
             ${sh('vsSpx12m','12M','Excess return vs SPY 12m')}
+            ${sh('vsSpyFromLow','Fr Low','Excess return vs SPY from recent low')}
             <th style="border-left:0.5px solid var(--border)" data-col="contribYtd"  onclick="setSort('contribYtd')"  title="% pts of SPY YTD return"><span>YTD</span><span class="sort-ind"></span></th>
             ${sh('contribFromLow','From Low','% pts of SPY return from recent low')}
           </tr>
@@ -1077,7 +1078,7 @@ function renderLeaders() {
     <div class="note">
       Data: S&amp;P 500 via yfinance &nbsp;·&nbsp;
       Run <code>python fetch_breadth.py</code> to refresh &nbsp;·&nbsp;
-      RS vs SPY = excess return vs SPY &nbsp;·&nbsp;
+      Relative Strength (vs SPY) = excess return vs SPY &nbsp;·&nbsp;
       Contribution = beginning-of-period weight × return &nbsp;·&nbsp;
       New Highs/Lows = within 2% of 52-week extreme
     </div>
@@ -1102,6 +1103,7 @@ function renderTable(stocks) {
   const getValue = (s, col) => {
     if (col==='above50')  return (s.price-s.ma50)/s.ma50;
     if (col==='above200') return (s.price-s.ma200)/s.ma200;
+    if (col==='vsSpyFromLow') return (s.returnFromLow||0) - (_data.spyFromLow||0);
     if (col==='contribYtd' || col==='contribFromLow') {
       const mc   = s.marketCap || 0;
       const rYtd = (s.returnYtd     || 0) / 100;
@@ -1167,6 +1169,7 @@ function renderTable(stocks) {
       <td style="${borderL}" class="${(s.vsSpx1d||0)>=0?'up':'dn'}">${pp(s.vsSpx1d||0,true)}%</td>
       <td class="${(s.vsSpxYtd||0)>=0?'up':'dn'}">${pp(s.vsSpxYtd||0,true)}%</td>
       <td class="${(s.vsSpx12m||0)>=0?'up':'dn'}">${pp(s.vsSpx12m||0,true)}%</td>
+      <td class="${((s.returnFromLow||0)-(_data.spyFromLow||0))>=0?'up':'dn'}">${pp((s.returnFromLow||0)-(_data.spyFromLow||0),true)}%</td>
       <td style="${borderL};font-weight:600" class="${cYtd>=0?'up':'dn'}">${cYtd>=0?'+':''}${cYtd}%</td>
       <td style="font-weight:600" class="${cLow>=0?'up':'dn'}">${cLow>=0?'+':''}${cLow}%</td>
     </tr>`;
