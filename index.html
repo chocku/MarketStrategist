@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Market Health - Overview</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" async></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -1117,5 +1117,12 @@ function renderTable(stocks) {
 }
 
 
-showDisclaimerIfNeeded();
+// Wait for Chart.js (loaded async) before starting
+function waitForChartJs(cb) {
+  if (typeof Chart !== 'undefined') { cb(); return; }
+  const s = document.querySelector('script[src*="chart"]');
+  if (s) { s.addEventListener('load', cb); s.addEventListener('error', cb); }
+  else cb();
+}
+waitForChartJs(showDisclaimerIfNeeded);
 </script>
