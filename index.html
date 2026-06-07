@@ -101,6 +101,10 @@ select.ctrl-input { cursor:pointer; padding-right:28px; appearance:none;
 .tpanel  { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; overflow-x:auto; }
 .tbar    { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
 table    { width:100%; border-collapse:collapse; min-width:900px; }
+.sticky-table-wrap { overflow:auto; max-height:calc(100vh - 260px); border-radius:6px; }
+.sticky-table-wrap table { min-width:1400px; }
+.sticky-table-wrap thead tr:first-child th { position:sticky; top:0; z-index:5; background:var(--bg2); }
+.sticky-table-wrap thead tr:last-child  th { position:sticky; top:22px; z-index:5; background:var(--bg2); }
 th {
   font-size:11px; color:var(--text3); text-transform:uppercase;
   letter-spacing:.06em; padding:0 10px 10px; text-align:left;
@@ -1041,6 +1045,7 @@ function renderLeaders() {
         </div>
         <div style="font-size:11px;color:var(--text3)">${stocks.length} stocks · click headers to sort</div>
       </div>
+      <div class="sticky-table-wrap">
       <table>
         <thead>
           <tr id="tableGroupHead">
@@ -1074,6 +1079,7 @@ function renderLeaders() {
         </thead>
         <tbody id="stockTbody"></tbody>
       </table>
+      </div>
     </div>
     <div class="note">
       Data: S&amp;P 500 via yfinance &nbsp;·&nbsp;
