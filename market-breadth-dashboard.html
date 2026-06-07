@@ -139,17 +139,25 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .htag { font-size:10px; font-weight:700; }
 
 /* Tab navigation */
-.tab-nav { display:flex; gap:4px; }
+.tab-nav { display:flex; gap:3px; background:var(--bg2); border:0.5px solid var(--border); border-radius:10px; padding:3px; }
 .tab-btn {
-  background:transparent; border:0.5px solid transparent;
-  color:var(--text3); font-size:12px; font-weight:500;
-  padding:7px 16px; border-radius:8px; cursor:pointer; transition:all 0.15s;
+  background:transparent; border:none;
+  color:var(--text3); cursor:pointer; transition:all 0.15s;
+  padding:7px 18px; border-radius:7px; text-align:center; line-height:1.3;
 }
 .tab-btn:hover { color:var(--text2); background:var(--bg3); }
-.tab-btn.active {
-  background:var(--bg3); border-color:var(--border2);
-  color:var(--text); font-weight:600;
+.tab-btn.active { background:var(--bg3); color:var(--text); box-shadow:0 1px 3px rgba(0,0,0,.4); }
+.tb-name { font-size:12px; font-weight:600; }
+.tb-sub  { font-size:10px; color:inherit; opacity:0.65; }
+.tab-btn.active .tb-sub { opacity:0.75; }
+
+/* Tab intro header */
+.tab-header {
+  background:var(--bg2); border:0.5px solid var(--border);
+  border-radius:12px; padding:18px 22px; margin-bottom:20px;
 }
+.th-question { font-size:15px; font-weight:700; color:var(--text); margin-bottom:6px; }
+.th-why      { font-size:12px; color:var(--text2); line-height:1.65; max-width:860px; }
 
 /* Participation tab */
 .verdict-banner {
@@ -225,8 +233,10 @@ tr:hover td { background:rgba(255,255,255,0.02); }
     </div>
     <div class="topbar-right">
       <div class="tab-nav">
-        <button class="tab-btn active" id="tab-overview" onclick="switchTab('overview')">Overview</button>
-        <button class="tab-btn" id="tab-participation" onclick="switchTab('participation')">Participation</button>
+        <button class="tab-btn active" id="tab-regime"   onclick="switchTab('regime')"><div class="tb-name">Regime</div><div class="tb-sub">Invest or Wait?</div></button>
+        <button class="tab-btn"        id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
+        <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
       </div>
       <select id="sectorSelect" class="ctrl-input" onchange="onSectorChange(this.value)" style="width:200px">
         <option value="all">All Sectors</option>
@@ -237,17 +247,16 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   <div id="root">
     <div class="loading"><div class="spinner"></div>Loading market data...</div>
   </div>
-  <div id="root2" style="display:none"></div>
 </div>
 
 <script>
 // ── State ──────────────────────────────────────────────────────────────
-let chart1 = null, chart2 = null, chart3 = null;
+let chart2 = null;
 let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
-let activeTab = 'overview';
+let activeTab = 'regime';
 
 // ── Helpers ────────────────────────────────────────────────────────────
 function regime(p) {
@@ -296,10 +305,10 @@ async function init() {
     return;
   }
   _data = d;
-  filterSector = document.getElementById('sectorSelect').value || 'all';
+  filterSector = 'all';
   searchTicker = '';
   populateSectorDropdown(d.stocks);
-  render();
+  renderCurrent();
 }
 
 function populateSectorDropdown(stocks) {
@@ -313,7 +322,7 @@ function populateSectorDropdown(stocks) {
 // ── Event handlers ─────────────────────────────────────────────────────
 function onSectorChange(val) {
   filterSector = val;
-  render();
+  renderCurrent();
 }
 
 function onSearch(val) {
@@ -335,12 +344,47 @@ function getFilteredStocks() {
   return stocks;
 }
 
-// ── Full render ────────────────────────────────────────────────────────
-function render() {
+// ── Tab switching ─────────────────────────────────────────────────────
+function switchTab(tab) {
+  if (chart2) { chart2.destroy(); chart2 = null; }
+  activeTab = tab;
+  ['regime','breadth','rotation','leaders'].forEach(t =>
+    document.getElementById('tab-'+t).classList.toggle('active', t === tab)
+  );
+  // Sector filter only on Regime (affects signals) and Leaders (filters table)
+  document.getElementById('sectorSelect').style.display =
+    (tab === 'regime' || tab === 'leaders') ? '' : 'none';
+  renderCurrent();
+}
+
+// ── Dispatcher ────────────────────────────────────────────────────────
+function renderCurrent() {
   if (!_data) return;
-  const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
+  const { asOf, spxReturn1d, spxReturnYtd, spxReturn12m } = _data;
   const stocks = getFilteredStocks();
-  const n     = stocks.length;
+  const n = stocks.length;
+  const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
+  document.getElementById('sub').textContent =
+    `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
+  if      (activeTab === 'regime')   renderRegime();
+  else if (activeTab === 'breadth')  renderBreadth();
+  else if (activeTab === 'rotation') renderRotation();
+  else                               renderLeaders();
+}
+
+// ── Tab header helper ─────────────────────────────────────────────────
+function tabHdr(question, why) {
+  return `<div class="tab-header">
+    <div class="th-question">${question}</div>
+    <div class="th-why">${why}</div>
+  </div>`;
+}
+
+// ── Tab 1: Regime — Invest or Wait? ───────────────────────────────────
+function renderRegime() {
+  const { spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m, newHighCount, newLowCount } = _data;
+  const stocks = getFilteredStocks();
+  const n = stocks.length;
   const a50   = stocks.filter(s=>s.above50).length;
   const a200  = stocks.filter(s=>s.above200).length;
   const aBoth = stocks.filter(s=>s.above50&&s.above200).length;
@@ -354,14 +398,10 @@ function render() {
   const pBoth = n ? pct(aBoth,n) : 0;
   const reg   = regime(p50);
 
-  const label = filterSector==='all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
-  document.getElementById('sub').textContent = `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
-
-  if (chart2) { chart2.destroy(); chart2=null; }
-  if (chart3) { chart3.destroy(); chart3=null; }
-
-  document.getElementById('root').innerHTML = `
-
+  document.getElementById('root').innerHTML = tabHdr(
+    'Should I be invested at all?',
+    'Before buying anything, you need to know if the overall environment supports being long. This is the gate everything else passes through. A healthy regime means conditions are safe to put money to work — a broken regime means stay in cash and wait.'
+  ) + `
     <div class="regime" style="border-color:${reg.color}33">
       <div class="rdot" style="background:${reg.color}"></div>
       <span class="rname" style="color:${reg.color}">${reg.label}</span>
@@ -373,8 +413,6 @@ function render() {
     </div>
 
     <div class="signal-boxes">
-
-      <!-- Box 1: Is the market trending? -->
       <div class="signal-box">
         <div class="signal-title">Is the market trending?</div>
         ${[
@@ -395,7 +433,6 @@ function render() {
         }</div>
       </div>
 
-      <!-- Box 2: Are stocks beating the index? -->
       <div class="signal-box">
         <div class="signal-title">Are stocks beating the index?</div>
         ${[
@@ -420,7 +457,6 @@ function render() {
         })()}</div>
       </div>
 
-      <!-- Box 3: Is the trend making new ground? -->
       <div class="signal-box">
         <div class="signal-title">Is the trend making new ground?</div>
         <div class="signal-row">
@@ -440,66 +476,246 @@ function render() {
           return `<strong style="color:#f04f4f">Broad breakdown.</strong> New lows dominate (${nl} vs ${nh} highs) — stocks are making fresh 52-week lows at an alarming rate.`;
         })()}</div>
       </div>
+    </div>
+  `;
+}
 
+// ── Tab 2: Breadth — Broad or Narrow? ────────────────────────────────
+function renderBreadth() {
+  const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
+          rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m } = _data;
+
+  const secMap = {};
+  allStocks.forEach(s => {
+    const sec = s.sector || 'Unknown';
+    if (!secMap[sec]) secMap[sec] = { total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0 };
+    secMap[sec].total++;
+    if (s.above50) secMap[sec].above50++;
+    if (s.above200) secMap[sec].above200++;
+    if (s.above50 && s.above200) secMap[sec].both++;
+    if (s.newHigh) secMap[sec].newHighs++;
+    if (s.newLow)  secMap[sec].newLows++;
+  });
+  const sectors = Object.entries(secMap)
+    .map(([name, d]) => ({ name, ...d, pct: Math.round(d.both / d.total * 100) }))
+    .sort((a,b) => b.pct - a.pct);
+
+  const healthySectors = sectors.filter(s => s.pct >= 50).length;
+  const newHighSectors = sectors.filter(s => s.newHighs > 0).length;
+  const totalSectors   = sectors.length;
+
+  const hasRsp = rspReturnYtd != null;
+  const rspVsSpxYtd = hasRsp ? rspReturnYtd - spxReturnYtd : null;
+  const rspVsSpx12m = hasRsp ? rspReturn12m - spxReturn12m : null;
+
+  const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
+  const ewnGrade    = rspVsSpxYtd == null ? 'unknown' : rspVsSpxYtd >= -2 ? 'aligned' : rspVsSpxYtd >= -6 ? 'lagging' : 'diverging';
+  const nhiGrade    = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
+
+  let verdict, vColor, vMeaning, vAction;
+  if (sectorGrade === 'strong' && ewnGrade !== 'diverging' && nhiGrade === 'broad') {
+    verdict='Broad'; vColor='#22c87a';
+    vMeaning='Most sectors and stocks are participating in the move.';
+    vAction='Full size · Diversify across sectors';
+  } else if (sectorGrade === 'weak' && (ewnGrade === 'diverging' || nhiGrade === 'clustered')) {
+    verdict='Concentrated'; vColor='#f0a020';
+    vMeaning='1–2 sectors or mega-caps are carrying the index. The average stock is not participating.';
+    vAction='Small size · Only hold sector leaders';
+  } else if (sectorGrade !== 'strong' && ewnGrade === 'diverging') {
+    verdict='Deteriorating'; vColor='#f04f4f';
+    vMeaning='Breadth is falling while price may still hold. Distribution is likely underway.';
+    vAction='Start reducing · Watch for breakdown';
+  } else {
+    verdict='Mixed'; vColor='#f0d040';
+    vMeaning='Some sectors are healthy, others are not. The rally has partial participation.';
+    vAction='Normal size · Stick to healthy sectors';
+  }
+
+  const ewRows = hasRsp ? [
+    {lbl:'1-day',    rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
+    {lbl:'1-month',  rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
+    {lbl:'YTD',      rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
+    {lbl:'12-month', rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
+  ] : null;
+
+  const ewInterpText = !hasRsp
+    ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
+    : ewnGrade === 'aligned'
+      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight performance is close to cap-weight. The rally isn't just mega-cap driven — the average stock is keeping up.`
+      : ewnGrade === 'lagging'
+      ? `<strong style="color:#f0d040">RSP lagging SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> Cap-weighted index is outrunning the average stock. Some concentration, but not yet alarming.`
+      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> A handful of large-caps are holding up the index while most stocks underperform. Classic late-stage concentration.`;
+
+  const nhiInterpText = nhiGrade === 'broad'
+    ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
+    : nhiGrade === 'moderate'
+    ? `<strong style="color:#f0d040">New highs in ${newHighSectors} of ${totalSectors} sectors.</strong> Moderate spread — some sectors leading but others stalling out.`
+    : `<strong style="color:#f04f4f">New highs clustered in ${newHighSectors} sector${newHighSectors===1?'':'s'}.</strong> Breakouts are heavily concentrated. Late-stage warning.`;
+
+  document.getElementById('root').innerHTML = tabHdr(
+    'Is the rally broad or carried by a few names?',
+    'The index number hides what\'s underneath. This tab tells you if most stocks are participating or if 10 mega-caps are doing all the work. The index can look perfectly healthy while only a handful of stocks drive the move — this is how market tops form.'
+  ) + `
+    <div class="verdict-banner" style="border-color:${vColor}33">
+      <div class="verdict-dot" style="background:${vColor}"></div>
+      <div>
+        <div class="verdict-label" style="color:${vColor}">${verdict}</div>
+        <div class="verdict-meaning">${vMeaning}</div>
+      </div>
+      <div class="verdict-action" style="background:${vColor}18;color:${vColor}">${vAction}</div>
     </div>
 
+    <div class="part-grid">
+      <div class="part-box">
+        <div class="part-title">Equal-weight vs Cap-weight</div>
+        <div class="part-sub">RSP (equal-weight) vs SPX — is the average stock keeping up?</div>
+        ${hasRsp ? `
+          <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
+            <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
+            <span class="part-rsp" style="font-size:10px;color:var(--text3)">RSP</span>
+            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPX</span>
+            <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
+          </div>
+          ${ewRows.map(r=>`
+            <div class="part-row">
+              <span class="part-lbl">${r.lbl}</span>
+              <span class="part-rsp">${pp(r.rsp,true)}%</span>
+              <span class="part-spx">${pp(r.spx,true)}%</span>
+              <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'}">${pp(r.diff,true)}%</span>
+            </div>`).join('')}
+        ` : `<div style="color:var(--text3);font-size:12px;padding:16px 0">RSP data not loaded yet — re-run fetch_breadth.py</div>`}
+        <div class="part-interp">${ewInterpText}</div>
+      </div>
+
+      <div class="part-box">
+        <div class="part-title">New 52-week highs by sector</div>
+        <div class="part-sub">Are breakouts spread across sectors or clustering in one?</div>
+        ${sectors.filter(s=>s.newHighs>0).sort((a,b)=>b.newHighs-a.newHighs).map(s => {
+          const totalNH = allStocks.filter(x=>x.newHigh).length || 1;
+          const barW = Math.round(s.newHighs/totalNH*100);
+          return `<div class="part-row">
+            <span class="part-lbl">${s.name}</span>
+            <span style="font-size:11px;color:#22c87a;min-width:28px;text-align:right">${s.newHighs}</span>
+            <div style="width:80px;margin-left:8px">
+              <div class="health-bar"><div class="health-fill" style="width:${barW}%;background:#22c87a88"></div></div>
+            </div>
+          </div>`;}).join('')}
+        <div class="part-interp">${nhiInterpText}</div>
+      </div>
+    </div>
+
+    <div class="sec-health">
+      <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth</div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr>
+          <th>Sector</th><th>Stocks</th><th>% Both MAs</th>
+          <th style="width:140px">Breadth bar</th><th>Status</th>
+          <th>New Highs</th><th>New Lows</th>
+        </tr></thead>
+        <tbody>
+          ${sectors.map(s => {
+            const reg = regime(s.pct);
+            const pill = s.pct>=60
+              ? `<span class="health-pill" style="background:#22c87a18;color:#22c87a">Healthy</span>`
+              : s.pct>=40
+              ? `<span class="health-pill" style="background:#f0d04018;color:#f0d040">Neutral</span>`
+              : `<span class="health-pill" style="background:#f04f4f18;color:#f04f4f">Weak</span>`;
+            return `<tr>
+              <td style="font-weight:600">${s.name}</td>
+              <td class="muted">${s.total}</td>
+              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
+              <td><div class="health-bar" style="width:100%"><div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div></div></td>
+              <td>${pill}</td>
+              <td style="color:${s.newHighs>0?'#22c87a':'var(--text3)'};font-weight:${s.newHighs>0?700:400}">${s.newHighs||'—'}</td>
+              <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
+            </tr>`;}).join('')}
+        </tbody>
+      </table></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Healthy Sectors</div>
+        <div style="font-size:32px;font-weight:700;color:${healthySectors>=7?'#22c87a':healthySectors>=4?'#f0d040':'#f04f4f'}">${healthySectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:4px">${healthySectors>=7?'Broadly healthy':healthySectors>=4?'Mixed — some at risk':'Most sectors weak'}</div>
+      </div>
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors Making Highs</div>
+        <div style="font-size:32px;font-weight:700;color:${newHighSectors>=5?'#22c87a':newHighSectors>=3?'#f0d040':'#f04f4f'}">${newHighSectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:4px">${newHighSectors>=5?'Broad breakout leadership':newHighSectors>=3?'Partial spread':'Concentrated highs'}</div>
+      </div>
+      <div class="part-box" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Equal-weight Spread (YTD)</div>
+        ${hasRsp
+          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpxYtd>=-2?'#22c87a':rspVsSpxYtd>=-6?'#f0d040':'#f04f4f'}">${pp(rspVsSpxYtd,true)}%</div>
+             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPX · ${rspVsSpxYtd>=-2?'Broad rally':rspVsSpxYtd>=-6?'Slight narrowing':'Cap-weight dominated'}</div>`
+          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP data</div>`
+        }
+      </div>
+    </div>
+  `;
+}
+
+// ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
+function renderRotation() {
+  const stocks = _data.stocks; // always all sectors for rotation
+  const sectorMap = {};
+  stocks.forEach(s => {
+    const sec = s.sector || 'Unknown';
+    if (!sectorMap[sec]) sectorMap[sec] = { total:0, both:0, above50:0, vsSpxYtd:[], vsSpx12m:[] };
+    sectorMap[sec].total++;
+    if (s.above50 && s.above200) sectorMap[sec].both++;
+    if (s.above50) sectorMap[sec].above50++;
+    if (s.vsSpxYtd != null) sectorMap[sec].vsSpxYtd.push(s.vsSpxYtd);
+    if (s.vsSpx12m != null) sectorMap[sec].vsSpx12m.push(s.vsSpx12m);
+  });
+  const sectorRows = Object.entries(sectorMap).map(([name, v]) => ({
+    name,
+    pct:    Math.round(v.both / v.total * 100),
+    total:  v.total,
+    both:   v.both,
+    medYtd: v.vsSpxYtd.length ? v.vsSpxYtd.reduce((a,b)=>a+b,0)/v.vsSpxYtd.length : 0,
+    med12m: v.vsSpx12m.length ? v.vsSpx12m.reduce((a,b)=>a+b,0)/v.vsSpx12m.length : 0,
+  })).sort((a,b) => b.pct - a.pct);
+
+  document.getElementById('root').innerHTML = tabHdr(
+    'Where is money going — and is it staying in equities?',
+    'Even in a healthy bull market, money rotates between sectors. This tab shows which sectors have institutional money behind them, which are under accumulation, and which are quietly being sold. Strong sectors in a healthy regime are your hunting ground for the next tab.'
+  ) + `
     <div class="sector-panel">
-      <div class="ptitle">Sector Breadth — % Above Both MAs${filterSector !== 'all' ? ' · ' + filterSector : ' · All Sectors'}</div>
-      <div style="position:relative;height:320px">
+      <div class="ptitle">% Above Both MAs by Sector — All Sectors · Sorted by breadth</div>
+      <div style="position:relative;height:360px">
         <canvas id="c2" role="img" aria-label="Sector breadth histogram"></canvas>
       </div>
     </div>
 
-    <div class="tpanel">
-      <div class="tbar">
-        <div class="ptitle" style="margin:0">Relative Strength Ranking</div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <input id="searchInput" class="ctrl-input" type="text" placeholder="Search ticker…" style="width:140px" oninput="onSearch(this.value)">
-          <div style="font-size:11px;color:var(--text3)">Click headers to sort</div>
-        </div>
-      </div>
-      <table>
-        <thead><tr id="tableHead">
-          <th>#</th>
-          <th data-col="ticker" onclick="setSort('ticker')"><span>Ticker</span><span class="sort-ind"></span></th>
-          <th data-col="price" onclick="setSort('price')"><span>Price</span><span class="sort-ind"></span></th>
-          <th data-col="marketCap" onclick="setSort('marketCap')"><span>Mkt Cap</span><span class="sort-ind"></span></th>
-          <th>Sector</th>
-          <th data-col="above50" onclick="setSort('above50')"><span>vs 50-MA</span><span class="sort-ind"></span></th>
-          <th data-col="above200" onclick="setSort('above200')"><span>vs 200-MA</span><span class="sort-ind"></span></th>
-          <th data-col="return1d" onclick="setSort('return1d')"><span>1d</span><span class="sort-ind"></span></th>
-          <th data-col="return1m" onclick="setSort('return1m')"><span>1m</span><span class="sort-ind"></span></th>
-          <th data-col="return3m" onclick="setSort('return3m')"><span>3m</span><span class="sort-ind"></span></th>
-          <th data-col="returnYtd" onclick="setSort('returnYtd')"><span>YTD</span><span class="sort-ind"></span></th>
-          <th data-col="return12m" onclick="setSort('return12m')"><span>12m</span><span class="sort-ind"></span></th>
-          <th data-col="vsSpx1d" onclick="setSort('vsSpx1d')"><span>vs SPX 1d</span><span class="sort-ind"></span></th>
-          <th data-col="vsSpxYtd" onclick="setSort('vsSpxYtd')"><span>vs SPX YTD</span><span class="sort-ind"></span></th>
-          <th data-col="vsSpx12m" onclick="setSort('vsSpx12m')"><span>vs SPX 12m</span><span class="sort-ind"></span></th>
-          <th>Status</th>
+    <div class="sec-health">
+      <div class="ptitle">Sector relative strength vs SPX</div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr>
+          <th>Sector</th><th>Stocks</th><th>% Both MAs</th>
+          <th>Avg vs SPX YTD</th><th>Avg vs SPX 12m</th><th>Assessment</th>
         </tr></thead>
-        <tbody id="stockTbody"></tbody>
-      </table>
-    </div>
-
-    <div class="note">
-      Data: Yahoo Finance via yfinance &nbsp;·&nbsp;
-      Run <code>python fetch_breadth.py</code> to refresh &nbsp;·&nbsp;
-      vs SPX = excess return vs S&P 500 over 1d / YTD / 12m &nbsp;·&nbsp;
-      New Highs/Lows = within 2% of 52-week extreme
+        <tbody>
+          ${sectorRows.map(s => {
+            const reg = regime(s.pct);
+            const ytdC = s.medYtd >= 2 ? '#22c87a' : s.medYtd >= -2 ? '#f0d040' : '#f04f4f';
+            const m12C = s.med12m >= 2 ? '#22c87a' : s.med12m >= -2 ? '#f0d040' : '#f04f4f';
+            const assess = s.medYtd >= 2 && s.pct >= 50 ? `<span style="color:#22c87a;font-weight:600">Accumulation</span>`
+              : s.medYtd <= -2 && s.pct < 50 ? `<span style="color:#f04f4f;font-weight:600">Distribution</span>`
+              : `<span style="color:#f0d040">Neutral</span>`;
+            return `<tr>
+              <td style="font-weight:600">${s.name}</td>
+              <td class="muted">${s.total}</td>
+              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
+              <td style="font-weight:600;color:${ytdC}">${pp(s.medYtd,true)}%</td>
+              <td style="font-weight:600;color:${m12C}">${pp(s.med12m,true)}%</td>
+              <td>${assess}</td>
+            </tr>`;}).join('')}
+        </tbody>
+      </table></div>
     </div>
   `;
-
-  // ── Sector histogram (uses filtered stocks) ──
-  const sectorMap = {};
-  stocks.forEach(s => {
-    const sec = s.sector || 'Unknown';
-    if (!sectorMap[sec]) sectorMap[sec] = { total:0, both:0 };
-    sectorMap[sec].total++;
-    if (s.above50 && s.above200) sectorMap[sec].both++;
-  });
-  const sectorRows = Object.entries(sectorMap)
-    .map(([name, v]) => ({ name, pct: Math.round(v.both/v.total*100), total:v.total, both:v.both }))
-    .sort((a,b)=>b.pct-a.pct);
 
   chart2 = new Chart(document.getElementById('c2'), {
     type:'bar',
@@ -514,8 +730,7 @@ function render() {
       }]
     },
     options:{
-      indexAxis:'y',
-      responsive:true, maintainAspectRatio:false,
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
         tooltip:{ callbacks:{ label:c=>{
@@ -524,17 +739,57 @@ function render() {
         }}}
       },
       scales:{
-        x:{
-          min:0, max:100,
-          ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'},
-          grid:{color:'rgba(255,255,255,0.06)'}
-        },
+        x:{ min:0, max:100, ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'}, grid:{color:'rgba(255,255,255,0.06)'} },
         y:{ ticks:{color:'#8a92a2',font:{size:12}}, grid:{display:false} }
       }
     }
   });
+}
 
-  // ── Table ──
+// ── Tab 4: Leaders — What to Buy? ────────────────────────────────────
+function renderLeaders() {
+  const stocks = getFilteredStocks();
+  document.getElementById('root').innerHTML = tabHdr(
+    'Which specific stocks do I buy?',
+    'Once the first three tabs are green, this filters the full S&amp;P 500 universe down to the highest relative-strength stocks. Sort by vs SPX 12m or YTD to find the leaders. Focus on stocks in the sectors Rotation identified as in accumulation.'
+  ) + `
+    <div class="tpanel">
+      <div class="tbar">
+        <div class="ptitle" style="margin:0">Relative Strength Ranking${filterSector!=='all'?' · '+filterSector:''}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input id="searchInput" class="ctrl-input" type="text" placeholder="Search ticker…" style="width:140px" oninput="onSearch(this.value)">
+          <div style="font-size:11px;color:var(--text3)">Click headers to sort</div>
+        </div>
+      </div>
+      <table>
+        <thead><tr id="tableHead">
+          <th>#</th>
+          <th data-col="ticker"    onclick="setSort('ticker')"><span>Ticker</span><span class="sort-ind"></span></th>
+          <th data-col="price"     onclick="setSort('price')"><span>Price</span><span class="sort-ind"></span></th>
+          <th data-col="marketCap" onclick="setSort('marketCap')"><span>Mkt Cap</span><span class="sort-ind"></span></th>
+          <th>Sector</th>
+          <th data-col="above50"   onclick="setSort('above50')"><span>vs 50-MA</span><span class="sort-ind"></span></th>
+          <th data-col="above200"  onclick="setSort('above200')"><span>vs 200-MA</span><span class="sort-ind"></span></th>
+          <th data-col="return1d"  onclick="setSort('return1d')"><span>1d</span><span class="sort-ind"></span></th>
+          <th data-col="return1m"  onclick="setSort('return1m')"><span>1m</span><span class="sort-ind"></span></th>
+          <th data-col="return3m"  onclick="setSort('return3m')"><span>3m</span><span class="sort-ind"></span></th>
+          <th data-col="returnYtd" onclick="setSort('returnYtd')"><span>YTD</span><span class="sort-ind"></span></th>
+          <th data-col="return12m" onclick="setSort('return12m')"><span>12m</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpx1d"   onclick="setSort('vsSpx1d')"><span>vs SPX 1d</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpxYtd"  onclick="setSort('vsSpxYtd')"><span>vs SPX YTD</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpx12m"  onclick="setSort('vsSpx12m')"><span>vs SPX 12m</span><span class="sort-ind"></span></th>
+          <th>Status</th>
+        </tr></thead>
+        <tbody id="stockTbody"></tbody>
+      </table>
+    </div>
+    <div class="note">
+      Data: Yahoo Finance via yfinance &nbsp;·&nbsp;
+      Run <code>python fetch_breadth.py</code> to refresh &nbsp;·&nbsp;
+      vs SPX = excess return vs S&P 500 &nbsp;·&nbsp;
+      New Highs/Lows = within 2% of 52-week extreme
+    </div>
+  `;
   renderTable(stocks);
 }
 
@@ -593,236 +848,6 @@ function renderTable(stocks) {
   }).join('');
 }
 
-// ── Tab switching ─────────────────────────────────────────────────────
-function switchTab(tab) {
-  activeTab = tab;
-  document.getElementById('root').style.display  = tab === 'overview'     ? '' : 'none';
-  document.getElementById('root2').style.display = tab === 'participation' ? '' : 'none';
-  document.getElementById('tab-overview').classList.toggle('active', tab === 'overview');
-  document.getElementById('tab-participation').classList.toggle('active', tab === 'participation');
-  // Sector filter only meaningful on Overview tab
-  document.getElementById('sectorSelect').style.display = tab === 'overview' ? '' : 'none';
-  if (tab === 'participation' && _data) renderParticipation();
-}
-
-// ── Participation tab ─────────────────────────────────────────────────
-function renderParticipation() {
-  if (!_data) return;
-  const {
-    stocks,
-    spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
-    rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m
-  } = _data;
-
-  // ── Sector-level analysis ──────────────────────────────────────────
-  const secMap = {};
-  stocks.forEach(s => {
-    const sec = s.sector || 'Unknown';
-    if (!secMap[sec]) secMap[sec] = { total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0 };
-    secMap[sec].total++;
-    if (s.above50) secMap[sec].above50++;
-    if (s.above200) secMap[sec].above200++;
-    if (s.above50 && s.above200) secMap[sec].both++;
-    if (s.newHigh) secMap[sec].newHighs++;
-    if (s.newLow)  secMap[sec].newLows++;
-  });
-  const sectors = Object.entries(secMap)
-    .map(([name, d]) => ({ name, ...d, pct: Math.round(d.both / d.total * 100) }))
-    .sort((a,b) => b.pct - a.pct);
-
-  const healthySectors  = sectors.filter(s => s.pct >= 50).length;
-  const newHighSectors  = sectors.filter(s => s.newHighs > 0).length;
-  const totalSectors    = sectors.length;
-
-  // ── Equal-weight signal ────────────────────────────────────────────
-  const hasRsp = rspReturnYtd != null;
-  const rspVsSpxYtd = hasRsp ? rspReturnYtd - spxReturnYtd : null;
-  const rspVsSpx12m = hasRsp ? rspReturn12m - spxReturn12m : null;
-  const rspVsSpx1m  = hasRsp ? rspReturn1m  - spxReturn1m  : null;
-
-  // ── Verdict ────────────────────────────────────────────────────────
-  // Grade sector health: strong 7+, moderate 4-6, weak 0-3
-  const sectorGrade = healthySectors >= 7 ? 'strong' : healthySectors >= 4 ? 'moderate' : 'weak';
-  // Equal-weight signal: aligned (RSP close to SPX), lagging, diverging
-  const ewnGrade = rspVsSpxYtd == null ? 'unknown'
-    : rspVsSpxYtd >= -2  ? 'aligned'
-    : rspVsSpxYtd >= -6  ? 'lagging'
-    : 'diverging';
-  // New high spread: 5+ sectors = broad, 3-4 = moderate, <3 = clustered
-  const nhiGrade = newHighSectors >= 5 ? 'broad' : newHighSectors >= 3 ? 'moderate' : 'clustered';
-
-  let verdict, vColor, vMeaning, vAction;
-  if (sectorGrade === 'strong' && ewnGrade !== 'diverging' && nhiGrade === 'broad') {
-    verdict='Broad'; vColor='#22c87a';
-    vMeaning='Most sectors and stocks are participating in the move.';
-    vAction='Full size · Diversify across sectors';
-  } else if (sectorGrade === 'weak' && (ewnGrade === 'diverging' || nhiGrade === 'clustered')) {
-    verdict='Concentrated'; vColor='#f0a020';
-    vMeaning='1–2 sectors or mega-caps are carrying the index. The average stock is not participating.';
-    vAction='Small size · Only hold sector leaders';
-  } else if (sectorGrade !== 'strong' && ewnGrade === 'diverging') {
-    verdict='Deteriorating'; vColor='#f04f4f';
-    vMeaning='Breadth is falling while price may still hold. Distribution is likely underway.';
-    vAction='Start reducing · Watch for breakdown';
-  } else {
-    verdict='Mixed'; vColor='#f0d040';
-    vMeaning='Some sectors are healthy, others are not. The rally has partial participation.';
-    vAction='Normal size · Stick to healthy sectors';
-  }
-
-  // ── Equal-weight rows ──────────────────────────────────────────────
-  const ewRows = hasRsp
-    ? [
-        {lbl:'1-day',    rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
-        {lbl:'1-month',  rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
-        {lbl:'YTD',      rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
-        {lbl:'12-month', rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
-      ]
-    : null;
-
-  const ewInterpText = !hasRsp
-    ? `<em>RSP data not yet available — re-run <code>fetch_breadth.py</code> to load equal-weight data.</em>`
-    : ewnGrade === 'aligned'
-      ? `<strong style="color:#22c87a">RSP tracking SPX.</strong> Equal-weight performance is close to cap-weight. Broad participation — the rally isn't just mega-cap driven.`
-      : ewnGrade === 'lagging'
-      ? `<strong style="color:#f0d040">RSP lagging SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> Cap-weighted index is outrunning the average stock. Some concentration, but not yet alarming.`
-      : `<strong style="color:#f04f4f">RSP significantly behind SPX (${pp(rspVsSpxYtd,true)}% YTD spread).</strong> A handful of large-caps are holding up the index while most stocks underperform. Classic late-stage concentration — high risk.`;
-
-  // ── New highs by sector text ───────────────────────────────────────
-  const nhiInterpText = nhiGrade === 'broad'
-    ? `<strong style="color:#22c87a">New highs spread across ${newHighSectors} sectors.</strong> Breakouts are happening market-wide — the trend has broad leadership.`
-    : nhiGrade === 'moderate'
-    ? `<strong style="color:#f0d040">New highs in ${newHighSectors} of ${totalSectors} sectors.</strong> Moderate spread — some sectors leading but others stalling out.`
-    : `<strong style="color:#f04f4f">New highs clustered in ${newHighSectors} sector${newHighSectors === 1 ? '' : 's'}.</strong> Breakouts are heavily concentrated. Late-stage warning — few names carrying the narrative.`;
-
-  document.getElementById('root2').innerHTML = `
-
-    <!-- Verdict banner -->
-    <div class="verdict-banner" style="border-color:${vColor}33">
-      <div class="verdict-dot" style="background:${vColor}"></div>
-      <div>
-        <div class="verdict-label" style="color:${vColor}">${verdict}</div>
-        <div class="verdict-meaning">${vMeaning}</div>
-      </div>
-      <div class="verdict-action" style="background:${vColor}18;color:${vColor}">${vAction}</div>
-    </div>
-
-    <!-- Two-column metric boxes -->
-    <div class="part-grid">
-
-      <!-- Equal-weight vs Cap-weight -->
-      <div class="part-box">
-        <div class="part-title">Equal-weight vs Cap-weight</div>
-        <div class="part-sub">RSP (equal-weight) vs SPX — is the average stock keeping up?</div>
-        ${hasRsp ? `
-          <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
-            <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
-            <span class="part-rsp" style="font-size:10px;color:var(--text3)">RSP</span>
-            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPX</span>
-            <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
-          </div>
-          ${ewRows.map(r => `
-            <div class="part-row">
-              <span class="part-lbl">${r.lbl}</span>
-              <span class="part-rsp">${pp(r.rsp,true)}%</span>
-              <span class="part-spx">${pp(r.spx,true)}%</span>
-              <span class="part-diff" style="color:${r.diff >= -2 ? '#22c87a' : r.diff >= -6 ? '#f0d040' : '#f04f4f'}">${pp(r.diff,true)}%</span>
-            </div>`).join('')}
-        ` : `<div style="color:var(--text3);font-size:12px;padding:16px 0">RSP data not loaded yet — re-run fetch_breadth.py</div>`}
-        <div class="part-interp">${ewInterpText}</div>
-      </div>
-
-      <!-- New highs by sector -->
-      <div class="part-box">
-        <div class="part-title">New 52-week highs by sector</div>
-        <div class="part-sub">Are breakouts spread across sectors or clustering in one?</div>
-        ${sectors.filter(s => s.newHighs > 0 || s.newLows > 0).length === 0
-          ? `<div style="color:var(--text3);font-size:12px;padding:16px 0">No new highs or lows recorded.</div>`
-          : sectors.filter(s => s.newHighs > 0).sort((a,b) => b.newHighs - a.newHighs).map(s => {
-            const totalNH = stocks.filter(x => x.newHigh).length || 1;
-            const barW = Math.round(s.newHighs / totalNH * 100);
-            return `
-              <div class="part-row">
-                <span class="part-lbl">${s.name}</span>
-                <span style="font-size:11px;color:#22c87a;min-width:28px;text-align:right">${s.newHighs}</span>
-                <div style="width:80px;margin-left:8px">
-                  <div class="health-bar"><div class="health-fill" style="width:${barW}%;background:#22c87a88"></div></div>
-                </div>
-              </div>`}).join('')
-        }
-        <div class="part-interp">${nhiInterpText}</div>
-      </div>
-
-    </div>
-
-    <!-- Sector health table -->
-    <div class="sec-health">
-      <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth threshold</div>
-      <div style="overflow-x:auto">
-      <table>
-        <thead>
-          <tr>
-            <th>Sector</th>
-            <th>Stocks</th>
-            <th>% Both MAs</th>
-            <th style="width:140px">Breadth bar</th>
-            <th>Status</th>
-            <th>New Highs</th>
-            <th>New Lows</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${sectors.map(s => {
-            const reg = regime(s.pct);
-            const pill = s.pct >= 60
-              ? `<span class="health-pill" style="background:#22c87a18;color:#22c87a">Healthy</span>`
-              : s.pct >= 40
-              ? `<span class="health-pill" style="background:#f0d04018;color:#f0d040">Neutral</span>`
-              : `<span class="health-pill" style="background:#f04f4f18;color:#f04f4f">Weak</span>`;
-            return `<tr>
-              <td style="font-weight:600">${s.name}</td>
-              <td class="muted">${s.total}</td>
-              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
-              <td>
-                <div class="health-bar" style="width:100%">
-                  <div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div>
-                </div>
-              </td>
-              <td>${pill}</td>
-              <td style="color:${s.newHighs > 0 ? '#22c87a' : 'var(--text3)'};font-weight:${s.newHighs > 0 ? 700 : 400}">${s.newHighs || '—'}</td>
-              <td style="color:${s.newLows > 0 ? '#f04f4f' : 'var(--text3)'};font-weight:${s.newLows > 0 ? 700 : 400}">${s.newLows || '—'}</td>
-            </tr>`;
-          }).join('')}
-        </tbody>
-      </table>
-      </div>
-    </div>
-
-    <!-- Signal summary -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Healthy Sectors</div>
-        <div style="font-size:32px;font-weight:700;color:${healthySectors >= 7 ? '#22c87a' : healthySectors >= 4 ? '#f0d040' : '#f04f4f'}">${healthySectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
-        <div style="font-size:11px;color:var(--text2);margin-top:4px">${healthySectors >= 7 ? 'Broadly healthy' : healthySectors >= 4 ? 'Mixed — some at risk' : 'Most sectors weak'}</div>
-      </div>
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors Making Highs</div>
-        <div style="font-size:32px;font-weight:700;color:${newHighSectors >= 5 ? '#22c87a' : newHighSectors >= 3 ? '#f0d040' : '#f04f4f'}">${newHighSectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
-        <div style="font-size:11px;color:var(--text2);margin-top:4px">${newHighSectors >= 5 ? 'Broad breakout leadership' : newHighSectors >= 3 ? 'Partial spread' : 'Concentrated highs'}</div>
-      </div>
-      <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Equal-weight Spread (YTD)</div>
-        ${hasRsp
-          ? `<div style="font-size:32px;font-weight:700;color:${rspVsSpxYtd >= -2 ? '#22c87a' : rspVsSpxYtd >= -6 ? '#f0d040' : '#f04f4f'}">${pp(rspVsSpxYtd,true)}%</div>
-             <div style="font-size:11px;color:var(--text2);margin-top:4px">RSP vs SPX · ${rspVsSpxYtd >= -2 ? 'Broad rally' : rspVsSpxYtd >= -6 ? 'Slight narrowing' : 'Cap-weight dominated'}</div>`
-          : `<div style="font-size:24px;font-weight:700;color:var(--text3)">—</div><div style="font-size:11px;color:var(--text2);margin-top:4px">Run fetcher to load RSP data</div>`
-        }
-      </div>
-    </div>
-  `;
-}
 
 init();
 </script>
-</body>
-</html>
