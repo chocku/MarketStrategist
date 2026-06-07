@@ -501,11 +501,15 @@ function renderBreadth() {
   const secMap = {};
   const totalMcap = allStocks.reduce((s, st) => s + (st.marketCap || 0), 0);
 
+  // Beginning-of-period totals for attribution math (computed over all stocks)
+  let totalAdjMcYtd = 0, totalAdjMcLow = 0;
+
   allStocks.forEach(s => {
     const sec = s.sector || 'Unknown';
     if (!secMap[sec]) secMap[sec] = {
       total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0,
-      mcap:0, mcapRetYtd:0, mcapRetFromLow:0, fromLowCount:0
+      mcap:0, mcapRetYtd:0,
+      adjMcYtd:0, adjMcLow:0, adjRetYtd:0, adjRetLow:0
     };
     const m = secMap[sec];
     m.total++;
@@ -514,24 +518,39 @@ function renderBreadth() {
     if (s.above50 && s.above200) m.both++;
     if (s.newHigh)  m.newHighs++;
     if (s.newLow)   m.newLows++;
-    const mc = s.marketCap || 0;
-    m.mcap         += mc;
-    m.mcapRetYtd   += mc * (s.returnYtd     || 0);
-    if (s.returnFromLow != null) { m.mcapRetFromLow += mc * s.returnFromLow; m.fromLowCount++; }
+    const mc   = s.marketCap || 0;
+    const rYtd = (s.returnYtd     || 0) / 100;
+    const rLow = (s.returnFromLow || 0) / 100;
+    // Current-weight mcap — for sector size and weight % display
+    m.mcap       += mc;
+    m.mcapRetYtd += mc * (s.returnYtd || 0);   // current-wt avg return (for Ret YTD col)
+    // Beginning-of-period weights for correct attribution
+    // M_start ≈ M_current / (1 + return) — removes price-drift bias from weights
+    const adjYtd = mc / (1 + rYtd);
+    const adjLow = mc / (1 + rLow);
+    m.adjMcYtd  += adjYtd;
+    m.adjMcLow  += adjLow;
+    m.adjRetYtd += adjYtd * (s.returnYtd     || 0);
+    m.adjRetLow += adjLow * (s.returnFromLow || 0);
+    totalAdjMcYtd += adjYtd;
+    totalAdjMcLow += adjLow;
   });
 
   const sectors = Object.entries(secMap).map(([name, d]) => {
     const wt         = totalMcap > 0 ? d.mcap / totalMcap : 0;
-    const retYtd     = d.mcap > 0 ? d.mcapRetYtd     / d.mcap : 0;
-    const retFromLow = d.mcap > 0 ? d.mcapRetFromLow / d.mcap : 0;
+    const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;   // current-wt avg (display)
+    const retFromLow = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;  // bop-wt avg (display)
+    // Contribution = beginning-of-period sector weight × sector return
+    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
     return {
       name, ...d,
       pct:            Math.round(d.both / d.total * 100),
       weight:         +(wt * 100).toFixed(1),
       retYtd:         +retYtd.toFixed(2),
       retFromLow:     +retFromLow.toFixed(2),
-      contribYtd:     +(wt * retYtd).toFixed(2),
-      contribFromLow: +(wt * retFromLow).toFixed(2),
+      contribYtd:     +contribYtd.toFixed(2),
+      contribFromLow: +contribFromLow.toFixed(2),
     };
   });
 
