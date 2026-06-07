@@ -224,6 +224,9 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   .sec-health { overflow-x: auto; }
   .tpanel { overflow-x: auto; }
 }
+@media(max-width:768px) {
+  .rsp-spy-grid { grid-template-columns: 1fr !important; }
+}
 @media(max-width:600px) {
   body { padding: 16px 12px; }
   .tab-btn { padding: 6px 10px; }
@@ -262,7 +265,8 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         <div>Data as of: <span style="color:var(--text2)" id="dataDate">—</span></div>
       </div>
       <div class="tab-nav">
-        <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn active" id="tab-regime"   onclick="switchTab('regime')"><div class="tb-name">Regime</div><div class="tb-sub">Invest or Wait?</div></button>
+        <button class="tab-btn"        id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
         <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
       </div>
@@ -272,6 +276,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
       <button class="btn" onclick="init()">↻ Refresh</button>
     </div>
   </div>
+  <div id="stale-banner" style="display:none;margin-bottom:16px;padding:10px 16px;background:rgba(240,160,32,0.1);border:0.5px solid rgba(240,160,32,0.4);border-radius:8px;font-size:12px;color:#f0a020"></div>
   <div id="root">
     <div class="loading"><div class="spinner"></div>Loading market data...</div>
   </div>
@@ -299,13 +304,16 @@ function acceptDisclaimer() {
 document.getElementById('currentDate').textContent =
   new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
+// ── Color constants ────────────────────────────────────────────────────
+const C = { green:'#22c87a', red:'#f04f4f', amber:'#f0a020', blue:'#4a9eff', yellow:'#f0d040' };
+
 // ── State ──────────────────────────────────────────────────────────────
 let chart2 = null, chart3 = null;
 let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
-let activeTab = 'breadth';
+let activeTab = 'regime';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
 
@@ -339,7 +347,7 @@ async function init() {
   document.getElementById('root').innerHTML = `<div class="loading"><div class="spinner"></div>Fetching data.json...</div>`;
   let d;
   try {
-    const r = await fetch('data.json?t=' + Date.now());
+    const r = await fetch('data.json');
     if (!r.ok) throw new Error('data.json not found');
     d = await r.json();
   } catch(e) {
@@ -359,6 +367,17 @@ async function init() {
   document.getElementById('dataDate').textContent = d.asOf || '—';
   filterSector = 'all';
   searchTicker = '';
+  // Stale data warning
+  const banner = document.getElementById('stale-banner');
+  if (d.asOf) {
+    const ageDays = (Date.now() - new Date(d.asOf).getTime()) / 86400000;
+    if (ageDays > 3) {
+      banner.style.display = 'block';
+      banner.textContent = `⚠ Data is ${Math.floor(ageDays)} days old (last updated ${d.asOf}). The daily fetcher may not have run recently.`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
   populateSectorDropdown(d.stocks);
   renderCurrent();
 }
@@ -497,10 +516,10 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
     ${rows.map(s => {
       const reg = regime(s.pct);
       const realHighs = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
-      const cYtdC  = s.contribYtd     > 0 ? '#22c87a' : s.contribYtd     < 0 ? '#f04f4f' : 'var(--text2)';
-      const cLowC  = s.contribFromLow > 0 ? '#22c87a' : s.contribFromLow < 0 ? '#f04f4f' : 'var(--text2)';
-      const rsYtdC = s.rsYtd     > 0 ? '#22c87a' : s.rsYtd     < 0 ? '#f04f4f' : 'var(--text2)';
-      const rsLowC = s.rsFromLow > 0 ? '#22c87a' : s.rsFromLow < 0 ? '#f04f4f' : 'var(--text2)';
+      const cYtdC  = s.contribYtd     > 0 ? C.green : s.contribYtd     < 0 ? C.red : 'var(--text2)';
+      const cLowC  = s.contribFromLow > 0 ? C.green : s.contribFromLow < 0 ? C.red : 'var(--text2)';
+      const rsYtdC = s.rsYtd     > 0 ? C.green : s.rsYtd     < 0 ? C.red : 'var(--text2)';
+      const rsLowC = s.rsFromLow > 0 ? C.green : s.rsFromLow < 0 ? C.red : 'var(--text2)';
       const nameStyle = showSectorCol ? 'max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600' : 'font-weight:600';
       const sectorCell = showSectorCol ? `<td class="muted" style="font-size:11px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${s.sector}">${s.sector}</td>` : '';
       return `<tr>
@@ -513,14 +532,14 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
         <td class="muted">${fmtMcap(s.mcapAboveBoth)}</td>
         <td style="font-weight:700;color:${reg.color}">${s.wtPctAbove.toFixed(1)}%</td>
         <td><div style="height:4px;background:var(--bg3);border-radius:2px"><div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div></div></td>
-        <td style="color:${s.retYtd>0?'#22c87a':s.retYtd<0?'#f04f4f':'var(--text2)'};border-left:0.5px solid var(--border)">${pp(s.retYtd,true)}%</td>
-        <td style="color:${s.retFromLow>0?'#22c87a':s.retFromLow<0?'#f04f4f':'var(--text2)'}">${pp(s.retFromLow,true)}%</td>
+        <td style="color:${s.retYtd>0?C.green:s.retYtd<0?C.red:'var(--text2)'};border-left:0.5px solid var(--border)">${pp(s.retYtd,true)}%</td>
+        <td style="color:${s.retFromLow>0?C.green:s.retFromLow<0?C.red:'var(--text2)'}">${pp(s.retFromLow,true)}%</td>
         <td style="color:${rsYtdC};border-left:0.5px solid var(--border)">${pp(s.rsYtd,true)}%</td>
         <td style="color:${rsLowC}">${pp(s.rsFromLow,true)}%</td>
         <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
         <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
-        <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
-        <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
+        <td style="color:${realHighs?C.green:s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
+        <td style="color:${s.newLows>0?C.red:'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
       </tr>`;
     }).join('')}
   </tbody>`;
@@ -538,14 +557,14 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
       <td class="muted">${fmtMcap(totalMcapAbove)}</td>
       <td style="font-weight:700;color:${regime(totalBothPct).color}">${totalWtAbove.toFixed(1)}%</td>
       <td></td>
-      <td style="font-weight:700;color:${spyReturnYtd>0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${pp(spyReturnYtd,true)}%</td>
-      <td style="font-weight:700;color:${spyFromLow>0?'#22c87a':'#f04f4f'}">${pp(spyFromLow,true)}%</td>
+      <td style="font-weight:700;color:${spyReturnYtd>0?C.green:C.red};border-left:0.5px solid var(--border)">${pp(spyReturnYtd,true)}%</td>
+      <td style="font-weight:700;color:${spyFromLow>0?C.green:C.red}">${pp(spyFromLow,true)}%</td>
       <td style="color:var(--text3);border-left:0.5px solid var(--border)" title="SPY is benchmark">—</td>
       <td style="color:var(--text3)" title="SPY is benchmark">—</td>
-      <td style="font-weight:700;color:${spyReturnYtd>=0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${spyReturnYtd>=0?'+':''}${(spyReturnYtd||0).toFixed(2)}%</td>
-      <td style="font-weight:700;color:${spyFromLow>=0?'#22c87a':'#f04f4f'}">${spyFromLow>=0?'+':''}${(spyFromLow||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spyReturnYtd>=0?C.green:C.red};border-left:0.5px solid var(--border)">${spyReturnYtd>=0?'+':''}${(spyReturnYtd||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spyFromLow>=0?C.green:C.red}">${spyFromLow>=0?'+':''}${(spyFromLow||0).toFixed(2)}%</td>
       <td style="color:${totalNewHighs>0?'var(--text2)':'var(--text3)'};border-left:0.5px solid var(--border)">${totalNewHighs||'—'}</td>
-      <td style="color:${totalNewLows>0?'#f04f4f':'var(--text3)'}">${totalNewLows||'—'}</td>
+      <td style="color:${totalNewLows>0?C.red:'var(--text3)'}">${totalNewLows||'—'}</td>
     </tr>
   </tfoot>`;
 
@@ -556,8 +575,12 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
 function switchTab(tab) {
   if (chart2) { chart2.destroy(); chart2 = null; }
   if (chart3) { chart3.destroy(); chart3 = null; }
+  if (activeTab === 'leaders' && tab !== 'leaders') {
+    filterSector = 'all';
+    document.getElementById('sectorSelect').value = 'all';
+  }
   activeTab = tab;
-  ['breadth','rotation','leaders'].forEach(t =>
+  ['regime','breadth','rotation','leaders'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
   document.getElementById('sectorSelect').style.display =
@@ -574,7 +597,8 @@ function renderCurrent() {
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
     `${label} · ${asOf} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
-  if      (activeTab === 'breadth')  renderBreadth();
+  if      (activeTab === 'regime')   renderRegime();
+  else if (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
   else                               renderLeaders();
 }
@@ -603,7 +627,7 @@ function renderRegime() {
   const p50   = n ? pct(a50,n) : 0;
   const p200  = n ? pct(a200,n) : 0;
   const pBoth = n ? pct(aBoth,n) : 0;
-  const reg   = regime(p50);
+  const reg   = regime(pBoth);
 
   document.getElementById('root').innerHTML = tabHdr(
     'Should I be invested at all?',
@@ -614,7 +638,7 @@ function renderRegime() {
       <span class="rname" style="color:${reg.color}">${reg.label}</span>
       <span class="rsig">${reg.signal}</span>
       <div class="zones" style="margin:0;padding:0;border:none;margin-left:auto;gap:14px">
-        ${[['#f04f4f','< 20% Capitulation'],['#f0a020','20–40% Bear'],['#f0d040','40–60% Neutral'],['#22c87a','60–80% Bull'],['#4a9eff','> 80% Overbought']]
+        ${[[C.red,'< 20% Capitulation'],[C.amber,'20–40% Bear'],[C.yellow,'40–60% Neutral'],[C.green,'60–80% Bull'],[C.blue,'> 80% Overbought']]
           .map(([c,l])=>`<div class="zitem"><div class="zdot" style="background:${c}"></div>${l}</div>`).join('')}
       </div>
     </div>
@@ -633,10 +657,10 @@ function renderRegime() {
             <span class="signal-val" style="color:${r.c}">${r.pct}%</span>
           </div>`).join('')}
         <div class="signal-interp">${
-          pBoth >= 60 ? `<strong style="color:#22c87a">Broad trend intact.</strong> ${pBoth}% of stocks are above both MAs — the majority of the market is in an established uptrend.` :
-          pBoth >= 40 ? `<strong style="color:#f0d040">Mixed signals.</strong> ${pBoth}% above both MAs. The market lacks a clear directional conviction — roughly half trending, half not.` :
-          pBoth >= 20 ? `<strong style="color:#f0a020">Trend deteriorating.</strong> Only ${pBoth}% hold both MAs. Most stocks are broken from their trend — risk-off conditions prevail.` :
-          `<strong style="color:#f04f4f">Capitulation territory.</strong> ${pBoth}% above both MAs. Broad trend breakdown — historically a potential washout or reversal zone.`
+          pBoth >= 60 ? `<strong style="color:${C.green}">Broad trend intact.</strong> ${pBoth}% of stocks are above both MAs — the majority of the market is in an established uptrend.` :
+          pBoth >= 40 ? `<strong style="color:${C.yellow}">Mixed signals.</strong> ${pBoth}% above both MAs. The market lacks a clear directional conviction — roughly half trending, half not.` :
+          pBoth >= 20 ? `<strong style="color:${C.amber}">Trend deteriorating.</strong> Only ${pBoth}% hold both MAs. Most stocks are broken from their trend — risk-off conditions prevail.` :
+          `<strong style="color:${C.red}">Capitulation territory.</strong> ${pBoth}% above both MAs. Broad trend breakdown — historically a potential washout or reversal zone.`
         }</div>
       </div>
 
@@ -652,15 +676,15 @@ function renderRegime() {
           <div class="signal-row">
             <span class="signal-lbl">${r.label}</span>
             <span class="signal-sub">SPX ${pp(r.spx??0,true)}%</span>
-            <span class="signal-val" style="color:${r.v>n/2?'#22c87a':'#f04f4f'}">${r.v} <span style="font-size:10px;font-weight:400;color:var(--text3)">of ${n}</span></span>
+            <span class="signal-val" style="color:${r.v>n/2?C.green:C.red}">${r.v} <span style="font-size:10px;font-weight:400;color:var(--text3)">of ${n}</span></span>
           </div>`).join('')}
         <div class="signal-interp">${(()=>{
           const r12 = n ? beat12m/n : 0;
           const rYtd = n ? beatYtd/n : 0;
-          if (r12 >= 0.5 && rYtd >= 0.5) return `<strong style="color:#22c87a">Wide participation.</strong> More than half the index is outperforming SPX on both a YTD and 12-month basis — breadth is supporting the rally.`;
-          if (r12 >= 0.5) return `<strong style="color:#22c87a">Long-run leaders.</strong> ${beat12m} stocks beat SPX over 12m, but YTD breadth is narrower (${beatYtd}). Recent leadership may be concentrated.`;
-          if (rYtd >= 0.5) return `<strong style="color:#f0d040">Recovering breadth.</strong> ${beatYtd} stocks beat SPX YTD despite weaker 12m numbers — rotation or mean reversion underway.`;
-          return `<strong style="color:#f04f4f">Narrow market.</strong> Fewer than half beat SPX over both YTD and 12m — the index return is being driven by a small group of outperformers.`;
+          if (r12 >= 0.5 && rYtd >= 0.5) return `<strong style="color:${C.green}">Wide participation.</strong> More than half the index is outperforming SPX on both a YTD and 12-month basis — breadth is supporting the rally.`;
+          if (r12 >= 0.5) return `<strong style="color:${C.green}">Long-run leaders.</strong> ${beat12m} stocks beat SPX over 12m, but YTD breadth is narrower (${beatYtd}). Recent leadership may be concentrated.`;
+          if (rYtd >= 0.5) return `<strong style="color:${C.yellow}">Recovering breadth.</strong> ${beatYtd} stocks beat SPX YTD despite weaker 12m numbers — rotation or mean reversion underway.`;
+          return `<strong style="color:${C.red}">Narrow market.</strong> Fewer than half beat SPX over both YTD and 12m — the index return is being driven by a small group of outperformers.`;
         })()}</div>
       </div>
 
@@ -668,19 +692,19 @@ function renderRegime() {
         <div class="signal-title">Is the trend making new ground?</div>
         <div class="signal-row">
           <span class="signal-lbl">New 52-week highs</span>
-          <span class="signal-val" style="color:#22c87a">${newHighCount ?? '—'}</span>
+          <span class="signal-val" style="color:${C.green}">${newHighCount ?? '—'}</span>
         </div>
         <div class="signal-row">
           <span class="signal-lbl">New 52-week lows</span>
-          <span class="signal-val" style="color:#f04f4f">${newLowCount ?? '—'}</span>
+          <span class="signal-val" style="color:${C.red}">${newLowCount ?? '—'}</span>
         </div>
         <div class="signal-interp">${(()=>{
           const nh = newHighCount ?? 0, nl = newLowCount ?? 0;
           const ratio = (nh + nl) > 0 ? nh / (nh + nl) : 0.5;
-          if (ratio >= 0.7) return `<strong style="color:#22c87a">Expansion in progress.</strong> New highs dominate (${nh} vs ${nl} lows) — fresh breakouts are leading the market forward.`;
-          if (ratio >= 0.5) return `<strong style="color:#f0d040">Modest expansion.</strong> More highs than lows (${nh} vs ${nl}), but not a decisive surge. The trend is advancing but without strong conviction.`;
-          if (ratio >= 0.3) return `<strong style="color:#f0a020">Contraction warning.</strong> Lows are outpacing highs (${nh} highs vs ${nl} lows) — the trend is losing new leadership and may be stalling.`;
-          return `<strong style="color:#f04f4f">Broad breakdown.</strong> New lows dominate (${nl} vs ${nh} highs) — stocks are making fresh 52-week lows at an alarming rate.`;
+          if (ratio >= 0.7) return `<strong style="color:${C.green}">Expansion in progress.</strong> New highs dominate (${nh} vs ${nl} lows) — fresh breakouts are leading the market forward.`;
+          if (ratio >= 0.5) return `<strong style="color:${C.yellow}">Modest expansion.</strong> More highs than lows (${nh} vs ${nl}), but not a decisive surge. The trend is advancing but without strong conviction.`;
+          if (ratio >= 0.3) return `<strong style="color:${C.amber}">Contraction warning.</strong> Lows are outpacing highs (${nh} highs vs ${nl} lows) — the trend is losing new leadership and may be stalling.`;
+          return `<strong style="color:${C.red}">Broad breakdown.</strong> New lows dominate (${nl} vs ${nh} highs) — stocks are making fresh 52-week lows at an alarming rate.`;
         })()}</div>
       </div>
     </div>
@@ -798,10 +822,10 @@ function renderBreadth() {
   let rspCallout = '';
   if (hasRsp) {
     const worstGap = Math.min(rspVsSpyYtd ?? 0, rspVsSpyFromLow ?? 0);
-    const color = worstGap < -6 ? '#f04f4f' : worstGap < -2 ? '#f0a020' : '#22c87a';
+    const color = worstGap < -6 ? C.red : worstGap < -2 ? C.amber : C.green;
     rspCallout = callout(color, [
-      `<strong>YTD:</strong> RSP ${pp(rspReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;SPY ${pp(spyReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;Spread <strong style="color:${rspVsSpyYtd>=-2?'#22c87a':rspVsSpyYtd>=-6?'#f0a020':'#f04f4f'}">${pp(rspVsSpyYtd,true)}%</strong>`,
-      `<strong>From ${recentLowDate} low:</strong> RSP ${pp(rspFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;SPY ${pp(spyFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;Spread <strong style="color:${rspVsSpyFromLow>=-2?'#22c87a':rspVsSpyFromLow>=-6?'#f0a020':'#f04f4f'}">${pp(rspVsSpyFromLow,true)}%</strong>`,
+      `<strong>YTD:</strong> RSP ${pp(rspReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;SPY ${pp(spyReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;Spread <strong style="color:${rspVsSpyYtd>=-2?C.green:rspVsSpyYtd>=-6?C.amber:C.red}">${pp(rspVsSpyYtd,true)}%</strong>`,
+      `<strong>From ${recentLowDate} low:</strong> RSP ${pp(rspFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;SPY ${pp(spyFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;Spread <strong style="color:${rspVsSpyFromLow>=-2?C.green:rspVsSpyFromLow>=-6?C.amber:C.red}">${pp(rspVsSpyFromLow,true)}%</strong>`,
       worstGap < -6
         ? `<strong>Watch:</strong> SPY has significantly outrun RSP from the recent low — the recovery has been uneven across stocks`
         : worstGap < -2
@@ -813,7 +837,7 @@ function renderBreadth() {
   // Chart takeaway
   let chartCallout = '';
   if (hasRsp) {
-    const color = rspVsSpyYtd < -4 ? '#f04f4f' : rspVsSpyYtd < -1 ? '#f0a020' : '#22c87a';
+    const color = rspVsSpyYtd < -4 ? C.red : rspVsSpyYtd < -1 ? C.amber : C.green;
     chartCallout = callout(color, [
       `<strong>SPY YTD:</strong> ${pp(spyReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;<strong>RSP YTD:</strong> ${pp(rspReturnYtd,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;YTD spread: <strong>${pp(rspVsSpyYtd,true)}%</strong>`,
       `<strong>From ${recentLowDate} low:</strong> SPY ${pp(spyFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;RSP ${pp(rspFromLow,true)}%&nbsp;&nbsp;·&nbsp;&nbsp;Gap: <strong>${pp(rspVsSpyFromLow,true)}%</strong>`,
@@ -835,17 +859,21 @@ function renderBreadth() {
       + (bottomLow.contribFromLow < -0.15 ? `&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Drag:</strong> ${bottomLow.name} ${pp(bottomLow.contribFromLow,true)}%` : ''),
     `<strong>Widest breadth:</strong> ${bestBreadth.name} (${bestBreadth.pct}% of stocks above both MAs)&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Weakest:</strong> ${weakBreadth.name} (${weakBreadth.pct}%)`
   ];
-  const secCallout = callout('#4a9eff', secBullets);
-
-  // sort indicator helper
-  const si = col => breadthSortCol === col ? (breadthSortDir > 0 ? ' ▲' : ' ▼') : '';
+  const secCallout = callout(C.blue, secBullets);
 
   document.getElementById('root').innerHTML = tabHdr(
     'Is the rally broad or carried by a few names?',
     'RSP vs SPY shows whether the average stock keeps up with the index. The sector table shows which sectors are driving the move and how wide the participation is within each.'
-  ) + `
-    <!-- Row 1: RSP vs SPY table (left) + 90-day chart (right) -->
-    <div style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
+  ) +
+  buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) +
+  buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indMap);
+
+  initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
+}
+
+function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) {
+  return `
+    <div class="rsp-spy-grid" style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
       <div class="part-box" style="margin-bottom:0">
         <div class="part-title">RSP vs SPY — Equal-weight vs Cap-weight</div>
         <div class="part-sub">Spread = RSP minus SPY</div>
@@ -861,7 +889,7 @@ function renderBreadth() {
               <span class="part-lbl" style="${r.highlight?'font-weight:600;color:var(--text)':''}">${r.lbl}</span>
               <span class="part-rsp" style="${r.highlight?'font-weight:600':''}">${pp(r.rsp,true)}%</span>
               <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spy,true)}%</span>
-              <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
+              <span class="part-diff" style="color:${r.diff>=-2?C.green:r.diff>=-6?C.yellow:C.red};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
           ${rspCallout}
         ` : `
@@ -871,7 +899,6 @@ function renderBreadth() {
             <div style="font-size:11px;color:var(--text3);margin-top:6px">Re-run <code style="background:var(--bg3);padding:1px 6px;border-radius:4px">python fetch_breadth.py</code> to load</div>
           </div>`}
       </div>
-
       <div class="sector-panel" style="margin-bottom:0">
         <div class="ptitle">RSP vs SPY — YTD % return (Jan 1 to today)</div>
         <div style="position:relative;height:240px">
@@ -880,124 +907,53 @@ function renderBreadth() {
         </div>
         ${chartCallout}
       </div>
-    </div>
+    </div>`;
+}
 
-    <!-- Row 2: Sector drill-down -->
+function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indMap) {
+  return `
     <div class="sec-health">
       ${secCallout}
       <div class="ptitle" style="margin-top:8px">Sector participation — click any column header to sort</div>
       ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
-
-      <!-- Industry table -->
-      ${(() => {
-        const indRows = Object.entries(indMap).map(([name, d]) => {
-          const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
-          const wtPctAbove = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
-          const contribYtd = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
-          const rsYtd      = retYtd - (spyReturnYtd || 0);
-          return {
-            name, sector: d.sector || '',
-            total: d.total, both: d.both,
-            wtPctAbove: +wtPctAbove.toFixed(1),
-            pct: Math.round(d.both / d.total * 100),
-            retYtd: +retYtd.toFixed(2),
-            rsYtd: +rsYtd.toFixed(2),
-            contribYtd: +contribYtd.toFixed(2),
-            newHighs: d.newHighs,
-            newLows: d.newLows,
-          };
-        });
-        indRows.sort((a, b) => {
-          const av = a[industryBreadthSortCol] ?? -Infinity;
-          const bv = b[industryBreadthSortCol] ?? -Infinity;
-          return industryBreadthSortDir * (bv - av);
-        });
-        const si = col => industryBreadthSortCol === col ? (industryBreadthSortDir > 0 ? ' ▲' : ' ▼') : '';
-        const rows = indRows.map(r => {
-          const bar = `<div style="display:flex;align-items:center;gap:4px"><div style="width:60px;height:6px;border-radius:3px;background:var(--border);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${r.pct>=60?'var(--green)':r.pct>=40?'#f59e0b':'var(--red)'}"></div></div><span style="font-size:10px">${r.pct}%</span></div>`;
-          const cc = v => v > 0 ? 'color:var(--green)' : v < 0 ? 'color:var(--red)' : '';
-          return `<tr>
-            <td>${r.name}</td>
-            <td style="font-size:10px;color:var(--text3)">${r.sector}</td>
-            <td style="text-align:center">${r.total}</td>
-            <td style="text-align:center">${r.both}</td>
-            <td style="text-align:center">${r.wtPctAbove}%</td>
-            <td>${bar}</td>
-            <td style="text-align:right;${cc(r.retYtd)}">${pp(r.retYtd,true)}%</td>
-            <td style="text-align:right;${cc(r.rsYtd)}">${pp(r.rsYtd,true)}%</td>
-            <td style="text-align:right;${cc(r.contribYtd)}">${pp(r.contribYtd,true)}%</td>
-            <td style="text-align:center">${r.newHighs}</td>
-            <td style="text-align:center">${r.newLows}</td>
-          </tr>`;
-        }).join('');
-        return `<div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
-      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}}
+      <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
+      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Same methodology as sector table — grouped by GICS industry · Wt% Above = % of industry market cap above both MAs</div>
-    </div>
-  `;
+    </div>`;
+}
 
-  // ── RSP vs SPY line chart ──
-  if (chartDates && chartSpy && document.getElementById('c3')) {
-    if (chart3) { chart3.destroy(); chart3 = null; }
-    // Data pre-computed as % return from Jan 1 in fetch_breadth.py
-    // Find the recent low by matching the recentLowDate in chartDates (more reliable than min())
-    const lowIdx = recentLowDate ? chartDates.indexOf(recentLowDate) : chartSpy.indexOf(Math.min(...chartSpy));
-    chart3 = new Chart(document.getElementById('c3'), {
-      type: 'line',
-      data: {
-        labels: chartDates,
-        datasets: [
-          {
-            label: 'SPY (cap-weight)',
-            data: chartSpy,
-            borderColor: '#4a9eff',
-            backgroundColor: 'transparent',
-            borderWidth: 2, pointRadius: 0, tension: 0.3
-          },
-          {
-            label: 'RSP (equal-weight)',
-            data: chartRsp,
-            borderColor: '#f0a020',
-            backgroundColor: 'transparent',
-            borderWidth: 2, pointRadius: 0, tension: 0.3
-          },
-          // Dot marking the recent low
-          {
-            label: `Low (${recentLowDate})`,
-            data: chartSpy.map((v,i) => i === lowIdx ? v : null),
-            borderColor: '#f04f4f', backgroundColor: '#f04f4f',
-            pointRadius: chartSpy.map((_,i) => i === lowIdx ? 6 : 0),
-            pointHoverRadius: 8, showLine: false, type: 'scatter'
-          }
-        ]
+function initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate) {
+  if (!chartDates || !chartSpy || !document.getElementById('c3')) return;
+  if (chart3) { chart3.destroy(); chart3 = null; }
+  const lowIdx = recentLowDate ? chartDates.indexOf(recentLowDate) : chartSpy.indexOf(Math.min(...chartSpy));
+  chart3 = new Chart(document.getElementById('c3'), {
+    type: 'line',
+    data: {
+      labels: chartDates,
+      datasets: [
+        { label: 'SPY (cap-weight)',  data: chartSpy,  borderColor: C.blue,  backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
+        { label: 'RSP (equal-weight)', data: chartRsp, borderColor: C.amber, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
+        { label: `Low (${recentLowDate})`,
+          data: chartSpy.map((v,i) => i === lowIdx ? v : null),
+          borderColor: C.red, backgroundColor: C.red,
+          pointRadius: chartSpy.map((_,i) => i === lowIdx ? 6 : 0),
+          pointHoverRadius: 8, showLine: false, type: 'scatter' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: true, labels: { color: '#8a92a2', font: { size: 11 }, boxWidth: 20 } },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label.startsWith('Low') ? null : `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%` } }
       },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-          legend: { display: true, labels: { color: '#8a92a2', font: { size: 11 }, boxWidth: 20 } },
-          tooltip: {
-            callbacks: {
-              label: ctx => ctx.dataset.label.startsWith('Low') ? null
-                : `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%`
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: { color: '#555e6e', font: { size: 10 }, maxTicksLimit: 8,
-              callback: (_, i) => chartDates[i] ? chartDates[i].slice(5) : '' },
-            grid: { color: 'rgba(255,255,255,0.04)' }
-          },
-          y: {
-            ticks: { color: '#555e6e', font: { size: 11 }, callback: v => (v >= 0 ? '+' : '') + v + '%' },
-            grid: { color: 'rgba(255,255,255,0.06)' }
-          }
-        }
+      scales: {
+        x: { ticks: { color: '#555e6e', font: { size: 10 }, maxTicksLimit: 8, callback: (_, i) => chartDates[i] ? chartDates[i].slice(5) : '' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#555e6e', font: { size: 11 }, callback: v => (v >= 0 ? '+' : '') + v + '%' }, grid: { color: 'rgba(255,255,255,0.06)' } }
       }
-    });
-  }
+    }
+  });
 }
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
@@ -1091,9 +1047,9 @@ function renderTable(stocks) {
   // Render rows
   document.getElementById('stockTbody').innerHTML = rows.map((s,i) => {
     const hlTag = s.newHigh
-      ? ` <span class="htag" style="color:#22c87a">↑H</span>`
+      ? ` <span class="htag" style="color:${C.green}">↑H</span>`
       : s.newLow
-        ? ` <span class="htag" style="color:#f04f4f">↓L</span>`
+        ? ` <span class="htag" style="color:${C.red}">↓L</span>`
         : '';
     return `<tr data-ticker="${s.ticker}">
       <td class="muted">${i+1}</td>
