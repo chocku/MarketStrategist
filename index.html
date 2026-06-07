@@ -193,6 +193,8 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .sec-health td { font-size:12px; padding:8px 12px; border-bottom:0.5px solid var(--border); vertical-align:middle; }
 .sec-health tr:last-child td { border-bottom:none; }
 .sec-health tr:hover td { background:rgba(255,255,255,0.02); }
+.sticky-breadth-wrap { overflow:auto; max-height:420px; border-radius:4px; }
+.sticky-breadth-wrap thead th { position:sticky; top:0; z-index:5; background:var(--bg2) !important; }
 .health-bar { height:6px; background:var(--bg3); border-radius:3px; width:120px; overflow:hidden; }
 .health-fill{ height:100%; border-radius:3px; }
 .health-pill{ display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:5px; }
@@ -579,7 +581,7 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
     </tr>
   </tfoot>`;
 
-  return `<div style="overflow-x:auto"><table>${thead}${tbody}${tfoot}</table></div>`;
+  return `<div class="sticky-breadth-wrap"><table>${thead}${tbody}${tfoot}</table></div>`;
 }
 
 // ── Tab switching ─────────────────────────────────────────────────────
@@ -957,7 +959,7 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
     </tr>`;
   }).join('')}</tbody>`;
 
-  return sectorFilter + `<div style="overflow-x:auto;margin-top:4px"><table style="width:100%;border-collapse:collapse;min-width:1000px">
+  return sectorFilter + `<div class="sticky-breadth-wrap" style="margin-top:4px"><table style="width:100%;border-collapse:collapse;min-width:1000px">
     ${thead}${tbody}
   </table></div>`;
 }
