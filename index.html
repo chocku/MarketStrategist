@@ -565,16 +565,58 @@ function renderBreadth() {
     {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
-  // ── Interpretation strings (factual, no verdict) ──
-  const rspInterpYtd  = hasRsp ? `RSP ${pp(rspReturnYtd,true)}%  ·  SPY ${pp(spyReturnYtd,true)}%  ·  Spread ${pp(rspVsSpyYtd,true)}% YTD` : '';
-  const rspInterpLow  = hasRsp ? `From ${recentLowDate} low — RSP ${pp(rspFromLow,true)}%  ·  SPY ${pp(spyFromLow,true)}%  ·  Spread ${pp(rspVsSpyFromLow,true)}%` : '';
+  // ── Key takeaways (bold callout boxes, not subtle) ──
+  function callout(color, text) {
+    return `<div style="margin-top:12px;padding:10px 14px;border-left:3px solid ${color};background:${color}12;border-radius:0 6px 6px 0;font-size:12px;color:var(--text);line-height:1.7">${text}</div>`;
+  }
 
+  // RSP vs SPY table takeaway
+  let rspCallout = '';
+  if (hasRsp) {
+    const ytdGap = rspVsSpyYtd, lowGap = rspVsSpyFromLow;
+    const worstGap = Math.min(ytdGap, lowGap);
+    if (worstGap < -6) {
+      rspCallout = callout('#f04f4f',
+        `<strong>Narrow rally — the average stock is being left behind.</strong> SPY is up ${pp(spyFromLow,true)}% from the ${recentLowDate} low while RSP is only ${pp(rspFromLow,true)}% — a <strong>${pp(lowGap,true)}% gap</strong>. A handful of large-caps are doing the heavy lifting; most stocks are not participating.`);
+    } else if (worstGap < -2) {
+      rspCallout = callout('#f0a020',
+        `<strong>Participation is thinner than the headline suggests.</strong> RSP lags SPY by <strong>${pp(lowGap,true)}%</strong> from the ${recentLowDate} low. The index is holding up, but equal-weight is falling behind — concentration is building.`);
+    } else {
+      rspCallout = callout('#22c87a',
+        `<strong>Broad participation — the average stock is keeping up with the index.</strong> RSP and SPY are within <strong>${pp(Math.abs(worstGap),false)}%</strong> of each other across measured periods. The rally has genuine breadth.`);
+    }
+  }
+
+  // Chart takeaway
+  const chartGapYtd = hasRsp ? rspVsSpyYtd : null;
+  let chartCallout = '';
+  if (hasRsp && chartGapYtd !== null) {
+    if (chartGapYtd < -4) {
+      chartCallout = callout('#f04f4f',
+        `<strong>The gap is widening.</strong> SPY YTD ${pp(spyReturnYtd,true)}% vs RSP YTD ${pp(rspReturnYtd,true)}% — a <strong>${pp(chartGapYtd,true)}% spread</strong>. Watch for the lines to diverge further; that signals deepening concentration.`);
+    } else if (chartGapYtd < -1) {
+      chartCallout = callout('#f0a020',
+        `<strong>Modest divergence developing.</strong> SPY YTD ${pp(spyReturnYtd,true)}% vs RSP ${pp(rspReturnYtd,true)}%. The gap is small but worth watching — if RSP continues to fall behind, the rally is narrowing.`);
+    } else {
+      chartCallout = callout('#22c87a',
+        `<strong>Lines are running together — healthy breadth.</strong> SPY YTD ${pp(spyReturnYtd,true)}% vs RSP ${pp(rspReturnYtd,true)}%. Equal-weight is tracking cap-weight closely; no concentration signal here.`);
+    }
+  }
+
+  // Sector table takeaway
   const topContrib    = [...sectors].sort((a,b) => b.contribYtd - a.contribYtd)[0];
   const bottomContrib = [...sectors].sort((a,b) => a.contribYtd - b.contribYtd)[0];
-  const secInterpYtd  = `YTD: biggest contributor <strong>${topContrib.name}</strong> (${pp(topContrib.contribYtd,true)}%)${bottomContrib.contribYtd < 0 ? ` · biggest drag <strong>${bottomContrib.name}</strong> (${pp(bottomContrib.contribYtd,true)}%)` : ''}`;
   const topLow        = [...sectors].sort((a,b) => b.contribFromLow - a.contribFromLow)[0];
   const bottomLow     = [...sectors].sort((a,b) => a.contribFromLow - b.contribFromLow)[0];
-  const secInterpLow  = `From low: biggest contributor <strong>${topLow.name}</strong> (${pp(topLow.contribFromLow,true)}%)${bottomLow.contribFromLow < 0 ? ` · biggest drag <strong>${bottomLow.name}</strong> (${pp(bottomLow.contribFromLow,true)}%)` : ''}`;
+  const topPct        = sectors[0]; // already sorted by breadthSortCol; find highest breadth
+  const bestBreadth   = [...sectors].sort((a,b) => b.pct - a.pct)[0];
+  const weakBreadth   = [...sectors].sort((a,b) => a.pct - b.pct)[0];
+  const secCallout = callout(topContrib.contribYtd > 0 ? '#4a9eff' : '#f04f4f',
+    `<strong>YTD — ${topContrib.name} is driving ${pp(topContrib.contribYtd,true)}% of SPY's ${pp(totals.contribYtd,true)}% return</strong>`
+    + (bottomContrib.contribYtd < -0.2 ? ` while <strong>${bottomContrib.name}</strong> is a drag at ${pp(bottomContrib.contribYtd,true)}%.` : '.')
+    + ` From the ${recentLowDate} low — <strong>${topLow.name} contributed ${pp(topLow.contribFromLow,true)}%</strong>`
+    + (bottomLow.contribFromLow < -0.2 ? `, <strong>${bottomLow.name}</strong> subtracted ${pp(bottomLow.contribFromLow,true)}%.` : '.')
+    + ` Widest breadth: <strong>${bestBreadth.name} (${bestBreadth.pct}%)</strong> · Weakest: <strong>${weakBreadth.name} (${weakBreadth.pct}%)</strong>.`);
 
   // sort indicator helper
   const si = col => breadthSortCol === col ? (breadthSortDir > 0 ? ' ▲' : ' ▼') : '';
@@ -602,9 +644,7 @@ function renderBreadth() {
               <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spy,true)}%</span>
               <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
-          <div style="margin-top:10px;padding-top:8px;border-top:0.5px solid var(--border);font-size:11px;color:var(--text2);line-height:1.7">
-            ${rspInterpYtd}<br>${rspInterpLow}
-          </div>
+          ${rspCallout}
         ` : `
           <div style="padding:20px 0;text-align:center">
             <div style="font-size:28px;color:var(--text3);margin-bottom:8px">—</div>
@@ -614,17 +654,12 @@ function renderBreadth() {
       </div>
 
       <div class="sector-panel" style="margin-bottom:0">
-        <div class="ptitle">RSP vs SPY — 90-day % return${chartDates ? ` (since ${chartDates[0]})` : ''}</div>
+        <div class="ptitle">RSP vs SPY — YTD % return (90-day window)</div>
         <div style="position:relative;height:240px">
           ${chartDates ? `<canvas id="c3" role="img" aria-label="RSP vs SPY performance chart"></canvas>`
                        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-size:13px">No chart data — re-run fetch_breadth.py</div>`}
         </div>
-        ${hasRsp && chartDates ? `
-        <div style="margin-top:8px;font-size:11px;color:var(--text2);line-height:1.7">
-          SPY ${pp(chartSpy[chartSpy.length-1],true)}% from chart start · RSP ${pp(chartRsp[chartRsp.length-1],true)}%
-          · gap <span style="color:${(chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1])>=-2?'#22c87a':
-                                     (chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1])>=-6?'#f0d040':'#f04f4f'};font-weight:600">${pp(chartRsp[chartRsp.length-1]-chartSpy[chartSpy.length-1],true)}%</span>
-        </div>` : ''}
+        ${chartCallout}
       </div>
     </div>
 
@@ -678,10 +713,8 @@ function renderBreadth() {
           </tr>
         </tfoot>
       </table></div>
-      <div style="margin-top:10px;font-size:11px;color:var(--text2);line-height:1.9">
-        ${secInterpYtd}<br>${secInterpLow}
-      </div>
-      <div style="font-size:10px;color:var(--text3);margin-top:6px">Contrib = sector weight × mcap-weighted return · SPY (sum) row should ≈ actual SPY return · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+      ${secCallout}
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Contrib = sector weight × mcap-weighted return · SPY (sum) row should ≈ actual SPY return · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
     </div>
   `;
 
