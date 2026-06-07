@@ -160,10 +160,13 @@ def fetch():
             new_low  = bool(price <= low52  * 1.02)   # within 2% of 52w low
 
             # Return from recent market low (same anchor date as SPY from-low)
+            # Use asof() so tickers with data gaps still get a value
             ret_from_low = None
-            if low_ts is not None and low_ts in prices.index:
+            if low_ts is not None:
                 try:
-                    ret_from_low = round(float((price / float(prices.loc[low_ts]) - 1) * 100), 2)
+                    base = prices.asof(low_ts)
+                    if pd.notna(base) and base > 0:
+                        ret_from_low = round(float((price / float(base) - 1) * 100), 2)
                 except Exception:
                     pass
 
