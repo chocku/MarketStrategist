@@ -240,7 +240,7 @@ def fetch():
         json.dump(output, f, indent=2)
 
     # Embed data inline into the HTML so it works without a local server
-    html_file = 'market-breadth-dashboard.html'
+    html_file = 'index.html'
     try:
         with open(html_file, 'r', encoding='utf-8') as f:
             html = f.read()
