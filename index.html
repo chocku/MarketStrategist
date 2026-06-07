@@ -759,12 +759,29 @@ function renderBreadth() {
   ];
   const secCallout = callout(C.blue, secBullets);
 
+  // Industry callout
+  const industries = Object.entries(indMap).map(([name, d]) => {
+    const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const contribYtd = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    return { name, pct: Math.round(d.both / d.total * 100), total: d.total, both: d.both, retYtd: +retYtd.toFixed(2), contribYtd: +contribYtd.toFixed(2), newHighs: d.newHighs, newLows: d.newLows };
+  });
+  const topInd      = [...industries].sort((a,b) => b.contribYtd - a.contribYtd)[0];
+  const bottomInd   = [...industries].sort((a,b) => a.contribYtd - b.contribYtd)[0];
+  const bestIndBr   = [...industries].filter(i => i.total >= 3).sort((a,b) => b.pct - a.pct)[0];
+  const weakIndBr   = [...industries].filter(i => i.total >= 3).sort((a,b) => a.pct - b.pct)[0];
+  const indBullets  = [
+    `<strong>YTD top industry:</strong> ${topInd.name} <strong>${pp(topInd.contribYtd,true)}%</strong> of SPY's return`
+      + (bottomInd.contribYtd < -0.05 ? `&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Drag:</strong> ${bottomInd.name} ${pp(bottomInd.contribYtd,true)}%` : ''),
+    `<strong>Strongest breadth:</strong> ${bestIndBr.name} (${bestIndBr.pct}% above both MAs)&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Weakest:</strong> ${weakIndBr.name} (${weakIndBr.pct}%)`
+  ];
+  const indCallout = callout(C.blue, indBullets);
+
   document.getElementById('root').innerHTML = tabHdr(
-    'Is the rally broad or carried by a few names?',
-    'RSP vs SPY shows whether the average stock keeps up with the index. The sector table shows which sectors are driving the move and how wide the participation is within each.'
+    'Is the rally broad or carried by a few Sectors/Industries?',
+    'RSP vs SPY shows whether the average stock keeps up with the index. The sector and industry tables show which groups are driving the move and how wide the participation is within each.'
   ) +
   buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) +
-  buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indMap);
+  buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indCallout, indMap);
 
   initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
 }
@@ -808,7 +825,7 @@ function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout
     </div>`;
 }
 
-function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indMap) {
+function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, indCallout, indMap) {
   return `
     <div class="sec-health">
       ${secCallout}
@@ -816,9 +833,66 @@ function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalA
       ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
       <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
-      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">Same methodology as sector table — grouped by GICS industry · Wt% Above = % of industry market cap above both MAs</div>
+      ${indCallout}
+      ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, spyReturnYtd)}
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Wt>MAs = % of industry market cap above both MAs · RS = return minus SPY · Contrib = YTD attribution to SPY return</div>
     </div>`;
+}
+
+function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, spyReturnYtd) {
+  const si = col => industryBreadthSortCol === col ? (industryBreadthSortDir > 0 ? ' ▲' : ' ▼') : '';
+  const th = (col, label, title='') =>
+    `<th onclick="sortIndustry('${col}')" style="cursor:pointer;white-space:normal;line-height:1.3;padding:0 6px 8px;font-size:10px${col===industryBreadthSortCol?';color:var(--blue)':''}" title="${title}">${label}${si(col)}</th>`;
+
+  const rows = Object.entries(indMap).map(([name, d]) => {
+    const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const wtPctAbove = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
+    const contribYtd = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    const rsYtd      = retYtd - (spyReturnYtd || 0);
+    const pct        = Math.round(d.both / d.total * 100);
+    return { name, sector: d.sector || '', total: d.total, both: d.both, wtPctAbove: +wtPctAbove.toFixed(1), pct,
+             retYtd: +retYtd.toFixed(2), rsYtd: +rsYtd.toFixed(2), contribYtd: +contribYtd.toFixed(2),
+             newHighs: d.newHighs, newLows: d.newLows };
+  }).sort((a, b) => {
+    const av = a[industryBreadthSortCol] ?? -Infinity;
+    const bv = b[industryBreadthSortCol] ?? -Infinity;
+    return industryBreadthSortDir * (bv - av);
+  });
+
+  const cc = v => v > 0 ? C.green : v < 0 ? C.red : 'var(--text2)';
+  const tbody = rows.map(r => {
+    const bar = `<div style="display:flex;align-items:center;gap:3px"><div style="width:44px;height:5px;border-radius:2px;background:var(--border);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${r.pct>=60?C.green:r.pct>=40?C.amber:C.red}"></div></div><span style="font-size:10px">${r.pct}%</span></div>`;
+    return `<tr>
+      <td style="font-size:11px;font-weight:600;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.name}">${r.name}</td>
+      <td style="font-size:10px;color:var(--text3);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.sector}">${r.sector}</td>
+      <td style="font-size:11px;text-align:center;color:var(--text2)">${r.total}</td>
+      <td style="font-size:11px;text-align:center;color:var(--text2)">${r.both}</td>
+      <td style="font-size:11px;font-weight:700;color:${r.pct>=60?C.green:r.pct>=40?C.amber:C.red}">${r.wtPctAbove}%</td>
+      <td>${bar}</td>
+      <td style="font-size:11px;text-align:right;color:${cc(r.retYtd)}">${pp(r.retYtd,true)}%</td>
+      <td style="font-size:11px;text-align:right;color:${cc(r.rsYtd)}">${pp(r.rsYtd,true)}%</td>
+      <td style="font-size:11px;text-align:right;font-weight:600;color:${cc(r.contribYtd)}">${pp(r.contribYtd,true)}%</td>
+      <td style="font-size:11px;text-align:center;color:${r.newHighs>0?C.green:'var(--text3)'}">${r.newHighs||'—'}</td>
+      <td style="font-size:11px;text-align:center;color:${r.newLows>0?C.red:'var(--text3)'}">${r.newLows||'—'}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div style="overflow-x:auto;margin-top:8px"><table style="width:100%;border-collapse:collapse;min-width:600px">
+    <thead><tr style="color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;border-bottom:0.5px solid var(--border)">
+      ${th('name','Industry')}
+      ${th('sector','Sector')}
+      ${th('total','#Stks','Total stocks')}
+      ${th('both','Both MAs','Stocks above both 50 & 200-MA')}
+      ${th('wtPctAbove','Wt>MAs%','% of industry market cap above both MAs')}
+      <th style="font-size:10px;padding:0 6px 8px">Breadth</th>
+      ${th('retYtd','YTD Ret','Market-cap weighted YTD return')}
+      ${th('rsYtd','RS YTD','Return minus SPY YTD')}
+      ${th('contribYtd','Contrib','% pts of SPY YTD return')}
+      ${th('newHighs','Highs','Stocks near 52W high')}
+      ${th('newLows','Lows','Stocks near 52W low')}
+    </tr></thead>
+    <tbody>${tbody}</tbody>
+  </table></div>`;
 }
 
 function initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate) {
