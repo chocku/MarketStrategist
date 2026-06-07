@@ -371,6 +371,7 @@
       "low52": 139.6,
       "newHigh": false,
       "newLow": false,
+      "name": "3M",
       "sector": "Industrials",
       "industry": "Industrial Conglomerates",
       "marketCap": 80196182051
@@ -398,6 +399,7 @@
       "low52": 55.78,
       "newHigh": false,
       "newLow": false,
+      "name": "A. O. Smith",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 6404424598
@@ -425,6 +427,7 @@
       "low52": 82.56,
       "newHigh": false,
       "newLow": false,
+      "name": "Abbott Laboratories",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 158626923934
@@ -452,6 +455,7 @@
       "low52": 176.56,
       "newHigh": false,
       "newLow": false,
+      "name": "AbbVie",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 401468332715
@@ -479,6 +483,7 @@
       "low52": 159.64,
       "newHigh": false,
       "newLow": false,
+      "name": "Accenture",
       "sector": "Information Technology",
       "industry": "IT Consulting & Other Services",
       "marketCap": 109434674521
@@ -506,6 +511,7 @@
       "low52": 225.35,
       "newHigh": false,
       "newLow": false,
+      "name": "Adobe Inc.",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 101632048000
@@ -533,6 +539,7 @@
       "low52": 115.69,
       "newHigh": false,
       "newLow": false,
+      "name": "Advanced Micro Devices",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 760479526016
@@ -560,6 +567,7 @@
       "low52": 9.65,
       "newHigh": false,
       "newLow": false,
+      "name": "AES Corporation",
       "sector": "Utilities",
       "industry": "Independent Power Producers & Energy Traders",
       "marketCap": 10462023649
@@ -587,6 +595,7 @@
       "low52": 96.04,
       "newHigh": true,
       "newLow": false,
+      "name": "Aflac",
       "sector": "Financials",
       "industry": "Life & Health Insurance",
       "marketCap": 60182375048
@@ -614,6 +623,7 @@
       "low52": 109.99,
       "newHigh": false,
       "newLow": false,
+      "name": "Agilent Technologies",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 38252582495
@@ -641,6 +651,7 @@
       "low52": 227.66,
       "newHigh": false,
       "newLow": false,
+      "name": "Air Products",
       "sector": "Materials",
       "industry": "Industrial Gases",
       "marketCap": 62873891692
@@ -668,6 +679,7 @@
       "low52": 111.54,
       "newHigh": false,
       "newLow": false,
+      "name": "Airbnb",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 55810403314
@@ -695,6 +707,7 @@
       "low52": 70.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Akamai Technologies",
       "sector": "Information Technology",
       "industry": "Internet Services & Infrastructure",
       "marketCap": 21708955543
@@ -722,6 +735,7 @@
       "low52": 56.05,
       "newHigh": false,
       "newLow": false,
+      "name": "Albemarle Corporation",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 18331762151
@@ -749,6 +763,7 @@
       "low52": 40.41,
       "newHigh": false,
       "newLow": false,
+      "name": "Alexandria Real Estate Equities",
       "sector": "Real Estate",
       "industry": "Office REITs",
       "marketCap": 8936538934
@@ -776,6 +791,7 @@
       "low52": 124.88,
       "newHigh": false,
       "newLow": false,
+      "name": "Align Technology",
       "sector": "Health Care",
       "industry": "Health Care Supplies",
       "marketCap": 12013224622
@@ -803,6 +819,7 @@
       "low52": 125.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Allegion",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 11185411667
@@ -830,6 +847,7 @@
       "low52": 58.19,
       "newHigh": true,
       "newLow": false,
+      "name": "Alliant Energy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 18820647686
@@ -857,6 +875,7 @@
       "low52": 187.17,
       "newHigh": true,
       "newLow": false,
+      "name": "Allstate",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 56892599739
@@ -884,6 +903,7 @@
       "low52": 164.82,
       "newHigh": false,
       "newLow": false,
+      "name": "Alphabet Inc. (Class A)",
       "sector": "Communication Services",
       "industry": "Interactive Media & Services",
       "marketCap": 2160815524539
@@ -911,6 +931,7 @@
       "low52": 165.64,
       "newHigh": false,
       "newLow": false,
+      "name": "Alphabet Inc. (Class C)",
       "sector": "Communication Services",
       "industry": "Interactive Media & Services",
       "marketCap": 2010150883627
@@ -938,6 +959,7 @@
       "low52": 53.82,
       "newHigh": false,
       "newLow": false,
+      "name": "Altria",
       "sector": "Consumer Staples",
       "industry": "Tobacco",
       "marketCap": 120549448254
@@ -965,6 +987,7 @@
       "low52": 198.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Amazon",
       "sector": "Consumer Discretionary",
       "industry": "Broadline Retail",
       "marketCap": 2646571634539
@@ -992,6 +1015,7 @@
       "low52": 36.09,
       "newHigh": false,
       "newLow": false,
+      "name": "Amcor",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
       "marketCap": 17629241159
@@ -1019,6 +1043,7 @@
       "low52": 92.41,
       "newHigh": false,
       "newLow": false,
+      "name": "Ameren",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 30240649080
@@ -1046,6 +1071,7 @@
       "low52": 98.09,
       "newHigh": false,
       "newLow": false,
+      "name": "American Electric Power",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 70265723832
@@ -1073,6 +1099,7 @@
       "low52": 284.8,
       "newHigh": false,
       "newLow": false,
+      "name": "American Express",
       "sector": "Financials",
       "industry": "Consumer Finance",
       "marketCap": 211971532782
@@ -1100,6 +1127,7 @@
       "low52": 71.47,
       "newHigh": false,
       "newLow": false,
+      "name": "American International Group",
       "sector": "Financials",
       "industry": "Multi-line Insurance",
       "marketCap": 40025267623
@@ -1127,6 +1155,7 @@
       "low52": 165.62,
       "newHigh": false,
       "newLow": false,
+      "name": "American Tower",
       "sector": "Real Estate",
       "industry": "Telecom Tower REITs",
       "marketCap": 90439162554
@@ -1154,6 +1183,7 @@
       "low52": 121.13,
       "newHigh": false,
       "newLow": false,
+      "name": "American Water Works",
       "sector": "Utilities",
       "industry": "Water Utilities",
       "marketCap": 24306566448
@@ -1181,6 +1211,7 @@
       "low52": 428.83,
       "newHigh": false,
       "newLow": false,
+      "name": "Ameriprise Financial",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 40872608211
@@ -1208,6 +1239,7 @@
       "low52": 174.71,
       "newHigh": false,
       "newLow": false,
+      "name": "Ametek",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 51925940103
@@ -1235,6 +1267,7 @@
       "low52": 264.49,
       "newHigh": false,
       "newLow": false,
+      "name": "Amgen",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 188671218424
@@ -1262,6 +1295,7 @@
       "low52": 91.84,
       "newHigh": false,
       "newLow": false,
+      "name": "Amphenol",
       "sector": "Information Technology",
       "industry": "Electronic Components",
       "marketCap": 170768843310
@@ -1289,6 +1323,7 @@
       "low52": 215.15,
       "newHigh": false,
       "newLow": false,
+      "name": "Analog Devices",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 195511866985
@@ -1316,6 +1351,7 @@
       "low52": 308.27,
       "newHigh": false,
       "newLow": false,
+      "name": "Aon plc",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 70166435054
@@ -1343,6 +1379,7 @@
       "low52": 17.09,
       "newHigh": false,
       "newLow": false,
+      "name": "APA Corporation",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 12926406201
@@ -1370,6 +1407,7 @@
       "low52": 99.88,
       "newHigh": false,
       "newLow": false,
+      "name": "Apollo Global Management",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 73811537189
@@ -1397,6 +1435,7 @@
       "low52": 194.87,
       "newHigh": false,
       "newLow": false,
+      "name": "Apple Inc.",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 4514011993040
@@ -1424,6 +1463,7 @@
       "low52": 155.56,
       "newHigh": false,
       "newLow": false,
+      "name": "Applied Materials",
       "sector": "Information Technology",
       "industry": "Semiconductor Materials & Equipment",
       "marketCap": 359671561384
@@ -1451,6 +1491,7 @@
       "low52": 324.7,
       "newHigh": false,
       "newLow": false,
+      "name": "AppLovin",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 170353870400
@@ -1478,6 +1519,7 @@
       "low52": 52.57,
       "newHigh": false,
       "newLow": false,
+      "name": "Aptiv",
       "sector": "Consumer Discretionary",
       "industry": "Automotive Parts & Equipment",
       "marketCap": 14517168152
@@ -1505,6 +1547,7 @@
       "low52": 84.72,
       "newHigh": false,
       "newLow": false,
+      "name": "Arch Capital Group",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 31860836529
@@ -1532,6 +1575,7 @@
       "low52": 45.55,
       "newHigh": false,
       "newLow": false,
+      "name": "Archer Daniels Midland",
       "sector": "Consumer Staples",
       "industry": "Agricultural Products & Services",
       "marketCap": 38999922164
@@ -1559,6 +1603,7 @@
       "low52": 95.2,
       "newHigh": false,
       "newLow": false,
+      "name": "Ares Management",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 27897871098
@@ -1586,6 +1631,7 @@
       "low52": 86.25,
       "newHigh": false,
       "newLow": false,
+      "name": "Arista Networks",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 194252069200
@@ -1613,6 +1659,7 @@
       "low52": 191.36,
       "newHigh": false,
       "newLow": false,
+      "name": "Arthur J. Gallagher & Co.",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 55535443880
@@ -1640,6 +1687,7 @@
       "low52": 182.42,
       "newHigh": true,
       "newLow": false,
+      "name": "Assurant",
       "sector": "Financials",
       "industry": "Multi-line Insurance",
       "marketCap": 12751084381
@@ -1667,6 +1715,7 @@
       "low52": 22.75,
       "newHigh": false,
       "newLow": true,
+      "name": "AT&T",
       "sector": "Communication Services",
       "industry": "Integrated Telecommunication Services",
       "marketCap": 158074708496
@@ -1694,6 +1743,7 @@
       "low52": 148.2,
       "newHigh": false,
       "newLow": false,
+      "name": "Atmos Energy",
       "sector": "Utilities",
       "industry": "Gas Utilities",
       "marketCap": 28416430497
@@ -1721,6 +1771,7 @@
       "low52": 218.45,
       "newHigh": false,
       "newLow": false,
+      "name": "Autodesk",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 48554961919
@@ -1748,6 +1799,7 @@
       "low52": 188.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Automatic Data Processing",
       "sector": "Industrials",
       "industry": "Human Resource & Employment Services",
       "marketCap": 92718366709
@@ -1775,6 +1827,7 @@
       "low52": 2935.19,
       "newHigh": false,
       "newLow": false,
+      "name": "AutoZone",
       "sector": "Consumer Discretionary",
       "industry": "Automotive Retail",
       "marketCap": 51012842670
@@ -1802,6 +1855,7 @@
       "low52": 159.04,
       "newHigh": false,
       "newLow": false,
+      "name": "AvalonBay Communities",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 26915968930
@@ -1829,6 +1883,7 @@
       "low52": 153.25,
       "newHigh": false,
       "newLow": true,
+      "name": "Avery Dennison",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
       "marketCap": 11869777944
@@ -1856,6 +1911,7 @@
       "low52": 345.94,
       "newHigh": false,
       "newLow": false,
+      "name": "Axon Enterprise",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 39182281671
@@ -1883,6 +1939,7 @@
       "low52": 36.52,
       "newHigh": false,
       "newLow": false,
+      "name": "Baker Hughes",
       "sector": "Energy",
       "industry": "Oil & Gas Equipment & Services",
       "marketCap": 62093579745
@@ -1910,6 +1967,7 @@
       "low52": 45.92,
       "newHigh": false,
       "newLow": false,
+      "name": "Ball Corporation",
       "sector": "Materials",
       "industry": "Metal, Glass & Plastic Containers",
       "marketCap": 14089765362
@@ -1937,6 +1995,7 @@
       "low52": 43.15,
       "newHigh": false,
       "newLow": false,
+      "name": "Bank of America",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 382009474743
@@ -1964,6 +2023,7 @@
       "low52": 15.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Baxter International",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 10009169375
@@ -1991,6 +2051,7 @@
       "low52": 130.15,
       "newHigh": false,
       "newLow": false,
+      "name": "Becton Dickinson",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 41650690945
@@ -2018,6 +2079,7 @@
       "low52": 459.11,
       "newHigh": false,
       "newLow": false,
+      "name": "Berkshire Hathaway",
       "sector": "Financials",
       "industry": "Multi-Sector Holdings",
       "marketCap": 682556414504
@@ -2045,6 +2107,7 @@
       "low52": 55.52,
       "newHigh": false,
       "newLow": false,
+      "name": "Best Buy",
       "sector": "Consumer Discretionary",
       "industry": "Computer & Electronics Retail",
       "marketCap": 15073133677
@@ -2072,6 +2135,7 @@
       "low52": 43.22,
       "newHigh": false,
       "newLow": false,
+      "name": "Bio-Techne",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 8140009364
@@ -2099,6 +2163,7 @@
       "low52": 122.68,
       "newHigh": false,
       "newLow": false,
+      "name": "Biogen",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 28839434434
@@ -2126,6 +2191,7 @@
       "low52": 917.73,
       "newHigh": false,
       "newLow": false,
+      "name": "BlackRock",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 154550959448
@@ -2153,6 +2219,7 @@
       "low52": 101.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Blackstone Inc.",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 85610548012
@@ -2180,6 +2247,7 @@
       "low52": 49.09,
       "newHigh": false,
       "newLow": false,
+      "name": "Block, Inc.",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 36473539250
@@ -2207,6 +2275,7 @@
       "low52": 86.95,
       "newHigh": true,
       "newLow": false,
+      "name": "BNY Mellon",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 97733512217
@@ -2234,6 +2303,7 @@
       "low52": 179.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Boeing",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 169839737213
@@ -2261,6 +2331,7 @@
       "low52": 153.74,
       "newHigh": false,
       "newLow": false,
+      "name": "Booking Holdings",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 128505839826
@@ -2288,6 +2359,7 @@
       "low52": 47.68,
       "newHigh": false,
       "newLow": true,
+      "name": "Boston Scientific",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 72162543940
@@ -2315,6 +2387,7 @@
       "low52": 41.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Bristol Myers Squibb",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 116949420315
@@ -2342,6 +2415,7 @@
       "low52": 242.32,
       "newHigh": false,
       "newLow": false,
+      "name": "Broadcom",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 1826303558614
@@ -2369,6 +2443,7 @@
       "low52": 143.37,
       "newHigh": false,
       "newLow": false,
+      "name": "Broadridge Financial Solutions",
       "sector": "Industrials",
       "industry": "Data Processing & Outsourced Services",
       "marketCap": 17503726667
@@ -2396,6 +2471,7 @@
       "low52": 54.38,
       "newHigh": false,
       "newLow": false,
+      "name": "Brown & Brown",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 19950469921
@@ -2423,6 +2499,7 @@
       "low52": 22.8,
       "newHigh": false,
       "newLow": false,
+      "name": "Brown\u2013Forman",
       "sector": "Consumer Staples",
       "industry": "Distillers & Vintners",
       "marketCap": 7593264122
@@ -2450,6 +2527,7 @@
       "low52": 66.39,
       "newHigh": false,
       "newLow": false,
+      "name": "Builders FirstSource",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 7920709268
@@ -2477,6 +2555,7 @@
       "low52": 71.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Bunge Global",
       "sector": "Consumer Staples",
       "industry": "Agricultural Products & Services",
       "marketCap": 24535530822
@@ -2504,6 +2583,7 @@
       "low52": 50.74,
       "newHigh": false,
       "newLow": false,
+      "name": "BXP, Inc.",
       "sector": "Real Estate",
       "industry": "Office REITs",
       "marketCap": 9940225781
@@ -2531,6 +2611,7 @@
       "low52": 91.19,
       "newHigh": false,
       "newLow": false,
+      "name": "C.H. Robinson",
       "sector": "Industrials",
       "industry": "Air Freight & Logistics",
       "marketCap": 21699248301
@@ -2558,6 +2639,7 @@
       "low52": 265.66,
       "newHigh": false,
       "newLow": false,
+      "name": "Cadence Design Systems",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 103759221040
@@ -2585,6 +2667,7 @@
       "low52": 95.56,
       "newHigh": true,
       "newLow": false,
+      "name": "Camden Property Trust",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 11157601109
@@ -2612,6 +2695,7 @@
       "low52": 20.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Campbell's Company (The)",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 6463815859
@@ -2639,6 +2723,7 @@
       "low52": 175.35,
       "newHigh": false,
       "newLow": false,
+      "name": "Capital One",
       "sector": "Financials",
       "industry": "Consumer Finance",
       "marketCap": 112429637104
@@ -2666,6 +2751,7 @@
       "low52": 144.85,
       "newHigh": false,
       "newLow": false,
+      "name": "Cardinal Health",
       "sector": "Health Care",
       "industry": "Health Care Distributors",
       "marketCap": 48178486432
@@ -2693,6 +2779,7 @@
       "low52": 22.17,
       "newHigh": false,
       "newLow": false,
+      "name": "Carnival Corporation",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 33960995810
@@ -2720,6 +2807,7 @@
       "low52": 49.97,
       "newHigh": false,
       "newLow": false,
+      "name": "Carrier Global",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 55781781208
@@ -2747,6 +2835,7 @@
       "low52": 56.26,
       "newHigh": false,
       "newLow": false,
+      "name": "Carvana",
       "sector": "Consumer Discretionary",
       "industry": "Automotive Retail",
       "marketCap": 47640340486
@@ -2774,6 +2863,7 @@
       "low52": 437.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Casey's",
       "sector": "Consumer Staples",
       "industry": "Food Retail",
       "marketCap": 28159454547
@@ -2801,6 +2891,7 @@
       "low52": 345.22,
       "newHigh": false,
       "newLow": false,
+      "name": "Caterpillar Inc.",
       "sector": "Industrials",
       "industry": "Construction Machinery & Heavy Transportation Equipment",
       "marketCap": 416504118387
@@ -2828,6 +2919,7 @@
       "low52": 218.55,
       "newHigh": false,
       "newLow": false,
+      "name": "Cboe Global Markets",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 29502948247
@@ -2855,6 +2947,7 @@
       "low52": 124.64,
       "newHigh": false,
       "newLow": false,
+      "name": "CBRE Group",
       "sector": "Real Estate",
       "industry": "Real Estate Services",
       "marketCap": 38338474688
@@ -2882,6 +2975,7 @@
       "low52": 98.71,
       "newHigh": false,
       "newLow": false,
+      "name": "CDW Corporation",
       "sector": "Information Technology",
       "industry": "Technology Distributors",
       "marketCap": 16996319121
@@ -2909,6 +3003,7 @@
       "low52": 252.16,
       "newHigh": false,
       "newLow": false,
+      "name": "Cencora",
       "sector": "Health Care",
       "industry": "Health Care Distributors",
       "marketCap": 53512073942
@@ -2936,6 +3031,7 @@
       "low52": 25.21,
       "newHigh": true,
       "newLow": false,
+      "name": "Centene Corporation",
       "sector": "Health Care",
       "industry": "Managed Health Care",
       "marketCap": 30778367010
@@ -2963,6 +3059,7 @@
       "low52": 34.78,
       "newHigh": false,
       "newLow": false,
+      "name": "CenterPoint Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 27926495101
@@ -2990,6 +3087,7 @@
       "low52": 75.38,
       "newHigh": false,
       "newLow": false,
+      "name": "CF Industries",
       "sector": "Materials",
       "industry": "Fertilizers & Agricultural Chemicals",
       "marketCap": 17435386306
@@ -3017,6 +3115,7 @@
       "low52": 141.2,
       "newHigh": false,
       "newLow": false,
+      "name": "Charles River Laboratories",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 8734736158
@@ -3044,6 +3143,7 @@
       "low52": 85.35,
       "newHigh": false,
       "newLow": false,
+      "name": "Charles Schwab Corporation",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 154504798441
@@ -3071,6 +3171,7 @@
       "low52": 129.01,
       "newHigh": false,
       "newLow": false,
+      "name": "Charter Communications",
       "sector": "Communication Services",
       "industry": "Cable & Satellite",
       "marketCap": 18652486112
@@ -3098,6 +3199,7 @@
       "low52": 131.4,
       "newHigh": false,
       "newLow": false,
+      "name": "Chevron Corporation",
       "sector": "Energy",
       "industry": "Integrated Oil & Gas",
       "marketCap": 373046171180
@@ -3125,6 +3227,7 @@
       "low52": 28.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Chipotle Mexican Grill",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
       "marketCap": 37635415560
@@ -3152,6 +3255,7 @@
       "low52": 265.21,
       "newHigh": false,
       "newLow": false,
+      "name": "Chubb Limited",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 126547116784
@@ -3179,6 +3283,7 @@
       "low52": 81.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Church & Dwight",
       "sector": "Consumer Staples",
       "industry": "Household Products",
       "marketCap": 22921924057
@@ -3206,6 +3311,7 @@
       "low52": 72.16,
       "newHigh": false,
       "newLow": false,
+      "name": "Ciena",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 69107552049
@@ -3233,6 +3339,7 @@
       "low52": 240.32,
       "newHigh": false,
       "newLow": false,
+      "name": "Cigna",
       "sector": "Health Care",
       "industry": "Health Care Services",
       "marketCap": 76576840309
@@ -3260,6 +3367,7 @@
       "low52": 141.34,
       "newHigh": false,
       "newLow": false,
+      "name": "Cincinnati Financial",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 25568171585
@@ -3287,6 +3395,7 @@
       "low52": 163.11,
       "newHigh": false,
       "newLow": false,
+      "name": "Cintas",
       "sector": "Industrials",
       "industry": "Diversified Support Services",
       "marketCap": 71964618047
@@ -3314,6 +3423,7 @@
       "low52": 62.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Cisco",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 479436112650
@@ -3341,6 +3451,7 @@
       "low52": 74.67,
       "newHigh": true,
       "newLow": false,
+      "name": "Citigroup",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 225937779228
@@ -3368,6 +3479,7 @@
       "low52": 39.01,
       "newHigh": false,
       "newLow": false,
+      "name": "Citizens Financial Group",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 27055986649
@@ -3395,6 +3507,7 @@
       "low52": 86.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Clorox",
       "sector": "Consumer Staples",
       "industry": "Household Products",
       "marketCap": 11383535983
@@ -3422,6 +3535,7 @@
       "low52": 250.53,
       "newHigh": false,
       "newLow": false,
+      "name": "CME Group",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 93003668386
@@ -3449,6 +3563,7 @@
       "low52": 66.54,
       "newHigh": false,
       "newLow": false,
+      "name": "CMS Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 22254568128
@@ -3476,6 +3591,7 @@
       "low52": 64.77,
       "newHigh": false,
       "newLow": false,
+      "name": "Coca-Cola Company (The)",
       "sector": "Consumer Staples",
       "industry": "Soft Drinks & Non-alcoholic Beverages",
       "marketCap": 341961302582
@@ -3503,6 +3619,7 @@
       "low52": 45.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Cognizant",
       "sector": "Information Technology",
       "industry": "IT Consulting & Other Services",
       "marketCap": 25168330000
@@ -3530,6 +3647,7 @@
       "low52": 77.37,
       "newHigh": false,
       "newLow": false,
+      "name": "Coherent Corp.",
       "sector": "Information Technology",
       "industry": "Electronic Components",
       "marketCap": 73754067623
@@ -3557,6 +3675,7 @@
       "low52": 141.09,
       "newHigh": false,
       "newLow": false,
+      "name": "Coinbase",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 33897855750
@@ -3584,6 +3703,7 @@
       "low52": 74.06,
       "newHigh": false,
       "newLow": false,
+      "name": "Colgate-Palmolive",
       "sector": "Consumer Staples",
       "industry": "Household Products",
       "marketCap": 70880769079
@@ -3611,6 +3731,7 @@
       "low52": 23.33,
       "newHigh": false,
       "newLow": false,
+      "name": "Comcast",
       "sector": "Communication Services",
       "industry": "Cable & Satellite",
       "marketCap": 84865519215
@@ -3638,6 +3759,7 @@
       "low52": 486.62,
       "newHigh": false,
       "newLow": false,
+      "name": "Comfort Systems USA",
       "sector": "Industrials",
       "industry": "Construction & Engineering",
       "marketCap": 64877124109
@@ -3665,6 +3787,7 @@
       "low52": 12.58,
       "newHigh": false,
       "newLow": false,
+      "name": "Conagra Brands",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 6224467399
@@ -3692,6 +3815,7 @@
       "low52": 82.61,
       "newHigh": false,
       "newLow": false,
+      "name": "ConocoPhillips",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 142710959979
@@ -3719,6 +3843,7 @@
       "low52": 93.26,
       "newHigh": false,
       "newLow": false,
+      "name": "Consolidated Edison",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 39159966453
@@ -3746,6 +3871,7 @@
       "low52": 125.98,
       "newHigh": false,
       "newLow": false,
+      "name": "Constellation Brands",
       "sector": "Consumer Staples",
       "industry": "Distillers & Vintners",
       "marketCap": 24260833175
@@ -3773,6 +3899,7 @@
       "low52": 246.35,
       "newHigh": false,
       "newLow": false,
+      "name": "Constellation Energy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 91000306992
@@ -3800,6 +3927,7 @@
       "low52": 58.98,
       "newHigh": false,
       "newLow": false,
+      "name": "Cooper Companies (The)",
       "sector": "Health Care",
       "industry": "Health Care Supplies",
       "marketCap": 13139003561
@@ -3827,6 +3955,7 @@
       "low52": 30.35,
       "newHigh": false,
       "newLow": false,
+      "name": "Copart",
       "sector": "Industrials",
       "industry": "Diversified Support Services",
       "marketCap": 29824027692
@@ -3854,6 +3983,7 @@
       "low52": 49.06,
       "newHigh": false,
       "newLow": false,
+      "name": "Corning Inc.",
       "sector": "Information Technology",
       "industry": "Electronic Components",
       "marketCap": 152832064963
@@ -3881,6 +4011,7 @@
       "low52": 255.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Corpay",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 22709998756
@@ -3908,6 +4039,7 @@
       "low52": 60.56,
       "newHigh": false,
       "newLow": false,
+      "name": "Corteva",
       "sector": "Materials",
       "industry": "Fertilizers & Agricultural Chemicals",
       "marketCap": 51519204600
@@ -3935,6 +4067,7 @@
       "low52": 31.85,
       "newHigh": false,
       "newLow": false,
+      "name": "CoStar Group",
       "sector": "Real Estate",
       "industry": "Real Estate Services",
       "marketCap": 13839175181
@@ -3962,6 +4095,7 @@
       "low52": 847.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Costco",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
       "marketCap": 431003745243
@@ -3989,6 +4123,7 @@
       "low52": 87.52,
       "newHigh": false,
       "newLow": false,
+      "name": "CRH plc",
       "sector": "Materials",
       "industry": "Construction Materials",
       "marketCap": 70201114692
@@ -4016,6 +4151,7 @@
       "low52": 350.25,
       "newHigh": false,
       "newLow": false,
+      "name": "CrowdStrike",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 170818085516
@@ -4043,6 +4179,7 @@
       "low52": 76.96,
       "newHigh": false,
       "newLow": false,
+      "name": "Crown Castle",
       "sector": "Real Estate",
       "industry": "Telecom Tower REITs",
       "marketCap": 41240347873
@@ -4070,6 +4207,7 @@
       "low52": 31.3,
       "newHigh": true,
       "newLow": false,
+      "name": "CSX Corporation",
       "sector": "Industrials",
       "industry": "Rail Transportation",
       "marketCap": 87313944843
@@ -4097,6 +4235,7 @@
       "low52": 309.31,
       "newHigh": false,
       "newLow": false,
+      "name": "Cummins",
       "sector": "Industrials",
       "industry": "Construction Machinery & Heavy Transportation Equipment",
       "marketCap": 89861240211
@@ -4124,6 +4263,7 @@
       "low52": 57.3,
       "newHigh": false,
       "newLow": false,
+      "name": "CVS Health",
       "sector": "Health Care",
       "industry": "Health Care Services",
       "marketCap": 122399706560
@@ -4151,6 +4291,7 @@
       "low52": 161.91,
       "newHigh": false,
       "newLow": false,
+      "name": "Danaher Corporation",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 130442126556
@@ -4178,6 +4319,7 @@
       "low52": 166.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Darden Restaurants",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
       "marketCap": 22691674794
@@ -4205,6 +4347,7 @@
       "low52": 102.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Datadog",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 77449627569
@@ -4232,6 +4375,7 @@
       "low52": 103.87,
       "newHigh": false,
       "newLow": false,
+      "name": "DaVita",
       "sector": "Health Care",
       "industry": "Health Care Services",
       "marketCap": 12333789600
@@ -4259,6 +4403,7 @@
       "low52": 79.54,
       "newHigh": false,
       "newLow": false,
+      "name": "Deckers Brands",
       "sector": "Consumer Discretionary",
       "industry": "Footwear",
       "marketCap": 15017197880
@@ -4286,6 +4431,7 @@
       "low52": 436.32,
       "newHigh": false,
       "newLow": false,
+      "name": "Deere & Company",
       "sector": "Industrials",
       "industry": "Agricultural & Farm Machinery",
       "marketCap": 157591392610
@@ -4313,6 +4459,7 @@
       "low52": 107.92,
       "newHigh": false,
       "newLow": false,
+      "name": "Dell Technologies",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 128190233405
@@ -4340,6 +4487,7 @@
       "low52": 46.48,
       "newHigh": false,
       "newLow": false,
+      "name": "Delta Air Lines",
       "sector": "Industrials",
       "industry": "Passenger Airlines",
       "marketCap": 52178490482
@@ -4367,6 +4515,7 @@
       "low52": 30.63,
       "newHigh": false,
       "newLow": false,
+      "name": "Devon Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 51072689577
@@ -4394,6 +4543,7 @@
       "low52": 54.84,
       "newHigh": false,
       "newLow": false,
+      "name": "Dexcom",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 28114705104
@@ -4421,6 +4571,7 @@
       "low52": 132.09,
       "newHigh": false,
       "newLow": false,
+      "name": "Diamondback Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 54186567268
@@ -4448,6 +4599,7 @@
       "low52": 146.93,
       "newHigh": false,
       "newLow": false,
+      "name": "Digital Realty",
       "sector": "Real Estate",
       "industry": "Data Center REITs",
       "marketCap": 65639139815
@@ -4475,6 +4627,7 @@
       "low52": 95.08,
       "newHigh": false,
       "newLow": false,
+      "name": "Dollar General",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
       "marketCap": 22874835293
@@ -4502,6 +4655,7 @@
       "low52": 85.04,
       "newHigh": false,
       "newLow": false,
+      "name": "Dollar Tree",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
       "marketCap": 20908595174
@@ -4529,6 +4683,7 @@
       "low52": 51.5,
       "newHigh": true,
       "newLow": false,
+      "name": "Dominion Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 58839385179
@@ -4556,6 +4711,7 @@
       "low52": 302.29,
       "newHigh": false,
       "newLow": false,
+      "name": "Domino's",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
       "marketCap": 10443894561
@@ -4583,6 +4739,7 @@
       "low52": 146.6,
       "newHigh": false,
       "newLow": false,
+      "name": "DoorDash",
       "sector": "Consumer Discretionary",
       "industry": "Specialized Consumer Services",
       "marketCap": 64497580448
@@ -4610,6 +4767,7 @@
       "low52": 159.95,
       "newHigh": false,
       "newLow": false,
+      "name": "Dover Corporation",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 28919885270
@@ -4637,6 +4795,7 @@
       "low52": 19.83,
       "newHigh": false,
       "newLow": false,
+      "name": "Dow Inc.",
       "sector": "Materials",
       "industry": "Commodity Chemicals",
       "marketCap": 24483586648
@@ -4664,6 +4823,7 @@
       "low52": 118.54,
       "newHigh": false,
       "newLow": false,
+      "name": "D. R. Horton",
       "sector": "Consumer Discretionary",
       "industry": "Homebuilding",
       "marketCap": 41289191652
@@ -4691,6 +4851,7 @@
       "low52": 126.65,
       "newHigh": false,
       "newLow": false,
+      "name": "DTE Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 30324287186
@@ -4718,6 +4879,7 @@
       "low52": 110.71,
       "newHigh": false,
       "newLow": false,
+      "name": "Duke Energy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 96841442075
@@ -4745,6 +4907,7 @@
       "low52": 27.19,
       "newHigh": false,
       "newLow": false,
+      "name": "DuPont",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 18976976763
@@ -4772,6 +4935,7 @@
       "low52": 313.97,
       "newHigh": false,
       "newLow": false,
+      "name": "Eaton Corporation",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 153743502000
@@ -4799,6 +4963,7 @@
       "low52": 72.75,
       "newHigh": false,
       "newLow": false,
+      "name": "eBay Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Broadline Retail",
       "marketCap": 48551400000
@@ -4826,6 +4991,7 @@
       "low52": 15.99,
       "newHigh": false,
       "newLow": false,
+      "name": "EchoStar",
       "sector": "Communication Services",
       "industry": "Wireless Telecommunication Services",
       "marketCap": 18426312525
@@ -4853,6 +5019,7 @@
       "low52": 245.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Ecolab",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 72602432390
@@ -4880,6 +5047,7 @@
       "low52": 45.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Edison International",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 28216939693
@@ -4907,6 +5075,7 @@
       "low52": 72.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Edwards Lifesciences",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 49495768000
@@ -4934,6 +5103,7 @@
       "low52": 146.34,
       "newHigh": true,
       "newLow": false,
+      "name": "Electronic Arts",
       "sector": "Communication Services",
       "industry": "Interactive Home Entertainment",
       "marketCap": 50902551252
@@ -4961,6 +5131,7 @@
       "low52": 270.1,
       "newHigh": true,
       "newLow": false,
+      "name": "Elevance Health",
       "sector": "Health Care",
       "industry": "Managed Health Care",
       "marketCap": 90237483761
@@ -4988,6 +5159,7 @@
       "low52": 465.04,
       "newHigh": false,
       "newLow": false,
+      "name": "Emcor",
       "sector": "Industrials",
       "industry": "Construction & Engineering",
       "marketCap": 36327260848
@@ -5015,6 +5187,7 @@
       "low52": 120.54,
       "newHigh": false,
       "newLow": false,
+      "name": "Emerson Electric",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 77361012000
@@ -5042,6 +5215,7 @@
       "low52": 78.9,
       "newHigh": false,
       "newLow": false,
+      "name": "Entergy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 50706389436
@@ -5069,6 +5243,7 @@
       "low52": 100.04,
       "newHigh": false,
       "newLow": false,
+      "name": "EOG Resources",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 73385558863
@@ -5096,6 +5271,7 @@
       "low52": 48.77,
       "newHigh": false,
       "newLow": false,
+      "name": "EQT Corporation",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 33619442500
@@ -5123,6 +5299,7 @@
       "low52": 157.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Equifax",
       "sector": "Industrials",
       "industry": "Research & Consulting Services",
       "marketCap": 20495933761
@@ -5150,6 +5327,7 @@
       "low52": 718.6,
       "newHigh": false,
       "newLow": false,
+      "name": "Equinix",
       "sector": "Real Estate",
       "industry": "Data Center REITs",
       "marketCap": 106607880875
@@ -5177,6 +5355,7 @@
       "low52": 57.29,
       "newHigh": true,
       "newLow": false,
+      "name": "Equity Residential",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 25551621099
@@ -5204,6 +5383,7 @@
       "low52": 207.24,
       "newHigh": false,
       "newLow": false,
+      "name": "Erie Indemnity",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 10495080030
@@ -5231,6 +5411,7 @@
       "low52": 237.05,
       "newHigh": true,
       "newLow": false,
+      "name": "Essex Property Trust",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 18342228162
@@ -5258,6 +5439,7 @@
       "low52": 66.34,
       "newHigh": false,
       "newLow": false,
+      "name": "Est\u00e9e Lauder Companies (The)",
       "sector": "Consumer Staples",
       "industry": "Personal Care Products",
       "marketCap": 20646039302
@@ -5285,6 +5467,7 @@
       "low52": 303.02,
       "newHigh": false,
       "newLow": false,
+      "name": "Everest Group",
       "sector": "Financials",
       "industry": "Reinsurance",
       "marketCap": 13233139424
@@ -5312,6 +5495,7 @@
       "low52": 62.82,
       "newHigh": true,
       "newLow": false,
+      "name": "Evergy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 19194819591
@@ -5339,6 +5523,7 @@
       "low52": 59.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Eversource Energy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 26551249764
@@ -5366,6 +5551,7 @@
       "low52": 40.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Exelon",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 46811772496
@@ -5393,6 +5579,7 @@
       "low52": 91.07,
       "newHigh": false,
       "newLow": true,
+      "name": "Expand Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 22025800127
@@ -5420,6 +5607,7 @@
       "low52": 160.72,
       "newHigh": false,
       "newLow": false,
+      "name": "Expedia Group",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 26206445290
@@ -5447,6 +5635,7 @@
       "low52": 110.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Expeditors International",
       "sector": "Industrials",
       "industry": "Air Freight & Logistics",
       "marketCap": 20984129378
@@ -5474,6 +5663,7 @@
       "low52": 123.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Extra Space Storage",
       "sector": "Real Estate",
       "industry": "Self-Storage REITs",
       "marketCap": 30698326610
@@ -5501,6 +5691,7 @@
       "low52": 98.68,
       "newHigh": false,
       "newLow": false,
+      "name": "ExxonMobil",
       "sector": "Energy",
       "industry": "Integrated Oil & Gas",
       "marketCap": 621410478527
@@ -5528,6 +5719,7 @@
       "low52": 223.99,
       "newHigh": false,
       "newLow": false,
+      "name": "F5, Inc.",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 22192510807
@@ -5555,6 +5747,7 @@
       "low52": 188.17,
       "newHigh": false,
       "newLow": false,
+      "name": "FactSet",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 9312524683
@@ -5582,6 +5775,7 @@
       "low52": 922.37,
       "newHigh": false,
       "newLow": false,
+      "name": "Fair Isaac",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 26375713120
@@ -5609,6 +5803,7 @@
       "low52": 38.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Fastenal",
       "sector": "Industrials",
       "industry": "Trading Companies & Distributors",
       "marketCap": 53716560504
@@ -5636,6 +5831,7 @@
       "low52": 87.65,
       "newHigh": true,
       "newLow": false,
+      "name": "Federal Realty Investment Trust",
       "sector": "Real Estate",
       "industry": "Retail REITs",
       "marketCap": 10587859984
@@ -5663,6 +5859,7 @@
       "low52": 170.84,
       "newHigh": false,
       "newLow": false,
+      "name": "FedEx",
       "sector": "Industrials",
       "industry": "Air Freight & Logistics",
       "marketCap": 78978836236
@@ -5690,6 +5887,7 @@
       "low52": 40.86,
       "newHigh": false,
       "newLow": true,
+      "name": "Fidelity National Information Services",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 21166201233
@@ -5717,6 +5915,7 @@
       "low52": 36.66,
       "newHigh": false,
       "newLow": false,
+      "name": "Fifth Third Bancorp",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 47137263611
@@ -5744,6 +5943,7 @@
       "low52": 143.67,
       "newHigh": false,
       "newLow": false,
+      "name": "First Solar",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 29980562810
@@ -5771,6 +5971,7 @@
       "low52": 38.17,
       "newHigh": false,
       "newLow": false,
+      "name": "FirstEnergy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 26850775143
@@ -5798,6 +5999,7 @@
       "low52": 52.37,
       "newHigh": false,
       "newLow": false,
+      "name": "Fiserv",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 29025014457
@@ -5825,6 +6027,7 @@
       "low52": 9.63,
       "newHigh": false,
       "newLow": false,
+      "name": "Ford Motor Company",
       "sector": "Consumer Discretionary",
       "industry": "Automobile Manufacturers",
       "marketCap": 58316224254
@@ -5852,6 +6055,7 @@
       "low52": 74.39,
       "newHigh": false,
       "newLow": false,
+      "name": "Fortinet",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 105999569209
@@ -5879,6 +6083,7 @@
       "low52": 46.39,
       "newHigh": true,
       "newLow": false,
+      "name": "Fortive",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 18681883366
@@ -5906,6 +6111,7 @@
       "low52": 53.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Fox Corporation (Class A)",
       "sector": "Communication Services",
       "industry": "Broadcasting",
       "marketCap": 13343297334
@@ -5933,6 +6139,7 @@
       "low52": 48.55,
       "newHigh": false,
       "newLow": false,
+      "name": "Fox Corporation (Class B)",
       "sector": "Communication Services",
       "industry": "Broadcasting",
       "marketCap": 13215822405
@@ -5960,6 +6167,7 @@
       "low52": 20.57,
       "newHigh": false,
       "newLow": false,
+      "name": "Franklin Resources",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 16280232285
@@ -5987,6 +6195,7 @@
       "low52": 35.05,
       "newHigh": false,
       "newLow": false,
+      "name": "Freeport-McMoRan",
       "sector": "Materials",
       "industry": "Copper",
       "marketCap": 91098168645
@@ -6014,6 +6223,7 @@
       "low52": 185.59,
       "newHigh": false,
       "newLow": false,
+      "name": "Garmin",
       "sector": "Consumer Discretionary",
       "industry": "Consumer Electronics",
       "marketCap": 45623992653
@@ -6041,6 +6251,7 @@
       "low52": 140.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Gartner",
       "sector": "Information Technology",
       "industry": "IT Consulting & Other Services",
       "marketCap": 10981448833
@@ -6068,6 +6279,7 @@
       "low52": 234.51,
       "newHigh": false,
       "newLow": false,
+      "name": "GE Aerospace",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 342214613080
@@ -6095,6 +6307,7 @@
       "low52": 59.49,
       "newHigh": false,
       "newLow": false,
+      "name": "GE HealthCare",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 29417851800
@@ -6122,6 +6335,7 @@
       "low52": 464.29,
       "newHigh": false,
       "newLow": false,
+      "name": "GE Vernova",
       "sector": "Industrials",
       "industry": "Heavy Electrical Equipment",
       "marketCap": 250879674531
@@ -6149,6 +6363,7 @@
       "low52": 17.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Gen Digital",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 15831961683
@@ -6176,6 +6391,7 @@
       "low52": 124.01,
       "newHigh": false,
       "newLow": false,
+      "name": "Generac",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 15396514828
@@ -6203,6 +6419,7 @@
       "low52": 269.47,
       "newHigh": false,
       "newLow": false,
+      "name": "General Dynamics",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 93687833984
@@ -6230,6 +6447,7 @@
       "low52": 32.17,
       "newHigh": false,
       "newLow": false,
+      "name": "General Mills",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 17691532376
@@ -6257,6 +6475,7 @@
       "low52": 46.67,
       "newHigh": false,
       "newLow": false,
+      "name": "General Motors",
       "sector": "Consumer Discretionary",
       "industry": "Automobile Manufacturers",
       "marketCap": 74035729161
@@ -6284,6 +6503,7 @@
       "low52": 91.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Genuine Parts Company",
       "sector": "Consumer Discretionary",
       "industry": "Distributors",
       "marketCap": 13507849091
@@ -6311,6 +6531,7 @@
       "low52": 103.92,
       "newHigh": false,
       "newLow": false,
+      "name": "Gilead Sciences",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 160361164925
@@ -6338,6 +6559,7 @@
       "low52": 62.7,
       "newHigh": false,
       "newLow": false,
+      "name": "Global Payments",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 18141405384
@@ -6365,6 +6587,7 @@
       "low52": 116.87,
       "newHigh": true,
       "newLow": false,
+      "name": "Globe Life",
       "sector": "Financials",
       "industry": "Life & Health Insurance",
       "marketCap": 12359493055
@@ -6392,6 +6615,7 @@
       "low52": 79.12,
       "newHigh": false,
       "newLow": false,
+      "name": "GoDaddy",
       "sector": "Information Technology",
       "industry": "Internet Services & Infrastructure",
       "marketCap": 11172742889
@@ -6419,6 +6643,7 @@
       "low52": 593.92,
       "newHigh": false,
       "newLow": false,
+      "name": "Goldman Sachs",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 306418308044
@@ -6446,6 +6671,7 @@
       "low52": 19.5,
       "newHigh": false,
       "newLow": false,
+      "name": "Halliburton",
       "sector": "Energy",
       "industry": "Oil & Gas Equipment & Services",
       "marketCap": 32730883257
@@ -6473,6 +6699,7 @@
       "low52": 117.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Hartford (The)",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 36223646554
@@ -6500,6 +6727,7 @@
       "low52": 63.06,
       "newHigh": false,
       "newLow": false,
+      "name": "Hasbro",
       "sector": "Consumer Discretionary",
       "industry": "Leisure Products",
       "marketCap": 11910686452
@@ -6527,6 +6755,7 @@
       "low52": 332.73,
       "newHigh": false,
       "newLow": false,
+      "name": "HCA Healthcare",
       "sector": "Health Care",
       "industry": "Health Care Facilities",
       "marketCap": 82553244774
@@ -6554,6 +6783,7 @@
       "low52": 15.33,
       "newHigh": true,
       "newLow": false,
+      "name": "Healthpeak Properties",
       "sector": "Real Estate",
       "industry": "Health Care REITs",
       "marketCap": 13643615902
@@ -6581,6 +6811,7 @@
       "low52": 62.03,
       "newHigh": false,
       "newLow": false,
+      "name": "Henry Schein",
       "sector": "Health Care",
       "industry": "Health Care Distributors",
       "marketCap": 8822852829
@@ -6608,6 +6839,7 @@
       "low52": 157.05,
       "newHigh": false,
       "newLow": false,
+      "name": "Hershey Company (The)",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 27360267189
@@ -6635,6 +6867,7 @@
       "low52": 17.21,
       "newHigh": false,
       "newLow": false,
+      "name": "Hewlett Packard Enterprise",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 65150813233
@@ -6662,6 +6895,7 @@
       "low52": 243.38,
       "newHigh": true,
       "newLow": false,
+      "name": "Hilton Worldwide",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 78106156433
@@ -6689,6 +6923,7 @@
       "low52": 295.3,
       "newHigh": false,
       "newLow": false,
+      "name": "Home Depot (The)",
       "sector": "Consumer Discretionary",
       "industry": "Home Improvement Retail",
       "marketCap": 309883922431
@@ -6716,6 +6951,7 @@
       "low52": 186.19,
       "newHigh": false,
       "newLow": false,
+      "name": "Honeywell",
       "sector": "Industrials",
       "industry": "Industrial Conglomerates",
       "marketCap": 135582757872
@@ -6743,6 +6979,7 @@
       "low52": 19.74,
       "newHigh": false,
       "newLow": false,
+      "name": "Hormel Foods",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 12997712969
@@ -6770,6 +7007,7 @@
       "low52": 14.42,
       "newHigh": true,
       "newLow": false,
+      "name": "Host Hotels & Resorts",
       "sector": "Real Estate",
       "industry": "Hotel & Resort REITs",
       "marketCap": 16861727898
@@ -6797,6 +7035,7 @@
       "low52": 168.24,
       "newHigh": false,
       "newLow": false,
+      "name": "Howmet Aerospace",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 100787074967
@@ -6824,6 +7063,7 @@
       "low52": 17.91,
       "newHigh": false,
       "newLow": false,
+      "name": "HP Inc.",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 23393490410
@@ -6851,6 +7091,7 @@
       "low52": 377.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Hubbell Incorporated",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 25196016109
@@ -6878,6 +7119,7 @@
       "low52": 162.84,
       "newHigh": true,
       "newLow": false,
+      "name": "Humana",
       "sector": "Health Care",
       "industry": "Managed Health Care",
       "marketCap": 42031129920
@@ -6905,6 +7147,7 @@
       "low52": 14.88,
       "newHigh": false,
       "newLow": false,
+      "name": "Huntington Bancshares",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 33488197297
@@ -6932,6 +7175,7 @@
       "low52": 219.59,
       "newHigh": false,
       "newLow": false,
+      "name": "Huntington Ingalls Industries",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 11546956658
@@ -6959,6 +7203,7 @@
       "low52": 214.64,
       "newHigh": false,
       "newLow": false,
+      "name": "IBM",
       "sector": "Information Technology",
       "industry": "IT Consulting & Other Services",
       "marketCap": 267716923155
@@ -6986,6 +7231,7 @@
       "low52": 155.73,
       "newHigh": true,
       "newLow": false,
+      "name": "IDEX Corporation",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 15939141448
@@ -7013,6 +7259,7 @@
       "low52": 514.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Idexx Laboratories",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 44344865593
@@ -7040,6 +7287,7 @@
       "low52": 234.68,
       "newHigh": false,
       "newLow": false,
+      "name": "Illinois Tool Works",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 72707544000
@@ -7067,6 +7315,7 @@
       "low52": 67.24,
       "newHigh": false,
       "newLow": false,
+      "name": "Incyte",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 20453697028
@@ -7094,6 +7343,7 @@
       "low52": 68.54,
       "newHigh": false,
       "newLow": false,
+      "name": "Ingersoll Rand",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 28274086256
@@ -7121,6 +7371,7 @@
       "low52": 142.43,
       "newHigh": false,
       "newLow": false,
+      "name": "Insulet Corporation",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 10612733350
@@ -7148,6 +7399,7 @@
       "low52": 19.31,
       "newHigh": false,
       "newLow": false,
+      "name": "Intel",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 498428420000
@@ -7175,6 +7427,7 @@
       "low52": 50.3,
       "newHigh": false,
       "newLow": false,
+      "name": "Interactive Brokers",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 37598880321
@@ -7202,6 +7455,7 @@
       "low52": 138.45,
       "newHigh": false,
       "newLow": false,
+      "name": "Intercontinental Exchange",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 80020018042
@@ -7229,6 +7483,7 @@
       "low52": 58.84,
       "newHigh": false,
       "newLow": false,
+      "name": "International Flavors & Fragrances",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 18639706563
@@ -7256,6 +7511,7 @@
       "low52": 28.95,
       "newHigh": false,
       "newLow": false,
+      "name": "International Paper",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
       "marketCap": 17797065496
@@ -7283,6 +7539,7 @@
       "low52": 296.76,
       "newHigh": false,
       "newLow": true,
+      "name": "Intuit",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 81174840120
@@ -7310,6 +7567,7 @@
       "low52": 402.3,
       "newHigh": false,
       "newLow": false,
+      "name": "Intuitive Surgical",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 149477969094
@@ -7337,6 +7595,7 @@
       "low52": 13.77,
       "newHigh": false,
       "newLow": false,
+      "name": "Invesco",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 12124162803
@@ -7364,6 +7623,7 @@
       "low52": 24.1,
       "newHigh": false,
       "newLow": false,
+      "name": "Invitation Homes",
       "sector": "Real Estate",
       "industry": "Single-Family Residential REITs",
       "marketCap": 17845020358
@@ -7391,6 +7651,7 @@
       "low52": 147.37,
       "newHigh": false,
       "newLow": false,
+      "name": "IQVIA",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 30617805000
@@ -7418,6 +7679,7 @@
       "low52": 78.22,
       "newHigh": false,
       "newLow": false,
+      "name": "Iron Mountain",
       "sector": "Real Estate",
       "industry": "Other Specialized REITs",
       "marketCap": 37089426733
@@ -7445,6 +7707,7 @@
       "low52": 129.81,
       "newHigh": true,
       "newLow": false,
+      "name": "J.B. Hunt",
       "sector": "Industrials",
       "industry": "Cargo Ground Transportation",
       "marketCap": 26870557894
@@ -7472,6 +7735,7 @@
       "low52": 172.41,
       "newHigh": false,
       "newLow": false,
+      "name": "Jabil",
       "sector": "Information Technology",
       "industry": "Electronic Manufacturing Services",
       "marketCap": 37267746195
@@ -7499,6 +7763,7 @@
       "low52": 130.11,
       "newHigh": false,
       "newLow": true,
+      "name": "Jack Henry & Associates",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 9244416985
@@ -7526,6 +7791,7 @@
       "low52": 106.93,
       "newHigh": false,
       "newLow": false,
+      "name": "Jacobs Solutions",
       "sector": "Industrials",
       "industry": "Construction & Engineering",
       "marketCap": 14470811721
@@ -7553,6 +7819,7 @@
       "low52": 146.14,
       "newHigh": false,
       "newLow": false,
+      "name": "Johnson & Johnson",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 560327894339
@@ -7580,6 +7847,7 @@
       "low52": 101.29,
       "newHigh": false,
       "newLow": false,
+      "name": "Johnson Controls",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 87643106370
@@ -7607,6 +7875,7 @@
       "low52": 256.95,
       "newHigh": false,
       "newLow": false,
+      "name": "JPMorgan Chase",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 836998981640
@@ -7634,6 +7903,7 @@
       "low52": 13.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Kenvue",
       "sector": "Consumer Staples",
       "industry": "Personal Care Products",
       "marketCap": 34003353510
@@ -7661,6 +7931,7 @@
       "low52": 24.87,
       "newHigh": false,
       "newLow": false,
+      "name": "Keurig Dr Pepper",
       "sector": "Consumer Staples",
       "industry": "Soft Drinks & Non-alcoholic Beverages",
       "marketCap": 41537880649
@@ -7688,6 +7959,7 @@
       "low52": 15.01,
       "newHigh": false,
       "newLow": false,
+      "name": "KeyCorp",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 23592750970
@@ -7715,6 +7987,7 @@
       "low52": 158.19,
       "newHigh": false,
       "newLow": false,
+      "name": "Keysight Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
       "marketCap": 56366419227
@@ -7742,6 +8015,7 @@
       "low52": 91.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Kimberly-Clark",
       "sector": "Consumer Staples",
       "industry": "Household Products",
       "marketCap": 32875372957
@@ -7769,6 +8043,7 @@
       "low52": 19.19,
       "newHigh": true,
       "newLow": false,
+      "name": "Kimco Realty",
       "sector": "Real Estate",
       "industry": "Retail REITs",
       "marketCap": 16340464660
@@ -7796,6 +8071,7 @@
       "low52": 25.09,
       "newHigh": false,
       "newLow": false,
+      "name": "Kinder Morgan",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
       "marketCap": 70482479981
@@ -7823,6 +8099,7 @@
       "low52": 83.72,
       "newHigh": false,
       "newLow": false,
+      "name": "KKR & Co.",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 83861332689
@@ -7850,6 +8127,7 @@
       "low52": 786.82,
       "newHigh": false,
       "newLow": false,
+      "name": "KLA Corporation",
       "sector": "Information Technology",
       "industry": "Semiconductor Materials & Equipment",
       "marketCap": 252006613513
@@ -7877,6 +8155,7 @@
       "low52": 20.83,
       "newHigh": false,
       "newLow": false,
+      "name": "Kraft Heinz",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 26774859066
@@ -7904,6 +8183,7 @@
       "low52": 58.68,
       "newHigh": false,
       "newLow": false,
+      "name": "Kroger",
       "sector": "Consumer Staples",
       "industry": "Food Retail",
       "marketCap": 39194762236
@@ -7931,6 +8211,7 @@
       "low52": 238.2,
       "newHigh": false,
       "newLow": false,
+      "name": "L3Harris",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 57347174766
@@ -7958,6 +8239,7 @@
       "low52": 240.5,
       "newHigh": false,
       "newLow": false,
+      "name": "Labcorp",
       "sector": "Health Care",
       "industry": "Health Care Services",
       "marketCap": 21742300000
@@ -7985,6 +8267,7 @@
       "low52": 84.29,
       "newHigh": false,
       "newLow": false,
+      "name": "Lam Research",
       "sector": "Information Technology",
       "industry": "Semiconductor Materials & Equipment",
       "marketCap": 379273172879
@@ -8012,6 +8295,7 @@
       "low52": 39.43,
       "newHigh": false,
       "newLow": false,
+      "name": "Las Vegas Sands",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
       "marketCap": 33297525581
@@ -8039,6 +8323,7 @@
       "low52": 123.04,
       "newHigh": false,
       "newLow": true,
+      "name": "Leidos",
       "sector": "Industrials",
       "industry": "Diversified Support Services",
       "marketCap": 15651485534
@@ -8066,6 +8351,7 @@
       "low52": 82.3,
       "newHigh": false,
       "newLow": false,
+      "name": "Lennar",
       "sector": "Consumer Discretionary",
       "industry": "Homebuilding",
       "marketCap": 19477465575
@@ -8093,6 +8379,7 @@
       "low52": 436.59,
       "newHigh": false,
       "newLow": false,
+      "name": "Lennox International",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 17693347730
@@ -8120,6 +8407,7 @@
       "low52": 621.26,
       "newHigh": true,
       "newLow": false,
+      "name": "Lilly (Eli)",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 1008934061576
@@ -8147,6 +8435,7 @@
       "low52": 386.85,
       "newHigh": true,
       "newLow": false,
+      "name": "Linde plc",
       "sector": "Materials",
       "industry": "Industrial Gases",
       "marketCap": 234826198749
@@ -8174,6 +8463,7 @@
       "low52": 125.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Live Nation Entertainment",
       "sector": "Communication Services",
       "industry": "Movies & Entertainment",
       "marketCap": 37250337735
@@ -8201,6 +8491,7 @@
       "low52": 399.95,
       "newHigh": false,
       "newLow": false,
+      "name": "Lockheed Martin",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 120759995326
@@ -8228,6 +8519,7 @@
       "low52": 87.94,
       "newHigh": false,
       "newLow": false,
+      "name": "Loews Corporation",
       "sector": "Financials",
       "industry": "Multi-line Insurance",
       "marketCap": 22134557668
@@ -8255,6 +8547,7 @@
       "low52": 206.64,
       "newHigh": false,
       "newLow": true,
+      "name": "Lowe's",
       "sector": "Consumer Discretionary",
       "industry": "Home Improvement Retail",
       "marketCap": 118225140000
@@ -8282,6 +8575,7 @@
       "low52": 114.23,
       "newHigh": false,
       "newLow": true,
+      "name": "Lululemon Athletica",
       "sector": "Consumer Discretionary",
       "industry": "Apparel, Accessories & Luxury Goods",
       "marketCap": 12386867828
@@ -8309,6 +8603,7 @@
       "low52": 81.46,
       "newHigh": false,
       "newLow": false,
+      "name": "Lumentum",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 67192748000
@@ -8336,6 +8631,7 @@
       "low52": 40.28,
       "newHigh": false,
       "newLow": false,
+      "name": "LyondellBasell",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 20819617858
@@ -8363,6 +8659,7 @@
       "low52": 172.89,
       "newHigh": false,
       "newLow": false,
+      "name": "M&T Bank",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 32575239146
@@ -8390,6 +8687,7 @@
       "low52": 155.17,
       "newHigh": true,
       "newLow": false,
+      "name": "Marathon Petroleum",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
       "marketCap": 76490317736
@@ -8417,6 +8715,7 @@
       "low52": 252.75,
       "newHigh": true,
       "newLow": false,
+      "name": "Marriott International",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 103500421413
@@ -8444,6 +8743,7 @@
       "low52": 157.32,
       "newHigh": false,
       "newLow": false,
+      "name": "Marsh McLennan",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 79708082245
@@ -8471,6 +8771,7 @@
       "low52": 531.58,
       "newHigh": false,
       "newLow": false,
+      "name": "Martin Marietta Materials",
       "sector": "Materials",
       "industry": "Construction Materials",
       "marketCap": 34576230597
@@ -8498,6 +8799,7 @@
       "low52": 58.32,
       "newHigh": false,
       "newLow": false,
+      "name": "Masco",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 14002387272
@@ -8525,6 +8827,7 @@
       "low52": 471.55,
       "newHigh": false,
       "newLow": false,
+      "name": "Mastercard",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 430694951828
@@ -8552,6 +8855,7 @@
       "low52": 45.6,
       "newHigh": false,
       "newLow": false,
+      "name": "McCormick & Company",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 11998345076
@@ -8579,6 +8883,7 @@
       "low52": 272.72,
       "newHigh": false,
       "newLow": false,
+      "name": "McDonald's",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
       "marketCap": 198827959582
@@ -8606,6 +8911,7 @@
       "low52": 656.34,
       "newHigh": false,
       "newLow": false,
+      "name": "McKesson Corporation",
       "sector": "Health Care",
       "industry": "Health Care Distributors",
       "marketCap": 93237474198
@@ -8633,6 +8939,7 @@
       "low52": 73.75,
       "newHigh": false,
       "newLow": false,
+      "name": "Medtronic",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 104854885009
@@ -8660,6 +8967,7 @@
       "low52": 74.9,
       "newHigh": true,
       "newLow": false,
+      "name": "Merck & Co.",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 298330091087
@@ -8687,6 +8995,7 @@
       "low52": 525.72,
       "newHigh": false,
       "newLow": false,
+      "name": "Meta Platforms",
       "sector": "Communication Services",
       "industry": "Interactive Media & Services",
       "marketCap": 1302255033684
@@ -8714,6 +9023,7 @@
       "low52": 67.19,
       "newHigh": true,
       "newLow": false,
+      "name": "MetLife",
       "sector": "Financials",
       "industry": "Life & Health Insurance",
       "marketCap": 54363973457
@@ -8741,6 +9051,7 @@
       "low52": 1025.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Mettler Toledo",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 23326240062
@@ -8768,6 +9079,7 @@
       "low52": 30.72,
       "newHigh": false,
       "newLow": false,
+      "name": "MGM Resorts",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
       "marketCap": 12155492174
@@ -8795,6 +9107,7 @@
       "low52": 48.06,
       "newHigh": false,
       "newLow": false,
+      "name": "Microchip Technology",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 47887283683
@@ -8822,6 +9135,7 @@
       "low52": 104.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Micron Technology",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 974373497404
@@ -8849,6 +9163,7 @@
       "low52": 356.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Microsoft",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 3095205888115
@@ -8876,6 +9191,7 @@
       "low52": 119.11,
       "newHigh": false,
       "newLow": false,
+      "name": "Mid-America Apartment Communities",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 16007565667
@@ -8903,6 +9219,7 @@
       "low52": 22.36,
       "newHigh": false,
       "newLow": false,
+      "name": "Moderna",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 18823540126
@@ -8930,6 +9247,7 @@
       "low52": 38.43,
       "newHigh": false,
       "newLow": true,
+      "name": "Molson Coors Beverage Company",
       "sector": "Consumer Staples",
       "industry": "Brewers",
       "marketCap": 6843914188
@@ -8957,6 +9275,7 @@
       "low52": 51.07,
       "newHigh": false,
       "newLow": false,
+      "name": "Mondelez International",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 79637631482
@@ -8984,6 +9303,7 @@
       "low52": 667.93,
       "newHigh": false,
       "newLow": false,
+      "name": "Monolithic Power Systems",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 72763986500
@@ -9011,6 +9331,7 @@
       "low52": 58.65,
       "newHigh": true,
       "newLow": false,
+      "name": "Monster Beverage",
       "sector": "Consumer Staples",
       "industry": "Soft Drinks & Non-alcoholic Beverages",
       "marketCap": 87580626250
@@ -9038,6 +9359,7 @@
       "low52": 410.36,
       "newHigh": false,
       "newLow": false,
+      "name": "Moody's Corporation",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 78840210291
@@ -9065,6 +9387,7 @@
       "low52": 126.44,
       "newHigh": false,
       "newLow": false,
+      "name": "Morgan Stanley",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 334273971266
@@ -9092,6 +9415,7 @@
       "low52": 21.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Mosaic Company (The)",
       "sector": "Materials",
       "industry": "Fertilizers & Agricultural Chemicals",
       "marketCap": 7068909362
@@ -9119,6 +9443,7 @@
       "low52": 362.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Motorola Solutions",
       "sector": "Information Technology",
       "industry": "Communications Equipment",
       "marketCap": 68114627117
@@ -9146,6 +9471,7 @@
       "low52": 508.0,
       "newHigh": false,
       "newLow": false,
+      "name": "MSCI Inc.",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 44760923772
@@ -9173,6 +9499,7 @@
       "low52": 78.76,
       "newHigh": false,
       "newLow": false,
+      "name": "Nasdaq, Inc.",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 49360400849
@@ -9200,6 +9527,7 @@
       "low52": 93.63,
       "newHigh": false,
       "newLow": false,
+      "name": "NetApp",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 32962070016
@@ -9227,6 +9555,7 @@
       "low52": 75.86,
       "newHigh": false,
       "newLow": false,
+      "name": "Netflix",
       "sector": "Communication Services",
       "industry": "Movies & Entertainment",
       "marketCap": 346043423031
@@ -9254,6 +9583,7 @@
       "low52": 51.81,
       "newHigh": false,
       "newLow": false,
+      "name": "Newmont",
       "sector": "Materials",
       "industry": "Gold",
       "marketCap": 106445686098
@@ -9281,6 +9611,7 @@
       "low52": 22.31,
       "newHigh": false,
       "newLow": false,
+      "name": "News Corp (Class A)",
       "sector": "Communication Services",
       "industry": "Publishing",
       "marketCap": 9902234963
@@ -9308,6 +9639,7 @@
       "low52": 25.56,
       "newHigh": false,
       "newLow": false,
+      "name": "News Corp (Class B)",
       "sector": "Communication Services",
       "industry": "Publishing",
       "marketCap": 5670711695
@@ -9335,6 +9667,7 @@
       "low52": 67.47,
       "newHigh": false,
       "newLow": false,
+      "name": "NextEra Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 179028363930
@@ -9362,6 +9695,7 @@
       "low52": 41.51,
       "newHigh": false,
       "newLow": false,
+      "name": "Nike, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Apparel, Accessories & Luxury Goods",
       "marketCap": 51554479097
@@ -9389,6 +9723,7 @@
       "low52": 37.98,
       "newHigh": false,
       "newLow": false,
+      "name": "NiSource",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 22346663209
@@ -9416,6 +9751,7 @@
       "low52": 207.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Nordson Corporation",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 15753135438
@@ -9443,6 +9779,7 @@
       "low52": 242.42,
       "newHigh": false,
       "newLow": false,
+      "name": "Norfolk Southern",
       "sector": "Industrials",
       "industry": "Rail Transportation",
       "marketCap": 70398989613
@@ -9470,6 +9807,7 @@
       "low52": 103.37,
       "newHigh": true,
       "newLow": false,
+      "name": "Northern Trust",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 31545006071
@@ -9497,6 +9835,7 @@
       "low52": 476.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Northrop Grumman",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 77323024334
@@ -9524,6 +9863,7 @@
       "low52": 14.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Norwegian Cruise Line Holdings",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 8608315125
@@ -9551,6 +9891,7 @@
       "low52": 123.71,
       "newHigh": false,
       "newLow": false,
+      "name": "NRG Energy",
       "sector": "Utilities",
       "industry": "Independent Power Producers & Energy Traders",
       "marketCap": 27259451923
@@ -9578,6 +9919,7 @@
       "low52": 115.38,
       "newHigh": false,
       "newLow": false,
+      "name": "Nucor",
       "sector": "Materials",
       "industry": "Steel",
       "marketCap": 57935020270
@@ -9605,6 +9947,7 @@
       "low52": 139.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Nvidia",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 4967727100000
@@ -9632,6 +9975,7 @@
       "low52": 5563.62,
       "newHigh": false,
       "newLow": false,
+      "name": "NVR, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Homebuilding",
       "marketCap": 16688507754
@@ -9659,6 +10003,7 @@
       "low52": 182.42,
       "newHigh": false,
       "newLow": false,
+      "name": "NXP Semiconductors",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 74721340540
@@ -9686,6 +10031,7 @@
       "low52": 86.23,
       "newHigh": false,
       "newLow": false,
+      "name": "O\u2019Reilly Automotive",
       "sector": "Consumer Discretionary",
       "industry": "Automotive Retail",
       "marketCap": 74857833086
@@ -9713,6 +10059,7 @@
       "low52": 38.74,
       "newHigh": false,
       "newLow": false,
+      "name": "Occidental Petroleum",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 56624553527
@@ -9740,6 +10087,7 @@
       "low52": 125.7,
       "newHigh": true,
       "newLow": false,
+      "name": "Old Dominion",
       "sector": "Industrials",
       "industry": "Cargo Ground Transportation",
       "marketCap": 50446866407
@@ -9767,6 +10115,7 @@
       "low52": 66.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Omnicom Group",
       "sector": "Communication Services",
       "industry": "Advertising",
       "marketCap": 21463816620
@@ -9794,6 +10143,7 @@
       "low52": 44.9,
       "newHigh": false,
       "newLow": false,
+      "name": "ON Semiconductor",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 45591062176
@@ -9821,6 +10171,7 @@
       "low52": 62.69,
       "newHigh": false,
       "newLow": false,
+      "name": "Oneok",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
       "marketCap": 55600399189
@@ -9848,6 +10199,7 @@
       "low52": 136.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Oracle Corporation",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 614553509280
@@ -9875,6 +10227,7 @@
       "low52": 69.34,
       "newHigh": false,
       "newLow": true,
+      "name": "Otis Worldwide",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 26990588785
@@ -9902,6 +10255,7 @@
       "low52": 88.48,
       "newHigh": false,
       "newLow": false,
+      "name": "Paccar",
       "sector": "Industrials",
       "industry": "Construction Machinery & Heavy Transportation Equipment",
       "marketCap": 61407077199
@@ -9929,6 +10283,7 @@
       "low52": 182.94,
       "newHigh": false,
       "newLow": false,
+      "name": "Packaging Corporation of America",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
       "marketCap": 19852960524
@@ -9956,6 +10311,7 @@
       "low52": 119.91,
       "newHigh": false,
       "newLow": false,
+      "name": "Palantir Technologies",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 311186547897
@@ -9983,6 +10339,7 @@
       "low52": 141.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Palo Alto Networks",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 221720750000
@@ -10010,6 +10367,7 @@
       "low52": 8.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Paramount Skydance Corporation",
       "sector": "Communication Services",
       "industry": "Movies & Entertainment",
       "marketCap": 11116017763
@@ -10037,6 +10395,7 @@
       "low52": 646.59,
       "newHigh": false,
       "newLow": false,
+      "name": "Parker Hannifin",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 111251064470
@@ -10064,6 +10423,7 @@
       "low52": 84.48,
       "newHigh": false,
       "newLow": false,
+      "name": "Paychex",
       "sector": "Industrials",
       "industry": "Human Resource & Employment Services",
       "marketCap": 36018982266
@@ -10091,6 +10451,7 @@
       "low52": 38.83,
       "newHigh": false,
       "newLow": false,
+      "name": "PayPal",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 36422135805
@@ -10118,6 +10479,7 @@
       "low52": 70.8,
       "newHigh": false,
       "newLow": false,
+      "name": "Pentair",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 11821445324
@@ -10145,6 +10507,7 @@
       "low52": 123.14,
       "newHigh": false,
       "newLow": false,
+      "name": "PepsiCo",
       "sector": "Consumer Staples",
       "industry": "Soft Drinks & Non-alcoholic Beverages",
       "marketCap": 193971759264
@@ -10172,6 +10535,7 @@
       "low52": 21.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Pfizer",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 148413526160
@@ -10199,6 +10563,7 @@
       "low52": 12.9,
       "newHigh": false,
       "newLow": false,
+      "name": "PG&E Corporation",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 37680065096
@@ -10226,6 +10591,7 @@
       "low52": 141.76,
       "newHigh": false,
       "newLow": false,
+      "name": "Philip Morris International",
       "sector": "Consumer Staples",
       "industry": "Tobacco",
       "marketCap": 277875456653
@@ -10253,6 +10619,7 @@
       "low52": 108.51,
       "newHigh": false,
       "newLow": false,
+      "name": "Phillips 66",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
       "marketCap": 73403183461
@@ -10280,6 +10647,7 @@
       "low52": 83.42,
       "newHigh": true,
       "newLow": false,
+      "name": "Pinnacle West Capital",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 12489549327
@@ -10307,6 +10675,7 @@
       "low52": 167.56,
       "newHigh": false,
       "newLow": false,
+      "name": "PNC Financial Services",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 91705315009
@@ -10334,6 +10703,7 @@
       "low52": 174.07,
       "newHigh": false,
       "newLow": false,
+      "name": "Pool Corporation",
       "sector": "Consumer Discretionary",
       "industry": "Distributors",
       "marketCap": 6760905916
@@ -10361,6 +10731,7 @@
       "low52": 93.07,
       "newHigh": false,
       "newLow": false,
+      "name": "PPG Industries",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 25366020000
@@ -10388,6 +10759,7 @@
       "low52": 32.68,
       "newHigh": false,
       "newLow": false,
+      "name": "PPL Corporation",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 26889001937
@@ -10415,6 +10787,7 @@
       "low52": 72.85,
       "newHigh": true,
       "newLow": false,
+      "name": "Principal Financial Group",
       "sector": "Financials",
       "industry": "Life & Health Insurance",
       "marketCap": 22728823044
@@ -10442,6 +10815,7 @@
       "low52": 136.04,
       "newHigh": false,
       "newLow": false,
+      "name": "Procter & Gamble",
       "sector": "Consumer Staples",
       "industry": "Personal Care Products",
       "marketCap": 341232894236
@@ -10469,6 +10843,7 @@
       "low52": 190.4,
       "newHigh": false,
       "newLow": false,
+      "name": "Progressive Corporation",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 119045670000
@@ -10496,6 +10871,7 @@
       "low52": 101.55,
       "newHigh": true,
       "newLow": false,
+      "name": "Prologis",
       "sector": "Real Estate",
       "industry": "Industrial REITs",
       "marketCap": 134760134520
@@ -10523,6 +10899,7 @@
       "low52": 90.76,
       "newHigh": false,
       "newLow": false,
+      "name": "Prudential Financial",
       "sector": "Financials",
       "industry": "Life & Health Insurance",
       "marketCap": 36337152694
@@ -10550,6 +10927,7 @@
       "low52": 76.44,
       "newHigh": false,
       "newLow": false,
+      "name": "Public Service Enterprise Group",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 39606585030
@@ -10577,6 +10955,7 @@
       "low52": 133.44,
       "newHigh": false,
       "newLow": false,
+      "name": "PTC Inc.",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 15824293367
@@ -10604,6 +10983,7 @@
       "low52": 255.84,
       "newHigh": true,
       "newLow": false,
+      "name": "Public Storage",
       "sector": "Real Estate",
       "industry": "Self-Storage REITs",
       "marketCap": 54363007240
@@ -10631,6 +11011,7 @@
       "low52": 98.15,
       "newHigh": false,
       "newLow": false,
+      "name": "PulteGroup",
       "sector": "Consumer Discretionary",
       "industry": "Homebuilding",
       "marketCap": 22553584195
@@ -10658,6 +11039,7 @@
       "low52": 348.42,
       "newHigh": false,
       "newLow": false,
+      "name": "Quanta Services",
       "sector": "Industrials",
       "industry": "Construction & Engineering",
       "marketCap": 104308310171
@@ -10685,6 +11067,7 @@
       "low52": 123.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Qualcomm",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 227600760000
@@ -10712,6 +11095,7 @@
       "low52": 164.21,
       "newHigh": false,
       "newLow": false,
+      "name": "Quest Diagnostics",
       "sector": "Health Care",
       "industry": "Health Care Services",
       "marketCap": 22171387764
@@ -10739,6 +11123,7 @@
       "low52": 257.2,
       "newHigh": false,
       "newLow": false,
+      "name": "Ralph Lauren Corporation",
       "sector": "Consumer Discretionary",
       "industry": "Apparel, Accessories & Luxury Goods",
       "marketCap": 13795134908
@@ -10766,6 +11151,7 @@
       "low52": 140.36,
       "newHigh": false,
       "newLow": false,
+      "name": "Raymond James Financial",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 29515035499
@@ -10793,6 +11179,7 @@
       "low52": 136.35,
       "newHigh": false,
       "newLow": false,
+      "name": "RTX Corporation",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 243736233633
@@ -10820,6 +11207,7 @@
       "low52": 52.88,
       "newHigh": false,
       "newLow": false,
+      "name": "Realty Income",
       "sector": "Real Estate",
       "industry": "Retail REITs",
       "marketCap": 56732845525
@@ -10847,6 +11235,7 @@
       "low52": 65.81,
       "newHigh": false,
       "newLow": false,
+      "name": "Regency Centers",
       "sector": "Real Estate",
       "industry": "Retail REITs",
       "marketCap": 14230282518
@@ -10874,6 +11263,7 @@
       "low52": 480.44,
       "newHigh": false,
       "newLow": false,
+      "name": "Regeneron Pharmaceuticals",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 65465257458
@@ -10901,6 +11291,7 @@
       "low52": 20.5,
       "newHigh": false,
       "newLow": false,
+      "name": "Regions Financial Corporation",
       "sector": "Financials",
       "industry": "Regional Banks",
       "marketCap": 24355452014
@@ -10928,6 +11319,7 @@
       "low52": 197.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Republic Services",
       "sector": "Industrials",
       "industry": "Environmental & Facilities Services",
       "marketCap": 64621764833
@@ -10955,6 +11347,7 @@
       "low52": 182.82,
       "newHigh": false,
       "newLow": false,
+      "name": "ResMed",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 28436853519
@@ -10982,6 +11375,7 @@
       "low52": 82.26,
       "newHigh": false,
       "newLow": false,
+      "name": "Revvity",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 10974134870
@@ -11009,6 +11403,7 @@
       "low52": 65.16,
       "newHigh": false,
       "newLow": false,
+      "name": "Robinhood Markets",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "marketCap": 65249002044
@@ -11036,6 +11431,7 @@
       "low52": 313.42,
       "newHigh": false,
       "newLow": false,
+      "name": "Rockwell Automation",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 49707187544
@@ -11063,6 +11459,7 @@
       "low52": 45.04,
       "newHigh": false,
       "newLow": false,
+      "name": "Rollins, Inc.",
       "sector": "Industrials",
       "industry": "Environmental & Facilities Services",
       "marketCap": 22676938527
@@ -11090,6 +11487,7 @@
       "low52": 314.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Roper Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
       "marketCap": 33522728312
@@ -11117,6 +11515,7 @@
       "low52": 125.73,
       "newHigh": true,
       "newLow": false,
+      "name": "Ross Stores",
       "sector": "Consumer Discretionary",
       "industry": "Apparel Retail",
       "marketCap": 73898336478
@@ -11144,6 +11543,7 @@
       "low52": 243.31,
       "newHigh": false,
       "newLow": false,
+      "name": "Royal Caribbean Group",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
       "marketCap": 75094593840
@@ -11171,6 +11571,7 @@
       "low52": 388.95,
       "newHigh": false,
       "newLow": false,
+      "name": "S&P Global",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
       "marketCap": 125634240000
@@ -11198,6 +11599,7 @@
       "low52": 164.96,
       "newHigh": false,
       "newLow": false,
+      "name": "Salesforce",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 152055540000
@@ -11225,6 +11627,7 @@
       "low52": 39.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Sandisk",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 230919321444
@@ -11252,6 +11655,7 @@
       "low52": 164.16,
       "newHigh": false,
       "newLow": false,
+      "name": "SBA Communications",
       "sector": "Real Estate",
       "industry": "Telecom Tower REITs",
       "marketCap": 22063228796
@@ -11279,6 +11683,7 @@
       "low52": 31.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Schlumberger",
       "sector": "Energy",
       "industry": "Oil & Gas Equipment & Services",
       "marketCap": 82033813859
@@ -11306,6 +11711,7 @@
       "low52": 124.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Seagate Technology",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 190027343850
@@ -11333,6 +11739,7 @@
       "low52": 71.6,
       "newHigh": false,
       "newLow": false,
+      "name": "Sempra",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
       "marketCap": 59761930599
@@ -11360,6 +11767,7 @@
       "low52": 83.0,
       "newHigh": false,
       "newLow": false,
+      "name": "ServiceNow",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "marketCap": 115970584600
@@ -11387,6 +11795,7 @@
       "low52": 293.0,
       "newHigh": false,
       "newLow": false,
+      "name": "Sherwin-Williams",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
       "marketCap": 75297855091
@@ -11414,6 +11823,7 @@
       "low52": 151.42,
       "newHigh": true,
       "newLow": false,
+      "name": "Simon Property Group",
       "sector": "Real Estate",
       "industry": "Retail REITs",
       "marketCap": 68199728912
@@ -11441,6 +11851,7 @@
       "low52": 52.05,
       "newHigh": false,
       "newLow": false,
+      "name": "Skyworks Solutions",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 11065366697
@@ -11468,6 +11879,7 @@
       "low52": 88.55,
       "newHigh": false,
       "newLow": false,
+      "name": "J.M. Smucker Company (The)",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 11042366949
@@ -11495,6 +11907,7 @@
       "low52": 32.14,
       "newHigh": false,
       "newLow": false,
+      "name": "Smurfit Westrock",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
       "marketCap": 21649877139
@@ -11522,6 +11935,7 @@
       "low52": 297.59,
       "newHigh": false,
       "newLow": false,
+      "name": "Snap-on",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 19672813639
@@ -11549,6 +11963,7 @@
       "low52": 62.49,
       "newHigh": false,
       "newLow": false,
+      "name": "Solventum",
       "sector": "Health Care",
       "industry": "Health Care Technology",
       "marketCap": 14028883419
@@ -11576,6 +11991,7 @@
       "low52": 82.74,
       "newHigh": false,
       "newLow": false,
+      "name": "Southern Company",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 104388081674
@@ -11603,6 +12019,7 @@
       "low52": 28.65,
       "newHigh": false,
       "newLow": false,
+      "name": "Southwest Airlines",
       "sector": "Industrials",
       "industry": "Passenger Airlines",
       "marketCap": 20303660038
@@ -11630,6 +12047,7 @@
       "low52": 60.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Stanley Black & Decker",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 12200152662
@@ -11657,6 +12075,7 @@
       "low52": 76.95,
       "newHigh": false,
       "newLow": false,
+      "name": "Starbucks",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
       "marketCap": 108602013000
@@ -11684,6 +12103,7 @@
       "low52": 93.52,
       "newHigh": true,
       "newLow": false,
+      "name": "State Street Corporation",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 44767067587
@@ -11711,6 +12131,7 @@
       "low52": 120.2,
       "newHigh": false,
       "newLow": false,
+      "name": "Steel Dynamics",
       "sector": "Materials",
       "industry": "Steel",
       "marketCap": 38721131698
@@ -11738,6 +12159,7 @@
       "low52": 201.85,
       "newHigh": false,
       "newLow": false,
+      "name": "Steris",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 20725887689
@@ -11765,6 +12187,7 @@
       "low52": 282.58,
       "newHigh": false,
       "newLow": false,
+      "name": "Stryker Corporation",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
       "marketCap": 117178050512
@@ -11792,6 +12215,7 @@
       "low52": 20.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Supermicro",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 25043065590
@@ -11819,6 +12243,7 @@
       "low52": 56.51,
       "newHigh": false,
       "newLow": false,
+      "name": "Synchrony Financial",
       "sector": "Financials",
       "industry": "Consumer Finance",
       "marketCap": 23828467943
@@ -11846,6 +12271,7 @@
       "low52": 380.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Synopsys",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 89009164226
@@ -11873,6 +12299,7 @@
       "low52": 68.78,
       "newHigh": false,
       "newLow": false,
+      "name": "Sysco",
       "sector": "Consumer Staples",
       "industry": "Food Distributors",
       "marketCap": 36480551164
@@ -11900,6 +12327,7 @@
       "low52": 177.02,
       "newHigh": false,
       "newLow": true,
+      "name": "T-Mobile US",
       "sector": "Communication Services",
       "industry": "Wireless Telecommunication Services",
       "marketCap": 192740660097
@@ -11927,6 +12355,7 @@
       "low52": 86.19,
       "newHigh": true,
       "newLow": false,
+      "name": "T. Rowe Price",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
       "marketCap": 22710117569
@@ -11954,6 +12383,7 @@
       "low52": 189.69,
       "newHigh": false,
       "newLow": false,
+      "name": "Take-Two Interactive",
       "sector": "Communication Services",
       "industry": "Interactive Home Entertainment",
       "marketCap": 39805075880
@@ -11981,6 +12411,7 @@
       "low52": 77.87,
       "newHigh": false,
       "newLow": false,
+      "name": "Tapestry, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Apparel, Accessories & Luxury Goods",
       "marketCap": 28306464431
@@ -12008,6 +12439,7 @@
       "low52": 143.89,
       "newHigh": false,
       "newLow": false,
+      "name": "Targa Resources",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
       "marketCap": 56685308343
@@ -12035,6 +12467,7 @@
       "low52": 82.06,
       "newHigh": false,
       "newLow": false,
+      "name": "Target Corporation",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
       "marketCap": 55670204597
@@ -12062,6 +12495,7 @@
       "low52": 160.63,
       "newHigh": false,
       "newLow": false,
+      "name": "TE Connectivity",
       "sector": "Information Technology",
       "industry": "Electronic Manufacturing Services",
       "marketCap": 62071641657
@@ -12089,6 +12523,7 @@
       "low52": 484.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Teledyne Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
       "marketCap": 27902649943
@@ -12116,6 +12551,7 @@
       "low52": 81.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Teradyne",
       "sector": "Information Technology",
       "industry": "Semiconductor Materials & Equipment",
       "marketCap": 56031136044
@@ -12143,6 +12579,7 @@
       "low52": 284.7,
       "newHigh": false,
       "newLow": false,
+      "name": "Tesla, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Automobile Manufacturers",
       "marketCap": 1468488033561
@@ -12170,6 +12607,7 @@
       "low52": 151.57,
       "newHigh": false,
       "newLow": false,
+      "name": "Texas Instruments",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "marketCap": 259431051002
@@ -12197,6 +12635,7 @@
       "low52": 272.83,
       "newHigh": false,
       "newLow": false,
+      "name": "Texas Pacific Land Corporation",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
       "marketCap": 26885542679
@@ -12224,6 +12663,7 @@
       "low52": 74.43,
       "newHigh": false,
       "newLow": false,
+      "name": "Textron",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 15837808389
@@ -12251,6 +12691,7 @@
       "low52": 389.23,
       "newHigh": false,
       "newLow": false,
+      "name": "Thermo Fisher Scientific",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 175702628652
@@ -12278,6 +12719,7 @@
       "low52": 119.88,
       "newHigh": false,
       "newLow": false,
+      "name": "TJX Companies",
       "sector": "Consumer Discretionary",
       "industry": "Apparel Retail",
       "marketCap": 177537051516
@@ -12305,6 +12747,7 @@
       "low52": 153.83,
       "newHigh": false,
       "newLow": false,
+      "name": "TKO Group Holdings",
       "sector": "Communication Services",
       "industry": "Movies & Entertainment",
       "marketCap": 15255171778
@@ -12332,6 +12775,7 @@
       "low52": 19.95,
       "newHigh": false,
       "newLow": true,
+      "name": "Trade Desk (The)",
       "sector": "Communication Services",
       "industry": "Advertising",
       "marketCap": 8518644653
@@ -12359,6 +12803,7 @@
       "low52": 29.14,
       "newHigh": false,
       "newLow": false,
+      "name": "Tractor Supply",
       "sector": "Consumer Discretionary",
       "industry": "Other Specialty Retail",
       "marketCap": 15618109564
@@ -12386,6 +12831,7 @@
       "low52": 374.67,
       "newHigh": false,
       "newLow": false,
+      "name": "Trane Technologies",
       "sector": "Industrials",
       "industry": "Building Products",
       "marketCap": 100986984112
@@ -12413,6 +12859,7 @@
       "low52": 1132.88,
       "newHigh": false,
       "newLow": false,
+      "name": "TransDigm Group",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
       "marketCap": 69287166605
@@ -12440,6 +12887,7 @@
       "low52": 247.73,
       "newHigh": false,
       "newLow": false,
+      "name": "Travelers Companies (The)",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 64484503152
@@ -12467,6 +12915,7 @@
       "low52": 54.19,
       "newHigh": false,
       "newLow": true,
+      "name": "Trimble Inc.",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 12632313214
@@ -12494,6 +12943,7 @@
       "low52": 37.28,
       "newHigh": false,
       "newLow": false,
+      "name": "Truist Financial",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 61297260330
@@ -12521,6 +12971,7 @@
       "low52": 287.04,
       "newHigh": false,
       "newLow": false,
+      "name": "Tyler Technologies",
       "sector": "Information Technology",
       "industry": "Application Software",
       "marketCap": 12838732998
@@ -12548,6 +12999,7 @@
       "low52": 49.45,
       "newHigh": false,
       "newLow": false,
+      "name": "Tyson Foods",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
       "marketCap": 16568930915
@@ -12575,6 +13027,7 @@
       "low52": 40.95,
       "newHigh": false,
       "newLow": false,
+      "name": "U.S. Bancorp",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 86382496138
@@ -12602,6 +13055,7 @@
       "low52": 69.18,
       "newHigh": false,
       "newLow": false,
+      "name": "Uber",
       "sector": "Industrials",
       "industry": "Passenger Ground Transportation",
       "marketCap": 143937206209
@@ -12629,6 +13083,7 @@
       "low52": 32.76,
       "newHigh": false,
       "newLow": false,
+      "name": "UDR, Inc.",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
       "marketCap": 12736693597
@@ -12656,6 +13111,7 @@
       "low52": 456.97,
       "newHigh": false,
       "newLow": false,
+      "name": "Ulta Beauty",
       "sector": "Consumer Discretionary",
       "industry": "Other Specialty Retail",
       "marketCap": 20079017488
@@ -12683,6 +13139,7 @@
       "low52": 211.45,
       "newHigh": false,
       "newLow": false,
+      "name": "Union Pacific Corporation",
       "sector": "Industrials",
       "industry": "Rail Transportation",
       "marketCap": 161679982164
@@ -12710,6 +13167,7 @@
       "low52": 73.67,
       "newHigh": false,
       "newLow": false,
+      "name": "United Airlines Holdings",
       "sector": "Industrials",
       "industry": "Passenger Airlines",
       "marketCap": 34316757341
@@ -12737,6 +13195,7 @@
       "low52": 78.73,
       "newHigh": false,
       "newLow": false,
+      "name": "United Parcel Service",
       "sector": "Industrials",
       "industry": "Air Freight & Logistics",
       "marketCap": 81033990308
@@ -12764,6 +13223,7 @@
       "low52": 682.65,
       "newHigh": true,
       "newLow": false,
+      "name": "United Rentals",
       "sector": "Industrials",
       "industry": "Trading Companies & Distributors",
       "marketCap": 66892114167
@@ -12791,6 +13251,7 @@
       "low52": 232.89,
       "newHigh": true,
       "newLow": false,
+      "name": "UnitedHealth Group",
       "sector": "Health Care",
       "industry": "Managed Health Care",
       "marketCap": 362776445065
@@ -12818,6 +13279,7 @@
       "low52": 142.55,
       "newHigh": false,
       "newLow": true,
+      "name": "Universal Health Services",
       "sector": "Health Care",
       "industry": "Health Care Facilities",
       "marketCap": 7735761763
@@ -12845,6 +13307,7 @@
       "low52": 123.71,
       "newHigh": false,
       "newLow": false,
+      "name": "Valero Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
       "marketCap": 75961344291
@@ -12872,6 +13335,7 @@
       "low52": 151.43,
       "newHigh": false,
       "newLow": false,
+      "name": "Veeva Systems",
       "sector": "Health Care",
       "industry": "Health Care Technology",
       "marketCap": 28169727261
@@ -12899,6 +13363,7 @@
       "low52": 60.78,
       "newHigh": false,
       "newLow": false,
+      "name": "Ventas",
       "sector": "Real Estate",
       "industry": "Health Care REITs",
       "marketCap": 39875640680
@@ -12926,6 +13391,7 @@
       "low52": 82.23,
       "newHigh": false,
       "newLow": false,
+      "name": "Veralto",
       "sector": "Industrials",
       "industry": "Environmental & Facilities Services",
       "marketCap": 21133816839
@@ -12953,6 +13419,7 @@
       "low52": 210.93,
       "newHigh": false,
       "newLow": false,
+      "name": "Verisign",
       "sector": "Information Technology",
       "industry": "Internet Services & Infrastructure",
       "marketCap": 26837720000
@@ -12980,6 +13447,7 @@
       "low52": 156.84,
       "newHigh": false,
       "newLow": false,
+      "name": "Verisk Analytics",
       "sector": "Industrials",
       "industry": "Research & Consulting Services",
       "marketCap": 23810598983
@@ -13007,6 +13475,7 @@
       "low52": 37.19,
       "newHigh": false,
       "newLow": false,
+      "name": "Verizon",
       "sector": "Communication Services",
       "industry": "Integrated Telecommunication Services",
       "marketCap": 189445107746
@@ -13034,6 +13503,7 @@
       "low52": 366.54,
       "newHigh": false,
       "newLow": false,
+      "name": "Vertex Pharmaceuticals",
       "sector": "Health Care",
       "industry": "Biotechnology",
       "marketCap": 113407874478
@@ -13061,6 +13531,7 @@
       "low52": 108.34,
       "newHigh": false,
       "newLow": false,
+      "name": "Vertiv",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
       "marketCap": 115428540296
@@ -13088,6 +13559,7 @@
       "low52": 8.14,
       "newHigh": false,
       "newLow": false,
+      "name": "Viatris",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
       "marketCap": 18493096145
@@ -13115,6 +13587,7 @@
       "low52": 26.61,
       "newHigh": false,
       "newLow": false,
+      "name": "Vici Properties",
       "sector": "Real Estate",
       "industry": "Hotel & Resort REITs",
       "marketCap": 29999096009
@@ -13142,6 +13615,7 @@
       "low52": 294.91,
       "newHigh": false,
       "newLow": false,
+      "name": "Visa Inc.",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "marketCap": 537032342697
@@ -13169,6 +13643,7 @@
       "low52": 134.71,
       "newHigh": false,
       "newLow": false,
+      "name": "Vistra Corp.",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 50159263939
@@ -13196,6 +13671,7 @@
       "low52": 252.8,
       "newHigh": false,
       "newLow": false,
+      "name": "Vulcan Materials Company",
       "sector": "Materials",
       "industry": "Construction Materials",
       "marketCap": 36510429541
@@ -13223,6 +13699,7 @@
       "low52": 63.54,
       "newHigh": false,
       "newLow": false,
+      "name": "W. R. Berkley Corporation",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
       "marketCap": 25527015513
@@ -13250,6 +13727,7 @@
       "low52": 914.6,
       "newHigh": true,
       "newLow": false,
+      "name": "W. W. Grainger",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
       "marketCap": 61377526831
@@ -13277,6 +13755,7 @@
       "low52": 184.98,
       "newHigh": false,
       "newLow": false,
+      "name": "Wabtec",
       "sector": "Industrials",
       "industry": "Construction Machinery & Heavy Transportation Equipment",
       "marketCap": 44183980898
@@ -13304,6 +13783,7 @@
       "low52": 93.47,
       "newHigh": false,
       "newLow": false,
+      "name": "Walmart",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
       "marketCap": 946056449946
@@ -13331,6 +13811,7 @@
       "low52": 92.42,
       "newHigh": false,
       "newLow": false,
+      "name": "Walt Disney Company (The)",
       "sector": "Communication Services",
       "industry": "Movies & Entertainment",
       "marketCap": 173147554087
@@ -13358,6 +13839,7 @@
       "low52": 9.53,
       "newHigh": false,
       "newLow": false,
+      "name": "Warner Bros. Discovery",
       "sector": "Communication Services",
       "industry": "Broadcasting",
       "marketCap": 65787267060
@@ -13385,6 +13867,7 @@
       "low52": 194.39,
       "newHigh": false,
       "newLow": false,
+      "name": "Waste Management",
       "sector": "Industrials",
       "industry": "Environmental & Facilities Services",
       "marketCap": 88507295740
@@ -13412,6 +13895,7 @@
       "low52": 277.72,
       "newHigh": false,
       "newLow": false,
+      "name": "Waters Corporation",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
       "marketCap": 35873183982
@@ -13439,6 +13923,7 @@
       "low52": 99.52,
       "newHigh": false,
       "newLow": false,
+      "name": "WEC Energy Group",
       "sector": "Utilities",
       "industry": "Electric Utilities",
       "marketCap": 36790715330
@@ -13466,6 +13951,7 @@
       "low52": 70.81,
       "newHigh": false,
       "newLow": false,
+      "name": "Wells Fargo",
       "sector": "Financials",
       "industry": "Diversified Banks",
       "marketCap": 250751927138
@@ -13493,6 +13979,7 @@
       "low52": 147.96,
       "newHigh": false,
       "newLow": false,
+      "name": "Welltower",
       "sector": "Real Estate",
       "industry": "Health Care REITs",
       "marketCap": 146074877138
@@ -13520,6 +14007,7 @@
       "low52": 209.39,
       "newHigh": false,
       "newLow": false,
+      "name": "West Pharmaceutical Services",
       "sector": "Health Care",
       "industry": "Health Care Supplies",
       "marketCap": 22218668627
@@ -13547,6 +14035,7 @@
       "low52": 54.9,
       "newHigh": false,
       "newLow": false,
+      "name": "Western Digital",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "marketCap": 176380740075
@@ -13574,6 +14063,7 @@
       "low52": 20.79,
       "newHigh": false,
       "newLow": false,
+      "name": "Weyerhaeuser",
       "sector": "Real Estate",
       "industry": "Timber REITs",
       "marketCap": 17651123068
@@ -13601,6 +14091,7 @@
       "low52": 151.74,
       "newHigh": false,
       "newLow": false,
+      "name": "Williams-Sonoma, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Homefurnishing Retail",
       "marketCap": 24135700322
@@ -13628,6 +14119,7 @@
       "low52": 55.19,
       "newHigh": false,
       "newLow": false,
+      "name": "Williams Companies",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
       "marketCap": 88006955149
@@ -13655,6 +14147,7 @@
       "low52": 242.12,
       "newHigh": false,
       "newLow": false,
+      "name": "Willis Towers Watson",
       "sector": "Financials",
       "industry": "Insurance Brokers",
       "marketCap": 24890819595
@@ -13682,9 +14175,10 @@
       "low52": 112.5,
       "newHigh": false,
       "newLow": false,
+      "name": "Workday, Inc.",
       "sector": "Information Technology",
       "industry": "Application Software",
-      "marketCap": null
+      "marketCap": 29000280000
     },
     {
       "ticker": "WYNN",
@@ -13709,9 +14203,10 @@
       "low52": 82.48,
       "newHigh": false,
       "newLow": false,
+      "name": "Wynn Resorts",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
-      "marketCap": null
+      "marketCap": 10843637445
     },
     {
       "ticker": "XEL",
@@ -13736,9 +14231,10 @@
       "low52": 64.17,
       "newHigh": false,
       "newLow": false,
+      "name": "Xcel Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
-      "marketCap": null
+      "marketCap": 49342266022
     },
     {
       "ticker": "XYL",
@@ -13763,9 +14259,10 @@
       "low52": 105.92,
       "newHigh": false,
       "newLow": false,
+      "name": "Xylem Inc.",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": null
+      "marketCap": 26132022620
     },
     {
       "ticker": "YUM",
@@ -13790,9 +14287,10 @@
       "low52": 135.75,
       "newHigh": false,
       "newLow": false,
+      "name": "Yum! Brands",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
-      "marketCap": null
+      "marketCap": 41582970745
     },
     {
       "ticker": "ZBRA",
@@ -13817,9 +14315,10 @@
       "low52": 199.3,
       "newHigh": false,
       "newLow": false,
+      "name": "Zebra Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": null
+      "marketCap": 11056186617
     },
     {
       "ticker": "ZBH",
@@ -13844,9 +14343,10 @@
       "low52": 79.58,
       "newHigh": false,
       "newLow": false,
+      "name": "Zimmer Biomet",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": null
+      "marketCap": 16895078553
     },
     {
       "ticker": "ZTS",
@@ -13871,9 +14371,10 @@
       "low52": 74.22,
       "newHigh": false,
       "newLow": false,
+      "name": "Zoetis",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
-      "marketCap": null
+      "marketCap": 33303481693
     }
   ]
 }
