@@ -216,11 +216,19 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .err { text-align:center; padding:60px; color:var(--red); line-height:2; }
 
 @media(max-width:900px) {
-  .cards { grid-template-columns:repeat(3,1fr); }
-  .two   { grid-template-columns:1fr; }
+  .topbar { flex-direction: column; gap: 12px; }
+  .topbar-right { flex-wrap: wrap; gap: 8px; }
+  .tab-nav { flex-wrap: wrap; }
+  .signal-boxes { grid-template-columns: 1fr; }
+  .two { grid-template-columns: 1fr; }
+  .part-grid { grid-template-columns: 1fr; }
+  .sec-health { overflow-x: auto; }
+  .tpanel { overflow-x: auto; }
 }
 @media(max-width:600px) {
-  .cards { grid-template-columns:repeat(2,1fr); }
+  body { padding: 16px 12px; }
+  .tab-btn { padding: 6px 10px; }
+  .tb-sub { display: none; }
 }
 </style>
 </head>
@@ -563,12 +571,12 @@ function switchTab(tab) {
 // ── Dispatcher ────────────────────────────────────────────────────────
 function renderCurrent() {
   if (!_data) return;
-  const { asOf, spxReturn1d, spxReturnYtd, spxReturn12m } = _data;
+  const { asOf, spyReturn1d, spyReturnYtd, spyReturn12m } = _data;
   const stocks = getFilteredStocks();
   const n = stocks.length;
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
-    `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
+    `${label} · ${asOf} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
   if      (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
   else                               renderLeaders();
@@ -879,14 +887,68 @@ function renderBreadth() {
 
     <!-- Row 2: Sector drill-down -->
     <div class="sec-health">
-      <div class="ptitle">Sector participation — click any column header to sort</div>
-      ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
       ${secCallout}
+      <div class="ptitle" style="margin-top:8px">Sector participation — click any column header to sort</div>
+      ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
 
       <!-- Industry table -->
-      <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
-      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}
+      ${(() => {
+        const indRows = Object.entries(indMap).map(([name, d]) => {
+          const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+          const wtPctAbove = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
+          const contribYtd = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+          const rsYtd      = retYtd - (spyReturnYtd || 0);
+          return {
+            name, sector: d.sector || '',
+            total: d.total, both: d.both,
+            wtPctAbove: +wtPctAbove.toFixed(1),
+            pct: Math.round(d.both / d.total * 100),
+            retYtd: +retYtd.toFixed(2),
+            rsYtd: +rsYtd.toFixed(2),
+            contribYtd: +contribYtd.toFixed(2),
+            newHighs: d.newHighs,
+            newLows: d.newLows,
+          };
+        });
+        indRows.sort((a, b) => {
+          const av = a[industryBreadthSortCol] ?? -Infinity;
+          const bv = b[industryBreadthSortCol] ?? -Infinity;
+          return industryBreadthSortDir * (bv - av);
+        });
+        const si = col => industryBreadthSortCol === col ? (industryBreadthSortDir > 0 ? ' ▲' : ' ▼') : '';
+        const rows = indRows.map(r => {
+          const bar = `<div style="display:flex;align-items:center;gap:4px"><div style="width:60px;height:6px;border-radius:3px;background:var(--border);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${r.pct>=60?'var(--green)':r.pct>=40?'#f59e0b':'var(--red)'}"></div></div><span style="font-size:10px">${r.pct}%</span></div>`;
+          const cc = v => v > 0 ? 'color:var(--green)' : v < 0 ? 'color:var(--red)' : '';
+          return `<tr>
+            <td>${r.name}</td>
+            <td style="font-size:10px;color:var(--text3)">${r.sector}</td>
+            <td style="text-align:center">${r.total}</td>
+            <td style="text-align:center">${r.both}</td>
+            <td style="text-align:center">${r.wtPctAbove}%</td>
+            <td>${bar}</td>
+            <td style="text-align:right;${cc(r.retYtd)}">${pp(r.retYtd,true)}%</td>
+            <td style="text-align:right;${cc(r.rsYtd)}">${pp(r.rsYtd,true)}%</td>
+            <td style="text-align:right;${cc(r.contribYtd)}">${pp(r.contribYtd,true)}%</td>
+            <td style="text-align:center">${r.newHighs}</td>
+            <td style="text-align:center">${r.newLows}</td>
+          </tr>`;
+        }).join('');
+        return `<div class="ptitle" style="margin-top:24px">Industry participation — click column to sort</div>
+        <div style="overflow-x:auto"><table class="data-table"><thead><tr>
+          <th onclick="sortIndustry('name')" style="cursor:pointer">Industry${si('name')}</th>
+          <th>Sector</th>
+          <th onclick="sortIndustry('total')" style="cursor:pointer;text-align:center">#Stocks${si('total')}</th>
+          <th onclick="sortIndustry('both')" style="cursor:pointer;text-align:center">#Above Both MAs${si('both')}</th>
+          <th onclick="sortIndustry('wtPctAbove')" style="cursor:pointer;text-align:center">Wt% Above${si('wtPctAbove')}</th>
+          <th>Breadth</th>
+          <th onclick="sortIndustry('retYtd')" style="cursor:pointer;text-align:right">Ret YTD${si('retYtd')}</th>
+          <th onclick="sortIndustry('rsYtd')" style="cursor:pointer;text-align:right">RS vs SPY YTD${si('rsYtd')}</th>
+          <th onclick="sortIndustry('contribYtd')" style="cursor:pointer;text-align:right">Contrib YTD${si('contribYtd')}</th>
+          <th onclick="sortIndustry('newHighs')" style="cursor:pointer;text-align:center">52W High${si('newHighs')}</th>
+          <th onclick="sortIndustry('newLows')" style="cursor:pointer;text-align:center">52W Low${si('newLows')}</th>
+        </tr></thead><tbody>${rows}</tbody></table></div>`;
+      })()}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Same methodology as sector table — grouped by GICS industry · Wt% Above = % of industry market cap above both MAs</div>
     </div>
   `;
