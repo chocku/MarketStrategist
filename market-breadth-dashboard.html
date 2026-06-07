@@ -567,8 +567,8 @@ function renderBreadth() {
 
     <div class="part-grid">
       <div class="part-box">
-        <div class="part-title">Equal-weight vs Cap-weight</div>
-        <div class="part-sub">RSP (equal-weight) vs SPX — is the average stock keeping up?</div>
+        <div class="part-title">Equal-weight vs Cap-weight (RSP vs SPX)</div>
+        <div class="part-sub">RSP = Invesco Equal Weight S&amp;P 500 · SPX = cap-weighted index · Spread = RSP minus SPX</div>
         ${hasRsp ? `
           <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
             <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
@@ -583,22 +583,30 @@ function renderBreadth() {
               <span class="part-spx">${pp(r.spx,true)}%</span>
               <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
-        ` : `<div style="color:var(--text3);font-size:12px;padding:16px 0">RSP data not loaded yet — re-run fetch_breadth.py</div>`}
+        ` : `
+          <div style="padding:20px 0;text-align:center">
+            <div style="font-size:28px;color:var(--text3);margin-bottom:8px">—</div>
+            <div style="font-size:12px;color:var(--text2)">RSP data not in current snapshot</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:6px">Re-run <code style="background:var(--bg3);padding:1px 6px;border-radius:4px">python fetch_breadth.py</code> to load</div>
+          </div>`}
         <div class="part-interp">${ewInterpText}</div>
       </div>
 
       <div class="part-box">
-        <div class="part-title">New 52-week highs by sector</div>
-        <div class="part-sub">Are breakouts spread across sectors or clustering in one?</div>
-        ${sectors.filter(s=>s.newHighs>0).sort((a,b)=>b.newHighs-a.newHighs).map(s => {
-          const totalNH = allStocks.filter(x=>x.newHigh).length || 1;
-          const barW = Math.round(s.newHighs/totalNH*100);
-          return `<div class="part-row">
-            <span class="part-lbl">${s.name}</span>
-            <span style="font-size:11px;color:#22c87a;min-width:28px;text-align:right">${s.newHighs}</span>
-            <div style="width:80px;margin-left:8px">
-              <div class="health-bar"><div class="health-fill" style="width:${barW}%;background:#22c87a88"></div></div>
-            </div>
+        <div class="part-title">New highs &amp; lows by sector</div>
+        <div class="part-sub">All 11 sectors · 0 = sector not making new ground · New high = within 2% of 52-week high</div>
+        <div style="display:grid;grid-template-columns:1fr auto auto;gap:0;margin-bottom:4px;padding-bottom:6px;border-bottom:0.5px solid var(--border)">
+          <span style="font-size:10px;color:var(--text3)">Sector</span>
+          <span style="font-size:10px;color:#22c87a;min-width:40px;text-align:right">Highs</span>
+          <span style="font-size:10px;color:#f04f4f;min-width:40px;text-align:right">Lows</span>
+        </div>
+        ${[...sectors].sort((a,b)=>b.newHighs-a.newHighs).map(s => {
+          const nhColor  = s.newHighs > 0 ? '#22c87a' : 'var(--text3)';
+          const nlColor  = s.newLows  > 0 ? '#f04f4f' : 'var(--text3)';
+          return `<div style="display:grid;grid-template-columns:1fr auto auto;gap:0;padding:4px 0;border-bottom:0.5px solid var(--border)">
+            <span style="font-size:11px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</span>
+            <span style="font-size:12px;font-weight:${s.newHighs>0?700:400};color:${nhColor};min-width:40px;text-align:right">${s.newHighs||'—'}</span>
+            <span style="font-size:12px;font-weight:${s.newLows>0?700:400};color:${nlColor};min-width:40px;text-align:right">${s.newLows||'—'}</span>
           </div>`;}).join('')}
         <div class="part-interp">${nhiInterpText}</div>
       </div>
