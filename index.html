@@ -422,6 +422,8 @@ let filterSector = 'all';
 let industryFilterSector = 'all';
 let leadersSector = 'all';
 let leadersIndustry = 'all';
+let leadersMaStatus = 'all';
+let leadersRsYtd = 'all';
 let searchTicker = '';
 let activeTab = 'breadth';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
@@ -480,6 +482,8 @@ async function init() {
   industryFilterSector = 'all';
   leadersSector = 'all';
   leadersIndustry = 'all';
+  leadersMaStatus = 'all';
+  leadersRsYtd = 'all';
   searchTicker = '';
   // Stale data warning
   const banner = document.getElementById('stale-banner');
@@ -509,6 +513,14 @@ function onLeadersIndustryChange(val) {
   leadersIndustry = val;
   renderLeaders();
 }
+function onLeadersMaChange(val) {
+  leadersMaStatus = val;
+  renderLeaders();
+}
+function onLeadersRsYtdChange(val) {
+  leadersRsYtd = val;
+  renderLeaders();
+}
 function onIndustryFilter(val) {
   industryFilterSector = val;
   renderBreadth();
@@ -531,6 +543,21 @@ function getFilteredStocks() {
   let stocks = _data.stocks;
   if (leadersSector   !== 'all') stocks = stocks.filter(s => s.sector   === leadersSector);
   if (leadersIndustry !== 'all') stocks = stocks.filter(s => s.industry === leadersIndustry);
+  if (leadersMaStatus !== 'all') stocks = stocks.filter(s => {
+    if (leadersMaStatus === 'both')    return s.above50 && s.above200;
+    if (leadersMaStatus === '50only')  return s.above50 && !s.above200;
+    if (leadersMaStatus === '200only') return !s.above50 && s.above200;
+    if (leadersMaStatus === 'below')   return !s.above50 && !s.above200;
+    return true;
+  });
+  if (leadersRsYtd !== 'all') stocks = stocks.filter(s => {
+    const v = s.vsSpxYtd || 0;
+    if (leadersRsYtd === 'pos')   return v > 0;
+    if (leadersRsYtd === 'gt10')  return v > 10;
+    if (leadersRsYtd === 'gt25')  return v > 25;
+    if (leadersRsYtd === 'neg')   return v < 0;
+    return true;
+  });
   return stocks;
 }
 
@@ -1148,6 +1175,20 @@ function renderLeaders() {
           <select class="ctrl-input" style="width:220px" onchange="onLeadersIndustryChange(this.value)">
             <option value="all">All Industries</option>
             ${industries.map(i=>`<option value="${i}"${i===leadersIndustry?' selected':''}>${i}</option>`).join('')}
+          </select>
+          <select class="ctrl-input" style="width:145px" onchange="onLeadersMaChange(this.value)">
+            <option value="all"${leadersMaStatus==='all'?' selected':''}>All MA Status</option>
+            <option value="both"${leadersMaStatus==='both'?' selected':''}>Both MAs ✓</option>
+            <option value="50only"${leadersMaStatus==='50only'?' selected':''}>50-MA only</option>
+            <option value="200only"${leadersMaStatus==='200only'?' selected':''}>200-MA only</option>
+            <option value="below"${leadersMaStatus==='below'?' selected':''}>Below both</option>
+          </select>
+          <select class="ctrl-input" style="width:145px" onchange="onLeadersRsYtdChange(this.value)">
+            <option value="all"${leadersRsYtd==='all'?' selected':''}>RS YTD: All</option>
+            <option value="pos"${leadersRsYtd==='pos'?' selected':''}>RS YTD > 0%</option>
+            <option value="gt10"${leadersRsYtd==='gt10'?' selected':''}>RS YTD > +10%</option>
+            <option value="gt25"${leadersRsYtd==='gt25'?' selected':''}>RS YTD > +25%</option>
+            <option value="neg"${leadersRsYtd==='neg'?' selected':''}>RS YTD < 0%</option>
           </select>
           <input id="searchInput" class="ctrl-input" type="text" placeholder="Search ticker…" style="width:130px" oninput="onSearch(this.value)">
         </div>
