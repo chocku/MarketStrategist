@@ -150,6 +150,14 @@ def fetch():
             new_high = bool(price >= high52 * 0.98)   # within 2% of 52w high
             new_low  = bool(price <= low52  * 1.02)   # within 2% of 52w low
 
+            # Return from recent market low (same anchor date as SPY from-low)
+            ret_from_low = None
+            if low_ts is not None and low_ts in prices.index:
+                try:
+                    ret_from_low = round(float((price / float(prices.loc[low_ts]) - 1) * 100), 2)
+                except Exception:
+                    pass
+
             r12m = ret(252)
             meta = sp500_info.get(ticker, {})
 
@@ -164,8 +172,9 @@ def fetch():
                 "return1w":   round(ret_1w, 2),
                 "return1m":   round(ret(21), 2),
                 "return3m":   round(ret(63), 2),
-                "returnYtd":  round(ret_ytd, 2),
-                "return12m":  round(r12m, 2),
+                "returnYtd":    round(ret_ytd, 2),
+                "return12m":    round(r12m, 2),
+                "returnFromLow": ret_from_low,
                 "vsSpx1d":    round(ret_1d  - spx_1d,  2),
                 "vsSpx1w":    round(ret_1w  - spx_1w,  2),
                 "vsSpx1m":    round(ret(21) - spx_1m,  2),
