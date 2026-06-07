@@ -505,9 +505,10 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyR
       const cLowC  = s.contribFromLow > 0 ? '#22c87a' : s.contribFromLow < 0 ? '#f04f4f' : 'var(--text2)';
       const rsYtdC = s.rsYtd     > 0 ? '#22c87a' : s.rsYtd     < 0 ? '#f04f4f' : 'var(--text2)';
       const rsLowC = s.rsFromLow > 0 ? '#22c87a' : s.rsFromLow < 0 ? '#f04f4f' : 'var(--text2)';
-      const sectorCell = showSectorCol ? `<td class="muted" style="font-size:11px">${s.sector}</td>` : '';
+      const nameStyle = showSectorCol ? 'max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600' : 'font-weight:600';
+      const sectorCell = showSectorCol ? `<td class="muted" style="font-size:11px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${s.sector}">${s.sector}</td>` : '';
       return `<tr>
-        <td style="font-weight:600">${s.name}</td>
+        <td style="${nameStyle}" title="${s.name}">${s.name}</td>
         ${sectorCell}
         <td class="muted" style="border-left:0.5px solid var(--border)">${s.total}</td>
         <td class="muted">${fmtMcap(s.mcap)}</td>
@@ -934,21 +935,8 @@ function renderBreadth() {
             <td style="text-align:center">${r.newLows}</td>
           </tr>`;
         }).join('');
-        return `<div class="ptitle" style="margin-top:24px">Industry participation — click column to sort</div>
-        <div style="overflow-x:auto"><table class="data-table"><thead><tr>
-          <th onclick="sortIndustry('name')" style="cursor:pointer">Industry${si('name')}</th>
-          <th>Sector</th>
-          <th onclick="sortIndustry('total')" style="cursor:pointer;text-align:center">#Stocks${si('total')}</th>
-          <th onclick="sortIndustry('both')" style="cursor:pointer;text-align:center">#Above Both MAs${si('both')}</th>
-          <th onclick="sortIndustry('wtPctAbove')" style="cursor:pointer;text-align:center">Wt% Above${si('wtPctAbove')}</th>
-          <th>Breadth</th>
-          <th onclick="sortIndustry('retYtd')" style="cursor:pointer;text-align:right">Ret YTD${si('retYtd')}</th>
-          <th onclick="sortIndustry('rsYtd')" style="cursor:pointer;text-align:right">RS vs SPY YTD${si('rsYtd')}</th>
-          <th onclick="sortIndustry('contribYtd')" style="cursor:pointer;text-align:right">Contrib YTD${si('contribYtd')}</th>
-          <th onclick="sortIndustry('newHighs')" style="cursor:pointer;text-align:center">52W High${si('newHighs')}</th>
-          <th onclick="sortIndustry('newLows')" style="cursor:pointer;text-align:center">52W Low${si('newLows')}</th>
-        </tr></thead><tbody>${rows}</tbody></table></div>`;
-      })()}
+        return `<div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
+      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}}
       <div style="font-size:10px;color:var(--text3);margin-top:8px">Same methodology as sector table — grouped by GICS industry · Wt% Above = % of industry market cap above both MAs</div>
     </div>
   `;
