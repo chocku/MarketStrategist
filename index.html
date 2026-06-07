@@ -303,6 +303,7 @@ let filterSector = 'all';
 let searchTicker = '';
 let activeTab = 'breadth';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
+let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
 
 // ── Helpers ────────────────────────────────────────────────────────────
 function regime(p) {
@@ -397,6 +398,153 @@ function sortBreadth(col) {
   else { breadthSortCol = col; breadthSortDir = -1; }
   if (chart3) { chart3.destroy(); chart3 = null; }
   renderBreadth();
+}
+
+function sortIndustry(col) {
+  if (industryBreadthSortCol === col) industryBreadthSortDir *= -1;
+  else { industryBreadthSortCol = col; industryBreadthSortDir = -1; }
+  if (chart3) { chart3.destroy(); chart3 = null; }
+  renderBreadth();
+}
+
+function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, sortCol, sortDir, showSectorCol, onSortFn) {
+  const rows = Object.entries(groupMap).map(([name, d]) => {
+    const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
+    const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
+    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
+    const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
+    return {
+      name, sector: d.sector || '',
+      total: d.total, both: d.both,
+      pct: Math.round(d.both / d.total * 100),
+      weight: +(wt * 100).toFixed(1),
+      mcap: d.mcap,
+      mcapAboveBoth: d.mcapAboveBoth,
+      wtPctAbove: +wtPctAbove.toFixed(1),
+      retYtd: +retYtd.toFixed(2),
+      retFromLow: +retFromLow.toFixed(2),
+      rsYtd: +(retYtd - (spyReturnYtd || 0)).toFixed(2),
+      rsFromLow: +(retFromLow - (spyFromLow || 0)).toFixed(2),
+      contribYtd: +contribYtd.toFixed(2),
+      contribFromLow: +contribFromLow.toFixed(2),
+      newHighs: d.newHighs,
+      newLows: d.newLows,
+    };
+  });
+
+  rows.sort((a, b) => {
+    const av = a[sortCol] ?? -Infinity;
+    const bv = b[sortCol] ?? -Infinity;
+    return sortDir * (bv - av);
+  });
+
+  const totalBoth      = rows.reduce((s, r) => s + r.both, 0);
+  const totalAll       = rows.reduce((s, r) => s + r.total, 0);
+  const totalMcapAbove = rows.reduce((s, r) => s + r.mcapAboveBoth, 0);
+  const totalWtAbove   = totalMcap > 0 ? totalMcapAbove / totalMcap * 100 : 0;
+  const totalNewHighs  = rows.reduce((s, r) => s + r.newHighs, 0);
+  const totalNewLows   = rows.reduce((s, r) => s + r.newLows, 0);
+
+  const si = col => sortCol === col ? (sortDir > 0 ? ' ▲' : ' ▼') : '';
+  const nameLabel = showSectorCol ? 'Industry' : 'Sector';
+  const extraColCount = showSectorCol ? 1 : 0;
+
+  let thead = `
+    <thead>
+      <tr style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em">
+        <th colspan="${1 + extraColCount}" style="text-align:left;padding-bottom:2px;border-bottom:none"></th>
+        <th colspan="3" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Size</th>
+        <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Trend Health</th>
+        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Return</th>
+        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">RS vs SPY</th>
+        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Contribution</th>
+        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Current 52W</th>
+      </tr>
+      <tr>
+        <th onclick="${onSortFn}('name')" style="cursor:pointer">${nameLabel}${si('name')}</th>`;
+
+  if (showSectorCol) {
+    thead += `
+        <th onclick="${onSortFn}('sector')" style="cursor:pointer">Sector${si('sector')}</th>`;
+  }
+
+  thead += `
+        <th onclick="${onSortFn}('total')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Total stocks">#Stocks${si('total')}</th>
+        <th onclick="${onSortFn}('mcap')" style="cursor:pointer" title="Total market cap">Mkt Cap${si('mcap')}</th>
+        <th onclick="${onSortFn}('weight')" style="cursor:pointer" title="Weight % in S&amp;P 500">Wt%${si('weight')}</th>
+        <th onclick="${onSortFn}('both')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="# stocks above both 50-MA and 200-MA">#Above Both MAs${si('both')}</th>
+        <th onclick="${onSortFn}('mcapAboveBoth')" style="cursor:pointer" title="Market cap of stocks above both MAs">Mkt Cap Above MAs${si('mcapAboveBoth')}</th>
+        <th onclick="${onSortFn}('wtPctAbove')" style="cursor:pointer" title="% of market cap above both MAs">Wt% Above${si('wtPctAbove')}</th>
+        <th style="width:80px">Breadth</th>
+        <th onclick="${onSortFn}('retYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Market-cap weighted YTD return">YTD${si('retYtd')}</th>
+        <th onclick="${onSortFn}('retFromLow')" style="cursor:pointer" title="Market-cap weighted return since recent low">From Low${si('retFromLow')}</th>
+        <th onclick="${onSortFn}('rsYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Return minus SPY YTD">YTD${si('rsYtd')}</th>
+        <th onclick="${onSortFn}('rsFromLow')" style="cursor:pointer" title="Return minus SPY from-low">From Low${si('rsFromLow')}</th>
+        <th onclick="${onSortFn}('contribYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="% pts of SPY YTD return">YTD${si('contribYtd')}</th>
+        <th onclick="${onSortFn}('contribFromLow')" style="cursor:pointer" title="% pts of SPY from-low return">From Low${si('contribFromLow')}</th>
+        <th onclick="${onSortFn}('newHighs')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Stocks within 2% of 52W high · ★ = ≥3 stocks &amp; ≥5% of sector">Highs${si('newHighs')}</th>
+        <th onclick="${onSortFn}('newLows')" style="cursor:pointer" title="Stocks within 2% of 52W low">Lows${si('newLows')}</th>
+      </tr>
+    </thead>`;
+
+  const tbody = `<tbody>
+    ${rows.map(s => {
+      const reg = regime(s.pct);
+      const realHighs = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
+      const cYtdC  = s.contribYtd     > 0 ? '#22c87a' : s.contribYtd     < 0 ? '#f04f4f' : 'var(--text2)';
+      const cLowC  = s.contribFromLow > 0 ? '#22c87a' : s.contribFromLow < 0 ? '#f04f4f' : 'var(--text2)';
+      const rsYtdC = s.rsYtd     > 0 ? '#22c87a' : s.rsYtd     < 0 ? '#f04f4f' : 'var(--text2)';
+      const rsLowC = s.rsFromLow > 0 ? '#22c87a' : s.rsFromLow < 0 ? '#f04f4f' : 'var(--text2)';
+      const sectorCell = showSectorCol ? `<td class="muted" style="font-size:11px">${s.sector}</td>` : '';
+      return `<tr>
+        <td style="font-weight:600">${s.name}</td>
+        ${sectorCell}
+        <td class="muted" style="border-left:0.5px solid var(--border)">${s.total}</td>
+        <td class="muted">${fmtMcap(s.mcap)}</td>
+        <td class="muted">${s.weight}%</td>
+        <td style="text-align:center;color:var(--text2);border-left:0.5px solid var(--border)">${s.both}</td>
+        <td class="muted">${fmtMcap(s.mcapAboveBoth)}</td>
+        <td style="font-weight:700;color:${reg.color}">${s.wtPctAbove.toFixed(1)}%</td>
+        <td><div style="height:4px;background:var(--bg3);border-radius:2px"><div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div></div></td>
+        <td style="color:${s.retYtd>0?'#22c87a':s.retYtd<0?'#f04f4f':'var(--text2)'};border-left:0.5px solid var(--border)">${pp(s.retYtd,true)}%</td>
+        <td style="color:${s.retFromLow>0?'#22c87a':s.retFromLow<0?'#f04f4f':'var(--text2)'}">${pp(s.retFromLow,true)}%</td>
+        <td style="color:${rsYtdC};border-left:0.5px solid var(--border)">${pp(s.rsYtd,true)}%</td>
+        <td style="color:${rsLowC}">${pp(s.rsFromLow,true)}%</td>
+        <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
+        <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
+        <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
+        <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
+      </tr>`;
+    }).join('')}
+  </tbody>`;
+
+  const totalBothPct = totalAll > 0 ? Math.round(totalBoth / totalAll * 100) : 0;
+  const sectorColTotals = showSectorCol ? `<td class="muted">—</td>` : '';
+  const tfoot = `<tfoot>
+    <tr style="border-top:1.5px solid var(--border2);background:var(--bg2)">
+      <td style="font-weight:700;color:var(--text)">SPY (actual)</td>
+      ${sectorColTotals}
+      <td class="muted" style="border-left:0.5px solid var(--border)">${totalAll}</td>
+      <td class="muted">${fmtMcap(totalMcap)}</td>
+      <td class="muted">100%</td>
+      <td style="text-align:center;color:var(--text2);border-left:0.5px solid var(--border)">${totalBoth}</td>
+      <td class="muted">${fmtMcap(totalMcapAbove)}</td>
+      <td style="font-weight:700;color:${regime(totalBothPct).color}">${totalWtAbove.toFixed(1)}%</td>
+      <td></td>
+      <td style="font-weight:700;color:${spyReturnYtd>0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${pp(spyReturnYtd,true)}%</td>
+      <td style="font-weight:700;color:${spyFromLow>0?'#22c87a':'#f04f4f'}">${pp(spyFromLow,true)}%</td>
+      <td style="color:var(--text3);border-left:0.5px solid var(--border)" title="SPY is benchmark">—</td>
+      <td style="color:var(--text3)" title="SPY is benchmark">—</td>
+      <td style="font-weight:700;color:${spyReturnYtd>=0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${spyReturnYtd>=0?'+':''}${(spyReturnYtd||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spyFromLow>=0?'#22c87a':'#f04f4f'}">${spyFromLow>=0?'+':''}${(spyFromLow||0).toFixed(2)}%</td>
+      <td style="color:${totalNewHighs>0?'var(--text2)':'var(--text3)'};border-left:0.5px solid var(--border)">${totalNewHighs||'—'}</td>
+      <td style="color:${totalNewLows>0?'#f04f4f':'var(--text3)'}">${totalNewLows||'—'}</td>
+    </tr>
+  </tfoot>`;
+
+  return `<div style="overflow-x:auto"><table>${thead}${tbody}${tfoot}</table></div>`;
 }
 
 // ── Tab switching ─────────────────────────────────────────────────────
@@ -548,43 +696,62 @@ function renderBreadth() {
   // Beginning-of-period totals for attribution math (computed over all stocks)
   let totalAdjMcYtd = 0, totalAdjMcLow = 0;
 
+  // Also build industry map in same pass
+  const indMap = {};
   allStocks.forEach(s => {
     const sec = s.sector || 'Unknown';
+    const ind = s.industry || 'Unknown';
     if (!secMap[sec]) secMap[sec] = {
       total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0,
-      mcap:0, mcapRetYtd:0,
+      mcap:0, mcapRetYtd:0, mcapAboveBoth:0,
+      adjMcYtd:0, adjMcLow:0, adjRetYtd:0, adjRetLow:0
+    };
+    if (!indMap[ind]) indMap[ind] = {
+      sector: sec,
+      total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0,
+      mcap:0, mcapRetYtd:0, mcapAboveBoth:0,
       adjMcYtd:0, adjMcLow:0, adjRetYtd:0, adjRetLow:0
     };
     const m = secMap[sec];
-    m.total++;
-    if (s.above50)  m.above50++;
-    if (s.above200) m.above200++;
-    if (s.above50 && s.above200) m.both++;
-    if (s.newHigh)  m.newHighs++;
-    if (s.newLow)   m.newLows++;
+    const mi = indMap[ind];
+    m.total++;  mi.total++;
+    if (s.above50)  { m.above50++;  mi.above50++; }
+    if (s.above200) { m.above200++; mi.above200++; }
+    if (s.above50 && s.above200) {
+      m.both++;  mi.both++;
+    }
+    if (s.newHigh)  { m.newHighs++; mi.newHighs++; }
+    if (s.newLow)   { m.newLows++;  mi.newLows++;  }
     const mc   = s.marketCap || 0;
     const rYtd = (s.returnYtd     || 0) / 100;
     const rLow = (s.returnFromLow || 0) / 100;
-    // Current-weight mcap — for sector size and weight % display
-    m.mcap       += mc;
-    m.mcapRetYtd += mc * (s.returnYtd || 0);   // current-wt avg return (for Ret YTD col)
+    // Current-weight mcap — for size and weight % display
+    m.mcap       += mc;  mi.mcap       += mc;
+    m.mcapRetYtd += mc * (s.returnYtd || 0);
+    mi.mcapRetYtd+= mc * (s.returnYtd || 0);
+    // mcapAboveBoth: sum mcap of stocks above both MAs
+    if (s.above50 && s.above200) {
+      m.mcapAboveBoth  += mc;
+      mi.mcapAboveBoth += mc;
+    }
     // Beginning-of-period weights for correct attribution
-    // M_start ≈ M_current / (1 + return) — removes price-drift bias from weights
     const adjYtd = mc / (1 + rYtd);
     const adjLow = mc / (1 + rLow);
-    m.adjMcYtd  += adjYtd;
-    m.adjMcLow  += adjLow;
+    m.adjMcYtd  += adjYtd;  mi.adjMcYtd  += adjYtd;
+    m.adjMcLow  += adjLow;  mi.adjMcLow  += adjLow;
     m.adjRetYtd += adjYtd * (s.returnYtd     || 0);
+    mi.adjRetYtd+= adjYtd * (s.returnYtd     || 0);
     m.adjRetLow += adjLow * (s.returnFromLow || 0);
+    mi.adjRetLow+= adjLow * (s.returnFromLow || 0);
     totalAdjMcYtd += adjYtd;
     totalAdjMcLow += adjLow;
   });
 
+  // Sectors array (for callout bullets — sorted by contribYtd)
   const sectors = Object.entries(secMap).map(([name, d]) => {
-    const wt         = totalMcap > 0 ? d.mcap / totalMcap : 0;
-    const retYtd     = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;   // current-wt avg (display)
-    const retFromLow = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;  // bop-wt avg (display)
-    // Contribution = beginning-of-period sector weight × sector return
+    const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
+    const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
     const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
     const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
     return {
@@ -600,26 +767,7 @@ function renderBreadth() {
     };
   });
 
-  // Apply current sort
-  sectors.sort((a, b) => {
-    const av = a[breadthSortCol] ?? -Infinity;
-    const bv = b[breadthSortCol] ?? -Infinity;
-    return breadthSortDir * (bv - av);
-  });
-
-  const totalSectors = sectors.length;
   const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
-
-  // SPY totals row — use actual SPY return values, not the computed sum
-  const totals = {
-    total:          allStocks.length,
-    both:           allStocks.filter(s => s.above50 && s.above200).length,
-    weight:         100,
-    contribYtd:     hasRsp ? spyReturnYtd : null,
-    contribFromLow: hasRsp ? spyFromLow   : null,
-    newHighs:       allStocks.filter(s => s.newHigh).length,
-    newLows:        allStocks.filter(s => s.newLow).length,
-  };
 
   const rspVsSpyYtd    = hasRsp ? rspReturnYtd - spyReturnYtd : null;
   const rspVsSpy12m    = hasRsp ? rspReturn12m  - spyReturn12m  : null;
@@ -732,83 +880,14 @@ function renderBreadth() {
     <!-- Row 2: Sector drill-down -->
     <div class="sec-health">
       <div class="ptitle">Sector participation — click any column header to sort</div>
-      <div style="overflow-x:auto"><table>
-        <thead>
-          <!-- Group header row -->
-          <tr style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em">
-            <th colspan="7" style="text-align:left;padding-bottom:2px;border-bottom:none"></th>
-            <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Return</th>
-            <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">RS vs SPY</th>
-            <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Contribution</th>
-            <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">52W</th>
-          </tr>
-          <!-- Column header row -->
-          <tr>
-            <th onclick="sortBreadth('name')" style="cursor:pointer">Sector${si('name')}</th>
-            <th onclick="sortBreadth('total')" style="cursor:pointer" title="Total stocks in sector">Stocks${si('total')}</th>
-            <th onclick="sortBreadth('both')" style="cursor:pointer" title="Stocks above both 50-MA and 200-MA">Above Both MAs${si('both')}</th>
-            <th onclick="sortBreadth('pct')" style="cursor:pointer" title="% of sector stocks above both MAs">% Both MAs${si('pct')}</th>
-            <th style="width:90px">Breadth</th>
-            <th onclick="sortBreadth('weight')" style="cursor:pointer" title="Sector weight in S&P 500 by market cap">Wt %${si('weight')}</th>
-            <th onclick="sortBreadth('mcap')" style="cursor:pointer" title="Total sector market cap">Mkt Cap${si('mcap')}</th>
-            <th onclick="sortBreadth('retYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Market-cap weighted YTD return of sector">YTD${si('retYtd')}</th>
-            <th onclick="sortBreadth('retFromLow')" style="cursor:pointer" title="Market-cap weighted return since recent low">From Low${si('retFromLow')}</th>
-            <th onclick="sortBreadth('rsYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Sector YTD return minus SPY YTD return">YTD${si('rsYtd')}</th>
-            <th onclick="sortBreadth('rsFromLow')" style="cursor:pointer" title="Sector from-low return minus SPY from-low return">From Low${si('rsFromLow')}</th>
-            <th onclick="sortBreadth('contribYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Sector's % pts of SPY's YTD return">YTD${si('contribYtd')}</th>
-            <th onclick="sortBreadth('contribFromLow')" style="cursor:pointer" title="Sector's % pts of SPY's return from ${recentLowDate}">From Low${si('contribFromLow')}</th>
-            <th onclick="sortBreadth('newHighs')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Stocks within 2% of 52W high · ★ = ≥3 stocks &amp; ≥5% of sector">Highs${si('newHighs')}</th>
-            <th onclick="sortBreadth('newLows')" style="cursor:pointer" title="Stocks within 2% of 52W low">Lows${si('newLows')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${sectors.map(s => {
-            const reg        = regime(s.pct);
-            const realHighs  = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
-            const cYtdC  = s.contribYtd     > 0 ? '#22c87a' : s.contribYtd     < 0 ? '#f04f4f' : 'var(--text2)';
-            const cLowC  = s.contribFromLow > 0 ? '#22c87a' : s.contribFromLow < 0 ? '#f04f4f' : 'var(--text2)';
-            const rsYtdC  = s.rsYtd     > 0 ? '#22c87a' : s.rsYtd     < 0 ? '#f04f4f' : 'var(--text2)';
-            const rsLowC  = s.rsFromLow > 0 ? '#22c87a' : s.rsFromLow < 0 ? '#f04f4f' : 'var(--text2)';
-            return `<tr>
-              <td style="font-weight:600">${s.name}</td>
-              <td class="muted">${s.total}</td>
-              <td style="text-align:center;color:var(--text2)">${s.both}</td>
-              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
-              <td><div style="height:4px;background:var(--bg3);border-radius:2px"><div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div></div></td>
-              <td class="muted">${s.weight}%</td>
-              <td class="muted">${fmtMcap(s.mcap)}</td>
-              <td style="color:${s.retYtd>0?'#22c87a':s.retYtd<0?'#f04f4f':'var(--text2)'};border-left:0.5px solid var(--border)">${pp(s.retYtd,true)}%</td>
-              <td style="color:${s.retFromLow>0?'#22c87a':s.retFromLow<0?'#f04f4f':'var(--text2)'}">${pp(s.retFromLow,true)}%</td>
-              <td style="color:${rsYtdC};border-left:0.5px solid var(--border)">${pp(s.rsYtd,true)}%</td>
-              <td style="color:${rsLowC}">${pp(s.rsFromLow,true)}%</td>
-              <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
-              <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
-              <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
-              <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
-            </tr>`;}).join('')}
-        </tbody>
-        <tfoot>
-          <tr style="border-top:1.5px solid var(--border2);background:var(--bg2)">
-            <td style="font-weight:700;color:var(--text)">SPY (actual)</td>
-            <td class="muted">${totals.total}</td>
-            <td style="text-align:center;color:var(--text2)">${totals.both}</td>
-            <td style="font-weight:700;color:${regime(Math.round(totals.both/totals.total*100)).color}">${Math.round(totals.both/totals.total*100)}%</td>
-            <td></td>
-            <td class="muted">100%</td>
-            <td class="muted">${fmtMcap(totalMcap)}</td>
-            <td style="font-weight:700;color:${spyReturnYtd>0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${pp(spyReturnYtd,true)}%</td>
-            <td style="font-weight:700;color:${spyFromLow>0?'#22c87a':'#f04f4f'}">${pp(spyFromLow,true)}%</td>
-            <td style="color:var(--text3);border-left:0.5px solid var(--border)" title="SPY is the benchmark — RS vs itself is always 0">—</td>
-            <td style="color:var(--text3)" title="SPY is the benchmark — RS vs itself is always 0">—</td>
-            <td style="font-weight:700;color:${totals.contribYtd>=0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${totals.contribYtd>=0?'+':''}${totals.contribYtd}%</td>
-            <td style="font-weight:700;color:${totals.contribFromLow>=0?'#22c87a':'#f04f4f'}">${totals.contribFromLow>=0?'+':''}${totals.contribFromLow}%</td>
-            <td style="color:var(--text2);border-left:0.5px solid var(--border)">${totals.newHighs}</td>
-            <td style="color:${totals.newLows>0?'#f04f4f':'var(--text3)'}">${totals.newLows}</td>
-          </tr>
-        </tfoot>
-      </table></div>
+      ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
       ${secCallout}
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · RS vs SPY = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+
+      <!-- Industry table -->
+      <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
+      ${buildGroupTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturnYtd, spyFromLow, recentLowDate, industryBreadthSortCol, industryBreadthSortDir, true, 'sortIndustry')}
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Same methodology as sector table — grouped by GICS industry · Wt% Above = % of industry market cap above both MAs</div>
     </div>
   `;
 
