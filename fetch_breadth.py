@@ -239,29 +239,12 @@ def fetch():
     with open('data.json', 'w') as f:
         json.dump(output, f, indent=2)
 
-    # Save daily snapshot to history/
     import os
     os.makedirs('history', exist_ok=True)
     hist_file = f"history/data_{output['asOf']}.json"
     with open(hist_file, 'w') as f:
         json.dump(output, f, indent=2)
     print(f"  Archived snapshot → {hist_file}")
-
-    # Embed data inline into the HTML so it works without a local server
-    html_file = 'index.html'
-    try:
-        with open(html_file, 'r', encoding='utf-8') as f:
-            html = f.read()
-        data_tag = f'<script id="inline-data">window.__DATA__ = {json.dumps(output)};</script>'
-        import re
-        html = re.sub(r'<script id="inline-data">.*?</script>', data_tag, html, flags=re.DOTALL)
-        if 'id="inline-data"' not in html:
-            html = html.replace('</head>', data_tag + '\n</head>', 1)
-        with open(html_file, 'w', encoding='utf-8') as f:
-            f.write(html)
-        print(f"  Embedded data into {html_file} (open directly in browser)")
-    except FileNotFoundError:
-        pass
 
     print(f"\nSaved data.json -- {len(results)} stocks")
     print(f"  Above 50-MA:    {above50}/{len(results)} ({above50/len(results)*100:.0f}%)")
