@@ -245,10 +245,10 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         By continuing, you confirm that you understand this tool is for <strong style="color:#eef0f4">personal research only</strong> and that you take full responsibility for any investment decisions you make.
       </div>
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-        <input type="checkbox" id="disclaimer-check" style="width:16px;height:16px;cursor:pointer;accent-color:#4a9eff">
+        <input type="checkbox" id="disclaimer-check" onchange="document.getElementById('disclaimer-btn').disabled=!this.checked;document.getElementById('disclaimer-btn').style.opacity=this.checked?'1':'0.4'" style="width:16px;height:16px;cursor:pointer;accent-color:#4a9eff">
         <label for="disclaimer-check" style="font-size:13px;color:#eef0f4;cursor:pointer">I understand this is not investment advice</label>
       </div>
-      <button onclick="acceptDisclaimer()" id="disclaimer-btn" style="width:100%;padding:12px;background:#4a9eff;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;opacity:0.4;transition:opacity 0.2s" disabled>Continue to Dashboard</button>
+      <button onclick="acceptDisclaimer()" id="disclaimer-btn" style="width:100%;padding:12px;background:#4a9eff;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:not-allowed;opacity:0.4;transition:opacity 0.2s" disabled>Continue to Dashboard</button>
     </div>
   </div>
 
@@ -287,10 +287,6 @@ function showDisclaimerIfNeeded() {
     init();
   } else {
     overlay.style.display = 'flex';
-    document.getElementById('disclaimer-check').addEventListener('change', function() {
-      document.getElementById('disclaimer-btn').disabled = !this.checked;
-      document.getElementById('disclaimer-btn').style.opacity = this.checked ? '1' : '0.4';
-    });
   }
 }
 function acceptDisclaimer() {
