@@ -391,12 +391,11 @@ async function submitFeedback() {
     const res = await fetch(FORMSPREE_URL, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name:     document.getElementById('fb-name').value.trim() || 'Anonymous',
-        email:    document.getElementById('fb-email').value.trim() || '(not provided)',
-        type:     document.getElementById('fb-type').value,
-        message:  msg,
-      })
+      body: JSON.stringify(Object.assign({
+        name:    document.getElementById('fb-name').value.trim() || 'Anonymous',
+        type:    document.getElementById('fb-type').value,
+        message: msg,
+      }, document.getElementById('fb-email').value.trim() ? { email: document.getElementById('fb-email').value.trim() } : {}))
     });
     if (res.ok) {
       document.getElementById('feedback-form').style.display = 'none';
