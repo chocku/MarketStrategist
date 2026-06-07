@@ -488,25 +488,47 @@ function renderBreadth() {
           recentLowDate, spyFromLow, rspFromLow, chartDates, chartSpy, chartRsp,
           spyReturn1d, spyReturn1w, spyReturn1m, spyReturnYtd, spyReturn12m } = _data;
 
+  // ── Build sector map ──
   const secMap = {};
+  const totalMcap = allStocks.reduce((s, st) => s + (st.marketCap || 0), 0);
+
   allStocks.forEach(s => {
     const sec = s.sector || 'Unknown';
-    if (!secMap[sec]) secMap[sec] = { total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0 };
-    secMap[sec].total++;
-    if (s.above50) secMap[sec].above50++;
-    if (s.above200) secMap[sec].above200++;
-    if (s.above50 && s.above200) secMap[sec].both++;
-    if (s.newHigh) secMap[sec].newHighs++;
-    if (s.newLow)  secMap[sec].newLows++;
+    if (!secMap[sec]) secMap[sec] = {
+      total:0, above50:0, above200:0, both:0, newHighs:0, newLows:0,
+      mcap:0, mcapRet1d:0, mcapRetYtd:0, mcapRet12m:0
+    };
+    const m = secMap[sec];
+    m.total++;
+    if (s.above50)  m.above50++;
+    if (s.above200) m.above200++;
+    if (s.above50 && s.above200) m.both++;
+    if (s.newHigh)  m.newHighs++;
+    if (s.newLow)   m.newLows++;
+    const mc = s.marketCap || 0;
+    m.mcap        += mc;
+    m.mcapRet1d   += mc * (s.return1d  || 0);
+    m.mcapRetYtd  += mc * (s.returnYtd || 0);
+    m.mcapRet12m  += mc * (s.return12m || 0);
   });
-  const sectors = Object.entries(secMap)
-    .map(([name, d]) => ({ name, ...d, pct: Math.round(d.both / d.total * 100) }))
-    .sort((a,b) => b.pct - a.pct);
 
-  const healthySectors = sectors.filter(s => s.pct >= 50).length;
-  // A sector "makes new highs" only if ≥3 stocks AND ≥5% of stocks in that sector — avoids counting 1 stock as "sector leadership"
-  const newHighSectors = sectors.filter(s => s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05).length;
-  const totalSectors   = sectors.length;
+  const sectors = Object.entries(secMap).map(([name, d]) => {
+    const wt      = totalMcap > 0 ? d.mcap / totalMcap : 0;          // sector weight 0-1
+    const ret1d   = d.mcap > 0 ? d.mcapRet1d  / d.mcap : 0;          // mcap-wtd sector 1d return
+    const retYtd  = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+    const ret12m  = d.mcap > 0 ? d.mcapRet12m / d.mcap : 0;
+    return {
+      name, ...d,
+      pct:     Math.round(d.both / d.total * 100),
+      weight:  +(wt * 100).toFixed(1),                                 // % of index
+      contrib1d:  +(wt * ret1d).toFixed(3),                            // contribution in % pts
+      contribYtd: +(wt * retYtd).toFixed(2),
+      contrib12m: +(wt * ret12m).toFixed(2),
+      ret1d:    +ret1d.toFixed(2),
+    };
+  }).sort((a,b) => b.pct - a.pct);
+
+  const totalSectors = sectors.length;
 
   const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
   const rspVsSpyYtd    = hasRsp ? rspReturnYtd - spyReturnYtd : null;
@@ -529,7 +551,7 @@ function renderBreadth() {
     <div style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
       <div class="part-box" style="margin-bottom:0">
         <div class="part-title">RSP vs SPY — Equal-weight vs Cap-weight</div>
-        <div class="part-sub">Spread = RSP minus SPY · positive = average stock outperforming</div>
+        <div class="part-sub">Spread = RSP minus SPY</div>
         ${hasRsp ? `
           <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
             <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
@@ -563,15 +585,17 @@ function renderBreadth() {
 
     <!-- Row 2: Sector drill-down -->
     <div class="sec-health">
-      <div class="ptitle">Sector participation — % of stocks above both MAs · sorted by breadth</div>
+      <div class="ptitle">Sector participation — sorted by breadth (% stocks above both MAs)</div>
       <div style="overflow-x:auto"><table>
         <thead><tr>
           <th>Sector</th>
-          <th>Stocks</th>
-          <th>% Both MAs</th>
-          <th style="width:140px">Breadth</th>
-          <th>Status</th>
-          <th title="Stocks within 2% of 52-week high (≥3 &amp; ≥5% of sector = real leadership)">52W Highs</th>
+          <th title="Total stocks in sector">Stocks</th>
+          <th title="Stocks above both 50-MA and 200-MA">Above Both MAs</th>
+          <th title="% of sector stocks above both MAs">% Both MAs</th>
+          <th style="width:110px">Breadth</th>
+          <th title="Sector weight in S&P 500 by market cap">Wt %</th>
+          <th title="How much this sector added/subtracted from SPY's 1-day move (sector weight × mcap-wtd return)">1d Contrib</th>
+          <th title="Stocks within 2% of 52-week high · ★ = ≥3 stocks &amp; ≥5% of sector">52W Highs</th>
           <th title="Stocks within 2% of 52-week low">52W Lows</th>
         </tr></thead>
         <tbody>
@@ -582,19 +606,23 @@ function renderBreadth() {
               : s.pct>=40
               ? `<span class="health-pill" style="background:#f0d04018;color:#f0d040">Neutral</span>`
               : `<span class="health-pill" style="background:#f04f4f18;color:#f04f4f">Weak</span>`;
-            const realHighs = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
+            const realHighs  = s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05;
+            const contribColor = s.contrib1d > 0.05 ? '#22c87a' : s.contrib1d < -0.05 ? '#f04f4f' : 'var(--text2)';
+            const contribStr   = (s.contrib1d >= 0 ? '+' : '') + s.contrib1d.toFixed(2) + '%';
             return `<tr>
               <td style="font-weight:600">${s.name}</td>
               <td class="muted">${s.total}</td>
+              <td style="text-align:center">${s.both}</td>
               <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
               <td><div class="health-bar"><div class="health-fill" style="width:${s.pct}%;background:${reg.color}88"></div></div></td>
-              <td>${pill}</td>
+              <td class="muted">${s.weight}%</td>
+              <td style="font-weight:600;color:${contribColor}">${contribStr}</td>
               <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400}">${s.newHighs||'—'}${realHighs?' ★':''}</td>
               <td style="color:${s.newLows>0?'#f04f4f':'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
             </tr>`;}).join('')}
         </tbody>
       </table></div>
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">★ Real leadership = ≥3 stocks making new highs AND ≥5% of sector</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">1d Contrib = sector weight × market-cap-weighted sector return · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
     </div>
   `;
 
