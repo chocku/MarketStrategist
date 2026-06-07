@@ -197,7 +197,7 @@ def fetch():
                 "newHigh":    new_high,
                 "newLow":     new_low,
                 "sector":     meta.get('sector', 'Unknown'),
-                "industry":   ticker_meta.get(ticker, {}).get('industry') or 'Unknown',
+                "industry":   meta.get('industry', 'Unknown'),
                 "marketCap":  ticker_meta.get(ticker, {}).get('mcap'),
             })
             status = "OK" if price > ma50 and price > ma200 else "~" if price > ma50 or price > ma200 else "X"
