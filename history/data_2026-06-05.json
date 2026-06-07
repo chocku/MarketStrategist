@@ -372,7 +372,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Conglomerates",
+      "industry": "Conglomerates",
       "marketCap": 80196182051
     },
     {
@@ -399,7 +399,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
+      "industry": "Specialty Industrial Machinery",
       "marketCap": 6404424598
     },
     {
@@ -426,7 +426,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
+      "industry": "Medical Devices",
       "marketCap": 158626923934
     },
     {
@@ -453,7 +453,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
+      "industry": "Drug Manufacturers - General",
       "marketCap": 401468332715
     },
     {
@@ -480,7 +480,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
+      "industry": "Information Technology Services",
       "marketCap": 109434674521
     },
     {
@@ -507,7 +507,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
+      "industry": "Software - Application",
       "marketCap": 101632048000
     },
     {
@@ -561,7 +561,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Independent Power Producers & Energy Traders",
+      "industry": "Utilities - Diversified",
       "marketCap": 10462023649
     },
     {
@@ -588,7 +588,7 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Life & Health Insurance",
+      "industry": "Insurance - Life",
       "marketCap": 60182375048
     },
     {
@@ -615,7 +615,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
+      "industry": "Diagnostics & Research",
       "marketCap": 38252582495
     },
     {
@@ -642,7 +642,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Industrial Gases",
+      "industry": "Specialty Chemicals",
       "marketCap": 62873891692
     },
     {
@@ -669,7 +669,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
+      "industry": "Travel Services",
       "marketCap": 55810403314
     },
     {
@@ -696,7 +696,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
+      "industry": "Software - Infrastructure",
       "marketCap": 21708955543
     },
     {
@@ -750,7 +750,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Office REITs",
+      "industry": "REIT - Office",
       "marketCap": 8936538934
     },
     {
@@ -777,7 +777,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Supplies",
+      "industry": "Medical Instruments & Supplies",
       "marketCap": 12013224622
     },
     {
@@ -804,7 +804,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
+      "industry": "Security & Protection Services",
       "marketCap": 11185411667
     },
     {
@@ -831,7 +831,7 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
+      "industry": "Utilities - Regulated Electric",
       "marketCap": 18820647686
     },
     {
@@ -858,7 +858,7 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
+      "industry": "Insurance - Property & Casualty",
       "marketCap": 56892599739
     },
     {
@@ -885,7 +885,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
+      "industry": "Internet Content & Information",
       "marketCap": 2160815524539
     },
     {
@@ -912,7 +912,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
+      "industry": "Internet Content & Information",
       "marketCap": 2010150883627
     },
     {
@@ -966,7 +966,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Broadline Retail",
+      "industry": "Internet Retail",
       "marketCap": 2646571634539
     },
     {
@@ -993,7 +993,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Paper & Plastic Packaging Products & Materials",
+      "industry": "Packaging & Containers",
       "marketCap": 17629241159
     },
     {
@@ -1020,7 +1020,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
+      "industry": "Utilities - Regulated Electric",
       "marketCap": 30240649080
     },
     {
@@ -1047,7 +1047,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
+      "industry": "Utilities - Regulated Electric",
       "marketCap": 70265723832
     },
     {
@@ -1074,7 +1074,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Consumer Finance",
+      "industry": "Credit Services",
       "marketCap": 211971532782
     },
     {
@@ -1101,7 +1101,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Multi-line Insurance",
+      "industry": "Insurance - Diversified",
       "marketCap": 40025267623
     },
     {
@@ -1128,7 +1128,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
+      "industry": "REIT - Specialty",
       "marketCap": 90439162554
     },
     {
@@ -1155,7 +1155,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Water Utilities",
+      "industry": "Utilities - Regulated Water",
       "marketCap": 24306566448
     },
     {
@@ -1182,7 +1182,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
+      "industry": "Asset Management",
       "marketCap": 40872608211
     },
     {
@@ -1209,7 +1209,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
+      "industry": "Specialty Industrial Machinery",
       "marketCap": 51925940103
     },
     {
@@ -1236,7 +1236,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
+      "industry": "Drug Manufacturers - General",
       "marketCap": 188671218424
     },
     {
@@ -1344,7 +1344,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
+      "industry": "Oil & Gas E&P",
       "marketCap": 12926406201
     },
     {
@@ -1371,8 +1371,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 73811537189
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AAPL",
@@ -1398,7 +1398,7 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
+      "industry": "Consumer Electronics",
       "marketCap": 4514011993040
     },
     {
@@ -1425,8 +1425,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "marketCap": 359671561384
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "APP",
@@ -1452,8 +1452,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 170353870400
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "APTV",
@@ -1479,8 +1479,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automotive Parts & Equipment",
-      "marketCap": 14517168152
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ACGL",
@@ -1506,8 +1506,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 31860836529
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ADM",
@@ -1533,8 +1533,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Agricultural Products & Services",
-      "marketCap": 38999922164
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ARES",
@@ -1560,8 +1560,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 27897871098
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ANET",
@@ -1587,8 +1587,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 194252069200
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AJG",
@@ -1614,8 +1614,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Insurance Brokers",
-      "marketCap": 55535443880
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AIZ",
@@ -1641,8 +1641,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Multi-line Insurance",
-      "marketCap": 12751084381
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "T",
@@ -1668,8 +1668,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Communication Services",
-      "industry": "Integrated Telecommunication Services",
-      "marketCap": 158074708496
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ATO",
@@ -1695,8 +1695,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Gas Utilities",
-      "marketCap": 28416430497
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ADSK",
@@ -1722,8 +1722,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 48554961919
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ADP",
@@ -1749,8 +1749,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Human Resource & Employment Services",
-      "marketCap": 92718366709
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AZO",
@@ -1776,8 +1776,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automotive Retail",
-      "marketCap": 51012842670
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AVB",
@@ -1803,8 +1803,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 26915968930
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AVY",
@@ -1830,8 +1830,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Materials",
-      "industry": "Paper & Plastic Packaging Products & Materials",
-      "marketCap": 11869777944
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AXON",
@@ -1857,8 +1857,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 39182281671
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BKR",
@@ -1884,8 +1884,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Equipment & Services",
-      "marketCap": 62093579745
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BALL",
@@ -1911,8 +1911,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Metal, Glass & Plastic Containers",
-      "marketCap": 14089765362
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BAC",
@@ -1938,8 +1938,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 382009474743
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BAX",
@@ -1965,8 +1965,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 10009169375
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BDX",
@@ -1992,8 +1992,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 41650690945
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BRK-B",
@@ -2019,8 +2019,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Multi-Sector Holdings",
-      "marketCap": 682556414504
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BBY",
@@ -2046,8 +2046,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Computer & Electronics Retail",
-      "marketCap": 15073133677
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TECH",
@@ -2073,8 +2073,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 8140009364
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BIIB",
@@ -2100,8 +2100,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 28839434434
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BLK",
@@ -2127,8 +2127,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 154550959448
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BX",
@@ -2154,8 +2154,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 85610548012
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "XYZ",
@@ -2181,8 +2181,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 36473539250
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BNY",
@@ -2208,8 +2208,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 97733512217
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BA",
@@ -2235,8 +2235,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 169839737213
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BKNG",
@@ -2262,8 +2262,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 128505839826
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BSX",
@@ -2289,8 +2289,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 72162543940
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BMY",
@@ -2316,8 +2316,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 116949420315
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "AVGO",
@@ -2343,8 +2343,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 1826303558614
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BR",
@@ -2370,8 +2370,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Data Processing & Outsourced Services",
-      "marketCap": 17503726667
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BRO",
@@ -2397,8 +2397,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Insurance Brokers",
-      "marketCap": 19950469921
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BF-B",
@@ -2424,8 +2424,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Distillers & Vintners",
-      "marketCap": 7593264122
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BLDR",
@@ -2451,8 +2451,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 7920709268
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BG",
@@ -2478,8 +2478,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Agricultural Products & Services",
-      "marketCap": 24535530822
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BXP",
@@ -2505,8 +2505,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Office REITs",
-      "marketCap": 9940225781
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CHRW",
@@ -2532,8 +2532,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Air Freight & Logistics",
-      "marketCap": 21699248301
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CDNS",
@@ -2559,8 +2559,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 103759221040
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CPT",
@@ -2586,8 +2586,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 11157601109
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CPB",
@@ -2613,8 +2613,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 6463815859
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COF",
@@ -2640,8 +2640,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Consumer Finance",
-      "marketCap": 112429637104
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CAH",
@@ -2667,8 +2667,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Distributors",
-      "marketCap": 48178486432
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CCL",
@@ -2694,8 +2694,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 33960995810
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CARR",
@@ -2721,8 +2721,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 55781781208
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CVNA",
@@ -2748,8 +2748,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automotive Retail",
-      "marketCap": 47640340486
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CASY",
@@ -2775,8 +2775,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Food Retail",
-      "marketCap": 28159454547
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CAT",
@@ -2802,8 +2802,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction Machinery & Heavy Transportation Equipment",
-      "marketCap": 416504118387
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CBOE",
@@ -2829,8 +2829,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 29502948247
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CBRE",
@@ -2856,8 +2856,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Real Estate Services",
-      "marketCap": 38338474688
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CDW",
@@ -2883,8 +2883,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Distributors",
-      "marketCap": 16996319121
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COR",
@@ -2910,8 +2910,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Distributors",
-      "marketCap": 53512073942
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CNC",
@@ -2937,8 +2937,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Managed Health Care",
-      "marketCap": 30778367010
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CNP",
@@ -2964,8 +2964,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 27926495101
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CF",
@@ -2991,8 +2991,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Fertilizers & Agricultural Chemicals",
-      "marketCap": 17435386306
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CRL",
@@ -3018,8 +3018,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 8734736158
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SCHW",
@@ -3045,8 +3045,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 154504798441
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CHTR",
@@ -3072,8 +3072,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Cable & Satellite",
-      "marketCap": 18652486112
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CVX",
@@ -3099,8 +3099,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Integrated Oil & Gas",
-      "marketCap": 373046171180
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CMG",
@@ -3126,8 +3126,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 37635415560
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CB",
@@ -3153,8 +3153,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 126547116784
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CHD",
@@ -3180,8 +3180,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Household Products",
-      "marketCap": 22921924057
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CIEN",
@@ -3207,8 +3207,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 69107552049
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CI",
@@ -3234,8 +3234,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Services",
-      "marketCap": 76576840309
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CINF",
@@ -3261,8 +3261,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 25568171585
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CTAS",
@@ -3288,8 +3288,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Diversified Support Services",
-      "marketCap": 71964618047
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CSCO",
@@ -3315,8 +3315,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 479436112650
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "C",
@@ -3342,8 +3342,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 225937779228
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CFG",
@@ -3369,8 +3369,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 27055986649
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CLX",
@@ -3396,8 +3396,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Household Products",
-      "marketCap": 11383535983
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CME",
@@ -3423,8 +3423,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 93003668386
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CMS",
@@ -3450,8 +3450,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 22254568128
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KO",
@@ -3477,8 +3477,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Soft Drinks & Non-alcoholic Beverages",
-      "marketCap": 341961302582
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CTSH",
@@ -3504,8 +3504,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "marketCap": 25168330000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COHR",
@@ -3531,8 +3531,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Components",
-      "marketCap": 73754067623
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COIN",
@@ -3558,8 +3558,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 33897855750
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CL",
@@ -3585,8 +3585,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Household Products",
-      "marketCap": 70880769079
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CMCSA",
@@ -3612,8 +3612,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Cable & Satellite",
-      "marketCap": 84865519215
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FIX",
@@ -3639,8 +3639,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction & Engineering",
-      "marketCap": 64877124109
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CAG",
@@ -3666,8 +3666,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 6224467399
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COP",
@@ -3693,8 +3693,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 142710959979
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ED",
@@ -3720,8 +3720,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 39159966453
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "STZ",
@@ -3747,8 +3747,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Distillers & Vintners",
-      "marketCap": 24260833175
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CEG",
@@ -3774,8 +3774,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 91000306992
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COO",
@@ -3801,8 +3801,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Supplies",
-      "marketCap": 13139003561
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CPRT",
@@ -3828,8 +3828,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Diversified Support Services",
-      "marketCap": 29824027692
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GLW",
@@ -3855,8 +3855,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Components",
-      "marketCap": 152832064963
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CPAY",
@@ -3882,8 +3882,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 22709998756
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CTVA",
@@ -3909,8 +3909,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Fertilizers & Agricultural Chemicals",
-      "marketCap": 51519204600
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CSGP",
@@ -3936,8 +3936,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Real Estate Services",
-      "marketCap": 13839175181
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "COST",
@@ -3963,8 +3963,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 431003745243
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CRH",
@@ -3990,8 +3990,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Construction Materials",
-      "marketCap": 70201114692
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CRWD",
@@ -4017,8 +4017,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 170818085516
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CCI",
@@ -4044,8 +4044,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
-      "marketCap": 41240347873
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CSX",
@@ -4071,8 +4071,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Rail Transportation",
-      "marketCap": 87313944843
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CMI",
@@ -4098,8 +4098,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction Machinery & Heavy Transportation Equipment",
-      "marketCap": 89861240211
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CVS",
@@ -4125,8 +4125,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Services",
-      "marketCap": 122399706560
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DHR",
@@ -4152,8 +4152,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 130442126556
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DRI",
@@ -4179,8 +4179,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 22691674794
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DDOG",
@@ -4206,8 +4206,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 77449627569
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DVA",
@@ -4233,8 +4233,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Services",
-      "marketCap": 12333789600
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DECK",
@@ -4260,8 +4260,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Footwear",
-      "marketCap": 15017197880
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DE",
@@ -4287,8 +4287,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Agricultural & Farm Machinery",
-      "marketCap": 157591392610
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DELL",
@@ -4314,8 +4314,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 128190233405
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DAL",
@@ -4341,8 +4341,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Passenger Airlines",
-      "marketCap": 52178490482
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DVN",
@@ -4368,8 +4368,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 51072689577
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DXCM",
@@ -4395,8 +4395,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 28114705104
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FANG",
@@ -4422,8 +4422,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 54186567268
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DLR",
@@ -4449,8 +4449,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Data Center REITs",
-      "marketCap": 65639139815
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DG",
@@ -4476,8 +4476,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 22874835293
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DLTR",
@@ -4503,8 +4503,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 20908595174
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "D",
@@ -4530,8 +4530,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 58839385179
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DPZ",
@@ -4557,8 +4557,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 10443894561
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DASH",
@@ -4584,8 +4584,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Specialized Consumer Services",
-      "marketCap": 64497580448
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DOV",
@@ -4611,8 +4611,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 28919885270
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DOW",
@@ -4638,8 +4638,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Commodity Chemicals",
-      "marketCap": 24483586648
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DHI",
@@ -4665,8 +4665,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Homebuilding",
-      "marketCap": 41289191652
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DTE",
@@ -4692,8 +4692,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 30324287186
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DUK",
@@ -4719,8 +4719,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 96841442075
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DD",
@@ -4746,8 +4746,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 18976976763
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ETN",
@@ -4773,8 +4773,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "marketCap": 153743502000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EBAY",
@@ -4800,8 +4800,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Broadline Retail",
-      "marketCap": 48551400000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SATS",
@@ -4827,8 +4827,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Wireless Telecommunication Services",
-      "marketCap": 18426312525
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ECL",
@@ -4854,8 +4854,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 72602432390
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EIX",
@@ -4881,8 +4881,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 28216939693
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EW",
@@ -4908,8 +4908,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 49495768000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EA",
@@ -4935,8 +4935,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Interactive Home Entertainment",
-      "marketCap": 50902551252
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ELV",
@@ -4962,8 +4962,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Managed Health Care",
-      "marketCap": 90237483761
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EME",
@@ -4989,8 +4989,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction & Engineering",
-      "marketCap": 36327260848
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EMR",
@@ -5016,8 +5016,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "marketCap": 77361012000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ETR",
@@ -5043,8 +5043,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 50706389436
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EOG",
@@ -5070,8 +5070,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 73385558863
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EQT",
@@ -5097,8 +5097,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 33619442500
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EFX",
@@ -5124,8 +5124,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Research & Consulting Services",
-      "marketCap": 20495933761
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EQIX",
@@ -5151,8 +5151,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Data Center REITs",
-      "marketCap": 106607880875
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EQR",
@@ -5178,8 +5178,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 25551621099
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ERIE",
@@ -5205,8 +5205,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Insurance Brokers",
-      "marketCap": 10495080030
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ESS",
@@ -5232,8 +5232,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 18342228162
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EL",
@@ -5259,8 +5259,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Personal Care Products",
-      "marketCap": 20646039302
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EG",
@@ -5286,8 +5286,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Reinsurance",
-      "marketCap": 13233139424
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EVRG",
@@ -5313,8 +5313,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 19194819591
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ES",
@@ -5340,8 +5340,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 26551249764
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EXC",
@@ -5367,8 +5367,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 46811772496
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EXE",
@@ -5394,8 +5394,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 22025800127
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EXPE",
@@ -5421,8 +5421,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 26206445290
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EXPD",
@@ -5448,8 +5448,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Air Freight & Logistics",
-      "marketCap": 20984129378
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "EXR",
@@ -5475,8 +5475,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Self-Storage REITs",
-      "marketCap": 30698326610
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "XOM",
@@ -5502,8 +5502,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Integrated Oil & Gas",
-      "marketCap": 621410478527
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FFIV",
@@ -5529,8 +5529,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 22192510807
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FDS",
@@ -5556,8 +5556,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 9312524683
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FICO",
@@ -5583,8 +5583,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 26375713120
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FAST",
@@ -5610,8 +5610,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Trading Companies & Distributors",
-      "marketCap": 53716560504
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FRT",
@@ -5637,8 +5637,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Retail REITs",
-      "marketCap": 10587859984
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FDX",
@@ -5664,8 +5664,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Air Freight & Logistics",
-      "marketCap": 78978836236
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FIS",
@@ -5691,8 +5691,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 21166201233
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FITB",
@@ -5718,8 +5718,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 47137263611
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FSLR",
@@ -5745,8 +5745,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 29980562810
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FE",
@@ -5772,8 +5772,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 26850775143
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FISV",
@@ -5799,8 +5799,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 29025014457
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "F",
@@ -5826,8 +5826,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automobile Manufacturers",
-      "marketCap": 58316224254
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FTNT",
@@ -5853,8 +5853,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 105999569209
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FTV",
@@ -5880,8 +5880,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 18681883366
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FOXA",
@@ -5907,8 +5907,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Broadcasting",
-      "marketCap": 13343297334
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FOX",
@@ -5934,8 +5934,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Broadcasting",
-      "marketCap": 13215822405
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "BEN",
@@ -5961,8 +5961,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 16280232285
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "FCX",
@@ -5988,8 +5988,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Copper",
-      "marketCap": 91098168645
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GRMN",
@@ -6015,8 +6015,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Consumer Electronics",
-      "marketCap": 45623992653
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IT",
@@ -6042,8 +6042,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "marketCap": 10981448833
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GE",
@@ -6069,8 +6069,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 342214613080
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GEHC",
@@ -6096,8 +6096,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 29417851800
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GEV",
@@ -6123,8 +6123,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Heavy Electrical Equipment",
-      "marketCap": 250879674531
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GEN",
@@ -6150,8 +6150,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 15831961683
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GNRC",
@@ -6177,8 +6177,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "marketCap": 15396514828
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GD",
@@ -6204,8 +6204,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 93687833984
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GIS",
@@ -6231,8 +6231,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 17691532376
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GM",
@@ -6258,8 +6258,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automobile Manufacturers",
-      "marketCap": 74035729161
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GPC",
@@ -6285,8 +6285,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Distributors",
-      "marketCap": 13507849091
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GILD",
@@ -6312,8 +6312,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 160361164925
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GPN",
@@ -6339,8 +6339,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 18141405384
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GL",
@@ -6366,8 +6366,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Life & Health Insurance",
-      "marketCap": 12359493055
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GDDY",
@@ -6393,8 +6393,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
-      "marketCap": 11172742889
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GS",
@@ -6420,8 +6420,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 306418308044
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HAL",
@@ -6447,8 +6447,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Equipment & Services",
-      "marketCap": 32730883257
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HIG",
@@ -6474,8 +6474,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 36223646554
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HAS",
@@ -6501,8 +6501,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Leisure Products",
-      "marketCap": 11910686452
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HCA",
@@ -6528,8 +6528,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Facilities",
-      "marketCap": 82553244774
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DOC",
@@ -6555,8 +6555,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Health Care REITs",
-      "marketCap": 13643615902
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HSIC",
@@ -6582,8 +6582,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Distributors",
-      "marketCap": 8822852829
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HSY",
@@ -6609,8 +6609,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 27360267189
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HPE",
@@ -6636,8 +6636,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 65150813233
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HLT",
@@ -6663,8 +6663,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 78106156433
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HD",
@@ -6690,8 +6690,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Home Improvement Retail",
-      "marketCap": 309883922431
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HON",
@@ -6717,8 +6717,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Conglomerates",
-      "marketCap": 135582757872
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HRL",
@@ -6744,8 +6744,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 12997712969
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HST",
@@ -6771,8 +6771,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Hotel & Resort REITs",
-      "marketCap": 16861727898
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HWM",
@@ -6798,8 +6798,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 100787074967
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HPQ",
@@ -6825,8 +6825,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 23393490410
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HUBB",
@@ -6852,8 +6852,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 25196016109
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HUM",
@@ -6879,8 +6879,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Managed Health Care",
-      "marketCap": 42031129920
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HBAN",
@@ -6906,8 +6906,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 33488197297
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HII",
@@ -6933,8 +6933,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 11546956658
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IBM",
@@ -6960,8 +6960,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "marketCap": 267716923155
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IEX",
@@ -6987,8 +6987,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 15939141448
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IDXX",
@@ -7014,8 +7014,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 44344865593
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ITW",
@@ -7041,8 +7041,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 72707544000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "INCY",
@@ -7068,8 +7068,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 20453697028
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IR",
@@ -7095,8 +7095,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 28274086256
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PODD",
@@ -7122,8 +7122,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 10612733350
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "INTC",
@@ -7149,8 +7149,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 498428420000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IBKR",
@@ -7176,8 +7176,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 37598880321
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ICE",
@@ -7203,8 +7203,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 80020018042
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IFF",
@@ -7230,8 +7230,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 18639706563
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IP",
@@ -7257,8 +7257,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Paper & Plastic Packaging Products & Materials",
-      "marketCap": 17797065496
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "INTU",
@@ -7284,8 +7284,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 81174840120
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ISRG",
@@ -7311,8 +7311,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 149477969094
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IVZ",
@@ -7338,8 +7338,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 12124162803
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "INVH",
@@ -7365,8 +7365,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Single-Family Residential REITs",
-      "marketCap": 17845020358
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IQV",
@@ -7392,8 +7392,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 30617805000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "IRM",
@@ -7419,8 +7419,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Other Specialized REITs",
-      "marketCap": 37089426733
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JBHT",
@@ -7446,8 +7446,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Cargo Ground Transportation",
-      "marketCap": 26870557894
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JBL",
@@ -7473,8 +7473,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Manufacturing Services",
-      "marketCap": 37267746195
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JKHY",
@@ -7500,8 +7500,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 9244416985
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "J",
@@ -7527,8 +7527,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction & Engineering",
-      "marketCap": 14470811721
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JNJ",
@@ -7554,8 +7554,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 560327894339
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JCI",
@@ -7581,8 +7581,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 87643106370
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "JPM",
@@ -7608,8 +7608,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 836998981640
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KVUE",
@@ -7635,8 +7635,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Personal Care Products",
-      "marketCap": 34003353510
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KDP",
@@ -7662,8 +7662,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Soft Drinks & Non-alcoholic Beverages",
-      "marketCap": 41537880649
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KEY",
@@ -7689,8 +7689,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 23592750970
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KEYS",
@@ -7716,8 +7716,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "marketCap": 56366419227
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KMB",
@@ -7743,8 +7743,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Household Products",
-      "marketCap": 32875372957
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KIM",
@@ -7770,8 +7770,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Retail REITs",
-      "marketCap": 16340464660
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KMI",
@@ -7797,8 +7797,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": 70482479981
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KKR",
@@ -7824,8 +7824,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 83861332689
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KLAC",
@@ -7851,8 +7851,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "marketCap": 252006613513
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KHC",
@@ -7878,8 +7878,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 26774859066
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "KR",
@@ -7905,8 +7905,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Food Retail",
-      "marketCap": 39194762236
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LHX",
@@ -7932,8 +7932,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 57347174766
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LH",
@@ -7959,8 +7959,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Services",
-      "marketCap": 21742300000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LRCX",
@@ -7986,8 +7986,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "marketCap": 379273172879
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LVS",
@@ -8013,8 +8013,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Casinos & Gaming",
-      "marketCap": 33297525581
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LDOS",
@@ -8040,8 +8040,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Industrials",
-      "industry": "Diversified Support Services",
-      "marketCap": 15651485534
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LEN",
@@ -8067,8 +8067,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Homebuilding",
-      "marketCap": 19477465575
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LII",
@@ -8094,8 +8094,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 17693347730
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LLY",
@@ -8121,8 +8121,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 1008934061576
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LIN",
@@ -8148,8 +8148,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Industrial Gases",
-      "marketCap": 234826198749
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LYV",
@@ -8175,8 +8175,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "marketCap": 37250337735
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LMT",
@@ -8202,8 +8202,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 120759995326
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "L",
@@ -8229,8 +8229,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Multi-line Insurance",
-      "marketCap": 22134557668
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LOW",
@@ -8256,8 +8256,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Consumer Discretionary",
-      "industry": "Home Improvement Retail",
-      "marketCap": 118225140000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LULU",
@@ -8283,8 +8283,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel, Accessories & Luxury Goods",
-      "marketCap": 12386867828
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LITE",
@@ -8310,8 +8310,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 67192748000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LYB",
@@ -8337,8 +8337,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 20819617858
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MTB",
@@ -8364,8 +8364,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 32575239146
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MPC",
@@ -8391,8 +8391,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Refining & Marketing",
-      "marketCap": 76490317736
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MAR",
@@ -8418,8 +8418,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 103500421413
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MRSH",
@@ -8445,8 +8445,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Insurance Brokers",
-      "marketCap": 79708082245
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MLM",
@@ -8472,8 +8472,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Construction Materials",
-      "marketCap": 34576230597
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MAS",
@@ -8499,8 +8499,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 14002387272
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MA",
@@ -8526,8 +8526,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 430694951828
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MKC",
@@ -8553,8 +8553,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 11998345076
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MCD",
@@ -8580,8 +8580,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 198827959582
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MCK",
@@ -8607,8 +8607,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Distributors",
-      "marketCap": 93237474198
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MDT",
@@ -8634,8 +8634,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 104854885009
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MRK",
@@ -8661,8 +8661,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 298330091087
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "META",
@@ -8688,8 +8688,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
-      "marketCap": 1302255033684
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MET",
@@ -8715,8 +8715,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Life & Health Insurance",
-      "marketCap": 54363973457
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MTD",
@@ -8742,8 +8742,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 23326240062
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MGM",
@@ -8769,8 +8769,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Casinos & Gaming",
-      "marketCap": 12155492174
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MCHP",
@@ -8796,8 +8796,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 47887283683
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MU",
@@ -8823,8 +8823,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 974373497404
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MSFT",
@@ -8850,8 +8850,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 3095205888115
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MAA",
@@ -8877,8 +8877,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 16007565667
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MRNA",
@@ -8904,8 +8904,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 18823540126
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TAP",
@@ -8931,8 +8931,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Consumer Staples",
-      "industry": "Brewers",
-      "marketCap": 6843914188
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MDLZ",
@@ -8958,8 +8958,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 79637631482
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MPWR",
@@ -8985,8 +8985,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 72763986500
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MNST",
@@ -9012,8 +9012,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Soft Drinks & Non-alcoholic Beverages",
-      "marketCap": 87580626250
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MCO",
@@ -9039,8 +9039,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 78840210291
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MS",
@@ -9066,8 +9066,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 334273971266
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MOS",
@@ -9093,8 +9093,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Fertilizers & Agricultural Chemicals",
-      "marketCap": 7068909362
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MSI",
@@ -9120,8 +9120,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "marketCap": 68114627117
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "MSCI",
@@ -9147,8 +9147,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 44760923772
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NDAQ",
@@ -9174,8 +9174,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 49360400849
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NTAP",
@@ -9201,8 +9201,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 32962070016
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NFLX",
@@ -9228,8 +9228,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "marketCap": 346043423031
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NEM",
@@ -9255,8 +9255,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Gold",
-      "marketCap": 106445686098
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NWSA",
@@ -9282,8 +9282,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Publishing",
-      "marketCap": 9902234963
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NWS",
@@ -9309,8 +9309,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Publishing",
-      "marketCap": 5670711695
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NEE",
@@ -9336,8 +9336,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 179028363930
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NKE",
@@ -9363,8 +9363,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel, Accessories & Luxury Goods",
-      "marketCap": 51554479097
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NI",
@@ -9390,8 +9390,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 22346663209
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NDSN",
@@ -9417,8 +9417,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 15753135438
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NSC",
@@ -9444,8 +9444,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Rail Transportation",
-      "marketCap": 70398989613
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NTRS",
@@ -9471,8 +9471,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 31545006071
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NOC",
@@ -9498,8 +9498,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 77323024334
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NCLH",
@@ -9525,8 +9525,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 8608315125
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NRG",
@@ -9552,8 +9552,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Independent Power Producers & Energy Traders",
-      "marketCap": 27259451923
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NUE",
@@ -9579,8 +9579,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Steel",
-      "marketCap": 57935020270
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NVDA",
@@ -9606,8 +9606,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 4967727100000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NVR",
@@ -9633,8 +9633,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Homebuilding",
-      "marketCap": 16688507754
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NXPI",
@@ -9660,8 +9660,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 74721340540
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ORLY",
@@ -9687,8 +9687,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automotive Retail",
-      "marketCap": 74857833086
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "OXY",
@@ -9714,8 +9714,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 56624553527
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ODFL",
@@ -9741,8 +9741,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Cargo Ground Transportation",
-      "marketCap": 50446866407
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "OMC",
@@ -9768,8 +9768,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Advertising",
-      "marketCap": 21463816620
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ON",
@@ -9795,8 +9795,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 45591062176
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "OKE",
@@ -9822,8 +9822,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": 55600399189
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ORCL",
@@ -9849,8 +9849,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 614553509280
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "OTIS",
@@ -9876,8 +9876,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 26990588785
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PCAR",
@@ -9903,8 +9903,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction Machinery & Heavy Transportation Equipment",
-      "marketCap": 61407077199
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PKG",
@@ -9930,8 +9930,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Paper & Plastic Packaging Products & Materials",
-      "marketCap": 19852960524
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PLTR",
@@ -9957,8 +9957,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 311186547897
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PANW",
@@ -9984,8 +9984,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 221720750000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PSKY",
@@ -10011,8 +10011,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "marketCap": 11116017763
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PH",
@@ -10038,8 +10038,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 111251064470
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PAYX",
@@ -10065,8 +10065,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Human Resource & Employment Services",
-      "marketCap": 36018982266
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PYPL",
@@ -10092,8 +10092,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 36422135805
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PNR",
@@ -10119,8 +10119,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 11821445324
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PEP",
@@ -10146,8 +10146,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Soft Drinks & Non-alcoholic Beverages",
-      "marketCap": 193971759264
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PFE",
@@ -10173,8 +10173,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 148413526160
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PCG",
@@ -10200,8 +10200,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 37680065096
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PM",
@@ -10227,8 +10227,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Tobacco",
-      "marketCap": 277875456653
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PSX",
@@ -10254,8 +10254,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Refining & Marketing",
-      "marketCap": 73403183461
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PNW",
@@ -10281,8 +10281,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 12489549327
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PNC",
@@ -10308,8 +10308,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 91705315009
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "POOL",
@@ -10335,8 +10335,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Distributors",
-      "marketCap": 6760905916
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PPG",
@@ -10362,8 +10362,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 25366020000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PPL",
@@ -10389,8 +10389,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 26889001937
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PFG",
@@ -10416,8 +10416,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Life & Health Insurance",
-      "marketCap": 22728823044
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PG",
@@ -10443,8 +10443,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Personal Care Products",
-      "marketCap": 341232894236
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PGR",
@@ -10470,8 +10470,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 119045670000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PLD",
@@ -10497,8 +10497,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Industrial REITs",
-      "marketCap": 134760134520
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PRU",
@@ -10524,8 +10524,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Life & Health Insurance",
-      "marketCap": 36337152694
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PEG",
@@ -10551,8 +10551,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 39606585030
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PTC",
@@ -10578,8 +10578,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 15824293367
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PSA",
@@ -10605,8 +10605,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Self-Storage REITs",
-      "marketCap": 54363007240
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PHM",
@@ -10632,8 +10632,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Homebuilding",
-      "marketCap": 22553584195
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "PWR",
@@ -10659,8 +10659,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction & Engineering",
-      "marketCap": 104308310171
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "QCOM",
@@ -10686,8 +10686,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 227600760000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DGX",
@@ -10713,8 +10713,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Services",
-      "marketCap": 22171387764
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RL",
@@ -10740,8 +10740,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel, Accessories & Luxury Goods",
-      "marketCap": 13795134908
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RJF",
@@ -10767,8 +10767,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 29515035499
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RTX",
@@ -10794,8 +10794,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 243736233633
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "O",
@@ -10821,8 +10821,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Retail REITs",
-      "marketCap": 56732845525
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "REG",
@@ -10848,8 +10848,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Retail REITs",
-      "marketCap": 14230282518
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "REGN",
@@ -10875,8 +10875,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 65465257458
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RF",
@@ -10902,8 +10902,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Regional Banks",
-      "marketCap": 24355452014
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RSG",
@@ -10929,8 +10929,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Environmental & Facilities Services",
-      "marketCap": 64621764833
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RMD",
@@ -10956,8 +10956,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 28436853519
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RVTY",
@@ -10983,8 +10983,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 10974134870
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "HOOD",
@@ -11010,8 +11010,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "marketCap": 65249002044
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ROK",
@@ -11037,8 +11037,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "marketCap": 49707187544
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ROL",
@@ -11064,8 +11064,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Environmental & Facilities Services",
-      "marketCap": 22676938527
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ROP",
@@ -11091,8 +11091,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "marketCap": 33522728312
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ROST",
@@ -11118,8 +11118,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel Retail",
-      "marketCap": 73898336478
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "RCL",
@@ -11145,8 +11145,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 75094593840
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SPGI",
@@ -11172,8 +11172,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "marketCap": 125634240000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "CRM",
@@ -11199,8 +11199,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 152055540000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SNDK",
@@ -11226,8 +11226,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 230919321444
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SBAC",
@@ -11253,8 +11253,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
-      "marketCap": 22063228796
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SLB",
@@ -11280,8 +11280,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Equipment & Services",
-      "marketCap": 82033813859
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "STX",
@@ -11307,8 +11307,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 190027343850
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SRE",
@@ -11334,8 +11334,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 59761930599
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "NOW",
@@ -11361,8 +11361,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Systems Software",
-      "marketCap": 115970584600
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SHW",
@@ -11388,8 +11388,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Specialty Chemicals",
-      "marketCap": 75297855091
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SPG",
@@ -11415,8 +11415,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Retail REITs",
-      "marketCap": 68199728912
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SWKS",
@@ -11442,8 +11442,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 11065366697
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SJM",
@@ -11469,8 +11469,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 11042366949
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SW",
@@ -11496,8 +11496,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Paper & Plastic Packaging Products & Materials",
-      "marketCap": 21649877139
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SNA",
@@ -11523,8 +11523,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 19672813639
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SOLV",
@@ -11550,8 +11550,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Technology",
-      "marketCap": 14028883419
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SO",
@@ -11577,8 +11577,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 104388081674
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "LUV",
@@ -11604,8 +11604,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Passenger Airlines",
-      "marketCap": 20303660038
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SWK",
@@ -11631,8 +11631,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 12200152662
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SBUX",
@@ -11658,8 +11658,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 108602013000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "STT",
@@ -11685,8 +11685,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 44767067587
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "STLD",
@@ -11712,8 +11712,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Steel",
-      "marketCap": 38721131698
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "STE",
@@ -11739,8 +11739,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 20725887689
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SYK",
@@ -11766,8 +11766,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 117178050512
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SMCI",
@@ -11793,8 +11793,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 25043065590
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SYF",
@@ -11820,8 +11820,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Consumer Finance",
-      "marketCap": 23828467943
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SNPS",
@@ -11847,8 +11847,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 89009164226
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "SYY",
@@ -11874,8 +11874,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Food Distributors",
-      "marketCap": 36480551164
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TMUS",
@@ -11901,8 +11901,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Communication Services",
-      "industry": "Wireless Telecommunication Services",
-      "marketCap": 192740660097
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TROW",
@@ -11928,8 +11928,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Asset Management & Custody Banks",
-      "marketCap": 22710117569
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TTWO",
@@ -11955,8 +11955,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Interactive Home Entertainment",
-      "marketCap": 39805075880
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TPR",
@@ -11982,8 +11982,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel, Accessories & Luxury Goods",
-      "marketCap": 28306464431
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TRGP",
@@ -12009,8 +12009,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": 56685308343
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TGT",
@@ -12036,8 +12036,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 55670204597
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TEL",
@@ -12063,8 +12063,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Manufacturing Services",
-      "marketCap": 62071641657
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TDY",
@@ -12090,8 +12090,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "marketCap": 27902649943
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TER",
@@ -12117,8 +12117,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "marketCap": 56031136044
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TSLA",
@@ -12144,8 +12144,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Automobile Manufacturers",
-      "marketCap": 1468488033561
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TXN",
@@ -12171,8 +12171,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "marketCap": 259431051002
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TPL",
@@ -12198,8 +12198,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 26885542679
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TXT",
@@ -12225,8 +12225,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 15837808389
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TMO",
@@ -12252,8 +12252,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 175702628652
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TJX",
@@ -12279,8 +12279,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Apparel Retail",
-      "marketCap": 177537051516
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TKO",
@@ -12306,8 +12306,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "marketCap": 15255171778
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TTD",
@@ -12333,8 +12333,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Communication Services",
-      "industry": "Advertising",
-      "marketCap": 8518644653
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TSCO",
@@ -12360,8 +12360,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Other Specialty Retail",
-      "marketCap": 15618109564
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TT",
@@ -12387,8 +12387,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Building Products",
-      "marketCap": 100986984112
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TDG",
@@ -12414,8 +12414,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Aerospace & Defense",
-      "marketCap": 69287166605
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TRV",
@@ -12441,8 +12441,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 64484503152
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TRMB",
@@ -12468,8 +12468,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 12632313214
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TFC",
@@ -12495,8 +12495,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 61297260330
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TYL",
@@ -12522,8 +12522,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 12838732998
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "TSN",
@@ -12549,8 +12549,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Packaged Foods & Meats",
-      "marketCap": 16568930915
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "USB",
@@ -12576,8 +12576,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 86382496138
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UBER",
@@ -12603,8 +12603,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Passenger Ground Transportation",
-      "marketCap": 143937206209
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UDR",
@@ -12630,8 +12630,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Multi-Family Residential REITs",
-      "marketCap": 12736693597
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ULTA",
@@ -12657,8 +12657,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Other Specialty Retail",
-      "marketCap": 20079017488
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UNP",
@@ -12684,8 +12684,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Rail Transportation",
-      "marketCap": 161679982164
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UAL",
@@ -12711,8 +12711,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Passenger Airlines",
-      "marketCap": 34316757341
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UPS",
@@ -12738,8 +12738,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Air Freight & Logistics",
-      "marketCap": 81033990308
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "URI",
@@ -12765,8 +12765,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Trading Companies & Distributors",
-      "marketCap": 66892114167
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UNH",
@@ -12792,8 +12792,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Managed Health Care",
-      "marketCap": 362776445065
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "UHS",
@@ -12819,8 +12819,8 @@
       "newHigh": false,
       "newLow": true,
       "sector": "Health Care",
-      "industry": "Health Care Facilities",
-      "marketCap": 7735761763
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VLO",
@@ -12846,8 +12846,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Refining & Marketing",
-      "marketCap": 75961344291
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VEEV",
@@ -12873,8 +12873,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Technology",
-      "marketCap": 28169727261
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VTR",
@@ -12900,8 +12900,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Health Care REITs",
-      "marketCap": 39875640680
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VLTO",
@@ -12927,8 +12927,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Environmental & Facilities Services",
-      "marketCap": 21133816839
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VRSN",
@@ -12954,8 +12954,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
-      "marketCap": 26837720000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VRSK",
@@ -12981,8 +12981,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Research & Consulting Services",
-      "marketCap": 23810598983
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VZ",
@@ -13008,8 +13008,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Integrated Telecommunication Services",
-      "marketCap": 189445107746
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VRTX",
@@ -13035,8 +13035,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Biotechnology",
-      "marketCap": 113407874478
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VRT",
@@ -13062,8 +13062,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "marketCap": 115428540296
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VTRS",
@@ -13089,8 +13089,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 18493096145
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VICI",
@@ -13116,8 +13116,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Hotel & Resort REITs",
-      "marketCap": 29999096009
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "V",
@@ -13143,8 +13143,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "marketCap": 537032342697
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VST",
@@ -13170,8 +13170,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 50159263939
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "VMC",
@@ -13197,8 +13197,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Materials",
-      "industry": "Construction Materials",
-      "marketCap": 36510429541
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WRB",
@@ -13224,8 +13224,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Property & Casualty Insurance",
-      "marketCap": 25527015513
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "GWW",
@@ -13251,8 +13251,8 @@
       "newHigh": true,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 61377526831
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WAB",
@@ -13278,8 +13278,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Construction Machinery & Heavy Transportation Equipment",
-      "marketCap": 44183980898
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WMT",
@@ -13305,8 +13305,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Staples",
-      "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 946056449946
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "DIS",
@@ -13332,8 +13332,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "marketCap": 173147554087
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WBD",
@@ -13359,8 +13359,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Communication Services",
-      "industry": "Broadcasting",
-      "marketCap": 65787267060
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WM",
@@ -13386,8 +13386,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Environmental & Facilities Services",
-      "marketCap": 88507295740
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WAT",
@@ -13413,8 +13413,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "marketCap": 35873183982
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WEC",
@@ -13440,8 +13440,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Electric Utilities",
-      "marketCap": 36790715330
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WFC",
@@ -13467,8 +13467,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Diversified Banks",
-      "marketCap": 250751927138
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WELL",
@@ -13494,8 +13494,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Health Care REITs",
-      "marketCap": 146074877138
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WST",
@@ -13521,8 +13521,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Supplies",
-      "marketCap": 22218668627
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WDC",
@@ -13548,8 +13548,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 176380740075
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WY",
@@ -13575,8 +13575,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Real Estate",
-      "industry": "Timber REITs",
-      "marketCap": 17651123068
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WSM",
@@ -13602,8 +13602,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Homefurnishing Retail",
-      "marketCap": 24135700322
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WMB",
@@ -13629,8 +13629,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Energy",
-      "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": 88006955149
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WTW",
@@ -13656,8 +13656,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Financials",
-      "industry": "Insurance Brokers",
-      "marketCap": 24890819595
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WDAY",
@@ -13683,8 +13683,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Application Software",
-      "marketCap": 29000280000
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "WYNN",
@@ -13710,8 +13710,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Casinos & Gaming",
-      "marketCap": 10843637445
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "XEL",
@@ -13737,8 +13737,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Utilities",
-      "industry": "Multi-Utilities",
-      "marketCap": 49342266022
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "XYL",
@@ -13764,8 +13764,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Industrials",
-      "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 26132022620
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "YUM",
@@ -13791,8 +13791,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Consumer Discretionary",
-      "industry": "Restaurants",
-      "marketCap": 41582970745
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ZBRA",
@@ -13818,8 +13818,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "marketCap": 11056186617
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ZBH",
@@ -13845,8 +13845,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Health Care Equipment",
-      "marketCap": 16895078553
+      "industry": "Unknown",
+      "marketCap": null
     },
     {
       "ticker": "ZTS",
@@ -13872,8 +13872,8 @@
       "newHigh": false,
       "newLow": false,
       "sector": "Health Care",
-      "industry": "Pharmaceuticals",
-      "marketCap": 33303481693
+      "industry": "Unknown",
+      "marketCap": null
     }
   ]
 }

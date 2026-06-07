@@ -247,7 +247,7 @@ def fetch():
     hist_file = f"history/data_{output['asOf']}.json"
     with open(hist_file, 'w') as f:
         json.dump(output, f, indent=2)
-    print(f"  Archived snapshot → {hist_file}")
+    print(f"  Archived snapshot -> {hist_file}")
 
     print(f"\nSaved data.json -- {len(results)} stocks")
     print(f"  Above 50-MA:    {above50}/{len(results)} ({above50/len(results)*100:.0f}%)")
