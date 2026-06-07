@@ -251,7 +251,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 
 <script>
 // ── State ──────────────────────────────────────────────────────────────
-let chart2 = null;
+let chart2 = null, chart3 = null;
 let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
@@ -347,6 +347,7 @@ function getFilteredStocks() {
 // ── Tab switching ─────────────────────────────────────────────────────
 function switchTab(tab) {
   if (chart2) { chart2.destroy(); chart2 = null; }
+  if (chart3) { chart3.destroy(); chart3 = null; }
   activeTab = tab;
   ['regime','breadth','rotation','leaders'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
@@ -483,7 +484,8 @@ function renderRegime() {
 // ── Tab 2: Breadth — Broad or Narrow? ────────────────────────────────
 function renderBreadth() {
   const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
-          rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m } = _data;
+          rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m,
+          recentLowDate, spxFromLow, rspFromLow, chartDates, chartSpx, chartRsp } = _data;
 
   const secMap = {};
   allStocks.forEach(s => {
@@ -533,10 +535,11 @@ function renderBreadth() {
   }
 
   const ewRows = hasRsp ? [
-    {lbl:'1-day',    rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
-    {lbl:'1-month',  rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
-    {lbl:'YTD',      rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
-    {lbl:'12-month', rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
+    {lbl:'1-day',                        rsp:rspReturn1d,  spx:spxReturn1d,  diff:rspReturn1d  - spxReturn1d},
+    {lbl:'1-month',                      rsp:rspReturn1m,  spx:spxReturn1m,  diff:rspReturn1m  - spxReturn1m},
+    {lbl:'YTD',                          rsp:rspReturnYtd, spx:spxReturnYtd, diff:rspVsSpxYtd},
+    {lbl:'12-month',                     rsp:rspReturn12m, spx:spxReturn12m, diff:rspVsSpx12m},
+    {lbl:`From low (${recentLowDate})`, rsp:rspFromLow,   spx:spxFromLow,   diff:rspFromLow - spxFromLow, highlight:true},
   ] : null;
 
   const ewInterpText = !hasRsp
@@ -578,11 +581,11 @@ function renderBreadth() {
             <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
           </div>
           ${ewRows.map(r=>`
-            <div class="part-row">
-              <span class="part-lbl">${r.lbl}</span>
-              <span class="part-rsp">${pp(r.rsp,true)}%</span>
-              <span class="part-spx">${pp(r.spx,true)}%</span>
-              <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'}">${pp(r.diff,true)}%</span>
+            <div class="part-row" style="${r.highlight?'border-top:0.5px solid var(--border2);margin-top:4px;padding-top:8px;':''}">
+              <span class="part-lbl" style="${r.highlight?'font-weight:600;color:var(--text)':''}">${r.lbl}</span>
+              <span class="part-rsp" style="${r.highlight?'font-weight:600':''}">${pp(r.rsp,true)}%</span>
+              <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spx,true)}%</span>
+              <span class="part-diff" style="color:${r.diff>=-2?'#22c87a':r.diff>=-6?'#f0d040':'#f04f4f'};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
         ` : `
           <div style="padding:20px 0;text-align:center">
@@ -612,6 +615,14 @@ function renderBreadth() {
         <div class="part-interp">${nhiInterpText}</div>
       </div>
     </div>
+
+    ${chartDates ? `
+    <div class="sector-panel" style="margin-bottom:20px">
+      <div class="ptitle">RSP vs SPX — 90-day performance (normalized to 0% at start)</div>
+      <div style="position:relative;height:260px">
+        <canvas id="c3" role="img" aria-label="RSP vs SPX performance chart"></canvas>
+      </div>
+    </div>` : ''}
 
     <div class="sec-health">
       <div class="ptitle">Sector health — ${healthySectors} of ${totalSectors} sectors above 50% breadth</div>
@@ -664,6 +675,73 @@ function renderBreadth() {
       </div>
     </div>
   `;
+
+  // ── RSP vs SPX line chart ──
+  if (chartDates && document.getElementById('c3')) {
+    if (chart3) { chart3.destroy(); chart3 = null; }
+    // Normalize both series to 0% at start
+    const spxBase = chartSpx[0], rspBase = chartRsp[0];
+    const spxNorm = chartSpx.map(p => +((p / spxBase - 1) * 100).toFixed(2));
+    const rspNorm = chartRsp.map(p => +((p / rspBase - 1) * 100).toFixed(2));
+    // Find recent low index for annotation
+    const lowIdx = spxNorm.indexOf(Math.min(...spxNorm));
+    chart3 = new Chart(document.getElementById('c3'), {
+      type: 'line',
+      data: {
+        labels: chartDates,
+        datasets: [
+          {
+            label: 'SPX (cap-weight)',
+            data: spxNorm,
+            borderColor: '#4a9eff',
+            backgroundColor: 'transparent',
+            borderWidth: 2, pointRadius: 0, tension: 0.3
+          },
+          {
+            label: 'RSP (equal-weight)',
+            data: rspNorm,
+            borderColor: '#f0a020',
+            backgroundColor: 'transparent',
+            borderWidth: 2, pointRadius: 0, tension: 0.3
+          },
+          // Dot marking the recent low
+          {
+            label: `Recent low (${recentLowDate})`,
+            data: spxNorm.map((v,i) => i === lowIdx ? v : null),
+            borderColor: '#f04f4f',
+            backgroundColor: '#f04f4f',
+            pointRadius: spxNorm.map((_,i) => i === lowIdx ? 6 : 0),
+            pointHoverRadius: 8,
+            showLine: false, type: 'scatter'
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: true, labels: { color: '#8a92a2', font: { size: 11 }, boxWidth: 20 } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label.includes('low') ? null
+                : `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#555e6e', font: { size: 10 }, maxTicksLimit: 8,
+              callback: (_, i) => chartDates[i] ? chartDates[i].slice(5) : '' },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          y: {
+            ticks: { color: '#555e6e', font: { size: 11 }, callback: v => (v >= 0 ? '+' : '') + v + '%' },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          }
+        }
+      }
+    });
+  }
 }
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
