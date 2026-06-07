@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Breadth Dashboard</title>
+<title>Market Health - Overview</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -228,13 +228,12 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 <div class="wrap">
   <div class="topbar">
     <div>
-      <div class="title">Market Breadth</div>
+      <div class="title">Market Health - Overview</div>
       <div class="sub" id="sub">Loading...</div>
     </div>
     <div class="topbar-right">
       <div class="tab-nav">
-        <button class="tab-btn active" id="tab-regime"   onclick="switchTab('regime')"><div class="tb-name">Regime</div><div class="tb-sub">Invest or Wait?</div></button>
-        <button class="tab-btn"        id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
         <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
       </div>
@@ -256,7 +255,7 @@ let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
-let activeTab = 'regime';
+let activeTab = 'breadth';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 
 // ── Helpers ────────────────────────────────────────────────────────────
@@ -358,12 +357,11 @@ function switchTab(tab) {
   if (chart2) { chart2.destroy(); chart2 = null; }
   if (chart3) { chart3.destroy(); chart3 = null; }
   activeTab = tab;
-  ['regime','breadth','rotation','leaders'].forEach(t =>
+  ['breadth','rotation','leaders'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
-  // Sector filter only on Regime (affects signals) and Leaders (filters table)
   document.getElementById('sectorSelect').style.display =
-    (tab === 'regime' || tab === 'leaders') ? '' : 'none';
+    tab === 'leaders' ? '' : 'none';
   renderCurrent();
 }
 
@@ -376,8 +374,7 @@ function renderCurrent() {
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
     `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
-  if      (activeTab === 'regime')   renderRegime();
-  else if (activeTab === 'breadth')  renderBreadth();
+  if      (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
   else                               renderLeaders();
 }
@@ -833,92 +830,16 @@ function renderBreadth() {
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
 function renderRotation() {
-  const stocks = _data.stocks; // always all sectors for rotation
-  const sectorMap = {};
-  stocks.forEach(s => {
-    const sec = s.sector || 'Unknown';
-    if (!sectorMap[sec]) sectorMap[sec] = { total:0, both:0, above50:0, vsSpxYtd:[], vsSpx12m:[] };
-    sectorMap[sec].total++;
-    if (s.above50 && s.above200) sectorMap[sec].both++;
-    if (s.above50) sectorMap[sec].above50++;
-    if (s.vsSpxYtd != null) sectorMap[sec].vsSpxYtd.push(s.vsSpxYtd);
-    if (s.vsSpx12m != null) sectorMap[sec].vsSpx12m.push(s.vsSpx12m);
-  });
-  const sectorRows = Object.entries(sectorMap).map(([name, v]) => ({
-    name,
-    pct:    Math.round(v.both / v.total * 100),
-    total:  v.total,
-    both:   v.both,
-    medYtd: v.vsSpxYtd.length ? v.vsSpxYtd.reduce((a,b)=>a+b,0)/v.vsSpxYtd.length : 0,
-    med12m: v.vsSpx12m.length ? v.vsSpx12m.reduce((a,b)=>a+b,0)/v.vsSpx12m.length : 0,
-  })).sort((a,b) => b.pct - a.pct);
-
   document.getElementById('root').innerHTML = tabHdr(
     'Where is money going — and is it staying in equities?',
-    'Even in a healthy bull market, money rotates between sectors. This tab shows which sectors have institutional money behind them, which are under accumulation, and which are quietly being sold. Strong sectors in a healthy regime are your hunting ground for the next tab.'
+    'Even in a healthy bull market, money rotates between sectors. This tab will show which sectors have institutional money behind them, which are under accumulation, and which are quietly being sold.'
   ) + `
-    <div class="sector-panel">
-      <div class="ptitle">% Above Both MAs by Sector — All Sectors · Sorted by breadth</div>
-      <div style="position:relative;height:360px">
-        <canvas id="c2" role="img" aria-label="Sector breadth histogram"></canvas>
-      </div>
-    </div>
-
-    <div class="sec-health">
-      <div class="ptitle">Sector relative strength vs SPX</div>
-      <div style="overflow-x:auto"><table>
-        <thead><tr>
-          <th>Sector</th><th>Stocks</th><th>% Both MAs</th>
-          <th>Avg vs SPX YTD</th><th>Avg vs SPX 12m</th><th>Assessment</th>
-        </tr></thead>
-        <tbody>
-          ${sectorRows.map(s => {
-            const reg = regime(s.pct);
-            const ytdC = s.medYtd >= 2 ? '#22c87a' : s.medYtd >= -2 ? '#f0d040' : '#f04f4f';
-            const m12C = s.med12m >= 2 ? '#22c87a' : s.med12m >= -2 ? '#f0d040' : '#f04f4f';
-            const assess = s.medYtd >= 2 && s.pct >= 50 ? `<span style="color:#22c87a;font-weight:600">Accumulation</span>`
-              : s.medYtd <= -2 && s.pct < 50 ? `<span style="color:#f04f4f;font-weight:600">Distribution</span>`
-              : `<span style="color:#f0d040">Neutral</span>`;
-            return `<tr>
-              <td style="font-weight:600">${s.name}</td>
-              <td class="muted">${s.total}</td>
-              <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
-              <td style="font-weight:600;color:${ytdC}">${pp(s.medYtd,true)}%</td>
-              <td style="font-weight:600;color:${m12C}">${pp(s.med12m,true)}%</td>
-              <td>${assess}</td>
-            </tr>`;}).join('')}
-        </tbody>
-      </table></div>
+    <div class="panel" style="text-align:center;padding:60px 20px">
+      <div style="font-size:32px;margin-bottom:16px">🚧</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">Work In Progress</div>
+      <div style="font-size:13px;color:var(--text2)">Sector rotation charts and analysis coming soon.</div>
     </div>
   `;
-
-  chart2 = new Chart(document.getElementById('c2'), {
-    type:'bar',
-    data:{
-      labels: sectorRows.map(s=>s.name),
-      datasets:[{
-        label:'% above both MAs',
-        data: sectorRows.map(s=>s.pct),
-        backgroundColor: sectorRows.map(s=>regime(s.pct).color+'99'),
-        borderColor:     sectorRows.map(s=>regime(s.pct).color),
-        borderWidth:1, borderRadius:4
-      }]
-    },
-    options:{
-      indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{ callbacks:{ label:c=>{
-          const row = sectorRows[c.dataIndex];
-          return `${c.parsed.x}% above both MAs (${row.both}/${row.total})`;
-        }}}
-      },
-      scales:{
-        x:{ min:0, max:100, ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'}, grid:{color:'rgba(255,255,255,0.06)'} },
-        y:{ ticks:{color:'#8a92a2',font:{size:12}}, grid:{display:false} }
-      }
-    }
-  });
 }
 
 // ── Tab 4: Leaders — What to Buy? ────────────────────────────────────
