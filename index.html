@@ -528,6 +528,8 @@ function renderBreadth() {
       name, ...d,
       pct:            Math.round(d.both / d.total * 100),
       weight:         +(wt * 100).toFixed(1),
+      retYtd:         +retYtd.toFixed(2),
+      retFromLow:     +retFromLow.toFixed(2),
       contribYtd:     +(wt * retYtd).toFixed(2),
       contribFromLow: +(wt * retFromLow).toFixed(2),
     };
@@ -673,6 +675,9 @@ function renderBreadth() {
           <th onclick="sortBreadth('pct')" style="cursor:pointer" title="% of sector stocks above both MAs">% Both MAs${si('pct')}</th>
           <th style="width:90px">Breadth</th>
           <th onclick="sortBreadth('weight')" style="cursor:pointer" title="Sector weight in S&P 500 by market cap">Wt %${si('weight')}</th>
+          <th onclick="sortBreadth('mcap')" style="cursor:pointer" title="Total sector market cap">Mkt Cap${si('mcap')}</th>
+          <th onclick="sortBreadth('retYtd')" style="cursor:pointer" title="Market-cap weighted YTD return of sector">Ret YTD${si('retYtd')}</th>
+          <th onclick="sortBreadth('retFromLow')" style="cursor:pointer" title="Market-cap weighted return since recent low">Ret From Low${si('retFromLow')}</th>
           <th onclick="sortBreadth('contribYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Sector weight × mcap-wtd YTD return = % pts added to SPY YTD">YTD Contrib${si('contribYtd')}</th>
           <th onclick="sortBreadth('contribFromLow')" style="cursor:pointer" title="Sector weight × mcap-wtd return since ${recentLowDate} = % pts added to SPY since low">From-Low Contrib${si('contribFromLow')}</th>
           <th onclick="sortBreadth('newHighs')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Stocks within 2% of 52W high · ★ = ≥3 stocks &amp; ≥5% of sector">52W Highs${si('newHighs')}</th>
@@ -691,6 +696,9 @@ function renderBreadth() {
               <td style="font-weight:700;color:${reg.color}">${s.pct}%</td>
               <td><div style="height:4px;background:var(--bg3);border-radius:2px"><div style="width:${s.pct}%;height:4px;background:${reg.color};border-radius:2px"></div></div></td>
               <td class="muted">${s.weight}%</td>
+              <td class="muted">${fmtMcap(s.mcap)}</td>
+              <td style="color:${s.retYtd>0?'#22c87a':s.retYtd<0?'#f04f4f':'var(--text2)'}">${pp(s.retYtd,true)}%</td>
+              <td style="color:${s.retFromLow>0?'#22c87a':s.retFromLow<0?'#f04f4f':'var(--text2)'}">${pp(s.retFromLow,true)}%</td>
               <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
               <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
               <td style="color:${realHighs?'#22c87a':s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
@@ -705,6 +713,9 @@ function renderBreadth() {
             <td style="font-weight:700;color:${regime(Math.round(totals.both/totals.total*100)).color}">${Math.round(totals.both/totals.total*100)}%</td>
             <td></td>
             <td class="muted">100%</td>
+            <td class="muted">${fmtMcap(totalMcap)}</td>
+            <td style="font-weight:700;color:${spyReturnYtd>0?'#22c87a':'#f04f4f'}">${pp(spyReturnYtd,true)}%</td>
+            <td style="font-weight:700;color:${spyFromLow>0?'#22c87a':'#f04f4f'}">${pp(spyFromLow,true)}%</td>
             <td style="font-weight:700;color:${totals.contribYtd>=0?'#22c87a':'#f04f4f'};border-left:0.5px solid var(--border)">${totals.contribYtd>=0?'+':''}${totals.contribYtd}%</td>
             <td style="font-weight:700;color:${totals.contribFromLow>=0?'#22c87a':'#f04f4f'}">${totals.contribFromLow>=0?'+':''}${totals.contribFromLow}%</td>
             <td style="color:var(--text2);border-left:0.5px solid var(--border)">${totals.newHighs}</td>
