@@ -501,7 +501,8 @@ function renderBreadth() {
     .sort((a,b) => b.pct - a.pct);
 
   const healthySectors = sectors.filter(s => s.pct >= 50).length;
-  const newHighSectors = sectors.filter(s => s.newHighs > 0).length;
+  // A sector "makes new highs" only if ≥3 stocks AND ≥5% of stocks in that sector — avoids counting 1 stock as "sector leadership"
+  const newHighSectors = sectors.filter(s => s.newHighs >= 3 && (s.newHighs / s.total) >= 0.05).length;
   const totalSectors   = sectors.length;
 
   const hasRsp = rspReturnYtd != null;
@@ -648,9 +649,10 @@ function renderBreadth() {
         <div style="font-size:11px;color:var(--text2);margin-top:4px">${healthySectors>=7?'Broadly healthy':healthySectors>=4?'Mixed — some at risk':'Most sectors weak'}</div>
       </div>
       <div class="part-box" style="text-align:center">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors Making Highs</div>
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Sectors With Real Highs</div>
         <div style="font-size:32px;font-weight:700;color:${newHighSectors>=5?'#22c87a':newHighSectors>=3?'#f0d040':'#f04f4f'}">${newHighSectors}<span style="font-size:14px;color:var(--text3)"> / ${totalSectors}</span></div>
         <div style="font-size:11px;color:var(--text2);margin-top:4px">${newHighSectors>=5?'Broad breakout leadership':newHighSectors>=3?'Partial spread':'Concentrated highs'}</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">≥3 stocks &amp; ≥5% of sector</div>
       </div>
       <div class="part-box" style="text-align:center">
         <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Equal-weight Spread (YTD)</div>
