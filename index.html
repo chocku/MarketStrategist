@@ -343,6 +343,7 @@ function maBadge(a,b) {
 }
 function pct(a,b)            { return Math.round(a/b*100); }
 function pp(n, sign=false)   { const s=n.toFixed(1); return sign&&n>0?'+'+s:s; }
+function fmtDate(s)          { return s ? new Date(s).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—'; }
 function vsPct(price, ma)    { return pp((price-ma)/ma*100, true)+'%'; }
 function fmtMcap(v) {
   if (!v) return '—';
@@ -374,7 +375,7 @@ async function init() {
     return;
   }
   _data = d;
-  document.getElementById('dataDate').textContent = d.asOf || '—';
+  document.getElementById('dataDate').textContent = fmtDate(d.asOf);
   filterSector = 'all';
   industryFilterSector = 'all';
   leadersSector = 'all';
@@ -386,7 +387,7 @@ async function init() {
     const ageDays = (Date.now() - new Date(d.asOf).getTime()) / 86400000;
     if (ageDays > 3) {
       banner.style.display = 'block';
-      banner.textContent = `⚠ Data is ${Math.floor(ageDays)} days old (last updated ${d.asOf}). The daily fetcher may not have run recently.`;
+      banner.textContent = `⚠ Data is ${Math.floor(ageDays)} days old (last updated ${fmtDate(d.asOf)}). The daily fetcher may not have run recently.`;
     } else {
       banner.style.display = 'none';
     }
@@ -608,7 +609,7 @@ function renderCurrent() {
   const n = stocks.length;
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
-    `${label} · ${asOf} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
+    `${label} · ${fmtDate(asOf)} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
   if      (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
   else                               renderLeaders();
