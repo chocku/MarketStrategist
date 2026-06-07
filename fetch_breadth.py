@@ -31,20 +31,20 @@ def get_sp500_info():
         }
     return info
 
-def fetch_mcap(ticker):
-    """Return (ticker, market_cap) using sharesOutstanding × price.
-    This correctly handles dual-class shares (GOOGL/GOOG, BRK-A/BRK-B):
-    each class gets its own float, not the full company market cap."""
+def fetch_ticker_info(ticker):
+    """Return (ticker, market_cap, yahoo_industry) in one yfinance info call.
+    Market cap uses sharesOutstanding × price so dual-class shares (GOOGL/GOOG,
+    BRK-A/BRK-B) each get their own float rather than the full company cap.
+    Yahoo's 'industry' field gives ~50-60 groups vs Wikipedia's ~158 GICS sub-industries."""
     try:
         info = yf.Ticker(ticker).info
         shares = info.get('sharesOutstanding') or info.get('impliedSharesOutstanding')
         price  = info.get('currentPrice') or info.get('regularMarketPrice') or info.get('previousClose')
-        if shares and price:
-            return ticker, int(shares * price)
-        # Fallback to reported marketCap (may double-count dual-class)
-        return ticker, info.get('marketCap', None)
+        mcap = int(shares * price) if shares and price else info.get('marketCap', None)
+        industry = info.get('industry') or None
+        return ticker, mcap, industry
     except Exception:
-        return ticker, None
+        return ticker, None, None
 
 def fetch():
     print("Fetching S&P 500 ticker list and sector data from Wikipedia...")
@@ -117,18 +117,18 @@ def fetch():
     except Exception as e:
         print(f"  SPY/RSP fetch failed (non-critical): {e}")
 
-    print(f"Fetching market caps for {len(TICKERS)} tickers (parallelized)...")
-    mcap_map = {}
+    print(f"Fetching market caps + Yahoo industry for {len(TICKERS)} tickers (parallelized)...")
+    ticker_meta = {}  # {ticker: {'mcap': int|None, 'industry': str|None}}
     with ThreadPoolExecutor(max_workers=20) as ex:
-        futures = {ex.submit(fetch_mcap, t): t for t in TICKERS}
+        futures = {ex.submit(fetch_ticker_info, t): t for t in TICKERS}
         done = 0
         for future in as_completed(futures):
-            ticker, mcap = future.result()
-            mcap_map[ticker] = mcap
+            ticker, mcap, industry = future.result()
+            ticker_meta[ticker] = {'mcap': mcap, 'industry': industry}
             done += 1
             if done % 100 == 0:
-                print(f"  Market caps: {done}/{len(TICKERS)}")
-    print("  Market caps complete.")
+                print(f"  Ticker info: {done}/{len(TICKERS)}")
+    print("  Ticker info complete.")
 
     results = []
     for ticker in TICKERS:
@@ -197,8 +197,8 @@ def fetch():
                 "newHigh":    new_high,
                 "newLow":     new_low,
                 "sector":     meta.get('sector', 'Unknown'),
-                "industry":   meta.get('industry', 'Unknown'),
-                "marketCap":  mcap_map.get(ticker),
+                "industry":   ticker_meta.get(ticker, {}).get('industry') or 'Unknown',
+                "marketCap":  ticker_meta.get(ticker, {}).get('mcap'),
             })
             status = "OK" if price > ma50 and price > ma200 else "~" if price > ma50 or price > ma200 else "X"
             print(f"  {status} {ticker}: ${price:.2f} | 50MA:{ma50:.0f} | 200MA:{ma200:.0f} | YTD:{ret_ytd:.1f}% | Sector:{meta.get('sector','?')}")
