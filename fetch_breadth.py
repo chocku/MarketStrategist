@@ -32,8 +32,17 @@ def get_sp500_info():
     return info
 
 def fetch_mcap(ticker):
+    """Return (ticker, market_cap) using sharesOutstanding × price.
+    This correctly handles dual-class shares (GOOGL/GOOG, BRK-A/BRK-B):
+    each class gets its own float, not the full company market cap."""
     try:
-        return ticker, yf.Ticker(ticker).info.get('marketCap', None)
+        info = yf.Ticker(ticker).info
+        shares = info.get('sharesOutstanding') or info.get('impliedSharesOutstanding')
+        price  = info.get('currentPrice') or info.get('regularMarketPrice') or info.get('previousClose')
+        if shares and price:
+            return ticker, int(shares * price)
+        # Fallback to reported marketCap (may double-count dual-class)
+        return ticker, info.get('marketCap', None)
     except Exception:
         return ticker, None
 
