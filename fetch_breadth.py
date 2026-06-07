@@ -239,6 +239,14 @@ def fetch():
     with open('data.json', 'w') as f:
         json.dump(output, f, indent=2)
 
+    # Save daily snapshot to history/
+    import os
+    os.makedirs('history', exist_ok=True)
+    hist_file = f"history/data_{output['asOf']}.json"
+    with open(hist_file, 'w') as f:
+        json.dump(output, f, indent=2)
+    print(f"  Archived snapshot → {hist_file}")
+
     # Embed data inline into the HTML so it works without a local server
     html_file = 'index.html'
     try:
