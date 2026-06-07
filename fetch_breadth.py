@@ -106,14 +106,14 @@ def fetch():
         rsp_from_low = float((rsp_prices.iloc[-1] / rsp_prices.loc[low_ts] - 1) * 100)
         print(f"Recent low: {recent_low_date}  SPY from low: {spy_from_low:+.1f}%  RSP from low: {rsp_from_low:+.1f}%")
 
-        # 90-day chart series — % return from first day of window (actual cumulative return)
-        spy_90  = spy_prices.iloc[-90:]
-        rsp_90  = rsp_prices.reindex(spy_90.index).ffill()
-        spy_base = float(spy_90.iloc[0])
-        rsp_base = float(rsp_90.iloc[0])
-        chart_dates = [str(d.date()) for d in spy_90.index]
-        chart_spy   = [round((float(p) / spy_base - 1) * 100, 2) for p in spy_90.values]
-        chart_rsp   = [round((float(p) / rsp_base - 1) * 100, 2) for p in rsp_90.values]
+        # YTD chart series — % return from first trading day of current year
+        spy_ytd_chart = spy_prices[spy_prices.index.year == current_year]
+        rsp_ytd_chart = rsp_prices.reindex(spy_ytd_chart.index).ffill()
+        spy_base = float(spy_ytd_chart.iloc[0])
+        rsp_base = float(rsp_ytd_chart.iloc[0])
+        chart_dates = [str(d.date()) for d in spy_ytd_chart.index]
+        chart_spy   = [round((float(p) / spy_base - 1) * 100, 2) for p in spy_ytd_chart.values]
+        chart_rsp   = [round((float(p) / rsp_base - 1) * 100, 2) for p in rsp_ytd_chart.values]
     except Exception as e:
         print(f"  SPY/RSP fetch failed (non-critical): {e}")
 
