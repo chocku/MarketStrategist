@@ -52,11 +52,13 @@ def fetch():
 
     last_date = str(closes.index[-1].date())
     spx_prices = closes[SPX].dropna()
-    spx_1d  = float((spx_prices.iloc[-1] / spx_prices.iloc[-2] - 1) * 100)
+    spx_1d  = float((spx_prices.iloc[-1] / spx_prices.iloc[-2]  - 1) * 100)
+    spx_1w  = float((spx_prices.iloc[-1] / spx_prices.iloc[-5]  - 1) * 100)
+    spx_1m  = float((spx_prices.iloc[-1] / spx_prices.iloc[-21] - 1) * 100)
     spx_ytd_prices = spx_prices[spx_prices.index.year == current_year]
     spx_ytd = float((spx_prices.iloc[-1] / spx_ytd_prices.iloc[0] - 1) * 100)
-    spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0] - 1) * 100)
-    print(f"SPX: 1d {spx_1d:+.2f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  Last date: {last_date}")
+    spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0]  - 1) * 100)
+    print(f"SPX: 1d {spx_1d:+.2f}%  1w {spx_1w:+.2f}%  1m {spx_1m:+.1f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  {last_date}")
 
     print(f"Fetching market caps for {len(TICKERS)} tickers (parallelized)...")
     mcap_map = {}
@@ -86,7 +88,8 @@ def fetch():
             def ret(n):
                 return float((prices.iloc[-1] / prices.iloc[-n] - 1) * 100) if len(prices) >= n else 0.0
 
-            ret_1d = float((prices.iloc[-1] / prices.iloc[-2] - 1) * 100) if len(prices) >= 2 else 0.0
+            ret_1d = float((prices.iloc[-1] / prices.iloc[-2]  - 1) * 100) if len(prices) >= 2  else 0.0
+            ret_1w = float((prices.iloc[-1] / prices.iloc[-5]  - 1) * 100) if len(prices) >= 5  else 0.0
 
             # YTD return — first trading day of current year
             ytd_prices = prices[prices.index.year == current_year]
@@ -110,11 +113,14 @@ def fetch():
                 "above50":    price > ma50,
                 "above200":   price > ma200,
                 "return1d":   round(ret_1d, 2),
+                "return1w":   round(ret_1w, 2),
                 "return1m":   round(ret(21), 2),
                 "return3m":   round(ret(63), 2),
                 "returnYtd":  round(ret_ytd, 2),
                 "return12m":  round(r12m, 2),
                 "vsSpx1d":    round(ret_1d  - spx_1d,  2),
+                "vsSpx1w":    round(ret_1w  - spx_1w,  2),
+                "vsSpx1m":    round(ret(21) - spx_1m,  2),
                 "vsSpxYtd":   round(ret_ytd - spx_ytd, 2),
                 "vsSpx12m":   round(r12m    - spx_12m, 2),
                 "high52":     round(high52, 2),
@@ -139,6 +145,8 @@ def fetch():
     output = {
         "asOf":          last_date,
         "spxReturn1d":   round(spx_1d, 2),
+        "spxReturn1w":   round(spx_1w, 2),
+        "spxReturn1m":   round(spx_1m, 2),
         "spxReturnYtd":  round(spx_ytd, 2),
         "spxReturn12m":  round(spx_12m, 2),
         "newHighCount":  new_highs,

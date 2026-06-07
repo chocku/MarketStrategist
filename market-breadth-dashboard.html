@@ -126,9 +126,12 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .muted { color:var(--text2); font-size:12px; }
 .sector-tag { font-size:11px; color:var(--text2); max-width:140px; overflow:hidden; text-overflow:ellipsis; }
 
-/* RS bar */
-.rsrow { display:flex; align-items:center; gap:8px; }
-.rsb   { height:4px; border-radius:2px; }
+/* Beating SPX rows */
+.beat-row  { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:0.5px solid var(--border); }
+.beat-row:last-child { border-bottom:none; }
+.beat-lbl  { font-size:11px; color:var(--text3); min-width:28px; }
+.beat-spx  { font-size:10px; color:var(--text3); flex:1; }
+.beat-val  { font-size:13px; font-weight:700; min-width:30px; text-align:right; }
 
 /* New high/low tag */
 .htag { font-size:10px; font-weight:700; }
@@ -276,13 +279,17 @@ function getFilteredStocks() {
 // ── Full render ────────────────────────────────────────────────────────
 function render() {
   if (!_data) return;
-  const { stocks: allStocks, spxReturn1d, spxReturnYtd, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
+  const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
   const stocks = getFilteredStocks();
   const n     = stocks.length;
   const a50   = stocks.filter(s=>s.above50).length;
   const a200  = stocks.filter(s=>s.above200).length;
   const aBoth = stocks.filter(s=>s.above50&&s.above200).length;
-  const topRS = stocks.filter(s=>s.vsSpx12m > 0).length;
+  const beat1d  = stocks.filter(s=>s.vsSpx1d  > 0).length;
+  const beat1w  = stocks.filter(s=>s.vsSpx1w  > 0).length;
+  const beat1m  = stocks.filter(s=>s.vsSpx1m  > 0).length;
+  const beatYtd = stocks.filter(s=>s.vsSpxYtd > 0).length;
+  const beat12m = stocks.filter(s=>s.vsSpx12m > 0).length;
   const p50   = n ? pct(a50,n) : 0;
   const p200  = n ? pct(a200,n) : 0;
   const pBoth = n ? pct(aBoth,n) : 0;
@@ -291,7 +298,6 @@ function render() {
   const label = filterSector==='all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent = `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
 
-  if (chart1) { chart1.destroy(); chart1=null; }
   if (chart2) { chart2.destroy(); chart2=null; }
   if (chart3) { chart3.destroy(); chart3=null; }
 
@@ -301,6 +307,10 @@ function render() {
       <div class="rdot" style="background:${reg.color}"></div>
       <span class="rname" style="color:${reg.color}">${reg.label}</span>
       <span class="rsig">${reg.signal}</span>
+      <div class="zones" style="margin:0;padding:0;border:none;margin-left:auto;gap:14px">
+        ${[['#f04f4f','< 20% Capitulation'],['#f0a020','20–40% Bear'],['#f0d040','40–60% Neutral'],['#22c87a','60–80% Bull'],['#4a9eff','> 80% Overbought']]
+          .map(([c,l])=>`<div class="zitem"><div class="zdot" style="background:${c}"></div>${l}</div>`).join('')}
+      </div>
     </div>
 
     <div class="cards">
@@ -320,11 +330,6 @@ function render() {
         <div class="csub">Above both MAs · ${aBoth} stocks</div>
       </div>
       <div class="card">
-        <div class="clbl">Beating SPX 12m</div>
-        <div class="cval" style="color:#22c87a">${topRS}</div>
-        <div class="csub">Outperforming SPX over 12m</div>
-      </div>
-      <div class="card">
         <div class="clbl">52-Week Extremes</div>
         <div class="hl-row">
           <div>
@@ -337,37 +342,20 @@ function render() {
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="two">
-      <div class="panel">
-        <div class="ptitle">Breadth Gauges</div>
+      <div class="card">
+        <div class="clbl">Beating SPX</div>
         ${[
-          {name:'% above 50-MA',    v:p50,   c:regime(p50).color},
-          {name:'% above 200-MA',   v:p200,  c:regime(p200).color},
-          {name:'% above both MAs', v:pBoth, c:regime(pBoth).color}
-        ].map(g=>`
-          <div class="gauge-row">
-            <span class="gname">${g.name}</span>
-            <div class="gtrack"><div class="gfill" style="width:${g.v}%;background:${g.c}"></div></div>
-            <span class="gpct" style="color:${g.c}">${g.v}%</span>
+          {label:'1d',  v:beat1d,  spx:spxReturn1d},
+          {label:'1w',  v:beat1w,  spx:spxReturn1w},
+          {label:'1m',  v:beat1m,  spx:spxReturn1m},
+          {label:'YTD', v:beatYtd, spx:spxReturnYtd},
+          {label:'12m', v:beat12m, spx:spxReturn12m}
+        ].map(r=>`
+          <div class="beat-row">
+            <span class="beat-lbl">${r.label}</span>
+            <span class="beat-spx">SPX ${pp(r.spx??0,true)}%</span>
+            <span class="beat-val" style="color:${r.v>n/2?'#22c87a':'#f04f4f'}">${r.v}</span>
           </div>`).join('')}
-        <div class="zones">
-          ${[
-            ['#f04f4f','< 20% Capitulation'],
-            ['#f0a020','20–40% Bear'],
-            ['#f0d040','40–60% Neutral'],
-            ['#22c87a','60–80% Bull'],
-            ['#4a9eff','> 80% Overbought']
-          ].map(([c,l])=>`<div class="zitem"><div class="zdot" style="background:${c}"></div>${l}</div>`).join('')}
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="ptitle">12-Month Return vs SPX (SPX: ${pp(spxReturn12m,true)}%)</div>
-        <div style="position:relative;height:210px">
-          <canvas id="c1" role="img" aria-label="12-month returns"></canvas>
-        </div>
       </div>
     </div>
 
@@ -416,39 +404,6 @@ function render() {
       New Highs/Lows = within 2% of 52-week extreme
     </div>
   `;
-
-  // ── 12m returns chart (filtered stocks) ──
-  const byRet = [...stocks].sort((a,b)=>b.return12m-a.return12m);
-  chart1 = new Chart(document.getElementById('c1'), {
-    type:'bar',
-    data:{
-      labels: byRet.map(s=>s.ticker),
-      datasets:[
-        {
-          label:'12m return',
-          data: byRet.map(s=>parseFloat(s.return12m.toFixed(1))),
-          backgroundColor: byRet.map(s=>s.return12m>=spxReturn12m?'rgba(34,200,122,0.5)':'rgba(240,79,79,0.5)'),
-          borderColor:     byRet.map(s=>s.return12m>=spxReturn12m?'#22c87a':'#f04f4f'),
-          borderWidth:1, borderRadius:3
-        },
-        {
-          label:`SPX ${pp(spxReturn12m,true)}%`,
-          data: byRet.map(()=>parseFloat(spxReturn12m.toFixed(1))),
-          type:'line', borderColor:'#4a9eff', borderWidth:1.5,
-          borderDash:[4,3], pointRadius:0, fill:false
-        }
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false},
-        tooltip:{ callbacks:{ label:c=>`${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y}%` }}},
-      scales:{
-        x:{ ticks:{color:'#555e6e',font:{size:10},maxRotation:0}, grid:{color:'rgba(255,255,255,0.04)'} },
-        y:{ ticks:{color:'#555e6e',font:{size:11},callback:v=>v+'%'}, grid:{color:'rgba(255,255,255,0.04)'} }
-      }
-    }
-  });
 
   // ── Sector histogram (uses filtered stocks) ──
   const sectorMap = {};
