@@ -265,8 +265,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         <div>Data as of: <span style="color:var(--text2)" id="dataDate">—</span></div>
       </div>
       <div class="tab-nav">
-        <button class="tab-btn active" id="tab-regime"   onclick="switchTab('regime')"><div class="tb-name">Regime</div><div class="tb-sub">Invest or Wait?</div></button>
-        <button class="tab-btn"        id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
         <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
       </div>
@@ -313,7 +312,7 @@ let _data = null;
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
-let activeTab = 'regime';
+let activeTab = 'breadth';
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
 
@@ -580,7 +579,7 @@ function switchTab(tab) {
     document.getElementById('sectorSelect').value = 'all';
   }
   activeTab = tab;
-  ['regime','breadth','rotation','leaders'].forEach(t =>
+  ['breadth','rotation','leaders'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
   document.getElementById('sectorSelect').style.display =
@@ -597,8 +596,7 @@ function renderCurrent() {
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
     `${label} · ${asOf} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
-  if      (activeTab === 'regime')   renderRegime();
-  else if (activeTab === 'breadth')  renderBreadth();
+  if      (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
   else                               renderLeaders();
 }
@@ -611,107 +609,7 @@ function tabHdr(question, why) {
   </div>`;
 }
 
-// ── Tab 1: Regime — Invest or Wait? ───────────────────────────────────
-function renderRegime() {
-  const { spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m, newHighCount, newLowCount } = _data;
-  const stocks = getFilteredStocks();
-  const n = stocks.length;
-  const a50   = stocks.filter(s=>s.above50).length;
-  const a200  = stocks.filter(s=>s.above200).length;
-  const aBoth = stocks.filter(s=>s.above50&&s.above200).length;
-  const beat1d  = stocks.filter(s=>s.vsSpx1d  > 0).length;
-  const beat1w  = stocks.filter(s=>s.vsSpx1w  > 0).length;
-  const beat1m  = stocks.filter(s=>s.vsSpx1m  > 0).length;
-  const beatYtd = stocks.filter(s=>s.vsSpxYtd > 0).length;
-  const beat12m = stocks.filter(s=>s.vsSpx12m > 0).length;
-  const p50   = n ? pct(a50,n) : 0;
-  const p200  = n ? pct(a200,n) : 0;
-  const pBoth = n ? pct(aBoth,n) : 0;
-  const reg   = regime(pBoth);
-
-  document.getElementById('root').innerHTML = tabHdr(
-    'Should I be invested at all?',
-    'Before buying anything, you need to know if the overall environment supports being long. This is the gate everything else passes through. A healthy regime means conditions are safe to put money to work — a broken regime means stay in cash and wait.'
-  ) + `
-    <div class="regime" style="border-color:${reg.color}33">
-      <div class="rdot" style="background:${reg.color}"></div>
-      <span class="rname" style="color:${reg.color}">${reg.label}</span>
-      <span class="rsig">${reg.signal}</span>
-      <div class="zones" style="margin:0;padding:0;border:none;margin-left:auto;gap:14px">
-        ${[[C.red,'< 20% Capitulation'],[C.amber,'20–40% Bear'],[C.yellow,'40–60% Neutral'],[C.green,'60–80% Bull'],[C.blue,'> 80% Overbought']]
-          .map(([c,l])=>`<div class="zitem"><div class="zdot" style="background:${c}"></div>${l}</div>`).join('')}
-      </div>
-    </div>
-
-    <div class="signal-boxes">
-      <div class="signal-box">
-        <div class="signal-title">Is the market trending?</div>
-        ${[
-          {lbl:'Short-term (50-MA)',  pct:p50,   n:a50,   c:regime(p50).color},
-          {lbl:'Long-term (200-MA)',  pct:p200,  n:a200,  c:regime(p200).color},
-          {lbl:'Clean trend (both)', pct:pBoth, n:aBoth, c:regime(pBoth).color}
-        ].map(r=>`
-          <div class="signal-row">
-            <span class="signal-lbl">${r.lbl}</span>
-            <span class="signal-sub">${r.n} stocks</span>
-            <span class="signal-val" style="color:${r.c}">${r.pct}%</span>
-          </div>`).join('')}
-        <div class="signal-interp">${
-          pBoth >= 60 ? `<strong style="color:${C.green}">Broad trend intact.</strong> ${pBoth}% of stocks are above both MAs — the majority of the market is in an established uptrend.` :
-          pBoth >= 40 ? `<strong style="color:${C.yellow}">Mixed signals.</strong> ${pBoth}% above both MAs. The market lacks a clear directional conviction — roughly half trending, half not.` :
-          pBoth >= 20 ? `<strong style="color:${C.amber}">Trend deteriorating.</strong> Only ${pBoth}% hold both MAs. Most stocks are broken from their trend — risk-off conditions prevail.` :
-          `<strong style="color:${C.red}">Capitulation territory.</strong> ${pBoth}% above both MAs. Broad trend breakdown — historically a potential washout or reversal zone.`
-        }</div>
-      </div>
-
-      <div class="signal-box">
-        <div class="signal-title">Are stocks beating the index?</div>
-        ${[
-          {label:'1d',  v:beat1d,  spx:spxReturn1d},
-          {label:'1w',  v:beat1w,  spx:spxReturn1w},
-          {label:'1m',  v:beat1m,  spx:spxReturn1m},
-          {label:'YTD', v:beatYtd, spx:spxReturnYtd},
-          {label:'12m', v:beat12m, spx:spxReturn12m}
-        ].map(r=>`
-          <div class="signal-row">
-            <span class="signal-lbl">${r.label}</span>
-            <span class="signal-sub">SPX ${pp(r.spx??0,true)}%</span>
-            <span class="signal-val" style="color:${r.v>n/2?C.green:C.red}">${r.v} <span style="font-size:10px;font-weight:400;color:var(--text3)">of ${n}</span></span>
-          </div>`).join('')}
-        <div class="signal-interp">${(()=>{
-          const r12 = n ? beat12m/n : 0;
-          const rYtd = n ? beatYtd/n : 0;
-          if (r12 >= 0.5 && rYtd >= 0.5) return `<strong style="color:${C.green}">Wide participation.</strong> More than half the index is outperforming SPX on both a YTD and 12-month basis — breadth is supporting the rally.`;
-          if (r12 >= 0.5) return `<strong style="color:${C.green}">Long-run leaders.</strong> ${beat12m} stocks beat SPX over 12m, but YTD breadth is narrower (${beatYtd}). Recent leadership may be concentrated.`;
-          if (rYtd >= 0.5) return `<strong style="color:${C.yellow}">Recovering breadth.</strong> ${beatYtd} stocks beat SPX YTD despite weaker 12m numbers — rotation or mean reversion underway.`;
-          return `<strong style="color:${C.red}">Narrow market.</strong> Fewer than half beat SPX over both YTD and 12m — the index return is being driven by a small group of outperformers.`;
-        })()}</div>
-      </div>
-
-      <div class="signal-box">
-        <div class="signal-title">Is the trend making new ground?</div>
-        <div class="signal-row">
-          <span class="signal-lbl">New 52-week highs</span>
-          <span class="signal-val" style="color:${C.green}">${newHighCount ?? '—'}</span>
-        </div>
-        <div class="signal-row">
-          <span class="signal-lbl">New 52-week lows</span>
-          <span class="signal-val" style="color:${C.red}">${newLowCount ?? '—'}</span>
-        </div>
-        <div class="signal-interp">${(()=>{
-          const nh = newHighCount ?? 0, nl = newLowCount ?? 0;
-          const ratio = (nh + nl) > 0 ? nh / (nh + nl) : 0.5;
-          if (ratio >= 0.7) return `<strong style="color:${C.green}">Expansion in progress.</strong> New highs dominate (${nh} vs ${nl} lows) — fresh breakouts are leading the market forward.`;
-          if (ratio >= 0.5) return `<strong style="color:${C.yellow}">Modest expansion.</strong> More highs than lows (${nh} vs ${nl}), but not a decisive surge. The trend is advancing but without strong conviction.`;
-          if (ratio >= 0.3) return `<strong style="color:${C.amber}">Contraction warning.</strong> Lows are outpacing highs (${nh} highs vs ${nl} lows) — the trend is losing new leadership and may be stalling.`;
-          return `<strong style="color:${C.red}">Broad breakdown.</strong> New lows dominate (${nl} vs ${nh} highs) — stocks are making fresh 52-week lows at an alarming rate.`;
-        })()}</div>
-      </div>
-    </div>
-  `;
-}
-
-// ── Tab 2: Breadth — Broad or Narrow? ────────────────────────────────
+// ── Tab 1: Breadth — Broad or Narrow? ────────────────────────────────
 function renderBreadth() {
   const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
           rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m,
