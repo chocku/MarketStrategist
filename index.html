@@ -1051,11 +1051,11 @@ function renderLeaders() {
             ${grpTh('Contribution to SPY', 2, ';border-left:0.5px solid var(--border)')}
           </tr>
           <tr id="tableHead">
-            <th>#</th>
-            ${sh('ticker','Ticker')}
-            ${sh('price','Price')}
+            <th style="width:28px">#</th>
+            <th style="width:58px" data-col="ticker" onclick="setSort('ticker')"><span>Ticker</span><span class="sort-ind"></span></th>
+            <th style="width:68px" data-col="price" onclick="setSort('price')"><span>Price</span><span class="sort-ind"></span></th>
             ${sh('marketCap','Mkt Cap')}
-            <th>Sector / Industry</th>
+            <th style="width:160px">Sector / Industry</th>
             <th style="border-left:0.5px solid var(--border)" data-col="above50"  onclick="setSort('above50')"><span>vs 50MA</span><span class="sort-ind"></span></th>
             ${sh('above200','vs 200MA')}
             <th>Status</th>
@@ -1153,11 +1153,11 @@ function renderTable(stocks) {
         ? ` <span class="htag" style="color:${C.red}">↓L</span>`
         : '';
     return `<tr data-ticker="${s.ticker}">
-      <td class="muted">${i+1}</td>
-      <td style="font-weight:700;letter-spacing:.02em"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" title="${s.name||s.ticker}" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--text3)">${s.ticker}</a>${hlTag}</td>
-      <td>$${s.price.toFixed(2)}</td>
+      <td class="muted" style="width:28px">${i+1}</td>
+      <td style="width:58px;font-weight:700;letter-spacing:.02em"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" title="${s.name||s.ticker}" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--text3)">${s.ticker}</a>${hlTag}</td>
+      <td style="width:68px">$${s.price.toFixed(2)}</td>
       <td class="muted">${fmtMcap(s.marketCap)}</td>
-      <td style="font-size:10px;line-height:1.3;width:140px;max-width:140px;white-space:nowrap;overflow:hidden"><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.sector||'—'}</div><div style="color:var(--text3);overflow:hidden;text-overflow:ellipsis">${s.industry||'—'}</div></td>
+      <td style="font-size:10px;line-height:1.3;width:160px;max-width:160px;white-space:nowrap;overflow:hidden"><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.sector||'—'}</div><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.industry||'—'}</div></td>
       <td style="${borderL}" class="${s.above50?'up':'dn'}">${vsPct(s.price,s.ma50)}</td>
       <td class="${s.above200?'up':'dn'}">${vsPct(s.price,s.ma200)}</td>
       <td>${maBadge(s.above50,s.above200)}</td>
