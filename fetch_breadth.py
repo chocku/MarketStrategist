@@ -52,8 +52,11 @@ def fetch():
 
     last_date = str(closes.index[-1].date())
     spx_prices = closes[SPX].dropna()
+    spx_1d  = float((spx_prices.iloc[-1] / spx_prices.iloc[-2] - 1) * 100)
+    spx_ytd_prices = spx_prices[spx_prices.index.year == current_year]
+    spx_ytd = float((spx_prices.iloc[-1] / spx_ytd_prices.iloc[0] - 1) * 100)
     spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0] - 1) * 100)
-    print(f"SPX 12m return: {spx_12m:.1f}%  |  Last date: {last_date}")
+    print(f"SPX: 1d {spx_1d:+.2f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  Last date: {last_date}")
 
     print(f"Fetching market caps for {len(TICKERS)} tickers (parallelized)...")
     mcap_map = {}
@@ -83,6 +86,8 @@ def fetch():
             def ret(n):
                 return float((prices.iloc[-1] / prices.iloc[-n] - 1) * 100) if len(prices) >= n else 0.0
 
+            ret_1d = float((prices.iloc[-1] / prices.iloc[-2] - 1) * 100) if len(prices) >= 2 else 0.0
+
             # YTD return — first trading day of current year
             ytd_prices = prices[prices.index.year == current_year]
             ret_ytd = float((price / float(ytd_prices.iloc[0]) - 1) * 100) if len(ytd_prices) > 0 else 0.0
@@ -98,36 +103,32 @@ def fetch():
             meta = sp500_info.get(ticker, {})
 
             results.append({
-                "ticker":    ticker,
-                "price":     round(price, 2),
-                "ma50":      round(ma50, 2),
-                "ma200":     round(ma200, 2),
-                "above50":   price > ma50,
-                "above200":  price > ma200,
-                "return1m":  round(ret(21), 2),
-                "return3m":  round(ret(63), 2),
-                "returnYtd": round(ret_ytd, 2),
-                "return12m": round(r12m, 2),
-                "high52":    round(high52, 2),
-                "low52":     round(low52, 2),
-                "newHigh":   new_high,
-                "newLow":    new_low,
-                "sector":    meta.get('sector', 'Unknown'),
-                "industry":  meta.get('industry', 'Unknown'),
-                "marketCap": mcap_map.get(ticker),
-                "rs_raw":    round(r12m - spx_12m, 2)
+                "ticker":     ticker,
+                "price":      round(price, 2),
+                "ma50":       round(ma50, 2),
+                "ma200":      round(ma200, 2),
+                "above50":    price > ma50,
+                "above200":   price > ma200,
+                "return1d":   round(ret_1d, 2),
+                "return1m":   round(ret(21), 2),
+                "return3m":   round(ret(63), 2),
+                "returnYtd":  round(ret_ytd, 2),
+                "return12m":  round(r12m, 2),
+                "vsSpx1d":    round(ret_1d  - spx_1d,  2),
+                "vsSpxYtd":   round(ret_ytd - spx_ytd, 2),
+                "vsSpx12m":   round(r12m    - spx_12m, 2),
+                "high52":     round(high52, 2),
+                "low52":      round(low52, 2),
+                "newHigh":    new_high,
+                "newLow":     new_low,
+                "sector":     meta.get('sector', 'Unknown'),
+                "industry":   meta.get('industry', 'Unknown'),
+                "marketCap":  mcap_map.get(ticker),
             })
             status = "OK" if price > ma50 and price > ma200 else "~" if price > ma50 or price > ma200 else "X"
             print(f"  {status} {ticker}: ${price:.2f} | 50MA:{ma50:.0f} | 200MA:{ma200:.0f} | YTD:{ret_ytd:.1f}% | Sector:{meta.get('sector','?')}")
         except Exception as e:
             print(f"  ERROR {ticker}: {e}")
-
-    # Normalize RS score to 1-100
-    raw_scores = [r['rs_raw'] for r in results]
-    mn, mx = min(raw_scores), max(raw_scores)
-    for r in results:
-        r['rsScore'] = int(round(1 + 99 * (r['rs_raw'] - mn) / (mx - mn))) if mx != mn else 50
-        del r['rs_raw']
 
     above50   = sum(1 for s in results if s['above50'])
     above200  = sum(1 for s in results if s['above200'])
@@ -137,6 +138,8 @@ def fetch():
 
     output = {
         "asOf":          last_date,
+        "spxReturn1d":   round(spx_1d, 2),
+        "spxReturnYtd":  round(spx_ytd, 2),
         "spxReturn12m":  round(spx_12m, 2),
         "newHighCount":  new_highs,
         "newLowCount":   new_lows,

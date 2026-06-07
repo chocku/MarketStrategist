@@ -183,7 +183,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 // ── State ──────────────────────────────────────────────────────────────
 let chart1 = null, chart2 = null, chart3 = null;
 let _data = null;
-let sortCol = 'rsScore', sortDir = -1;
+let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let searchTicker = '';
 
@@ -194,11 +194,6 @@ function regime(p) {
   if (p < 60) return { label:'Neutral / transition', color:'#f0d040', signal:'Selective — top RS stocks only' };
   if (p < 80) return { label:'Healthy bull',         color:'#22c87a', signal:'Safe to be long' };
   return             { label:'Overbought',            color:'#4a9eff', signal:'Watch for reversal' };
-}
-function rsCol(s)   { return s>=80?'#22c87a': s>=60?'#f0a020':'#f04f4f'; }
-function rsBadge(s) {
-  const [c,t] = s>=80?['bg','Strong']: s>=60?['ba','Moderate']:['br','Weak'];
-  return `<span class="badge ${c}">RS ${s} · ${t}</span>`;
 }
 function maBadge(a,b) {
   if (a&&b) return `<span class="badge bg">Both MAs</span>`;
@@ -281,20 +276,20 @@ function getFilteredStocks() {
 // ── Full render ────────────────────────────────────────────────────────
 function render() {
   if (!_data) return;
-  const { stocks: allStocks, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
+  const { stocks: allStocks, spxReturn1d, spxReturnYtd, spxReturn12m, asOf, newHighCount, newLowCount } = _data;
   const stocks = getFilteredStocks();
   const n     = stocks.length;
   const a50   = stocks.filter(s=>s.above50).length;
   const a200  = stocks.filter(s=>s.above200).length;
   const aBoth = stocks.filter(s=>s.above50&&s.above200).length;
-  const topRS = stocks.filter(s=>s.rsScore>=80).length;
+  const topRS = stocks.filter(s=>s.vsSpx12m > 0).length;
   const p50   = n ? pct(a50,n) : 0;
   const p200  = n ? pct(a200,n) : 0;
   const pBoth = n ? pct(aBoth,n) : 0;
   const reg   = regime(p50);
 
   const label = filterSector==='all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
-  document.getElementById('sub').textContent = `${label} · ${asOf} · SPX 12m: ${pp(spxReturn12m,true)}%`;
+  document.getElementById('sub').textContent = `${label} · ${asOf} · SPX  1d: ${pp(spxReturn1d??0,true)}%  YTD: ${pp(spxReturnYtd??0,true)}%  12m: ${pp(spxReturn12m,true)}%`;
 
   if (chart1) { chart1.destroy(); chart1=null; }
   if (chart2) { chart2.destroy(); chart2=null; }
@@ -325,9 +320,9 @@ function render() {
         <div class="csub">Above both MAs · ${aBoth} stocks</div>
       </div>
       <div class="card">
-        <div class="clbl">Top RS Stocks</div>
+        <div class="clbl">Beating SPX 12m</div>
         <div class="cval" style="color:#22c87a">${topRS}</div>
-        <div class="csub">RS score ≥ 80 (top quintile)</div>
+        <div class="csub">Outperforming SPX over 12m</div>
       </div>
       <div class="card">
         <div class="clbl">52-Week Extremes</div>
@@ -369,7 +364,7 @@ function render() {
       </div>
 
       <div class="panel">
-        <div class="ptitle">12-Month Return vs SPX (${pp(spxReturn12m,true)}%)</div>
+        <div class="ptitle">12-Month Return vs SPX (SPX: ${pp(spxReturn12m,true)}%)</div>
         <div style="position:relative;height:210px">
           <canvas id="c1" role="img" aria-label="12-month returns"></canvas>
         </div>
@@ -400,11 +395,14 @@ function render() {
           <th>Sector</th>
           <th data-col="above50" onclick="setSort('above50')"><span>vs 50-MA</span><span class="sort-ind"></span></th>
           <th data-col="above200" onclick="setSort('above200')"><span>vs 200-MA</span><span class="sort-ind"></span></th>
+          <th data-col="return1d" onclick="setSort('return1d')"><span>1d</span><span class="sort-ind"></span></th>
           <th data-col="return1m" onclick="setSort('return1m')"><span>1m</span><span class="sort-ind"></span></th>
           <th data-col="return3m" onclick="setSort('return3m')"><span>3m</span><span class="sort-ind"></span></th>
           <th data-col="returnYtd" onclick="setSort('returnYtd')"><span>YTD</span><span class="sort-ind"></span></th>
           <th data-col="return12m" onclick="setSort('return12m')"><span>12m</span><span class="sort-ind"></span></th>
-          <th data-col="rsScore" onclick="setSort('rsScore')"><span>RS Score</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpx1d" onclick="setSort('vsSpx1d')"><span>vs SPX 1d</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpxYtd" onclick="setSort('vsSpxYtd')"><span>vs SPX YTD</span><span class="sort-ind"></span></th>
+          <th data-col="vsSpx12m" onclick="setSort('vsSpx12m')"><span>vs SPX 12m</span><span class="sort-ind"></span></th>
           <th>Status</th>
         </tr></thead>
         <tbody id="stockTbody"></tbody>
@@ -414,7 +412,7 @@ function render() {
     <div class="note">
       Data: Yahoo Finance via yfinance &nbsp;·&nbsp;
       Run <code>python fetch_breadth.py</code> to refresh &nbsp;·&nbsp;
-      RS score = relative 12m performance vs SPX, normalized 1–100 &nbsp;·&nbsp;
+      vs SPX = excess return vs S&P 500 over 1d / YTD / 12m &nbsp;·&nbsp;
       New Highs/Lows = within 2% of 52-week extreme
     </div>
   `;
@@ -543,16 +541,14 @@ function renderTable(stocks) {
       <td class="sector-tag" title="${s.sector||''}">${s.sector||'—'}</td>
       <td class="${s.above50?'up':'dn'}">${vsPct(s.price,s.ma50)}</td>
       <td class="${s.above200?'up':'dn'}">${vsPct(s.price,s.ma200)}</td>
+      <td class="${(s.return1d||0)>=0?'up':'dn'}">${pp(s.return1d||0,true)}%</td>
       <td class="${s.return1m>=0?'up':'dn'}">${pp(s.return1m,true)}%</td>
       <td class="${s.return3m>=0?'up':'dn'}">${pp(s.return3m,true)}%</td>
       <td class="${(s.returnYtd||0)>=0?'up':'dn'}">${pp(s.returnYtd||0,true)}%</td>
       <td class="${s.return12m>=0?'up':'dn'}">${pp(s.return12m,true)}%</td>
-      <td>
-        <div class="rsrow">
-          <div class="rsb" style="width:${Math.round(s.rsScore*.65)}px;background:${rsCol(s.rsScore)}"></div>
-          ${rsBadge(s.rsScore)}
-        </div>
-      </td>
+      <td class="${(s.vsSpx1d||0)>=0?'up':'dn'}">${pp(s.vsSpx1d||0,true)}%</td>
+      <td class="${(s.vsSpxYtd||0)>=0?'up':'dn'}">${pp(s.vsSpxYtd||0,true)}%</td>
+      <td class="${(s.vsSpx12m||0)>=0?'up':'dn'}">${pp(s.vsSpx12m||0,true)}%</td>
       <td>${maBadge(s.above50,s.above200)}</td>
     </tr>`;
   }).join('');
