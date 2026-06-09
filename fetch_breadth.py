@@ -19,18 +19,33 @@ def get_sp500_info():
     import requests
     from io import StringIO
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36'}
-    resp = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', headers=headers)
-    resp.raise_for_status()
-    table = pd.read_html(StringIO(resp.text))[0]
-    info = {}
-    for _, row in table.iterrows():
-        ticker = str(row['Symbol']).replace('.', '-')
-        info[ticker] = {
-            'name':     str(row['Security']),
-            'sector':   str(row['GICS Sector']),
-            'industry': str(row['GICS Sub-Industry'])
-        }
-    return info
+    try:
+        resp = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', headers=headers, timeout=15)
+        resp.raise_for_status()
+        table = pd.read_html(StringIO(resp.text))[0]
+        info = {}
+        for _, row in table.iterrows():
+            ticker = str(row['Symbol']).replace('.', '-')
+            info[ticker] = {
+                'name':     str(row['Security']),
+                'sector':   str(row['GICS Sector']),
+                'industry': str(row['GICS Sub-Industry'])
+            }
+        print(f"  Wikipedia fetch succeeded ({len(info)} tickers).")
+        return info
+    except Exception as e:
+        print(f"  Wikipedia fetch failed ({e}), falling back to existing data.json...")
+        with open('data.json') as f:
+            existing = json.load(f)
+        info = {}
+        for s in existing.get('stocks', []):
+            info[s['ticker']] = {
+                'name':     s.get('name', ''),
+                'sector':   s.get('sector', 'Unknown'),
+                'industry': s.get('industry', 'Unknown'),
+            }
+        print(f"  Loaded {len(info)} tickers from data.json fallback.")
+        return info
 
 def fetch_ticker_info(ticker):
     """Return (ticker, market_cap, yahoo_industry) in one yfinance info call.
