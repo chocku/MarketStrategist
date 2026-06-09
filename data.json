@@ -13848,7 +13848,7 @@
       "name": "WEC Energy Group",
       "sector": "Utilities",
       "industry": "Electric Utilities",
-      "marketCap": 36839574181
+      "marketCap": null
     },
     {
       "ticker": "WELL",
@@ -13960,7 +13960,7 @@
       "name": "Williams Companies",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": null
+      "marketCap": 87554445791
     },
     {
       "ticker": "WMT",
@@ -13988,7 +13988,7 @@
       "name": "Walmart",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": null
+      "marketCap": 946056449946
     },
     {
       "ticker": "WRB",
@@ -14016,7 +14016,7 @@
       "name": "W. R. Berkley Corporation",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
-      "marketCap": null
+      "marketCap": 25024441925
     },
     {
       "ticker": "WSM",
@@ -14072,7 +14072,7 @@
       "name": "West Pharmaceutical Services",
       "sector": "Health Care",
       "industry": "Health Care Supplies",
-      "marketCap": 23642924142
+      "marketCap": null
     },
     {
       "ticker": "WTW",
