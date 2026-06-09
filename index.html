@@ -236,10 +236,19 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .news-tf { background:var(--bg3); border:0.5px solid var(--border2); color:var(--text2); font-size:11px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:all 0.15s; }
 .news-tf:hover { color:var(--text); }
 .news-tf.active { color:#fff; border-color:transparent; }
-.news-date-bar { display:flex; align-items:center; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
-.news-date-btn { background:var(--bg3); border:0.5px solid var(--border2); color:var(--text2); font-size:12px; padding:6px 12px; border-radius:8px; cursor:pointer; transition:all 0.15s; }
-.news-date-btn:hover { color:var(--text); background:var(--bg2); }
-.news-date-btn.active { background:rgba(74,158,255,0.15); border-color:rgba(74,158,255,0.5); color:#4a9eff; }
+.news-week-nav { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.news-week-arrow { background:var(--bg3); border:0.5px solid var(--border2); color:var(--text2); font-size:13px; width:28px; height:28px; border-radius:7px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s; flex-shrink:0; }
+.news-week-arrow:hover { color:var(--text); background:var(--bg2); }
+.news-week-arrow:disabled { opacity:0.3; cursor:default; }
+.news-week-label { font-size:13px; font-weight:600; color:var(--text2); min-width:130px; text-align:center; }
+.news-day-bar { display:flex; gap:6px; margin-bottom:18px; }
+.news-day-btn { flex:1; background:var(--bg3); border:0.5px solid var(--border2); color:var(--text3); font-size:11px; padding:7px 4px; border-radius:8px; cursor:pointer; transition:all 0.15s; text-align:center; }
+.news-day-btn:hover { color:var(--text2); background:var(--bg2); }
+.news-day-btn.active { background:rgba(74,158,255,0.15); border-color:rgba(74,158,255,0.5); color:#4a9eff; }
+.news-day-btn.has-data .ndb-name { color:inherit; }
+.news-day-btn:not(.has-data) { opacity:0.35; cursor:default; pointer-events:none; }
+.ndb-name { font-weight:700; font-size:12px; }
+.ndb-date { font-size:10px; margin-top:2px; }
 .news-grid { display:flex; flex-direction:column; gap:12px; }
 .news-card { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:8px; transition:border-color 0.15s; }
 .news-card:hover { border-color:var(--border2); }
@@ -826,6 +835,38 @@ function highlight(text, query) {
   return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
 }
 
+// group dates into Mon-Fri weeks; returns array of week objects [{label, days:[{date,label,dayName}]}]
+function groupIntoWeeks(dates) {
+  const weeks = [];
+  const seen = new Set();
+  dates.forEach(d => {
+    const dt = new Date(d + 'T12:00:00');
+    // find Monday of this week
+    const day = dt.getDay(); // 0=Sun, 1=Mon...5=Fri, 6=Sat
+    const monday = new Date(dt);
+    monday.setDate(dt.getDate() - (day === 0 ? 6 : day - 1));
+    const key = monday.toISOString().slice(0, 10);
+    if (!seen.has(key)) {
+      seen.add(key);
+      const friday = new Date(monday); friday.setDate(monday.getDate() + 4);
+      const label = monday.toLocaleDateString('en-US', { month:'short', day:'numeric' }) +
+                    ' – ' + friday.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+      // build the 5 weekdays Mon-Fri
+      const days = Array.from({length:5}, (_, i) => {
+        const dd = new Date(monday); dd.setDate(monday.getDate() + i);
+        const iso = dd.toISOString().slice(0, 10);
+        return {
+          date: iso,
+          dayName: dd.toLocaleDateString('en-US', { weekday:'short' }),
+          dayNum: dd.toLocaleDateString('en-US', { month:'short', day:'numeric' }),
+        };
+      });
+      weeks.push({ key, label, days });
+    }
+  });
+  return weeks.sort((a, b) => b.key.localeCompare(a.key));
+}
+
 function renderNews() {
   const dates = Object.keys(_news).sort().reverse();
   if (dates.length === 0) {
@@ -834,22 +875,25 @@ function renderNews() {
   }
   if (!newsSelectedDate || !_news[newsSelectedDate]) newsSelectedDate = dates[0];
 
-  // when searching, look across ALL dates; otherwise show selected date
+  const weeks = groupIntoWeeks(dates);
+  // find which week contains newsSelectedDate
+  let weekIdx = weeks.findIndex(w => w.days.some(d => d.date === newsSelectedDate));
+  if (weekIdx < 0) weekIdx = 0;
+  const currentWeek = weeks[weekIdx];
+
+  // search mode: across ALL dates
   const searchMode = newsSearch.length > 0 || newsTagFilter;
   let items = [];
   if (searchMode) {
     dates.forEach(d => (_news[d] || []).forEach(item => items.push({ ...item, _date: d })));
   } else {
-    items = (_news[newsSelectedDate] || []).map((item, i) => ({ ...item, _date: newsSelectedDate, _idx: i }));
+    items = (_news[newsSelectedDate] || []).map(item => ({ ...item, _date: newsSelectedDate }));
   }
 
-  // filter by tag
   if (newsTagFilter) {
     const tagDef = NEWS_TAGS.find(t => t.id === newsTagFilter);
     items = items.filter(item => tagDef && tagDef.pat.test((item.headline||'') + ' ' + (item.summary||'')));
   }
-
-  // filter by keyword
   if (newsSearch) {
     const q = newsSearch.toLowerCase();
     items = items.filter(item =>
@@ -864,10 +908,25 @@ function renderNews() {
     return `<button class="news-tf${active?' active':''}" style="${active?`background:${t.bg};color:${t.color};border-color:${t.color}40`:''}" onclick="newsTagFilter=${active?'null':`'${t.id}'`};renderNews()">${t.label}</button>`;
   }).join('');
 
-  const dateBtns = dates.map(d => {
-    const label = new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' });
-    return `<button class="news-date-btn${d === newsSelectedDate && !searchMode ? ' active' : ''}" onclick="newsSelectedDate='${d}';newsSearch='';newsTagFilter=null;document.getElementById('news-search-input').value='';renderNews()">${label}</button>`;
-  }).join('');
+  const weekNav = `
+    <div class="news-week-nav">
+      <button class="news-week-arrow" onclick="newsGoWeek(${weekIdx+1})" ${weekIdx >= weeks.length-1 ? 'disabled' : ''}>‹</button>
+      <div class="news-week-label">${currentWeek.label}</div>
+      <button class="news-week-arrow" onclick="newsGoWeek(${weekIdx-1})" ${weekIdx <= 0 ? 'disabled' : ''}>›</button>
+    </div>`;
+
+  const dayBar = searchMode ? '' : `
+    <div class="news-day-bar">
+      ${currentWeek.days.map(d => {
+        const hasData = !!_news[d.date];
+        const active = d.date === newsSelectedDate;
+        return `<button class="news-day-btn${active?' active':''}${hasData?' has-data':''}"
+          onclick="newsSelectedDate='${d.date}';renderNews()">
+          <div class="ndb-name">${d.dayName}</div>
+          <div class="ndb-date">${d.dayNum}</div>
+        </button>`;
+      }).join('')}
+    </div>`;
 
   const cards = items.length === 0
     ? `<div class="news-noresults">No headlines match your search.</div>`
@@ -878,8 +937,7 @@ function renderNews() {
           ...tickers.map(t => `<span class="news-tag" style="background:rgba(255,255,255,0.06);color:var(--text2)">$${t}</span>`)
         ].join('');
         const dateLabel = searchMode ? `<span style="font-size:10px;color:var(--text3);margin-left:auto">${new Date(item._date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span>` : '';
-        return `
-        <div class="news-card">
+        return `<div class="news-card">
           <div class="news-card-top">
             <div class="news-num">#${i+1}</div>
             ${tagHtml ? `<div class="news-tags">${tagHtml}</div>` : ''}
@@ -901,8 +959,19 @@ function renderNews() {
         oninput="newsSearch=this.value;renderNews()">
       <div class="news-tag-filter">${tagFilterBtns}</div>
     </div>
-    <div class="news-date-bar">${dateBtns}</div>
+    ${weekNav}${dayBar}
     <div class="news-grid">${cards}</div>`;
+}
+
+function newsGoWeek(idx) {
+  const dates = Object.keys(_news).sort().reverse();
+  const weeks = groupIntoWeeks(dates);
+  if (idx < 0 || idx >= weeks.length) return;
+  // pick the most recent day with data in that week
+  const week = weeks[idx];
+  const dayWithData = week.days.slice().reverse().find(d => _news[d.date]);
+  if (dayWithData) newsSelectedDate = dayWithData.date;
+  renderNews();
 }
 
 // ── Tab switching ─────────────────────────────────────────────────────
