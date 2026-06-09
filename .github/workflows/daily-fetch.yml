@@ -2,7 +2,7 @@ name: Daily Market Data Fetch
 
 on:
   schedule:
-    - cron: '0 22 * * 1-5'  # 10pm UTC = 6pm ET, weekdays only (after market close)
+    - cron: '30 20 * * 1-5'  # 8:30pm UTC = 4:30pm ET, weekdays only (after market close)
   workflow_dispatch:          # allow manual trigger from GitHub UI
 
 jobs:
