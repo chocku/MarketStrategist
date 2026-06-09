@@ -227,6 +227,23 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 @keyframes spin { to { transform:rotate(360deg); } }
 .err { text-align:center; padding:60px; color:var(--red); line-height:2; }
 
+/* News tab */
+.news-date-bar { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.news-date-btn { background:var(--bg3); border:0.5px solid var(--border2); color:var(--text2); font-size:12px; padding:6px 12px; border-radius:8px; cursor:pointer; transition:all 0.15s; }
+.news-date-btn:hover { color:var(--text); background:var(--bg2); }
+.news-date-btn.active { background:rgba(74,158,255,0.15); border-color:rgba(74,158,255,0.5); color:#4a9eff; }
+.news-grid { display:flex; flex-direction:column; gap:12px; }
+.news-card { background:var(--bg2); border:0.5px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:8px; transition:border-color 0.15s; }
+.news-card:hover { border-color:var(--border2); }
+.news-num { font-size:11px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.05em; }
+.news-headline { font-size:15px; font-weight:600; color:var(--text); line-height:1.4; }
+.news-summary { font-size:13px; color:var(--text2); line-height:1.5; }
+.news-meta { display:flex; align-items:center; gap:10px; margin-top:2px; }
+.news-source { font-size:11px; color:var(--text3); }
+.news-link { font-size:11px; color:var(--blue); text-decoration:none; }
+.news-link:hover { text-decoration:underline; }
+.news-empty { text-align:center; padding:60px; color:var(--text3); font-size:14px; }
+
 @media(max-width:900px) {
   .topbar { flex-direction: column; gap: 12px; }
   .topbar-right { flex-wrap: wrap; gap: 8px; }
@@ -282,6 +299,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
         <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
+        <button class="tab-btn"        id="tab-news"     onclick="switchTab('news')"><div class="tb-name">News</div><div class="tb-sub">What Happened?</div></button>
       </div>
       <button class="btn" onclick="init()">↻ Refresh</button>
       <button class="btn" onclick="openFeedback()" style="background:rgba(74,158,255,0.12);border-color:rgba(74,158,255,0.4);color:#4a9eff">✉ Feedback</button>
@@ -427,6 +445,7 @@ let leadersMaStatus = 'all';
 let leadersRsYtd = 'all';
 let searchTicker = '';
 let activeTab = 'breadth';
+let _news = {};
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
 
@@ -480,6 +499,10 @@ async function init() {
   }
   _data = d;
   document.getElementById('dataDate').textContent = fmtDate(d.asOf);
+  try {
+    const nr = await fetch('news_archive.json');
+    if (nr.ok) _news = await nr.json();
+  } catch(e) { _news = {}; }
   filterSector = 'all';
   industryFilterSector = 'all';
   leadersSector = 'all';
@@ -736,12 +759,46 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
   return `<div class="sticky-breadth-wrap"><table>${thead}${tbody}${tfoot}</table></div>`;
 }
 
+// ── Tab 4: News ───────────────────────────────────────────────────────
+let newsSelectedDate = null;
+
+function renderNews() {
+  const dates = Object.keys(_news).sort().reverse();
+  if (dates.length === 0) {
+    document.getElementById('root').innerHTML = `<div class="news-empty">No news archived yet.<br>The scheduled agent will add headlines each weekday at 4:30 PM ET.</div>`;
+    return;
+  }
+  if (!newsSelectedDate || !_news[newsSelectedDate]) newsSelectedDate = dates[0];
+  const items = _news[newsSelectedDate] || [];
+
+  const dateBtns = dates.map(d => {
+    const label = new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    return `<button class="news-date-btn${d === newsSelectedDate ? ' active' : ''}" onclick="newsSelectedDate='${d}';renderNews()">${label}</button>`;
+  }).join('');
+
+  const cards = items.map((item, i) => `
+    <div class="news-card">
+      <div class="news-num">#${i+1}</div>
+      <div class="news-headline">${item.headline}</div>
+      <div class="news-summary">${item.summary}</div>
+      <div class="news-meta">
+        <span class="news-source">${item.source || ''}</span>
+        ${item.url ? `<a class="news-link" href="${item.url}" target="_blank" rel="noopener">Read more →</a>` : ''}
+      </div>
+    </div>`).join('');
+
+  document.getElementById('root').innerHTML = `
+    ${tabHdr('What Happened Today?', 'AI-curated top 5 market-moving headlines, archived daily after close.')}
+    <div class="news-date-bar">${dateBtns}</div>
+    <div class="news-grid">${cards}</div>`;
+}
+
 // ── Tab switching ─────────────────────────────────────────────────────
 function switchTab(tab) {
   if (chart2) { chart2.destroy(); chart2 = null; }
   if (chart3) { chart3.destroy(); chart3 = null; }
   activeTab = tab;
-  ['breadth','rotation','leaders'].forEach(t =>
+  ['breadth','rotation','leaders','news'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
   renderCurrent();
@@ -758,6 +815,7 @@ function renderCurrent() {
     `${label} · ${fmtDate(asOf)} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
   if      (activeTab === 'breadth')  renderBreadth();
   else if (activeTab === 'rotation') renderRotation();
+  else if (activeTab === 'news')     renderNews();
   else                               renderLeaders();
 }
 
