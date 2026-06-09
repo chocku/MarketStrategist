@@ -1,4 +1,740 @@
 {
+  "2026-05-05": [
+    {
+      "headline": "Iran hits South Korean ship in Strait of Hormuz; Dow falls 1.1% to 48,941",
+      "summary": "Oil spikes on shipping disruption fears; materials and industrials lead declines as geopolitical risk premium returns to markets.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-may-5-132500692.html"
+    },
+    {
+      "headline": "FedEx plunges 9.1% after Amazon launches Amazon Supply Chain Services network",
+      "summary": "Amazon's move into freight, fulfillment, and parcel shipping directly threatens FedEx's core business; logistics sector broadly lower.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Norwegian Cruise Line beats Q1 earnings: $0.23 EPS vs $0.15 expected",
+      "summary": "Travel demand proves resilient despite macro concerns; cruise stocks rally as consumer discretionary outperforms on the session.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Factory orders +1.5% in March, biggest gain since November",
+      "summary": "Manufacturing data beats estimates, signaling underlying economic resilience even as geopolitical shocks rattle equity markets.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "S&P 500 -0.4% to 7,200; Nasdaq holds better as tech stocks buffer geopolitical shock",
+      "summary": "Nasdaq outperforms on the selloff day as tech seen as less exposed to oil/shipping disruption than industrials and materials.",
+      "source": "Yahoo Finance",
+      "url": null
+    }
+  ],
+  "2026-05-06": [
+    {
+      "headline": "Apple WWDC 2026 opens: AI-powered Siri AI unveiled alongside new iOS features",
+      "summary": "Apple's developer conference showcases deep AI integration; AAPL shares recover 2% as product roadmap impresses investors.",
+      "source": "Crestwood Advisors",
+      "url": "https://www.crestwoodadvisors.com/may-2026-economic-and-market-update/"
+    },
+    {
+      "headline": "S&P 500 bounces modestly; dip-buyers emerge after Monday's geopolitical selloff",
+      "summary": "Markets stabilize near 7,200 support as investors assess whether Iran-Strait risk is transitory or a structural oil market shift.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Strait of Hormuz risk keeps Brent crude near $100/barrel",
+      "summary": "Iranian shipping threats sustain oil market premium; energy sector gains while consumer-facing stocks remain under pressure from fuel cost fears.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Norwegian Cruise Line +8.6% extends gains on strong Q1 beat and raised guidance",
+      "summary": "Post-earnings momentum continues; cruise and travel operators benefit from pent-up demand that is proving insensitive to fuel prices.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Fed officials signal patience on rates; no urgency to hike despite tight labor market",
+      "summary": "Multiple Fed speakers reinforce hold stance, calming rate-hike fears and supporting equity valuations after the geopolitical shock.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    }
+  ],
+  "2026-05-07": [
+    {
+      "headline": "Apple WWDC day 2: Siri AI features and Vision Pro 2 updates drive AAPL +2%",
+      "summary": "Developer community response to Apple's AI roadmap is enthusiastic; Siri AI seen as a credible consumer AI product to rival Google and OpenAI.",
+      "source": "Crestwood Advisors",
+      "url": "https://www.crestwoodadvisors.com/may-2026-economic-and-market-update/"
+    },
+    {
+      "headline": "Chipmakers bounce: Philadelphia Semiconductor Index +3% recovering Monday-Tuesday losses",
+      "summary": "Semiconductor stocks stabilize as investors reassess the Iran risk as oil-related rather than a direct tech headwind.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    },
+    {
+      "headline": "FedEx -9% losses hold; UPS and trucking stocks also weaker on Amazon logistics threat",
+      "summary": "Amazon's supply chain network seen as a long-term structural threat to the third-party logistics industry beyond just FedEx.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Oil eases slightly from highs as Strait of Hormuz remains open to traffic",
+      "summary": "No further Iranian interdictions reported; Brent pulls back from $100 to $98 as initial panic fades, easing inflation pressure slightly.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "S&P 500 recovers to 7,280; Nasdaq outperforms as WWDC optimism lifts tech",
+      "summary": "Markets move higher as tech reclaims leadership; investors rotate back from defensive positions taken during Monday's geopolitical shock.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    }
+  ],
+  "2026-05-08": [
+    {
+      "headline": "S&P 500 holds 7,250; markets stabilize ahead of next week's critical CPI print",
+      "summary": "Investors position cautiously before April CPI on May 12; consensus at 3.7% YoY — a beat could revive rate-hike fears.",
+      "source": "HeyGoTrade",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-05-11/"
+    },
+    {
+      "headline": "FOMC meeting minutes: Fed requires sustained inflation evidence before considering hike",
+      "summary": "Minutes reinforce hold stance; Fed not ready to hike but the bar is lower than markets had assumed — subtle hawkish tilt noted.",
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "headline": "Amazon Supply Chain Services officially launches; logistics sector braces for disruption",
+      "summary": "Full details of Amazon's freight and fulfillment offering released; analysts cut FedEx and UPS price targets on competitive threat.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Chip stocks continue recovery; AI demand narrative intact despite geopolitical noise",
+      "summary": "Nvidia, AMD, and Broadcom all gain for second straight day; data center spending forecasts unrevised despite Middle East uncertainty.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    },
+    {
+      "headline": "Dollar strengthens as Treasury yields stay elevated; EM currencies under pressure",
+      "summary": "Strong dollar and high yields create headwinds for emerging market equities; investors prefer domestic US assets ahead of CPI data.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    }
+  ],
+  "2026-05-09": [
+    {
+      "headline": "S&P 500 ends week flat near 7,300; chip sector leads weekly recovery from Iran selloff",
+      "summary": "Weekly performance shows markets digested geopolitical shock in 3 days; tech breadth improves as CPI risk premium enters next week.",
+      "source": "Madison Investments",
+      "url": "https://madisoninvestments.com/monthly-market-update-may-2026/"
+    },
+    {
+      "headline": "CPI looms Tuesday; analysts split on whether 3.7% or 3.9% print is more likely",
+      "summary": "Energy prices embedded in the April CPI basket were elevated; a hot print could reignite rate-hike fears and pressure growth stocks.",
+      "source": "HeyGoTrade",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-05-11/"
+    },
+    {
+      "headline": "Oil stabilizes near $90/barrel as Strait of Hormuz remains open",
+      "summary": "Geopolitical risk premium fades from energy markets; WTI pulls back from highs as no new Iranian interdictions reported during the week.",
+      "source": "Crestwood Advisors",
+      "url": "https://www.crestwoodadvisors.com/may-2026-economic-and-market-update/"
+    },
+    {
+      "headline": "Apple WWDC concludes; Siri AI and Vision Pro 2 generate positive analyst notes",
+      "summary": "Multiple brokerages raise AAPL price targets post-WWDC; AI product roadmap seen as a genuine revenue driver for fiscal 2027.",
+      "source": "Crestwood Advisors",
+      "url": "https://www.crestwoodadvisors.com/may-2026-economic-and-market-update/"
+    },
+    {
+      "headline": "Consumer sentiment rises; spending resilient despite oil shock and inflation fears",
+      "summary": "Strong labor market and stock market wealth effect supporting consumer confidence; retail sales expected to hold when reported next week.",
+      "source": "CommunityAmerica",
+      "url": "https://www.communityamerica.com/blog/2026/may-2026-market-insights"
+    }
+  ],
+  "2026-05-12": [
+    {
+      "headline": "April CPI: +3.8% YoY, highest since April 2023 — markets open sharply lower",
+      "summary": "Monthly gain of +0.6% exceeded consensus; energy and shelter costs drove the beat, raising the specter of a Fed rate hike before year-end.",
+      "source": "BLS / CNBC",
+      "url": "https://www.cnbc.com/2026/05/11/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Apple hits $300/share intraday for the first time — new all-time high",
+      "summary": "AAPL crosses the historic $300 threshold despite broad market weakness; AI product pipeline and services growth cited as key drivers.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "Trump-Xi summit concludes with no major trade agreements announced",
+      "summary": "Two-day meeting produced broad commitments but no specific deals; markets had modest expectations, so the muted outcome was largely priced in.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "Nebius AI cloud +16% after Q1 revenue surges 684% YoY to $399M",
+      "summary": "AI infrastructure demand driving explosive growth at smaller cloud providers; Nebius results reinforce the AI capex supercycle narrative.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "National Vision -22% after Q1 revenue misses estimates",
+      "summary": "Consumer health spending shows cracks; optical retail miss raises concerns about lower-income consumer resilience under sustained inflation.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    }
+  ],
+  "2026-05-13": [
+    {
+      "headline": "Cisco Q3 earnings beat: AI-driven networking demand accelerates; shares +4%",
+      "summary": "Cisco's data center networking revenue surged as hyperscalers ramp AI infrastructure; raised full-year guidance reflects sustained enterprise capex.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/12/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Alibaba Q4 revenue beats; cloud segment +25% YoY — Chinese tech broadly higher",
+      "summary": "Alibaba's strong cloud results support the view that China's AI buildout is accelerating; US-listed Chinese tech ETFs gain 3-4% on the session.",
+      "source": "HeyGoTrade",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-05-11/"
+    },
+    {
+      "headline": "Starbucks announces 300 US corporate layoffs and $400M restructuring charge",
+      "summary": "CEO turnaround strategy involves closing regional support offices; analysts mixed on whether cost cuts can offset same-store sales pressure.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "S&P 500 recovers intraday; dip-buyers emerge after CPI-driven morning gap lower",
+      "summary": "Markets find support near 7,400 as investors assess whether the CPI beat is a trend or a one-month energy-price blip.",
+      "source": "Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/05/15/stock-market-today-may-15-high-yields-and-inflation-fears-weigh-on-stocks-at-midday/"
+    },
+    {
+      "headline": "Moody's places US sovereign credit outlook on Negative watch amid fiscal concerns",
+      "summary": "Rising debt servicing costs and widening deficit prompt the rating review; 10-year Treasury yield ticks up 6 bps on the news.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    }
+  ],
+  "2026-05-14": [
+    {
+      "headline": "Apple $300 holds; stock closes above landmark level for first time ever",
+      "summary": "AAPL confirms the $300 breakout on a closing basis; options activity surges as institutional investors chase momentum post-WWDC.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "Applied Materials Q2 beats: semiconductor capex strong despite macro uncertainty",
+      "summary": "AMAT EPS of $2.68 beats $2.58 estimate; strong fab equipment orders from TSMC and Samsung confirm AI chip production capacity expansion.",
+      "source": "HeyGoTrade",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-05-11/"
+    },
+    {
+      "headline": "Dow reclaims 50,000 for first time; S&P 500 closes above 7,500",
+      "summary": "Milestone closes lift investor sentiment; the Dow's return to 50K seen as a psychological boost amid inflation concerns and leadership transition at the Fed.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "Alibaba extends gains 5% as cloud momentum attracts US fund flows into Chinese tech",
+      "summary": "Post-earnings momentum in BABA sparks broader rotation into Hong Kong-listed tech; Hang Seng Tech index outperforms.",
+      "source": "HeyGoTrade",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-05-11/"
+    },
+    {
+      "headline": "10-year Treasury yield climbs to 4.6%; mortgage rates hit 8-month highs",
+      "summary": "Post-CPI yield surge continues; housing market faces renewed pressure as 30-year fixed rates near 7%, dampening refinancing activity.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    }
+  ],
+  "2026-05-15": [
+    {
+      "headline": "Kevin Warsh confirmed as Fed Chair, succeeding Jerome Powell",
+      "summary": "Senate confirmation ends Powell era; Warsh seen as more hawkish — markets price in slightly higher-for-longer rates path under new leadership.",
+      "source": "HeyGoTrade / Motley Fool",
+      "url": "https://www.fool.com/investing/2026/05/27/stock-market-warning-from-jerome-powell-this-next/"
+    },
+    {
+      "headline": "S&P 500 -1.14%; Nasdaq -1.62% as high inflation and rising yields weigh on growth stocks",
+      "summary": "Combined pressure of hot CPI, Fed leadership change, and elevated yields triggers a broad selloff led by rate-sensitive tech and real estate.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "Russell 2000 gains 0.67% — small caps outperform as investors rotate to value",
+      "summary": "Small caps outperform on the session as investors rotate away from high-multiple growth toward domestic cyclicals less sensitive to rate movements.",
+      "source": "Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/05/15/stock-market-today-may-15-high-yields-and-inflation-fears-weigh-on-stocks-at-midday/"
+    },
+    {
+      "headline": "30-year Treasury yield approaches 5%; longest-dated bonds sell off sharply",
+      "summary": "Long-end yields surge on inflation persistence fears; investors demand higher term premium as Warsh's hawkish reputation is repriced into bond markets.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    },
+    {
+      "headline": "High energy costs threaten to bleed into core inflation; Fed's task becomes harder",
+      "summary": "Economists warn that sustained oil prices near $90-100 will push services inflation higher in coming months, complicating the new Fed Chair's first meetings.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/economy/policy/articles/oof-federal-reserves-may-inflation-132600416.html"
+    }
+  ],
+  "2026-05-16": [
+    {
+      "headline": "S&P 500 ends worst week since March; CPI and Warsh confirmation reset rate expectations",
+      "summary": "Weekly decline of ~2% closes the books on the record-setting streak; bond yields and dollar remain elevated as markets reprice for higher-for-longer.",
+      "source": "Crestwood Advisors",
+      "url": "https://www.crestwoodadvisors.com/may-2026-economic-and-market-update/"
+    },
+    {
+      "headline": "Apple closes at $298; $300 breakout fails to hold under rate pressure",
+      "summary": "AAPL retreats with the broader market; rising discount rates mechanically pressure long-duration assets despite strong fundamental outlook.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/latest-news/stock-market-today-may-15-2026-updates"
+    },
+    {
+      "headline": "New Fed Chair Warsh signals data-dependence but flags inflation vigilance",
+      "summary": "Warsh's first public statement as Chair strikes a hawkish tone; bond market takes it seriously — 2-year yield rises to 5.1%.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/economy/policy/articles/oof-federal-reserves-may-inflation-132600416.html"
+    },
+    {
+      "headline": "Energy sector +1.5% outperforms as oil holds near $90; XLE hits 3-month high",
+      "summary": "Only sector to gain on the week; oil producers benefit from elevated crude prices while rest of market sells off on inflation fears.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    },
+    {
+      "headline": "University of Michigan consumer sentiment falls; inflation expectations at 3.2% — highest since 2023",
+      "summary": "Consumer 1-year inflation expectations rise again; the Fed's credibility faces an early test under Warsh as household expectations de-anchor slightly.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    }
+  ],
+  "2026-05-19": [
+    {
+      "headline": "30-year Treasury yield tops 5.19% — highest in nearly 19 years",
+      "summary": "Long-end surge driven by inflation persistence and new Fed Chair's hawkish tone; stocks post 3rd straight losing session as discount rates reprice.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/18/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "S&P 500 -0.67% to 7,353; Nasdaq -0.84% — tech under pressure from rising yields",
+      "summary": "High-multiple tech names most vulnerable to yield surge; investors rotate out of growth into short-duration and value positions.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/18/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Trump cancels planned Iran attacks; ceasefire remains fragile but intact",
+      "summary": "De-escalation removes immediate oil spike risk but uncertainty remains; Brent crude pulls back from $105 to $103 on the announcement.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/18/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Home Depot Q1 earnings beat; housing resilience surprises despite 7% mortgage rates",
+      "summary": "HD posts EPS and revenue above consensus as repair/remodel demand proves stickier than expected; shares up 2% against the market's down tape.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/18/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "10-year Treasury yield hits 4.687% — highest since January 2025",
+      "summary": "Yield curve steepens as both short and long rates rise; financial conditions tightening materially without a single Fed hike being delivered.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/18/stock-market-today-live-updates.html"
+    }
+  ],
+  "2026-05-20": [
+    {
+      "headline": "Trump: US-Iran negotiations in 'final stages' — oil plunges 5.66% to $98.26",
+      "summary": "Diplomatic breakthrough prospect triggers the largest single-day oil drop in months; energy stocks fall but broader market surges on inflation relief.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/19/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Dow +1.31% to 50,009; S&P 500 +1.08% to 7,432 — best day in three weeks",
+      "summary": "Oil price relief and Iran deal optimism spark a broad risk-on rally; every sector closes higher as inflation premium exits the market.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/19/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Cava Group +7% after Q1 EPS beat of $0.20 vs $0.18 and raised full-year guidance",
+      "summary": "Fast-casual restaurant chain continues rapid unit growth; raised guidance suggests consumer spending at lower price-points remains robust.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/19/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "30-year Treasury yield retreats from 5.19% as oil inflation fears ease",
+      "summary": "Bond market relief rally on Iran news; yields fall 12 bps across the curve as the biggest near-term inflation risk (oil) looks set to ease.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/19/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Nasdaq +1.54% to 26,270; tech reclaims leadership as rate fears moderate",
+      "summary": "Growth and high-multiple tech names bounce hardest; the Nasdaq's outperformance reflects the sector's acute sensitivity to Treasury yield moves.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/19/stock-market-today-live-updates.html"
+    }
+  ],
+  "2026-05-21": [
+    {
+      "headline": "US-Iran ceasefire negotiations advance; oil falls to $94/barrel on deal optimism",
+      "summary": "Diplomatic progress removes the key macro tail risk that had pushed yields and oil higher; markets price in a cleaner Fed path with lower energy inflation.",
+      "source": "NBC News",
+      "url": "https://www.nbcnews.com/business/markets/iran-war-ceasefire-oil-prices-stocks-trump-rcna267229"
+    },
+    {
+      "headline": "S&P 500 rallies for 2nd straight day; erasing most of the May 15-19 losses",
+      "summary": "Markets reclaim 7,400 level; the speed of the reversal from last week's lows suggests the selloff was yield-driven rather than fundamental deterioration.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    },
+    {
+      "headline": "Iran nuclear talks: 60-day memorandum of understanding under discussion",
+      "summary": "Structure of the deal becoming clearer; a 60-day MOU would give markets a sustained period of lower geopolitical risk premium in oil.",
+      "source": "NBC News",
+      "url": "https://www.nbcnews.com/business/markets/iran-war-ceasefire-oil-prices-stocks-trump-rcna267229"
+    },
+    {
+      "headline": "Nasdaq crosses 26,000; tech sector continues recovery as yields retreat",
+      "summary": "Mega-cap tech leads; Nvidia, Microsoft, and Meta all gain 2-3% as investors return to growth names now that the yield shock has partially reversed.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    },
+    {
+      "headline": "Energy sector -2% as oil falls; XLE gives back some of its recent outperformance",
+      "summary": "Iran deal progress is directly negative for energy stocks; rotation out of energy into tech accelerates as the macro narrative flips.",
+      "source": "NBC News",
+      "url": "https://www.nbcnews.com/business/markets/iran-war-ceasefire-oil-prices-stocks-trump-rcna267229"
+    }
+  ],
+  "2026-05-22": [
+    {
+      "headline": "US-Iran 60-day ceasefire MOU signed; Brent crude falls to $93.71",
+      "summary": "Formal ceasefire agreement removes the oil risk premium that had driven inflation fears; the deal is the single biggest macro catalyst of May.",
+      "source": "NBC News / NPR",
+      "url": "https://www.npr.org/2026/04/08/nx-s1-5776818/wall-street-stocks-oil-trump-iran-ceasefire"
+    },
+    {
+      "headline": "S&P 500 climbs 0.8%; best 3-day rally since April as geopolitical risk unwinds",
+      "summary": "The combined effect of lower oil, lower yields, and recovering tech creates broad market strength; all 11 sectors close higher.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    },
+    {
+      "headline": "Treasury yields fall: 10-year back to 4.45% as oil inflation fears recede",
+      "summary": "Bond market pricing out the energy-driven inflation premium; the yield curve flattens as long rates fall faster than short rates.",
+      "source": "ETF Trends",
+      "url": "https://www.etftrends.com/fixed-income-content-hub/market-valuation-inflation-treasury-yields-may-2026/"
+    },
+    {
+      "headline": "Consumer discretionary and retail stocks surge on oil price relief",
+      "summary": "Lower fuel costs seen as a direct boost to consumer spending power; retail ETFs gain 2%+ as inflation headwind from energy fades.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    },
+    {
+      "headline": "Fed officials signal ceasefire removes biggest near-term inflation upside risk",
+      "summary": "Multiple Fed governors note that ceasing Middle East hostilities substantially lowers the probability of a rate hike; dovish signal lifts equities.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/economy/policy/articles/oof-federal-reserves-may-inflation-132600416.html"
+    }
+  ],
+  "2026-05-23": [
+    {
+      "headline": "S&P 500 posts best week since April; oil, yields, and tech all moving in the right direction",
+      "summary": "Weekly recap: Iran ceasefire drove a reversal from the prior week's selloff; markets end at 7,480, recovering all of the Warsh/CPI losses.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    },
+    {
+      "headline": "WTI crude settles at $88.90 — down 12% from the pre-ceasefire peak",
+      "summary": "Oil's rapid decline eases the inflation outlook materially; if sustained, April's 3.8% CPI could prove to be the peak of this inflation cycle.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/28/oil-prices-us-strikes-in-iran-revive-strait-of-hormuz-turmoil-fears.html"
+    },
+    {
+      "headline": "Trump approves the 60-day US-Iran MOU; markets close near weekly highs",
+      "summary": "Presidential sign-off removes the remaining uncertainty around the deal; risk assets see a final push higher into the close.",
+      "source": "NBC News",
+      "url": "https://www.nbcnews.com/business/markets/iran-war-ceasefire-oil-prices-stocks-trump-rcna267229"
+    },
+    {
+      "headline": "Solar stocks surge: TAN ETF up 26% in May — best month since September 2013",
+      "summary": "Ceasefire and oil price decline boost clean energy sentiment; Enphase Energy leads with +110% in May as energy transition trade accelerates.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "Bank of Japan signals June rate hike; yen strengthens, US markets largely unaffected",
+      "summary": "BOJ Governor Ueda's comments raise June hike probability; yen carry trade partially unwinds but US equities shrug off the overseas tightening.",
+      "source": "T. Rowe Price",
+      "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+    }
+  ],
+  "2026-05-27": [
+    {
+      "headline": "Dow hits record 50,644 on reopening from Memorial Day; oil falls 5.55% to $88.68",
+      "summary": "Markets gap higher on return from holiday; ceasefire holding and falling oil combine to give the Tuesday session a strong risk-on tone.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/26/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Trump: Iran deal in 'final stages' — ceasefire extension talks going well",
+      "summary": "Presidential confirmation that negotiations are progressing provides market confidence that the oil shock of early May will not return.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/26/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "US crude oil -5.55% to $88.68; Brent -5.63% to $105.02 — relief rally in energy markets",
+      "summary": "Oil's continued decline after the ceasefire is the key macro tailwind; every barrel lower directly reduces the odds of a Fed rate hike.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/26/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "S&P 500 inches to 7,520; Nasdaq leads as tech recovers from yield-driven May selloff",
+      "summary": "Markets cautious but positive; Tuesday's modest gains reflect a market that wants confirmation from data before committing to new record highs.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/05/26/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Solar and clean energy continue May surge as oil decline validates the transition trade",
+      "summary": "Renewable energy ETFs extend their best monthly performance in years; lower oil prices and ceasefire peace dividend boosting sentiment for alternatives.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    }
+  ],
+  "2026-05-28": [
+    {
+      "headline": "S&P 500 and Nasdaq set new records; Snowflake +36.5% on earnings beat and strong guidance",
+      "summary": "Cloud earnings season ends on a high note; Snowflake's results signal that enterprise AI spending is translating into real revenue acceleration.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-28-2026"
+    },
+    {
+      "headline": "April PCE inflation at highest level in nearly 3 years — Fed cut odds fall further",
+      "summary": "PCE beat complicates the rate cut narrative but markets look past it as oil prices have fallen sharply since April; forward-looking inflation calmer.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-28-2026"
+    },
+    {
+      "headline": "Nasdaq +0.91% to 26,917; tech resumes leadership after brief rotation to cyclicals",
+      "summary": "Mega-cap tech reclaims the driver's seat; investors comfortable owning high-multiple names again as the yield threat has receded with oil.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-28-2026"
+    },
+    {
+      "headline": "Bogus Iran-US peace report briefly spikes markets before being denied",
+      "summary": "False report of a comprehensive peace deal caused a short squeeze in the final hour; clarification from Iran's Foreign Ministry reversed the spike.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-28-2026"
+    },
+    {
+      "headline": "NIO shares +9.32% after officially launching ES9 SUV in China",
+      "summary": "Chinese EV demand recovering; ES9 launch generates strong pre-orders, supporting investor confidence in NIO's path to profitability.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-28-2026"
+    }
+  ],
+  "2026-05-29": [
+    {
+      "headline": "S&P 500 notches 9th consecutive weekly gain — longest streak since 2004",
+      "summary": "All three major indexes close at records; the streak has been powered by AI enthusiasm, falling oil, and Iran ceasefire — a rare confluence of tailwinds.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "Dow +0.7%, S&P 500 +0.2%, Nasdaq +0.2% — all three indexes at record highs",
+      "summary": "Broad advance reflects healthy market internals; breadth improving as the rally rotates beyond just mega-cap tech into cyclicals and small-caps.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/dow-nasdaq-sp-gain-stock-market-today-friday-may-29-222720284.html"
+    },
+    {
+      "headline": "Iran ceasefire extension holds; geopolitical risk premium at lowest level since April",
+      "summary": "No new Middle East escalation events reported; oil markets quiet with WTI near $88, providing a stable macro backdrop for equities.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "Invesco Solar ETF (TAN) +26.5% for May — best monthly gain since September 2013",
+      "summary": "Clean energy has its best month in over a decade; Enphase +110% in May alone as lower oil prices and the ceasefire reset the energy transition narrative.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "Best Buy Q1 beats: EPS $1.28 vs $1.23 expected; consumer electronics demand holds firm",
+      "summary": "Electronics retailer's results ease concerns about discretionary spending fatigue; raised guidance signals the AI device upgrade cycle is benefiting retail.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    }
+  ],
+  "2026-05-30": [
+    {
+      "headline": "Dell Technologies +33% best day on record after Q1 earnings beat and raised full-year guidance",
+      "summary": "AI server demand driving explosive growth at Dell; raised guidance reflects accelerating hyperscaler orders for AI infrastructure systems.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "S&P 500 caps winning month at record 7,580; Dow closes above 51,000",
+      "summary": "May ends as one of the strongest months of the year despite mid-month inflation scare; Iran ceasefire and AI earnings drove the recovery.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/dow-nasdaq-sp-gain-stock-market-today-friday-may-29-222720284.html"
+    },
+    {
+      "headline": "CEO confidence falls from 59 to 47 in Q2 — back into negative territory",
+      "summary": "Business leader sentiment deteriorates despite strong markets; concerns center on sustained inflation, new Fed Chair uncertainty, and geopolitical overhang.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "Micron +5%, Qualcomm +3% as AI memory and mobile chip demand outlook improves",
+      "summary": "Semiconductor supply chain checks indicate strong Q3 orders; AI inference demand driving memory consumption far above initial forecasts.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    },
+    {
+      "headline": "AST SpaceMobile -14.5%; satellite stocks broadly lower on sector developments",
+      "summary": "Space sector selloff offsets some of the broader market's gains; investors reassess valuations in satellite broadband after key operational update.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-may-29-2026"
+    }
+  ],
+  "2026-06-02": [
+    {
+      "headline": "S&P 500 closes above 7,600 for the first time; Nasdaq +0.4% as chip boom continues",
+      "summary": "Historic milestone close powered by NVIDIA's new AI PC chip announcement; the index has now recovered fully from the May inflation selloff.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-02-2026"
+    },
+    {
+      "headline": "NVIDIA +6.2% after unveiling new AI chip for PCs; Dell Technologies +10.7% on partnership",
+      "summary": "NVIDIA's consumer AI chip extends the company's dominance beyond data centers; Dell's tight partnership positions it as the primary distribution channel.",
+      "source": "Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/06/02/stock-market-today-june-2-chipmakers-drive-s-and-p-500-to-another-record-close/"
+    },
+    {
+      "headline": "ISM Manufacturing PMI hits 54 — highest in 4 years; 5th straight month of expansion",
+      "summary": "Manufacturing data strongly exceeds expectations; AI-driven capital equipment demand is lifting factory output to levels not seen since early 2022.",
+      "source": "247 Wall St.",
+      "url": "https://247wallst.com/investing/2026/06/02/stock-market-live-june-2-2026-sp-500-spy-rebounds-with-chip-stocks/"
+    },
+    {
+      "headline": "JOLTS job openings rise to 7.6M in April — highest in nearly 2 years",
+      "summary": "Labor demand acceleration signals the economy is running hot; paradoxically strong jobs data raises rate-hike risk even as markets celebrate.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-jun-2-130600173.html"
+    },
+    {
+      "headline": "Alphabet -4% after announcing $80B stock offering to fund AI buildout including $10B Berkshire investment",
+      "summary": "Dilution concerns hit GOOGL despite Berkshire's vote of confidence; $80B offering is the largest by a tech company in years, signaling massive AI capex commitment.",
+      "source": "247 Wall St.",
+      "url": "https://247wallst.com/investing/2026/06/02/stock-market-live-june-2-2026-sp-500-spy-rebounds-with-chip-stocks/"
+    }
+  ],
+  "2026-06-03": [
+    {
+      "headline": "Marvell Technology surges 25% after Jensen Huang calls MRVL 'the next trillion dollar company'",
+      "summary": "Nvidia CEO's endorsement at a conference is an extraordinary catalyst; MRVL's custom AI chip business is now seen as a Nvidia-adjacent infrastructure play.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-03-2026"
+    },
+    {
+      "headline": "Hewlett Packard Enterprise +25% after Q2 earnings beat and revenue guidance tops estimates",
+      "summary": "HPE's AI server division drives the upside; management raised full-year revenue guidance citing AI infrastructure orders filling well into 2027.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-03-2026"
+    },
+    {
+      "headline": "Broadcom reports Q2 earnings after close; AI chip revenue outlook seen as key market catalyst",
+      "summary": "All eyes on Broadcom's AI custom chip guidance; analysts expect management to raise the AI revenue outlook to $4B+ for 2026 — anything less risks a selloff.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/03/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "S&P 500 +0.41% to 7,584; market rotates as cyclicals lag but breadth remains healthy",
+      "summary": "Index gains despite tech profit-taking; energy, healthcare, and financials all contribute — a sign the rally is broadening beyond AI.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-03-2026"
+    },
+    {
+      "headline": "Victoria's Secret raises full-year guidance citing lower tariff costs; shares +8%",
+      "summary": "Retail earnings continue to benefit from easing trade tensions; tariff relief on Chinese imports boosting apparel margins across the sector.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-jun-2-130600173.html"
+    }
+  ],
+  "2026-06-04": [
+    {
+      "headline": "Dow Jones surges to record 51,561 as investors rotate from tech into cyclicals",
+      "summary": "Broadcom's AI chip guidance disappointed chip bulls, triggering a rotation into industrials and financials that pushed the Dow to an all-time high.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-03-2026"
+    },
+    {
+      "headline": "Broadcom AI chip revenue guidance disappoints; AVGO -7.9% in after-hours trading",
+      "summary": "Broadcom's custom AI chip revenue forecast came in below the most bullish analyst projections; the miss triggers immediate selling in AI-adjacent semiconductor names.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/04/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Nasdaq slips as Broadcom news spills into semiconductor sector; Nasdaq -0.09%",
+      "summary": "Chip stocks feel the Broadcom drag while the broader index holds steady; the divergence between tech weakness and cyclical strength is the story of the session.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-03-2026"
+    },
+    {
+      "headline": "S&P 500 ends at 7,584 as Dow rotation offsets tech selloff; healthy market dynamic",
+      "summary": "Analysts note that the S&P holding flat while the Dow hits records shows sector rotation rather than a broad market breakdown.",
+      "source": "Investing.com",
+      "url": "https://www.investing.com/analysis/sp-500-selloff-looks-more-like-rotation-than-market-breakdown-200681625"
+    },
+    {
+      "headline": "JOLTS and ISM data confirm the economy is running hot; rate-hike probability creeps higher",
+      "summary": "Combination of strong jobs openings, manufacturing expansion, and Broadcom miss shifts focus to Friday's nonfarm payrolls as the definitive market catalyst.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-jun-2-130600173.html"
+    }
+  ],
+  "2026-06-05": [
+    {
+      "headline": "May jobs report: +172,000 vs 80,000 expected — Fed rate-hike odds surge to 72%",
+      "summary": "Blowout payrolls data forces markets to reprice rate expectations sharply; the probability of at least one 2026 hike jumps from 35% to 72% in a single session.",
+      "source": "BNN Bloomberg / CNBC",
+      "url": "https://www.bnnbloomberg.ca/markets/2026/06/05/stocks-slip-on-wall-street-big-tech-falls/"
+    },
+    {
+      "headline": "Nasdaq -4.18% — worst day since April 2025; S&P 500 -2.64% to 7,383",
+      "summary": "Double blow of Broadcom's AI chip miss and jobs-driven rate-hike fears hits growth stocks hard; the Nasdaq's plunge ends its run near record highs.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-05-2026"
+    },
+    {
+      "headline": "Broadcom -7.9%; semiconductor sector collapses as AI chip growth narrative is questioned",
+      "summary": "AVGO's underwhelming AI guidance triggers a sector-wide reassessment; investors who owned chips for the AI premium now questioning the valuation math.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/04/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Treasury yields spike: 10-year hits 4.8% as hot jobs data changes the Fed calculus",
+      "summary": "Bond market prices in higher-for-longer rates immediately; the 10-year's move to 4.8% in one session is a severe financial conditions tightening event.",
+      "source": "Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/06/05/stock-market-today-june-5-strong-jobs-data-drives-broad-sell-off-at-midday/"
+    },
+    {
+      "headline": "S&P 500 ends 9-week consecutive weekly winning streak; worst week since March",
+      "summary": "The streak ends on a combination of fundamental (Broadcom AI miss) and macro (jobs/rates) shocks; analysts debate whether this is a buying opportunity or trend change.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-dow-sp-500-nasdaq-sink-as-jobs-report-fuels-fed-hike-bets-chip-stocks-sell-off-230134285.html"
+    }
+  ],
   "2026-06-08": [
     {
       "headline": "Chip stocks rebound sharply: Intel +10% on Alphabet TPU order, Micron recovers ~10% after Friday's 13% drop",
