@@ -766,5 +766,69 @@
       "source": "247 Wall St. / TheStreet",
       "url": "https://247wallst.com/investing/2026/06/08/stock-market-live-june-8-2026-sp-500-spy-rebounds-with-chip-stocks/"
     }
+  ],
+  "2026-06-09": [
+    {
+      "headline": "Trump threatens fresh Iran strikes after helicopter downed; Nasdaq slides 0.97% to 25,679",
+      "summary": "Stocks plunged intraday after Trump indicated kinetic strikes on Iran could resume; the Nasdaq bore the brunt while the Dow managed a slim +0.17% as tech and energy dragged.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-09-2026"
+    },
+    {
+      "headline": "U.S. launches overnight 'self-defense strikes' on Iran; S&P 500 and Nasdaq futures fall 0.3% after hours",
+      "summary": "The Pentagon confirmed targeted strikes in retaliation for Iran downing a U.S. helicopter, reigniting geopolitical risk premium heading into Wednesday's critical CPI release.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/09/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Tech sector falls nearly 2% for second straight session; Big Tech names continue to slide",
+      "summary": "The S&P 500 tech sector is now down over 10% from its May peak as investors reassess AI valuations against a backdrop of rising rates and geopolitical uncertainty.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/09/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Apple -3%: new Siri AI blocked in EU over antitrust rules; adds to Big Tech pressure",
+      "summary": "Brussels antitrust regulations will prevent Apple's next-generation Siri from launching in Europe, limiting a key AI monetization story and pressuring the stock alongside broader sector weakness.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-09-2026"
+    },
+    {
+      "headline": "All eyes on May CPI due Wednesday 8:30 AM ET — consensus at 4.2% YoY, highest since April 2023",
+      "summary": "A hotter-than-expected print could push Fed rate-hike odds above 80% and deliver another leg down for equities; Warsh's first FOMC meeting June 16-17 now carries outsized market significance.",
+      "source": "Interactive Brokers / FactSet",
+      "url": "https://www.interactivebrokers.com/campus/traders-insight/prediction-market/tomorrows-cpi-expected-at-4-2-while-core-projected-at-2-9/"
+    }
+  ],
+  "2026-06-10": [
+    {
+      "headline": "May CPI jumps to 4.2% YoY — highest in 37 months — as energy costs surge on Iran war",
+      "summary": "The Bureau of Labor Statistics confirmed May CPI at 4.2% (core 2.9%), crossing the 4% threshold for the first time since April 2023; oil-driven energy prices account for more than 40% of the monthly increase.",
+      "source": "BLS / Kiplinger",
+      "url": "https://www.kiplinger.com/investing/economy/cpi-report-may-2026-what-to-expect"
+    },
+    {
+      "headline": "Fed rate-hike odds surge past 70% after CPI shock; FOMC meeting June 16-17 now pivotal for markets",
+      "summary": "CME FedWatch now shows ~72% probability of at least one hike in 2026 as Warsh prepares for his first policy meeting; futures traders have fully priced out rate cuts for the year.",
+      "source": "Charles Schwab",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open"
+    },
+    {
+      "headline": "Crude oil and chip stocks deliver early tailwind before CPI, but gains fade post-report",
+      "summary": "Energy names led by Exxon and Chevron rose on Iran supply fears while semiconductor stocks staged a brief recovery; both moves reversed as the hot inflation print reset rate expectations.",
+      "source": "Charles Schwab",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open"
+    },
+    {
+      "headline": "Iran conflict escalates after overnight U.S. strikes; oil prices spike, flight-to-safety bids Treasuries",
+      "summary": "U.S. retaliatory strikes on Iranian military infrastructure pushed Brent crude above $95 and sent investors into Treasuries and gold, complicating the Fed's task of taming energy-driven inflation.",
+      "source": "Investing.com",
+      "url": "https://in.investing.com/news/stock-market-news/us-stock-futures-fall-amid-more-iran-strikes-tech-weakness-cpi-data-awaited-5447683"
+    },
+    {
+      "headline": "S&P 500 and Nasdaq under pressure as hot CPI and Iran tensions create a stagflation scare",
+      "summary": "Markets face a dual headwind: geopolitical risk driving energy inflation while the Fed is now constrained from cutting rates, raising fears of a stagflationary backdrop heading into the second half of 2026.",
+      "source": "CNBC / Morningstar",
+      "url": "https://www.morningstar.com/economy/may-cpi-forecasts-show-continued-lofty-inflation"
+    }
   ]
 }
