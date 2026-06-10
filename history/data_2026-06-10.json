@@ -3547,7 +3547,7 @@
       "name": "Copart",
       "sector": "Industrials",
       "industry": "Diversified Support Services",
-      "marketCap": 30209351047
+      "marketCap": 29033448075
     },
     {
       "ticker": "CPT",
@@ -4107,7 +4107,7 @@
       "name": "Deere & Company",
       "sector": "Industrials",
       "industry": "Agricultural & Farm Machinery",
-      "marketCap": 151273583284
+      "marketCap": 151178454871
     },
     {
       "ticker": "DECK",
@@ -6823,7 +6823,7 @@
       "name": "Hormel Foods",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
-      "marketCap": 13366403388
+      "marketCap": 13367150354
     },
     {
       "ticker": "HSIC",
@@ -8363,7 +8363,7 @@
       "name": "Lowe's",
       "sector": "Consumer Discretionary",
       "industry": "Home Improvement Retail",
-      "marketCap": 121282590000
+      "marketCap": 121219255193
     },
     {
       "ticker": "LRCX",
@@ -9903,7 +9903,7 @@
       "name": "News Corp (Class B)",
       "sector": "Communication Services",
       "industry": "Publishing",
-      "marketCap": 5617986257
+      "marketCap": 5616206417
     },
     {
       "ticker": "NWSA",
@@ -9931,7 +9931,7 @@
       "name": "News Corp (Class A)",
       "sector": "Communication Services",
       "industry": "Publishing",
-      "marketCap": 9796892038
+      "marketCap": 9793323205
     },
     {
       "ticker": "NXPI",
@@ -12031,7 +12031,7 @@
       "name": "Seagate Technology",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 182968615182
+      "marketCap": 184619464134
     },
     {
       "ticker": "STZ",
@@ -12059,7 +12059,7 @@
       "name": "Constellation Brands",
       "sector": "Consumer Staples",
       "industry": "Distillers & Vintners",
-      "marketCap": 24494987834
+      "marketCap": 24394595293
     },
     {
       "ticker": "SW",
@@ -12101,7 +12101,7 @@
       "return1m": -0.74,
       "return3m": 10.14,
       "returnYtd": 3.53,
-      "return12m": 17.1,
+      "return12m": 17.11,
       "returnFromLow": 16.13,
       "vsSpx1d": -1.69,
       "vsSpx1w": 2.91,
@@ -14243,7 +14243,7 @@
       "name": "Xylem Inc.",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 25464103905
+      "marketCap": null
     },
     {
       "ticker": "XYZ",
@@ -14271,7 +14271,7 @@
       "name": "Block, Inc.",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "marketCap": 35660042850
+      "marketCap": null
     },
     {
       "ticker": "YUM",
@@ -14299,7 +14299,7 @@
       "name": "Yum! Brands",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
-      "marketCap": 41640851198
+      "marketCap": null
     },
     {
       "ticker": "ZBH",
@@ -14327,7 +14327,7 @@
       "name": "Zimmer Biomet",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 17057587037
+      "marketCap": null
     },
     {
       "ticker": "ZBRA",
@@ -14355,7 +14355,7 @@
       "name": "Zebra Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": 10326443051
+      "marketCap": null
     },
     {
       "ticker": "ZTS",
@@ -14383,7 +14383,7 @@
       "name": "Zoetis",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
-      "marketCap": 34079053712
+      "marketCap": null
     }
   ]
 }
