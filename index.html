@@ -2000,7 +2000,7 @@ function rotStockCard(s, opts = {}) {
     <div class="rot-sc-ticker">
       <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
       ${name}
-      <b style="color:${rc};font-size:11.5px;flex-shrink:0">${pp(s.return1d,true)}%</b>
+      <b style="color:${rc};font-size:9px;flex-shrink:0">${pp(s.return1d,true)}%</b>
     </div>
   </div>`;
 }
@@ -2035,7 +2035,7 @@ function rotStockCardFull(s) {
     <div class="rot-sf-main">
       <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
       ${name ? `<span class="rot-sf-name">${name}</span>` : ''}
-      <b style="color:${rc};flex-shrink:0">${pp(s.return1d,true)}%</b>
+      <b style="color:${rc};font-size:9px;flex-shrink:0">${pp(s.return1d,true)}%</b>
     </div>
   </div>`;
 }
@@ -2043,7 +2043,7 @@ function rotStockCardFull(s) {
 // Legacy inline chip — still used in narrow contexts
 function rotStockLink(s) {
   const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
-  return `<span class="rot-chip"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b></span>`;
+  return `<span class="rot-chip"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c};font-size:9px">${pp(s.return1d,true)}%</b></span>`;
 }
 
 function rotSectorCard(sec, isTop) {
@@ -2052,7 +2052,7 @@ function rotSectorCard(sec, isTop) {
   // Sector is the card header — show industry on each stock, no redundant industry sub-line
   const sc = sectorColor(sec.name);
   return `<div class="rot-sec-card" style="border-left:3px solid ${sc}">
-    <div class="rot-sec-name"><span style="color:${sc}">${sec.name}</span> <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
+    <div class="rot-sec-name"><span style="color:${sc}">${sec.name}</span> <b style="color:${c};font-size:9px">${pp(sec.ret,true)}%</b></div>
     <div class="rot-sec-stocks">${subStocks.map(s => rotStockCard(s, { showIndustry: true })).join('')}</div>
   </div>`;
 }
@@ -2063,7 +2063,7 @@ function rotHighLowChip(i) {
   const sc      = sectorColor(secName);
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
-    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text2);font-weight:600;text-decoration:none">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b>`;
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text2);font-weight:600;text-decoration:none">${s.ticker}</a> <b style="color:${c};font-size:9px">${pp(s.return1d,true)}%</b>`;
   }).join('<span style="color:var(--border2)"> · </span>');
   return `<div class="rot-sf" style="border-left-color:${sc}">
     ${secName ? `<div class="rot-sf-sector" style="color:${sc}">${secName}</div>` : ''}
