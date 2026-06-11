@@ -377,6 +377,47 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   font-weight: 700;
 }
 .rot-chip a:hover { text-decoration: underline; color: var(--blue); }
+/* 3-line stock card: sector / industry / ticker+return */
+.rot-sc {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 9px;
+  min-width: 130px;
+  max-width: 200px;
+}
+.rot-sc-meta {
+  font-size: 9.5px;
+  color: var(--text3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+.rot-sc-ticker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+.rot-sc-ticker a {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+.rot-sc-ticker a:hover { text-decoration: underline; color: var(--blue); }
+.rot-sc-ticker .rot-sc-name {
+  font-size: 10px;
+  color: var(--text3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
 .rot-chip-2l {
   display: flex;
   flex-direction: column;
@@ -1820,7 +1861,7 @@ function buildRotationEntry(d) {
 }
 
 async function loadRotationLog() {
-  const STORE_KEY = 'rotationLog_v3';
+  const STORE_KEY = 'rotationLog_v4';
   let log = [];
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
   const existingDates = new Set(log.map(e => e.date));
@@ -1849,6 +1890,29 @@ async function loadRotationLog() {
   return log;
 }
 
+// opts: { showSector, showIndustry }
+// Always shows ticker+return. Adds sector/industry breadcrumb as context.
+function rotStockCard(s, opts = {}) {
+  const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
+  const sec = s.sector   || '';
+  const ind = s.industry || '';
+  const metaParts = [];
+  if (opts.showSector   && sec) metaParts.push(sec);
+  if (opts.showIndustry && ind) metaParts.push(ind);
+  const meta = metaParts.length
+    ? `<div class="rot-sc-meta">${metaParts.join(' › ')}</div>`
+    : '';
+  const name = s.name ? `<span class="rot-sc-name">${s.name.length > 18 ? s.name.slice(0,17)+'…' : s.name}</span>` : '';
+  return `<div class="rot-sc">
+    ${meta}
+    <div class="rot-sc-ticker">
+      <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
+      ${name}
+      <b style="color:${c};font-size:12px">${pp(s.return1d,true)}%</b>
+    </div>
+  </div>`;
+}
+// Legacy inline chip — still used in narrow contexts
 function rotStockLink(s) {
   const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
   return `<span class="rot-chip"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b></span>`;
@@ -1856,34 +1920,31 @@ function rotStockLink(s) {
 
 function rotSectorCard(sec, isTop) {
   const c = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
-  const subInd = isTop ? sec.topInd : sec.botInd;
+  const subInd    = isTop ? sec.topInd    : sec.botInd;
   const subStocks = isTop ? sec.topStocks : sec.botStocks;
   const indLine = subInd
     ? `<div class="rot-sec-ind">${subInd.name.length>30?subInd.name.slice(0,28)+'…':subInd.name} <b style="color:${subInd.ret>0?'var(--green)':subInd.ret<0?'var(--red)':'var(--text2)'}">${pp(subInd.ret,true)}%</b></div>`
     : '';
+  // Sector is shown as card header — only add industry per stock
   return `<div class="rot-sec-card">
     <div class="rot-sec-name">${sec.name} <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
     ${indLine}
-    <div class="rot-sec-stocks">${subStocks.map(s => rotStockLink(s)).join('')}</div>
+    <div class="rot-sec-stocks">${subStocks.map(s => rotStockCard(s, { showIndustry: true })).join('')}</div>
   </div>`;
 }
 
 function rotChipHighInd(i) {
-  const tickersHtml = i.stocks.map(s =>
-    `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:var(--green)">${pp(s.return1d,true)}%</b>`
-  ).join(' · ');
+  // Industry is shown as card header — only add sector per stock
   return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 8px">${tickersHtml || '—'}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 6px">${i.stocks.map(s => rotStockCard(s, { showSector: true })).join('') || '—'}</span>
   </div>`;
 }
 function rotChipLowInd(i) {
-  const tickersHtml = i.stocks.map(s =>
-    `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:var(--red)">${pp(s.return1d,true)}%</b>`
-  ).join(' · ');
+  // Industry is shown as card header — only add sector per stock
   return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 8px">${tickersHtml || '—'}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 6px">${i.stocks.map(s => rotStockCard(s, { showSector: true })).join('') || '—'}</span>
   </div>`;
 }
 
@@ -1901,7 +1962,7 @@ function rotRowHtml(entry, isLeaders) {
     </div>
     <div class="rot-col">
       <div class="rot-col-label">${isLeaders ? 'Top Stocks (S&P 500)' : 'Bottom Stocks (S&P 500)'}</div>
-      ${allStocks.map(s => rotStockLink(s)).join('')}
+      <div style="display:flex;flex-wrap:wrap;gap:5px">${allStocks.map(s => rotStockCard(s, { showSector: true, showIndustry: true })).join('')}</div>
     </div>
     ${highLow.length ? `
     <div class="rot-col">
