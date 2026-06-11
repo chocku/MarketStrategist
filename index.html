@@ -287,28 +287,45 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 }
 
 /* ── Rotation Tab ── */
+.rot-subtabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.rot-subtab {
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rot-subtab:hover { color: var(--text); }
+.rot-subtab.active.leaders { background: rgba(34,200,122,0.15); border-color: rgba(34,200,122,0.4); color: var(--green); }
+.rot-subtab.active.laggers { background: rgba(240,79,79,0.15);  border-color: rgba(240,79,79,0.4);  color: var(--red); }
 .rot-row {
   background: var(--bg2);
   border: 0.5px solid var(--border);
   border-radius: 10px;
-  margin-bottom: 8px;
-  overflow: hidden;
-}
-.rot-header {
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.12s;
+  gap: 0;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+  row-gap: 6px;
 }
-.rot-header:hover { background: var(--bg3); }
 .rot-date-col {
   display: flex;
   flex-direction: column;
-  min-width: 110px;
+  min-width: 112px;
   flex-shrink: 0;
+  padding-right: 14px;
+  border-right: 0.5px solid var(--border);
+  margin-right: 14px;
 }
 .rot-date {
   font-size: 13px;
@@ -319,66 +336,50 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   font-size: 11px;
   margin-top: 2px;
 }
-.rot-summary {
+.rot-cols {
   flex: 1;
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
+  align-items: flex-start;
 }
-.rot-toggle-btn {
-  background: none;
-  border: none;
-  color: var(--text3);
-  font-size: 14px;
-  cursor: pointer;
-  padding: 0 4px;
-  flex-shrink: 0;
-  transition: color 0.12s;
-}
-.rot-toggle-btn:hover { color: var(--text); }
-.rot-body {
-  padding: 0 16px 16px;
-}
-.rot-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding-top: 8px;
-  border-top: 0.5px solid var(--border);
-}
-.rot-section {
+.rot-col {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+  min-width: 130px;
 }
-.rot-section-title {
-  font-size: 10px;
+.rot-col-label {
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 2px;
+  color: var(--text3);
 }
-.rot-section-title.gain   { color: var(--green); }
-.rot-section-title.loss   { color: var(--red); }
-.rot-section-title.high52 { color: var(--blue); }
-.rot-section-title.low52  { color: var(--amber); }
 .rot-chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: var(--bg3);
   border: 0.5px solid var(--border);
   border-radius: 6px;
-  padding: 3px 8px;
+  padding: 3px 7px;
   font-size: 12px;
   color: var(--text2);
   white-space: nowrap;
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
 }
+.rot-chip a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+.rot-chip a:hover { text-decoration: underline; color: var(--blue); }
 @media (max-width: 600px) {
-  .rot-grid { grid-template-columns: 1fr; }
-  .rot-summary { display: none; }
+  .rot-col { min-width: 100px; }
+  .rot-date-col { min-width: 90px; }
 }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -1506,7 +1507,8 @@ function initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate) {
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
 
-let _rotationLog = null; // cached array of day entries
+let _rotationLog = null;
+let _rotView = 'leaders'; // 'leaders' | 'laggers'
 
 function rotTop(arr, key, n=3) {
   return [...arr].sort((a,b)=>b[key]-a[key]).slice(0,n);
@@ -1518,21 +1520,18 @@ function rotBottom(arr, key, n=3) {
 function buildRotationEntry(d) {
   const stocks = d.stocks || [];
 
-  // --- Sector aggregates (mcap-weighted avg return1d) ---
   const sectorMap = {};
   stocks.forEach(s => {
     const sec = s.sector || 'Unknown';
-    if (!sectorMap[sec]) sectorMap[sec] = { totalW: 0, totalR: 0, count: 0 };
+    if (!sectorMap[sec]) sectorMap[sec] = { totalW: 0, totalR: 0 };
     const w = s.marketCap || 1;
     sectorMap[sec].totalW += w;
     sectorMap[sec].totalR += s.return1d * w;
-    sectorMap[sec].count++;
   });
   const sectorArr = Object.entries(sectorMap).map(([name, v]) => ({
     name, ret: v.totalW ? v.totalR / v.totalW : 0
   }));
 
-  // --- Industry aggregates ---
   const indMap = {};
   stocks.forEach(s => {
     const ind = s.industry || 'Unknown';
@@ -1544,210 +1543,181 @@ function buildRotationEntry(d) {
     if (s.newLow)  indMap[ind].lows.push(s);
   });
   const indArr = Object.entries(indMap).map(([name, v]) => ({
-    name,
-    ret:   v.totalW ? v.totalR / v.totalW : 0,
-    highs: v.highs,
-    lows:  v.lows
+    name, ret: v.totalW ? v.totalR / v.totalW : 0,
+    highs: v.highs, lows: v.lows
   }));
 
-  // top/bottom 3 sectors & industries
-  const topSectors    = rotTop(sectorArr, 'ret');
-  const botSectors    = rotBottom(sectorArr, 'ret');
-  const topIndustries = rotTop(indArr, 'ret');
-  const botIndustries = rotBottom(indArr, 'ret');
-
-  // top 3 stocks
-  const topStocks = rotTop(stocks, 'return1d');
-  const botStocks = rotBottom(stocks, 'return1d');
-
-  // industries with most 52w highs (top 3), pick best stock in each
   const highInds = [...indArr]
     .filter(i => i.highs.length > 0)
     .sort((a,b) => b.highs.length - a.highs.length)
     .slice(0, 3)
-    .map(i => {
-      const best = rotTop(i.highs, 'return1d', 1)[0];
-      return { name: i.name, count: i.highs.length, best };
-    });
+    .map(i => ({ name: i.name, count: i.highs.length, best: rotTop(i.highs, 'return1d', 1)[0] }));
 
   const lowInds = [...indArr]
     .filter(i => i.lows.length > 0)
     .sort((a,b) => b.lows.length - a.lows.length)
     .slice(0, 3)
-    .map(i => {
-      const worst = rotBottom(i.lows, 'return1d', 1)[0];
-      return { name: i.name, count: i.lows.length, best: worst };
-    });
+    .map(i => ({ name: i.name, count: i.lows.length, best: rotBottom(i.lows, 'return1d', 1)[0] }));
 
   return {
     date: d.asOf,
     spxReturn1d: d.spxReturn1d || 0,
-    topSectors, botSectors,
-    topIndustries, botIndustries,
-    topStocks, botStocks,
+    topSectors:    rotTop(sectorArr, 'ret'),
+    botSectors:    rotBottom(sectorArr, 'ret'),
+    topIndustries: rotTop(indArr, 'ret'),
+    botIndustries: rotBottom(indArr, 'ret'),
+    topStocks:     rotTop(stocks, 'return1d'),
+    botStocks:     rotBottom(stocks, 'return1d'),
     highInds, lowInds
   };
 }
 
 async function loadRotationLog() {
-  const STORE_KEY = 'rotationLog_v1';
+  const STORE_KEY = 'rotationLog_v2';
   let log = [];
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
-
-  // find all history files by scanning known data
-  // We know current data.json date; also try fetching history files
   const existingDates = new Set(log.map(e => e.date));
 
-  // always include current data.json
-  const allSources = [{ url: 'data.json', date: (_data || {}).asOf }];
-
-  // try fetching history files for dates we don't have yet
-  // We'll probe a range: last 30 trading days
   const today = new Date();
-  const probeUrls = [];
+  const probeUrls = [{ url: 'data.json', date: (_data || {}).asOf }];
   for (let i = 0; i < 60; i++) {
     const d = new Date(today);
     d.setDate(d.getDate() - i);
     const iso = d.toISOString().slice(0,10);
-    if (!existingDates.has(iso)) {
-      probeUrls.push({ url: `history/data_${iso}.json`, date: iso });
-    }
+    if (!existingDates.has(iso)) probeUrls.push({ url: `history/data_${iso}.json`, date: iso });
   }
-  allSources.push(...probeUrls);
 
-  const toFetch = allSources.filter(s => s.date && !existingDates.has(s.date));
-
-  await Promise.all(toFetch.map(async src => {
+  await Promise.all(probeUrls.filter(s => s.date && !existingDates.has(s.date)).map(async src => {
     try {
       const r = await fetch(src.url);
       if (!r.ok) return;
       const d = await r.json();
       if (!d.asOf || !d.stocks) return;
-      if (!existingDates.has(d.asOf)) {
-        log.push(buildRotationEntry(d));
-        existingDates.add(d.asOf);
-      }
+      if (!existingDates.has(d.asOf)) { log.push(buildRotationEntry(d)); existingDates.add(d.asOf); }
     } catch(e) {}
   }));
 
-  // sort newest first
   log.sort((a,b) => b.date.localeCompare(a.date));
   localStorage.setItem(STORE_KEY, JSON.stringify(log));
   return log;
 }
 
-function rotRowHtml(entry, idx) {
-  const expandId = `rot-expand-${idx}`;
-  const btnId    = `rot-btn-${idx}`;
+function rotChipSector(name, ret) {
+  const c = ret > 0 ? 'var(--green)' : ret < 0 ? 'var(--red)' : 'var(--text2)';
+  const short = name.length > 22 ? name.slice(0,20)+'…' : name;
+  return `<span class="rot-chip" title="${name}"><span>${short}</span> <b style="color:${c}">${pp(ret,true)}%</b></span>`;
+}
+function rotChipStock(s) {
+  const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
+  return `<span class="rot-chip"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b></span>`;
+}
+function rotChipHighInd(i) {
+  const best = i.best;
+  const label = i.name.length > 18 ? i.name.slice(0,16)+'…' : i.name;
+  const tickerPart = best
+    ? ` — <a href="https://finance.yahoo.com/quote/${best.ticker}" target="_blank" rel="noopener" style="font-weight:700;color:inherit">${best.ticker}</a> <b style="color:var(--green)">${pp(best.return1d,true)}%</b>`
+    : '';
+  return `<span class="rot-chip" title="${i.name} (${i.count} new highs)">${label} (${i.count})${tickerPart}</span>`;
+}
+function rotChipLowInd(i) {
+  const best = i.best;
+  const label = i.name.length > 18 ? i.name.slice(0,16)+'…' : i.name;
+  const tickerPart = best
+    ? ` — <a href="https://finance.yahoo.com/quote/${best.ticker}" target="_blank" rel="noopener" style="font-weight:700;color:inherit">${best.ticker}</a> <b style="color:var(--red)">${pp(best.return1d,true)}%</b>`
+    : '';
+  return `<span class="rot-chip" title="${i.name} (${i.count} new lows)">${label} (${i.count})${tickerPart}</span>`;
+}
+
+function rotRowHtml(entry, isLeaders) {
   const spx = entry.spxReturn1d;
   const spxColor = spx > 0 ? 'var(--green)' : spx < 0 ? 'var(--red)' : 'var(--text2)';
 
-  function chip(name, ret, extra='') {
-    const c = ret > 0 ? 'var(--green)' : ret < 0 ? 'var(--red)' : 'var(--text2)';
-    const short = name.length > 28 ? name.slice(0,26)+'…' : name;
-    return `<span class="rot-chip" title="${name}${extra}">${short} <b style="color:${c}">${pp(ret,true)}%</b></span>`;
+  let cols = '';
+  if (isLeaders) {
+    cols = `
+      <div class="rot-col">
+        <div class="rot-col-label">Top Sector</div>
+        ${entry.topSectors.map(s => rotChipSector(s.name, s.ret)).join('')}
+      </div>
+      <div class="rot-col">
+        <div class="rot-col-label">Top Industry</div>
+        ${entry.topIndustries.map(i => rotChipSector(i.name, i.ret)).join('')}
+      </div>
+      <div class="rot-col">
+        <div class="rot-col-label">Top Stocks</div>
+        ${entry.topStocks.map(s => rotChipStock(s)).join('')}
+      </div>
+      ${entry.highInds.length ? `
+      <div class="rot-col">
+        <div class="rot-col-label">52W High Industries</div>
+        ${entry.highInds.map(i => rotChipHighInd(i)).join('')}
+      </div>` : ''}`;
+  } else {
+    cols = `
+      <div class="rot-col">
+        <div class="rot-col-label">Bottom Sector</div>
+        ${entry.botSectors.map(s => rotChipSector(s.name, s.ret)).join('')}
+      </div>
+      <div class="rot-col">
+        <div class="rot-col-label">Bottom Industry</div>
+        ${entry.botIndustries.map(i => rotChipSector(i.name, i.ret)).join('')}
+      </div>
+      <div class="rot-col">
+        <div class="rot-col-label">Bottom Stocks</div>
+        ${entry.botStocks.map(s => rotChipStock(s)).join('')}
+      </div>
+      ${entry.lowInds.length ? `
+      <div class="rot-col">
+        <div class="rot-col-label">52W Low Industries</div>
+        ${entry.lowInds.map(i => rotChipLowInd(i)).join('')}
+      </div>` : ''}`;
   }
-  function stockChip(s) {
-    const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
-    return `<span class="rot-chip">${s.ticker} <b style="color:${c}">${pp(s.return1d,true)}%</b></span>`;
-  }
-  function indHighChip(i) {
-    const best = i.best;
-    return `<span class="rot-chip" title="${i.name}">${i.name.length>22?i.name.slice(0,20)+'…':i.name} (${i.count}) — ${best ? best.ticker+' '+pp(best.return1d,true)+'%' : '—'}</span>`;
-  }
-
-  const summaryParts = [
-    ...entry.topSectors.slice(0,1).map(s => chip(s.name, s.ret)),
-    ...entry.topStocks.slice(0,1).map(s => stockChip(s))
-  ];
 
   return `
-  <div class="rot-row" id="rot-row-${idx}">
-    <div class="rot-header" onclick="rotToggle(${idx})">
-      <div class="rot-date-col">
-        <span class="rot-date">${fmtDate(entry.date)}</span>
-        <span class="rot-spx" style="color:${spxColor}">SPX ${pp(spx,true)}%</span>
-      </div>
-      <div class="rot-summary">${summaryParts.join('')}<span style="color:var(--text3);font-size:11px;margin-left:4px">…</span></div>
-      <button class="rot-toggle-btn" id="${btnId}">▸</button>
+  <div class="rot-row">
+    <div class="rot-date-col">
+      <span class="rot-date">${fmtDate(entry.date)}</span>
+      <span class="rot-spx" style="color:${spxColor}">SPX ${pp(spx,true)}%</span>
     </div>
-    <div class="rot-body" id="${expandId}" style="display:none">
-      <div class="rot-grid">
-
-        <div class="rot-section">
-          <div class="rot-section-title gain">▲ Top Sectors</div>
-          ${entry.topSectors.map(s=>chip(s.name,s.ret)).join('')}
-        </div>
-        <div class="rot-section">
-          <div class="rot-section-title loss">▼ Bottom Sectors</div>
-          ${entry.botSectors.map(s=>chip(s.name,s.ret)).join('')}
-        </div>
-
-        <div class="rot-section">
-          <div class="rot-section-title gain">▲ Top Industries</div>
-          ${entry.topIndustries.map(i=>chip(i.name,i.ret)).join('')}
-        </div>
-        <div class="rot-section">
-          <div class="rot-section-title loss">▼ Bottom Industries</div>
-          ${entry.botIndustries.map(i=>chip(i.name,i.ret)).join('')}
-        </div>
-
-        <div class="rot-section">
-          <div class="rot-section-title gain">▲ Top Stocks</div>
-          ${entry.topStocks.map(s=>stockChip(s)).join('')}
-        </div>
-        <div class="rot-section">
-          <div class="rot-section-title loss">▼ Bottom Stocks</div>
-          ${entry.botStocks.map(s=>stockChip(s)).join('')}
-        </div>
-
-        ${entry.highInds.length ? `
-        <div class="rot-section">
-          <div class="rot-section-title high52">52w High Industries</div>
-          ${entry.highInds.map(i=>indHighChip(i)).join('')}
-        </div>` : ''}
-
-        ${entry.lowInds.length ? `
-        <div class="rot-section">
-          <div class="rot-section-title low52">52w Low Industries</div>
-          ${entry.lowInds.map(i=>indHighChip(i)).join('')}
-        </div>` : ''}
-
-      </div>
-    </div>
+    <div class="rot-cols">${cols}</div>
   </div>`;
 }
 
-function rotToggle(idx) {
-  const body = document.getElementById(`rot-expand-${idx}`);
-  const btn  = document.getElementById(`rot-btn-${idx}`);
-  if (!body) return;
-  const open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  btn.textContent = open ? '▸' : '▾';
+function rotSwitchView(view) {
+  _rotView = view;
+  const rows = document.getElementById('rot-rows');
+  const btnL  = document.getElementById('rot-btn-leaders');
+  const btnLg = document.getElementById('rot-btn-laggers');
+  if (!rows || !_rotationLog) return;
+  rows.innerHTML = _rotationLog.map(e => rotRowHtml(e, _rotView === 'leaders')).join('');
+  btnL.className  = 'rot-subtab leaders' + (_rotView === 'leaders' ? ' active' : '');
+  btnLg.className = 'rot-subtab laggers' + (_rotView === 'laggers' ? ' active' : '');
 }
 
 async function renderRotation() {
   document.getElementById('root').innerHTML = tabHdr(
     'Where is the money going?',
-    'Chronological log of daily sector, industry, and stock rotation — top & bottom performers plus 52-week breakouts and breakdowns.'
-  ) + `<div id="rot-container"><div style="text-align:center;padding:40px;color:var(--text2);font-size:13px">Loading rotation data…</div></div>`;
+    'Daily rotation log — ranked by 1D return (mcap-weighted for sectors & industries). Leaders shows top performers; Laggers shows bottom performers.'
+  ) + `
+  <div>
+    <div class="rot-subtabs">
+      <button id="rot-btn-leaders" class="rot-subtab leaders active" onclick="rotSwitchView('leaders')">▲ Leaders</button>
+      <button id="rot-btn-laggers" class="rot-subtab laggers"        onclick="rotSwitchView('laggers')">▼ Laggers</button>
+    </div>
+    <div id="rot-rows"><div style="text-align:center;padding:40px;color:var(--text2);font-size:13px">Loading…</div></div>
+  </div>`;
 
   _rotationLog = await loadRotationLog();
 
-  const container = document.getElementById('rot-container');
-  if (!container) return;
+  const rows = document.getElementById('rot-rows');
+  if (!rows) return;
 
   if (!_rotationLog.length) {
-    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2)">No rotation data available.</div>';
+    rows.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2)">No rotation data available.</div>';
     return;
   }
 
-  container.innerHTML = _rotationLog.map((e, i) => rotRowHtml(e, i)).join('');
-  // auto-expand first row
-  const first = document.getElementById('rot-expand-0');
-  const firstBtn = document.getElementById('rot-btn-0');
-  if (first) { first.style.display = 'block'; if (firstBtn) firstBtn.textContent = '▾'; }
+  rows.innerHTML = _rotationLog.map(e => rotRowHtml(e, _rotView === 'leaders')).join('');
 }
 
 // ── Tab 4: Leaders — What to Buy? ────────────────────────────────────
