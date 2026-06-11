@@ -202,6 +202,9 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .sec-health tr:hover td { background:rgba(255,255,255,0.02); }
 .sticky-breadth-wrap { overflow:auto; max-height:420px; border-radius:4px; }
 .sticky-breadth-wrap thead th { position:sticky; top:0; z-index:5; background:var(--bg2) !important; }
+.internals-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.internals-chart-box {}
+.internals-chart-title { font-size:11px; color:var(--text3); margin-bottom:6px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
 .health-bar { height:6px; background:var(--bg3); border-radius:3px; width:120px; overflow:hidden; }
 .health-fill{ height:100%; border-radius:3px; }
 .health-pill{ display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:5px; }
@@ -279,6 +282,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 }
 @media(max-width:768px) {
   .rsp-spy-grid { grid-template-columns: 1fr !important; }
+  .internals-grid { grid-template-columns: 1fr !important; }
 }
 @media(max-width:600px) {
   body { padding: 16px 12px; }
@@ -1412,7 +1416,7 @@ function renderOverview() {
 
   document.getElementById('root').innerHTML = tabHdr(
     'Is the rally broad or carried by a few?',
-    'Market Internals track how many S&P 500 stocks are above key moving averages and making new highs/lows. RSP vs SPY shows whether the average stock is keeping up with the cap-weighted index.'
+    'Tracks how many S&P 500 stocks are above key moving averages and hitting 52-week highs/lows. SPY vs RSP shows whether the average stock is keeping up with the cap-weighted index.'
   ) +
   buildInternalsPanel() +
   buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, '');
@@ -1491,17 +1495,17 @@ function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout
         <div class="part-sub">Spread = RSP minus SPY</div>
         ${hasRsp ? `
           <div class="part-row" style="border-bottom:0.5px solid var(--border);padding-bottom:6px;margin-bottom:4px">
-            <span class="part-lbl" style="font-size:10px;color:var(--text3)">Period</span>
-            <span class="part-rsp" style="font-size:10px;color:var(--text3)">RSP</span>
-            <span class="part-spx" style="font-size:10px;color:var(--text3)">SPY</span>
-            <span class="part-diff" style="font-size:10px;color:var(--text3)">Spread</span>
+            <span class="part-lbl" style="font-size:12px;color:var(--text)">Period</span>
+            <span class="part-spx" style="font-size:12px;color:var(--text)">SPY</span>
+            <span class="part-rsp" style="font-size:12px;color:var(--text)">RSP</span>
+            <span class="part-diff" style="font-size:12px;color:var(--text)">Spread</span>
           </div>
           ${ewRows.map(r=>`
             <div class="part-row" style="${r.highlight?'border-top:0.5px solid var(--border2);margin-top:4px;padding-top:8px;':''}">
-              <span class="part-lbl" style="${r.highlight?'font-weight:600;color:var(--text)':''}">${r.lbl}</span>
-              <span class="part-rsp" style="${r.highlight?'font-weight:600':''}">${pp(r.rsp,true)}%</span>
-              <span class="part-spx" style="${r.highlight?'font-weight:600':''}">${pp(r.spy,true)}%</span>
-              <span class="part-diff" style="color:${r.diff>=-2?C.green:r.diff>=-6?C.yellow:C.red};${r.highlight?'font-weight:700;font-size:14px':''}">${pp(r.diff,true)}%</span>
+              <span class="part-lbl" style="font-size:12px;color:var(--text)">${r.lbl}</span>
+              <span class="part-spx" style="font-size:12px;color:${r.spy>=0?C.green:C.red}">${pp(r.spy,true)}%</span>
+              <span class="part-rsp" style="font-size:12px;color:${r.rsp>=0?C.green:C.red}">${pp(r.rsp,true)}%</span>
+              <span class="part-diff" style="font-size:12px;color:${r.diff>=0?C.green:C.red}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
           ${rspCallout}
         ` : `
@@ -1687,14 +1691,23 @@ function initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate) {
 }
 
 // ── Market Internals — Historical Breadth Charts ─────────────────────
+function refreshInternals() {
+  const el = document.getElementById('internals-panel');
+  if (el) {
+    el.outerHTML = buildInternalsPanel();
+    initInternalsCharts();
+  } else {
+    renderOverview();
+  }
+}
 function onInternalsSectorChange(val) {
   internalsFilterSector = val;
   internalsFilterIndustry = 'all';
-  renderBreadth();
+  refreshInternals();
 }
 function onInternalsIndustryChange(val) {
   internalsFilterIndustry = val;
-  renderBreadth();
+  refreshInternals();
 }
 
 function getInternalsData() {
@@ -1756,7 +1769,7 @@ function buildInternalsPanel() {
   const showIndFilter = internalsFilterSector !== 'all';
 
   return `
-    <div class="part-box" style="margin-bottom:20px">
+    <div id="internals-panel" class="part-box" style="margin-bottom:20px">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
         <div>
           <div class="part-title" style="margin-bottom:2px">Market Internals — Historical Breadth</div>
@@ -1774,21 +1787,21 @@ function buildInternalsPanel() {
           </select>` : ''}
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-        <div>
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">MA Participation — Stock Count</div>
+      <div class="internals-grid">
+        <div class="internals-chart-box">
+          <div class="internals-chart-title">MA Participation — Stock Count</div>
           <div style="height:200px;position:relative"><canvas id="c-int-ma-count"></canvas></div>
         </div>
-        <div>
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">MA Participation — % by Market Cap</div>
+        <div class="internals-chart-box">
+          <div class="internals-chart-title">MA Participation — % by Market Cap</div>
           <div style="height:200px;position:relative"><canvas id="c-int-ma-mcap"></canvas></div>
         </div>
-        <div>
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows — Count</div>
+        <div class="internals-chart-box">
+          <div class="internals-chart-title">New 52-Week Highs vs Lows — Count</div>
           <div style="height:200px;position:relative"><canvas id="c-int-hl"></canvas></div>
         </div>
-        <div>
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows — % by Market Cap</div>
+        <div class="internals-chart-box">
+          <div class="internals-chart-title">New 52-Week Highs vs Lows — % by Market Cap</div>
           <div style="height:200px;position:relative"><canvas id="c-int-hl-mcap"></canvas></div>
         </div>
       </div>
