@@ -457,8 +457,9 @@ document.getElementById('feedback-overlay').addEventListener('click', e => {
 });
 
 // ── State ──────────────────────────────────────────────────────────────
-let chart2 = null, chart3 = null;
+let chart2 = null, chart3 = null, chart4 = null, chart5 = null;
 let _data = null;
+let _breadthHistory = [];
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let industryFilterSector = 'all';
@@ -471,6 +472,8 @@ let activeTab = 'breadth';
 let _news = {};
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
+let internalsFilterSector = 'all';
+let internalsFilterIndustry = 'all';
 
 // ── Helpers ────────────────────────────────────────────────────────────
 function regime(p) {
@@ -526,6 +529,10 @@ async function init() {
     const nr = await fetch('news_archive.json');
     if (nr.ok) _news = await nr.json();
   } catch(e) { _news = {}; }
+  try {
+    const bhr = await fetch('breadth_history.json');
+    if (bhr.ok) _breadthHistory = await bhr.json();
+  } catch(e) { _breadthHistory = []; }
   filterSector = 'all';
   industryFilterSector = 'all';
   leadersSector = 'all';
@@ -1187,9 +1194,11 @@ function renderBreadth() {
     'Is the rally broad or carried by a few Sectors/Industries?',
     'RSP vs SPY shows whether the average stock keeps up with the index. The sector and industry tables show which groups are driving the move and how wide the participation is within each.'
   ) +
+  buildInternalsPanel() +
   buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) +
   buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyFromLow, recentLowDate, indCallout, indMap);
 
+  initInternalsCharts();
   initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
 }
 
@@ -1407,6 +1416,157 @@ function initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate) {
       }
     }
   });
+}
+
+// ── Market Internals — Historical Breadth Charts ─────────────────────
+function onInternalsSectorChange(val) {
+  internalsFilterSector = val;
+  internalsFilterIndustry = 'all';
+  renderBreadth();
+}
+function onInternalsIndustryChange(val) {
+  internalsFilterIndustry = val;
+  renderBreadth();
+}
+
+function getInternalsData() {
+  if (!_breadthHistory || !_breadthHistory.length) return null;
+  if (internalsFilterSector === 'all' && internalsFilterIndustry === 'all') {
+    return _breadthHistory.map(e => ({
+      date: e.date,
+      total:    e.total,
+      above50:  e.above50,
+      above200: e.above200,
+      both:     e.both,
+      newHighs: e.newHighs,
+      newLows:  e.newLows,
+    }));
+  }
+  return _breadthHistory.map(e => {
+    let src;
+    if (internalsFilterIndustry !== 'all') {
+      src = e.industries && e.industries[internalsFilterIndustry];
+    } else {
+      src = e.sectors && e.sectors[internalsFilterSector];
+    }
+    if (!src) return { date: e.date, total: 0, above50: 0, above200: 0, both: 0, newHighs: 0, newLows: 0 };
+    return { date: e.date, total: src.total, above50: src.above50, above200: src.above200, both: src.both, newHighs: src.newHighs, newLows: src.newLows };
+  });
+}
+
+function buildInternalsPanel() {
+  if (!_breadthHistory || !_breadthHistory.length) return '';
+  const allSectors = [...new Set(
+    _breadthHistory.flatMap(e => e.sectors ? Object.keys(e.sectors) : [])
+  )].sort();
+  const allIndustries = internalsFilterSector === 'all'
+    ? []
+    : [...new Set(
+        _breadthHistory.flatMap(e => {
+          if (!e.industries) return [];
+          return Object.entries(e.industries)
+            .filter(([, v]) => v.sector === internalsFilterSector)
+            .map(([k]) => k);
+        })
+      )].sort();
+
+  const secOpts = allSectors.map(s =>
+    `<option value="${s}"${s === internalsFilterSector ? ' selected' : ''}>${s}</option>`
+  ).join('');
+  const indOpts = allIndustries.map(i =>
+    `<option value="${i}"${i === internalsFilterIndustry ? ' selected' : ''}>${i}</option>`
+  ).join('');
+
+  const showIndFilter = internalsFilterSector !== 'all';
+
+  return `
+    <div class="part-box" style="margin-bottom:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+        <div>
+          <div class="part-title" style="margin-bottom:2px">Market Internals — Historical Breadth</div>
+          <div class="part-sub">% of S&P 500 stocks above key moving averages, and new 52-week high/low counts over time</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select class="ctrl-input" style="width:170px" onchange="onInternalsSectorChange(this.value)">
+            <option value="all"${internalsFilterSector === 'all' ? ' selected' : ''}>All Sectors</option>
+            ${secOpts}
+          </select>
+          ${showIndFilter ? `
+          <select class="ctrl-input" style="width:220px" onchange="onInternalsIndustryChange(this.value)">
+            <option value="all"${internalsFilterIndustry === 'all' ? ' selected' : ''}>All Industries</option>
+            ${indOpts}
+          </select>` : ''}
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Moving Average Participation (%)</div>
+          <div style="height:200px;position:relative"><canvas id="c-int-ma"></canvas></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows (count)</div>
+          <div style="height:200px;position:relative"><canvas id="c-int-hl"></canvas></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initInternalsCharts() {
+  const data = getInternalsData();
+  if (!data || !data.length) return;
+
+  const labels = data.map(e => e.date);
+  const pct = (n, t) => t > 0 ? Math.round(n / t * 100) : 0;
+  const a50  = data.map(e => pct(e.above50,  e.total));
+  const a200 = data.map(e => pct(e.above200, e.total));
+  const both = data.map(e => pct(e.both,     e.total));
+  const highs = data.map(e => e.newHighs);
+  const lows  = data.map(e => e.newLows);
+
+  const axisStyle = { color: '#555e6e', font: { size: 10 } };
+  const gridStyle = { color: 'rgba(255,255,255,0.05)' };
+  const commonOpts = {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: { legend: { display: true, labels: { color: '#8a92a2', font: { size: 10 }, boxWidth: 16 } } },
+    scales: {
+      x: { ticks: { ...axisStyle, maxTicksLimit: 8, callback: (_, i) => labels[i] ? labels[i].slice(5) : '' }, grid: gridStyle },
+    }
+  };
+
+  if (chart4) { chart4.destroy(); chart4 = null; }
+  const c4 = document.getElementById('c-int-ma');
+  if (c4) {
+    chart4 = new Chart(c4, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: '% > 50 MA',   data: a50,  borderColor: C.blue,  backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, tension: 0.3 },
+          { label: '% > 200 MA',  data: a200, borderColor: C.amber, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, tension: 0.3 },
+          { label: '% > Both',    data: both, borderColor: C.green, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, tension: 0.3 },
+        ]
+      },
+      options: { ...commonOpts, scales: { ...commonOpts.scales, y: { ticks: { ...axisStyle, callback: v => v + '%' }, grid: gridStyle, min: 0, max: 100 } } }
+    });
+  }
+
+  if (chart5) { chart5.destroy(); chart5 = null; }
+  const c5 = document.getElementById('c-int-hl');
+  if (c5) {
+    chart5 = new Chart(c5, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          { label: 'New Highs', data: highs, backgroundColor: C.green + 'aa', borderColor: C.green, borderWidth: 1 },
+          { label: 'New Lows',  data: lows,  backgroundColor: C.red   + 'aa', borderColor: C.red,   borderWidth: 1 },
+        ]
+      },
+      options: { ...commonOpts, scales: { ...commonOpts.scales, y: { ticks: axisStyle, grid: gridStyle, min: 0 } } }
+    });
+  }
 }
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
