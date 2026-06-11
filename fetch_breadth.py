@@ -256,23 +256,28 @@ def compute_breadth_entry(date_str, stocks):
     for s in stocks:
         sec = s.get('sector') or 'Unknown'
         ind = s.get('industry') or 'Unknown'
+        mc  = s.get('marketCap') or 0
         if sec not in sec_map:
-            sec_map[sec] = {'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0,'industries':{}}
+            sec_map[sec] = {'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0,
+                            'mcapTotal':0,'mcapAbove50':0,'mcapAbove200':0,'mcapBoth':0,'industries':{}}
         m = sec_map[sec]
         m['total'] += 1
-        if s.get('above50'):  m['above50']  += 1
-        if s.get('above200'): m['above200'] += 1
-        if s.get('above50') and s.get('above200'): m['both'] += 1
+        m['mcapTotal'] += mc
+        if s.get('above50'):  m['above50'] += 1;  m['mcapAbove50']  += mc
+        if s.get('above200'): m['above200'] += 1; m['mcapAbove200'] += mc
+        if s.get('above50') and s.get('above200'): m['both'] += 1; m['mcapBoth'] += mc
         if s.get('newHigh'):  m['newHighs'] += 1
         if s.get('newLow'):   m['newLows']  += 1
         inds = m['industries']
         if ind not in inds:
-            inds[ind] = {'sector':sec,'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0}
+            inds[ind] = {'sector':sec,'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0,
+                         'mcapTotal':0,'mcapAbove50':0,'mcapAbove200':0,'mcapBoth':0}
         mi = inds[ind]
         mi['total'] += 1
-        if s.get('above50'):  mi['above50']  += 1
-        if s.get('above200'): mi['above200'] += 1
-        if s.get('above50') and s.get('above200'): mi['both'] += 1
+        mi['mcapTotal'] += mc
+        if s.get('above50'):  mi['above50'] += 1;  mi['mcapAbove50']  += mc
+        if s.get('above200'): mi['above200'] += 1; mi['mcapAbove200'] += mc
+        if s.get('above50') and s.get('above200'): mi['both'] += 1; mi['mcapBoth'] += mc
         if s.get('newHigh'):  mi['newHighs'] += 1
         if s.get('newLow'):   mi['newLows']  += 1
 
@@ -282,16 +287,25 @@ def compute_breadth_entry(date_str, stocks):
         for ind_name, ind_data in sec_data.pop('industries').items():
             industries[ind_name] = ind_data
 
+    total_mcap      = sum(s.get('marketCap') or 0 for s in stocks)
+    mcap_above50    = sum(s.get('marketCap') or 0 for s in stocks if s.get('above50'))
+    mcap_above200   = sum(s.get('marketCap') or 0 for s in stocks if s.get('above200'))
+    mcap_both       = sum(s.get('marketCap') or 0 for s in stocks if s.get('above50') and s.get('above200'))
+
     return {
-        'date':     date_str,
-        'total':    total,
-        'above50':  sum(1 for s in stocks if s.get('above50')),
-        'above200': sum(1 for s in stocks if s.get('above200')),
-        'both':     sum(1 for s in stocks if s.get('above50') and s.get('above200')),
-        'newHighs': sum(1 for s in stocks if s.get('newHigh')),
-        'newLows':  sum(1 for s in stocks if s.get('newLow')),
-        'sectors':  sec_map,
-        'industries': industries,
+        'date':         date_str,
+        'total':        total,
+        'above50':      sum(1 for s in stocks if s.get('above50')),
+        'above200':     sum(1 for s in stocks if s.get('above200')),
+        'both':         sum(1 for s in stocks if s.get('above50') and s.get('above200')),
+        'newHighs':     sum(1 for s in stocks if s.get('newHigh')),
+        'newLows':      sum(1 for s in stocks if s.get('newLow')),
+        'mcapTotal':    total_mcap,
+        'mcapAbove50':  mcap_above50,
+        'mcapAbove200': mcap_above200,
+        'mcapBoth':     mcap_both,
+        'sectors':      sec_map,
+        'industries':   industries,
     }
 
 
