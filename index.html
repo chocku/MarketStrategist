@@ -408,6 +408,34 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   font-size: 12px;
 }
 .rot-chip-2l a:hover { text-decoration: underline; color: var(--blue); }
+.rot-col-wide { min-width: 220px; }
+.rot-sec-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rot-sec-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.rot-sec-ind {
+  font-size: 11px;
+  color: var(--text3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rot-sec-stocks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
 @media (max-width: 600px) {
   .rot-col { min-width: 100px; }
   .rot-date-col { min-width: 90px; }
@@ -1711,18 +1739,22 @@ function rotBottom(arr, key, n=3) {
 function buildRotationEntry(d) {
   const stocks = d.stocks || [];
 
+  // Per-sector map: weighted return + stocks + per-industry sub-map
   const sectorMap = {};
   stocks.forEach(s => {
     const sec = s.sector || 'Unknown';
-    if (!sectorMap[sec]) sectorMap[sec] = { totalW: 0, totalR: 0 };
+    const ind = s.industry || 'Unknown';
+    if (!sectorMap[sec]) sectorMap[sec] = { totalW: 0, totalR: 0, stocks: [], indMap: {} };
     const w = s.marketCap || 1;
     sectorMap[sec].totalW += w;
     sectorMap[sec].totalR += s.return1d * w;
+    sectorMap[sec].stocks.push(s);
+    if (!sectorMap[sec].indMap[ind]) sectorMap[sec].indMap[ind] = { totalW: 0, totalR: 0 };
+    sectorMap[sec].indMap[ind].totalW += w;
+    sectorMap[sec].indMap[ind].totalR += s.return1d * w;
   });
-  const sectorArr = Object.entries(sectorMap).map(([name, v]) => ({
-    name, ret: v.totalW ? v.totalR / v.totalW : 0
-  }));
 
+  // Global industry map (for 52W high/low)
   const indMap = {};
   stocks.forEach(s => {
     const ind = s.industry || 'Unknown';
@@ -1738,17 +1770,34 @@ function buildRotationEntry(d) {
     highs: v.highs, lows: v.lows
   }));
 
+  // Sector array with top industry + top 3 stocks inside each sector
+  const sectorArr = Object.entries(sectorMap).map(([name, v]) => {
+    const ret = v.totalW ? v.totalR / v.totalW : 0;
+    const topInd = Object.entries(v.indMap)
+      .map(([n, iv]) => ({ name: n, ret: iv.totalW ? iv.totalR / iv.totalW : 0 }))
+      .sort((a, b) => b.ret - a.ret)[0] || null;
+    const botInd = Object.entries(v.indMap)
+      .map(([n, iv]) => ({ name: n, ret: iv.totalW ? iv.totalR / iv.totalW : 0 }))
+      .sort((a, b) => a.ret - b.ret)[0] || null;
+    return {
+      name, ret, topInd, botInd,
+      topStocks: rotTop(v.stocks, 'return1d', 3),
+      botStocks: rotBottom(v.stocks, 'return1d', 3)
+    };
+  });
+
+  // 52W high/low: ALL stocks that hit the high/low, sorted by return
   const highInds = [...indArr]
     .filter(i => i.highs.length > 0)
     .sort((a,b) => b.highs.length - a.highs.length)
     .slice(0, 3)
-    .map(i => ({ name: i.name, count: i.highs.length, best: rotTop(i.highs, 'return1d', 1)[0] }));
+    .map(i => ({ name: i.name, count: i.highs.length, stocks: rotTop(i.highs, 'return1d', i.highs.length) }));
 
   const lowInds = [...indArr]
     .filter(i => i.lows.length > 0)
     .sort((a,b) => b.lows.length - a.lows.length)
     .slice(0, 3)
-    .map(i => ({ name: i.name, count: i.lows.length, best: rotBottom(i.lows, 'return1d', 1)[0] }));
+    .map(i => ({ name: i.name, count: i.lows.length, stocks: rotBottom(i.lows, 'return1d', i.lows.length) }));
 
   return {
     date: d.asOf,
@@ -1757,14 +1806,14 @@ function buildRotationEntry(d) {
     botSectors:    rotBottom(sectorArr, 'ret'),
     topIndustries: rotTop(indArr, 'ret'),
     botIndustries: rotBottom(indArr, 'ret'),
-    topStocks:     rotTop(stocks, 'return1d'),
-    botStocks:     rotBottom(stocks, 'return1d'),
+    topStocks:     rotTop(stocks, 'return1d', 5),
+    botStocks:     rotBottom(stocks, 'return1d', 5),
     highInds, lowInds
   };
 }
 
 async function loadRotationLog() {
-  const STORE_KEY = 'rotationLog_v2';
+  const STORE_KEY = 'rotationLog_v3';
   let log = [];
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
   const existingDates = new Set(log.map(e => e.date));
@@ -1793,80 +1842,65 @@ async function loadRotationLog() {
   return log;
 }
 
-function rotChipSector(name, ret) {
-  const c = ret > 0 ? 'var(--green)' : ret < 0 ? 'var(--red)' : 'var(--text2)';
-  const short = name.length > 22 ? name.slice(0,20)+'…' : name;
-  return `<span class="rot-chip" title="${name}"><span>${short}</span> <b style="color:${c}">${pp(ret,true)}%</b></span>`;
-}
-function rotChipStock(s) {
+function rotStockLink(s) {
   const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
   return `<span class="rot-chip"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b></span>`;
 }
+
+function rotSectorCard(sec, isTop) {
+  const c = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
+  const subInd = isTop ? sec.topInd : sec.botInd;
+  const subStocks = isTop ? sec.topStocks : sec.botStocks;
+  const indLine = subInd
+    ? `<div class="rot-sec-ind">${subInd.name.length>30?subInd.name.slice(0,28)+'…':subInd.name} <b style="color:${subInd.ret>0?'var(--green)':subInd.ret<0?'var(--red)':'var(--text2)'}">${pp(subInd.ret,true)}%</b></div>`
+    : '';
+  return `<div class="rot-sec-card">
+    <div class="rot-sec-name">${sec.name} <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
+    ${indLine}
+    <div class="rot-sec-stocks">${subStocks.map(s => rotStockLink(s)).join('')}</div>
+  </div>`;
+}
+
 function rotChipHighInd(i) {
-  const best = i.best;
-  const tickerHtml = best
-    ? `<a href="https://finance.yahoo.com/quote/${best.ticker}" target="_blank" rel="noopener">${best.ticker}</a> <b style="color:var(--green)">${pp(best.return1d,true)}%</b>`
-    : '—';
-  return `<div class="rot-chip-2l" title="${i.name} (${i.count} new highs)">
+  const tickersHtml = i.stocks.map(s =>
+    `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:var(--green)">${pp(s.return1d,true)}%</b>`
+  ).join(' · ');
+  return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker">${tickerHtml}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 8px">${tickersHtml || '—'}</span>
   </div>`;
 }
 function rotChipLowInd(i) {
-  const best = i.best;
-  const tickerHtml = best
-    ? `<a href="https://finance.yahoo.com/quote/${best.ticker}" target="_blank" rel="noopener">${best.ticker}</a> <b style="color:var(--red)">${pp(best.return1d,true)}%</b>`
-    : '—';
-  return `<div class="rot-chip-2l" title="${i.name} (${i.count} new lows)">
+  const tickersHtml = i.stocks.map(s =>
+    `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:var(--red)">${pp(s.return1d,true)}%</b>`
+  ).join(' · ');
+  return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker">${tickerHtml}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 8px">${tickersHtml || '—'}</span>
   </div>`;
 }
 
 function rotRowHtml(entry, isLeaders) {
   const spx = entry.spxReturn1d;
   const spxColor = spx > 0 ? 'var(--green)' : spx < 0 ? 'var(--red)' : 'var(--text2)';
+  const sectors  = isLeaders ? entry.topSectors : entry.botSectors;
+  const allStocks = isLeaders ? entry.topStocks  : entry.botStocks;
+  const highLow  = isLeaders ? entry.highInds    : entry.lowInds;
 
-  let cols = '';
-  if (isLeaders) {
-    cols = `
-      <div class="rot-col">
-        <div class="rot-col-label">Top Sector</div>
-        ${entry.topSectors.map(s => rotChipSector(s.name, s.ret)).join('')}
-      </div>
-      <div class="rot-col">
-        <div class="rot-col-label">Top Industry</div>
-        ${entry.topIndustries.map(i => rotChipSector(i.name, i.ret)).join('')}
-      </div>
-      <div class="rot-col">
-        <div class="rot-col-label">Top Stocks</div>
-        ${entry.topStocks.map(s => rotChipStock(s)).join('')}
-      </div>
-      ${entry.highInds.length ? `
-      <div class="rot-col">
-        <div class="rot-col-label">52W High Industries</div>
-        ${entry.highInds.map(i => rotChipHighInd(i)).join('')}
-      </div>` : ''}`;
-  } else {
-    cols = `
-      <div class="rot-col">
-        <div class="rot-col-label">Bottom Sector</div>
-        ${entry.botSectors.map(s => rotChipSector(s.name, s.ret)).join('')}
-      </div>
-      <div class="rot-col">
-        <div class="rot-col-label">Bottom Industry</div>
-        ${entry.botIndustries.map(i => rotChipSector(i.name, i.ret)).join('')}
-      </div>
-      <div class="rot-col">
-        <div class="rot-col-label">Bottom Stocks</div>
-        ${entry.botStocks.map(s => rotChipStock(s)).join('')}
-      </div>
-      ${entry.lowInds.length ? `
-      <div class="rot-col">
-        <div class="rot-col-label">52W Low Industries</div>
-        ${entry.lowInds.map(i => rotChipLowInd(i)).join('')}
-      </div>` : ''}`;
-  }
+  const cols = `
+    <div class="rot-col rot-col-wide">
+      <div class="rot-col-label">${isLeaders ? 'Top Sectors' : 'Bottom Sectors'}</div>
+      ${sectors.map(s => rotSectorCard(s, isLeaders)).join('')}
+    </div>
+    <div class="rot-col">
+      <div class="rot-col-label">${isLeaders ? 'Top Stocks (S&P 500)' : 'Bottom Stocks (S&P 500)'}</div>
+      ${allStocks.map(s => rotStockLink(s)).join('')}
+    </div>
+    ${highLow.length ? `
+    <div class="rot-col">
+      <div class="rot-col-label">${isLeaders ? '52W High Industries' : '52W Low Industries'}</div>
+      ${highLow.map(i => isLeaders ? rotChipHighInd(i) : rotChipLowInd(i)).join('')}
+    </div>` : ''}`;
 
   return `
   <div class="rot-row">
