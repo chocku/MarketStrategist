@@ -2092,7 +2092,9 @@ function rotRowHtml(entry, isLeaders) {
     ${highLow.length ? `
     <div class="rot-col">
       <div class="rot-col-label">${isLeaders ? '52W Highs' : '52W Lows'}</div>
-      ${highLow.map(i => isLeaders ? rotChipHighInd(i) : rotChipLowInd(i)).join('')}
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${highLow.flatMap(i => i.stocks).map(s => rotStockCardFull(s)).join('')}
+      </div>
     </div>` : ''}`;
 
   return `
