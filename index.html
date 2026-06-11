@@ -387,8 +387,9 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   border-left-width: 3px;
   border-radius: 7px;
   padding: 5px 9px;
-  min-width: 130px;
-  max-width: 200px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 .rot-sc-industry {
   font-size: 11px;
@@ -549,7 +550,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 }
 .rot-sec-stocks {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 4px;
   margin-top: 2px;
 }
