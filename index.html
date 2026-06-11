@@ -377,7 +377,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   font-weight: 700;
 }
 .rot-chip a:hover { text-decoration: underline; color: var(--blue); }
-/* 3-line stock card: sector / industry / ticker+return */
+/* compact stock card — used inside sector cards */
 .rot-sc {
   display: flex;
   flex-direction: column;
@@ -388,6 +388,46 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   padding: 5px 9px;
   min-width: 130px;
   max-width: 200px;
+}
+/* full-width stock card — used in Top Stocks column */
+.rot-sf {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 7px;
+  padding: 6px 11px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.rot-sf-meta {
+  font-size: 10px;
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rot-sf-main {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.rot-sf-main a {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.rot-sf-main a:hover { text-decoration: underline; color: var(--blue); }
+.rot-sf-name {
+  font-size: 11px;
+  color: var(--text2);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .rot-sc-meta {
   font-size: 10px;
@@ -1932,6 +1972,23 @@ function rotStockCard(s, opts = {}) {
     </div>
   </div>`;
 }
+// Full-width stacked card for the Top/Bottom Stocks column
+function rotStockCardFull(s) {
+  const c    = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
+  const sec  = s.sector   || '';
+  const ind  = s.industry || '';
+  const meta = [sec, ind].filter(Boolean).join(' › ');
+  const name = s.name || '';
+  return `<div class="rot-sf">
+    ${meta ? `<div class="rot-sf-meta">${meta}</div>` : ''}
+    <div class="rot-sf-main">
+      <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
+      ${name ? `<span class="rot-sf-name">${name}</span>` : ''}
+      <b style="color:${c};flex-shrink:0">${pp(s.return1d,true)}%</b>
+    </div>
+  </div>`;
+}
+
 // Legacy inline chip — still used in narrow contexts
 function rotStockLink(s) {
   const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
@@ -1977,7 +2034,7 @@ function rotRowHtml(entry, isLeaders) {
     </div>
     <div class="rot-col">
       <div class="rot-col-label">${isLeaders ? 'Top Stocks (S&P 500)' : 'Bottom Stocks (S&P 500)'}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px">${allStocks.map(s => rotStockCard(s, { showSector: true, showIndustry: true })).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:5px">${allStocks.map(s => rotStockCardFull(s)).join('')}</div>
     </div>
     ${highLow.length ? `
     <div class="rot-col">
