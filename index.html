@@ -390,8 +390,8 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   max-width: 200px;
 }
 .rot-sc-meta {
-  font-size: 9.5px;
-  color: var(--text3);
+  font-size: 10px;
+  color: var(--text2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -412,7 +412,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .rot-sc-ticker a:hover { text-decoration: underline; color: var(--blue); }
 .rot-sc-ticker .rot-sc-name {
   font-size: 10px;
-  color: var(--text3);
+  color: var(--text2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -432,7 +432,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 }
 .rot-chip-2l .r2l-ind {
   font-size: 11px;
-  color: var(--text3);
+  color: var(--text2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -466,7 +466,7 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 }
 .rot-sec-ind {
   font-size: 11px;
-  color: var(--text3);
+  color: var(--text2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1934,17 +1934,23 @@ function rotSectorCard(sec, isTop) {
 }
 
 function rotChipHighInd(i) {
-  // Industry is shown as card header — only add sector per stock
+  const tickers = i.stocks.map(s => {
+    const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
+  }).join('<span style="color:var(--text2)"> · </span>');
   return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 6px">${i.stocks.map(s => rotStockCard(s, { showSector: true })).join('') || '—'}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:3px 8px">${tickers || '—'}</span>
   </div>`;
 }
 function rotChipLowInd(i) {
-  // Industry is shown as card header — only add sector per stock
+  const tickers = i.stocks.map(s => {
+    const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
+  }).join('<span style="color:var(--text2)"> · </span>');
   return `<div class="rot-chip-2l" title="${i.name}">
     <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:4px 6px">${i.stocks.map(s => rotStockCard(s, { showSector: true })).join('') || '—'}</span>
+    <span class="r2l-ticker" style="flex-wrap:wrap;gap:3px 8px">${tickers || '—'}</span>
   </div>`;
 }
 
@@ -1966,7 +1972,7 @@ function rotRowHtml(entry, isLeaders) {
     </div>
     ${highLow.length ? `
     <div class="rot-col">
-      <div class="rot-col-label">${isLeaders ? '52W High Industries' : '52W Low Industries'}</div>
+      <div class="rot-col-label">${isLeaders ? '52W Highs' : '52W Lows'}</div>
       ${highLow.map(i => isLeaders ? rotChipHighInd(i) : rotChipLowInd(i)).join('')}
     </div>` : ''}`;
 
