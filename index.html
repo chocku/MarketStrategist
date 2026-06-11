@@ -690,6 +690,7 @@ document.getElementById('currentDate').textContent =
 
 // ── Color constants ────────────────────────────────────────────────────
 const C = { green:'#22c87a', red:'#f04f4f', amber:'#f0a020', blue:'#4a9eff', yellow:'#f0d040' };
+const cc = v => v > 0 ? C.green : v < 0 ? C.red : 'var(--text2)';
 
 // ── Feedback modal ─────────────────────────────────────────────────────
 const FORMSPREE_URL = 'https://formspree.io/f/mzdqelne';
@@ -741,9 +742,13 @@ document.getElementById('feedback-overlay').addEventListener('click', e => {
 });
 
 // ── State ──────────────────────────────────────────────────────────────
-let chart2 = null, chart3 = null, chart4 = null, chart5 = null;
+let chart2 = null, chart3 = null, chart4 = null, chart4b = null;
+let chart5 = null, chart5b = null;
 let _data = null;
 let _breadthHistory = [];
+let _news = {};
+let _rotationLog = null;
+let _rotView = 'leaders';
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';
 let industryFilterSector = 'all';
@@ -753,7 +758,9 @@ let leadersMaStatus = 'all';
 let leadersRsYtd = 'all';
 let searchTicker = '';
 let activeTab = 'overview';
-let _news = {};
+let newsSelectedDate = null;
+let newsSearch = '';
+let newsTagFilter = null;
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
 let internalsFilterSector = 'all';
@@ -915,37 +922,42 @@ function sortIndustry(col) {
   renderBreadth();
 }
 
+function computeGroupRow(name, d, { totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow }) {
+  const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
+  const ret1d          = d.mcap > 0 ? d.mcapRet1d  / d.mcap : 0;
+  const ret1w          = d.mcap > 0 ? d.mcapRet1w  / d.mcap : 0;
+  const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
+  const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
+  const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+  const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
+  const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
+  return {
+    name, sector: d.sector || '',
+    total: d.total, both: d.both,
+    pct:            Math.round(d.both / d.total * 100),
+    weight:         +(wt * 100).toFixed(1),
+    mcap:           d.mcap,
+    mcapAboveBoth:  d.mcapAboveBoth,
+    wtPctAbove:     +wtPctAbove.toFixed(1),
+    ret1d:          +ret1d.toFixed(2),
+    ret1w:          +ret1w.toFixed(2),
+    retYtd:         +retYtd.toFixed(2),
+    retFromLow:     +retFromLow.toFixed(2),
+    rs1d:           +(ret1d       - (spy1d        || 0)).toFixed(2),
+    rs1w:           +(ret1w       - (spy1w        || 0)).toFixed(2),
+    rsYtd:          +(retYtd      - (spyReturnYtd || 0)).toFixed(2),
+    rsFromLow:      +(retFromLow  - (spyFromLow   || 0)).toFixed(2),
+    contribYtd:     +contribYtd.toFixed(2),
+    contribFromLow: +contribFromLow.toFixed(2),
+    newHighs:       d.newHighs,
+    newLows:        d.newLows,
+  };
+}
+
 function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow, recentLowDate, sortCol, sortDir, showSectorCol, onSortFn) {
-  const rows = Object.entries(groupMap).map(([name, d]) => {
-    const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
-    const ret1d          = d.mcap > 0 ? d.mcapRet1d  / d.mcap : 0;
-    const ret1w          = d.mcap > 0 ? d.mcapRet1w  / d.mcap : 0;
-    const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
-    const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
-    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
-    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
-    const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
-    return {
-      name, sector: d.sector || '',
-      total: d.total, both: d.both,
-      pct: Math.round(d.both / d.total * 100),
-      weight: +(wt * 100).toFixed(1),
-      mcap: d.mcap,
-      mcapAboveBoth: d.mcapAboveBoth,
-      wtPctAbove: +wtPctAbove.toFixed(1),
-      ret1d: +ret1d.toFixed(2), ret1w: +ret1w.toFixed(2),
-      retYtd: +retYtd.toFixed(2),
-      retFromLow: +retFromLow.toFixed(2),
-      rs1d:  +(ret1d  - (spy1d  || 0)).toFixed(2),
-      rs1w:  +(ret1w  - (spy1w  || 0)).toFixed(2),
-      rsYtd: +(retYtd - (spyReturnYtd || 0)).toFixed(2),
-      rsFromLow: +(retFromLow - (spyFromLow || 0)).toFixed(2),
-      contribYtd: +contribYtd.toFixed(2),
-      contribFromLow: +contribFromLow.toFixed(2),
-      newHighs: d.newHighs,
-      newLows: d.newLows,
-    };
-  });
+  const rows = Object.entries(groupMap).map(([name, d]) =>
+    computeGroupRow(name, d, { totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow })
+  );
 
   rows.sort((a, b) => {
     const av = a[sortCol] ?? -Infinity;
@@ -1074,10 +1086,6 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
 }
 
 // ── Tab 4: News ───────────────────────────────────────────────────────
-let newsSelectedDate = null;
-let newsSearch = '';
-let newsTagFilter = null;
-
 const NEWS_TAGS = [
   { id:'fed',        label:'Fed / Rates',  color:'#7c5cbf', bg:'rgba(124,92,191,0.18)',
     pat:/\b(fed|federal reserve|fomc|rate hike|rate cut|interest rate|powell|monetary policy|hawkish|dovish)\b/i },
@@ -1412,14 +1420,12 @@ function renderOverview() {
     {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
-  const rspCallout = '';
-
   document.getElementById('root').innerHTML = tabHdr(
     'Is the rally broad or carried by a few?',
     'Tracks how many S&P 500 stocks are above key moving averages and hitting 52-week highs/lows. SPY vs RSP shows whether the average stock is keeping up with the cap-weighted index.'
   ) +
   buildInternalsPanel() +
-  buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, '');
+  buildRspVsSpyPanel(hasRsp, ewRows, chartDates);
 
   initInternalsCharts();
   initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
@@ -1487,7 +1493,7 @@ function renderIndustry() {
     </div>`;
 }
 
-function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) {
+function buildRspVsSpyPanel(hasRsp, ewRows, chartDates) {
   return `
     <div class="rsp-spy-grid" style="display:grid;grid-template-columns:300px 1fr;gap:14px;margin-bottom:20px;align-items:start">
       <div class="part-box" style="margin-bottom:0">
@@ -1507,7 +1513,6 @@ function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout
               <span class="part-rsp" style="font-size:12px;color:${r.rsp>=0?C.green:C.red}">${pp(r.rsp,true)}%</span>
               <span class="part-diff" style="font-size:12px;color:${r.diff>=0?C.green:C.red}">${pp(r.diff,true)}%</span>
             </div>`).join('')}
-          ${rspCallout}
         ` : `
           <div style="padding:20px 0;text-align:center">
             <div style="font-size:28px;color:var(--text3);margin-bottom:8px">—</div>
@@ -1521,7 +1526,6 @@ function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout
           ${chartDates ? `<canvas id="c3" role="img" aria-label="SPY vs RSP performance chart"></canvas>`
                        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-size:13px">No chart data — re-run fetch_breadth.py</div>`}
         </div>
-        ${chartCallout}
       </div>
     </div>`;
 }
@@ -1541,42 +1545,14 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
   const grp = (colspan, label, borderLeft=false) =>
     `<th colspan="${colspan}" style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;text-align:center;padding-bottom:2px;border-bottom:none${borderLeft?';border-left:0.5px solid var(--border)':''}">${label}</th>`;
 
-  const rows = filteredEntries.map(([name, d]) => {
-    const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
-    const ret1d          = d.mcap > 0 ? d.mcapRet1d  / d.mcap : 0;
-    const ret1w          = d.mcap > 0 ? d.mcapRet1w  / d.mcap : 0;
-    const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
-    const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
-    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
-    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
-    const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
-    const pct            = Math.round(d.both / d.total * 100);
-    return {
-      name, sector: d.sector || '',
-      total: d.total, both: d.both, pct,
-      weight: +(wt * 100).toFixed(1),
-      mcap: d.mcap,
-      mcapAboveBoth: d.mcapAboveBoth,
-      wtPctAbove: +wtPctAbove.toFixed(1),
-      ret1d: +ret1d.toFixed(2), ret1w: +ret1w.toFixed(2),
-      retYtd: +retYtd.toFixed(2),
-      retFromLow: +retFromLow.toFixed(2),
-      rs1d:  +(ret1d  - (spy1d  || 0)).toFixed(2),
-      rs1w:  +(ret1w  - (spy1w  || 0)).toFixed(2),
-      rsYtd: +(retYtd - (spyReturnYtd || 0)).toFixed(2),
-      rsFromLow: +(retFromLow - (spyFromLow || 0)).toFixed(2),
-      contribYtd: +contribYtd.toFixed(2),
-      contribFromLow: +contribFromLow.toFixed(2),
-      newHighs: d.newHighs,
-      newLows: d.newLows,
-    };
-  }).sort((a, b) => {
+  const rows = filteredEntries.map(([name, d]) =>
+    computeGroupRow(name, d, { totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow })
+  ).sort((a, b) => {
     const av = a[industryBreadthSortCol] ?? -Infinity;
     const bv = b[industryBreadthSortCol] ?? -Infinity;
     return industryBreadthSortDir * (bv - av);
   });
 
-  const cc = v => v > 0 ? C.green : v < 0 ? C.red : 'var(--text2)';
   const fs = 'font-size:11px;';
 
   const sectorFilter = `<div style="display:flex;align-items:center;gap:8px;margin:12px 0 6px">
@@ -1809,9 +1785,6 @@ function buildInternalsPanel() {
   `;
 }
 
-let chart4b = null;
-let chart5b = null;
-
 function initInternalsCharts() {
   const data = getInternalsData();
   if (!data || !data.length) return;
@@ -1882,9 +1855,6 @@ function initInternalsCharts() {
 }
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
-
-let _rotationLog = null;
-let _rotView = 'leaders'; // 'leaders' | 'laggers'
 
 function rotTop(arr, key, n=3) {
   return [...arr].sort((a,b)=>b[key]-a[key]).slice(0,n);
@@ -2153,9 +2123,6 @@ function rotHighLowChip(i) {
     <div style="margin-top:2px;font-size:10px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${tickers}</div>
   </div>`;
 }
-function rotChipHighInd(i) { return rotHighLowChip(i); }
-function rotChipLowInd(i)  { return rotHighLowChip(i); }
-
 function rotRowHtml(entry, isLeaders) {
   const spx = entry.spxReturn1d;
   const spxColor = spx > 0 ? 'var(--green)' : spx < 0 ? 'var(--red)' : 'var(--text2)';
