@@ -477,6 +477,37 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   gap: 4px;
   margin-top: 2px;
 }
+.rot-sec-hl {
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 0.5px solid var(--border);
+}
+.rot-sec-hl-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text2);
+  margin-bottom: 4px;
+}
+.rot-sec-hl-row {
+  font-size: 11.5px;
+  color: var(--text2);
+  margin-bottom: 3px;
+  line-height: 1.5;
+}
+.rot-sec-hl-ind {
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 4px;
+}
+.rot-sec-hl-row a {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+.rot-sec-hl-row a:hover { text-decoration: underline; color: var(--blue); }
 @media (max-width: 600px) {
   .rot-col { min-width: 100px; }
   .rot-date-col { min-width: 90px; }
@@ -1807,81 +1838,54 @@ function rotBottom(arr, key, n=3) {
 function buildRotationEntry(d) {
   const stocks = d.stocks || [];
 
-  // Per-sector map: weighted return + stocks + per-industry sub-map
+  // Per-sector map: weighted return + stocks + per-industry 52W tracking
   const sectorMap = {};
   stocks.forEach(s => {
-    const sec = s.sector || 'Unknown';
+    const sec = s.sector   || 'Unknown';
     const ind = s.industry || 'Unknown';
-    if (!sectorMap[sec]) sectorMap[sec] = { totalW: 0, totalR: 0, stocks: [], indMap: {} };
+    if (!sectorMap[sec]) sectorMap[sec] = {
+      totalW: 0, totalR: 0, stocks: [], highInds: {}, lowInds: {}
+    };
     const w = s.marketCap || 1;
     sectorMap[sec].totalW += w;
     sectorMap[sec].totalR += s.return1d * w;
     sectorMap[sec].stocks.push(s);
-    if (!sectorMap[sec].indMap[ind]) sectorMap[sec].indMap[ind] = { totalW: 0, totalR: 0 };
-    sectorMap[sec].indMap[ind].totalW += w;
-    sectorMap[sec].indMap[ind].totalR += s.return1d * w;
+    if (s.newHigh) {
+      if (!sectorMap[sec].highInds[ind]) sectorMap[sec].highInds[ind] = [];
+      sectorMap[sec].highInds[ind].push(s);
+    }
+    if (s.newLow) {
+      if (!sectorMap[sec].lowInds[ind]) sectorMap[sec].lowInds[ind] = [];
+      sectorMap[sec].lowInds[ind].push(s);
+    }
   });
 
-  // Global industry map (for 52W high/low)
-  const indMap = {};
-  stocks.forEach(s => {
-    const ind = s.industry || 'Unknown';
-    if (!indMap[ind]) indMap[ind] = { totalW: 0, totalR: 0, highs: [], lows: [] };
-    const w = s.marketCap || 1;
-    indMap[ind].totalW += w;
-    indMap[ind].totalR += s.return1d * w;
-    if (s.newHigh) indMap[ind].highs.push(s);
-    if (s.newLow)  indMap[ind].lows.push(s);
-  });
-  const indArr = Object.entries(indMap).map(([name, v]) => ({
-    name, ret: v.totalW ? v.totalR / v.totalW : 0,
-    highs: v.highs, lows: v.lows
-  }));
-
-  // Sector array with top industry + top 3 stocks inside each sector
   const sectorArr = Object.entries(sectorMap).map(([name, v]) => {
     const ret = v.totalW ? v.totalR / v.totalW : 0;
-    const topInd = Object.entries(v.indMap)
-      .map(([n, iv]) => ({ name: n, ret: iv.totalW ? iv.totalR / iv.totalW : 0 }))
-      .sort((a, b) => b.ret - a.ret)[0] || null;
-    const botInd = Object.entries(v.indMap)
-      .map(([n, iv]) => ({ name: n, ret: iv.totalW ? iv.totalR / iv.totalW : 0 }))
-      .sort((a, b) => a.ret - b.ret)[0] || null;
+    const highInds = Object.entries(v.highInds)
+      .map(([ind, ss]) => ({ name: ind, count: ss.length, stocks: rotTop(ss, 'return1d', ss.length) }))
+      .sort((a,b) => b.count - a.count);
+    const lowInds = Object.entries(v.lowInds)
+      .map(([ind, ss]) => ({ name: ind, count: ss.length, stocks: rotBottom(ss, 'return1d', ss.length) }))
+      .sort((a,b) => b.count - a.count);
     return {
-      name, ret, topInd, botInd,
-      topStocks: rotTop(v.stocks, 'return1d', 3),
-      botStocks: rotBottom(v.stocks, 'return1d', 3)
+      name, ret,
+      topStocks: rotTop(v.stocks,    'return1d', 4),
+      botStocks: rotBottom(v.stocks, 'return1d', 4),
+      highInds, lowInds
     };
   });
 
-  // 52W high/low: ALL stocks that hit the high/low, sorted by return
-  const highInds = [...indArr]
-    .filter(i => i.highs.length > 0)
-    .sort((a,b) => b.highs.length - a.highs.length)
-    .slice(0, 3)
-    .map(i => ({ name: i.name, count: i.highs.length, stocks: rotTop(i.highs, 'return1d', i.highs.length) }));
-
-  const lowInds = [...indArr]
-    .filter(i => i.lows.length > 0)
-    .sort((a,b) => b.lows.length - a.lows.length)
-    .slice(0, 3)
-    .map(i => ({ name: i.name, count: i.lows.length, stocks: rotBottom(i.lows, 'return1d', i.lows.length) }));
-
   return {
-    date: d.asOf,
+    date:       d.asOf,
     spxReturn1d: d.spxReturn1d || 0,
-    topSectors:    rotTop(sectorArr, 'ret'),
-    botSectors:    rotBottom(sectorArr, 'ret'),
-    topIndustries: rotTop(indArr, 'ret'),
-    botIndustries: rotBottom(indArr, 'ret'),
-    topStocks:     rotTop(stocks, 'return1d', 5),
-    botStocks:     rotBottom(stocks, 'return1d', 5),
-    highInds, lowInds
+    topSectors: rotTop(sectorArr,    'ret', 5),
+    botSectors: rotBottom(sectorArr, 'ret', 5),
   };
 }
 
 async function loadRotationLog() {
-  const STORE_KEY = 'rotationLog_v4';
+  const STORE_KEY = 'rotationLog_v5';
   let log = [];
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
   const existingDates = new Set(log.map(e => e.date));
@@ -1939,12 +1943,27 @@ function rotStockLink(s) {
 }
 
 function rotSectorCard(sec, isTop) {
-  const c = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
+  const c        = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
   const subStocks = isTop ? sec.topStocks : sec.botStocks;
-  // Sector is the card header — show industry on each stock, no redundant industry sub-line
+  const hlInds    = isTop ? (sec.highInds || []) : (sec.lowInds || []);
+  const hlLabel   = isTop ? '52W Highs' : '52W Lows';
+
+  const hlHtml = hlInds.length ? `
+    <div class="rot-sec-hl">
+      <span class="rot-sec-hl-label">${hlLabel}</span>
+      ${hlInds.map(i => {
+        const tix = i.stocks.map(s => {
+          const sc = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
+          return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${sc}">${pp(s.return1d,true)}%</b>`;
+        }).join(' · ');
+        return `<div class="rot-sec-hl-row"><span class="rot-sec-hl-ind">${i.name} (${i.count})</span>  ${tix}</div>`;
+      }).join('')}
+    </div>` : '';
+
   return `<div class="rot-sec-card">
     <div class="rot-sec-name">${sec.name} <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
     <div class="rot-sec-stocks">${subStocks.map(s => rotStockCard(s, { showIndustry: true })).join('')}</div>
+    ${hlHtml}
   </div>`;
 }
 
@@ -1964,26 +1983,9 @@ function rotChipHighInd(i) { return rotHighLowChip(i); }
 function rotChipLowInd(i)  { return rotHighLowChip(i); }
 
 function rotRowHtml(entry, isLeaders) {
-  const spx = entry.spxReturn1d;
+  const spx      = entry.spxReturn1d;
   const spxColor = spx > 0 ? 'var(--green)' : spx < 0 ? 'var(--red)' : 'var(--text2)';
   const sectors  = isLeaders ? entry.topSectors : entry.botSectors;
-  const allStocks = isLeaders ? entry.topStocks  : entry.botStocks;
-  const highLow  = isLeaders ? entry.highInds    : entry.lowInds;
-
-  const cols = `
-    <div class="rot-col rot-col-wide">
-      <div class="rot-col-label">${isLeaders ? 'Top Sectors' : 'Bottom Sectors'}</div>
-      ${sectors.map(s => rotSectorCard(s, isLeaders)).join('')}
-    </div>
-    <div class="rot-col">
-      <div class="rot-col-label">${isLeaders ? 'Top Stocks (S&P 500)' : 'Bottom Stocks (S&P 500)'}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px">${allStocks.map(s => rotStockCard(s, { showSector: true, showIndustry: true })).join('')}</div>
-    </div>
-    ${highLow.length ? `
-    <div class="rot-col">
-      <div class="rot-col-label">${isLeaders ? '52W Highs' : '52W Lows'}</div>
-      ${highLow.map(i => isLeaders ? rotChipHighInd(i) : rotChipLowInd(i)).join('')}
-    </div>` : ''}`;
 
   return `
   <div class="rot-row">
@@ -1991,7 +1993,14 @@ function rotRowHtml(entry, isLeaders) {
       <span class="rot-date">${fmtDate(entry.date)}</span>
       <span class="rot-spx" style="color:${spxColor}">SPX ${pp(spx,true)}%</span>
     </div>
-    <div class="rot-cols">${cols}</div>
+    <div class="rot-cols">
+      <div class="rot-col" style="flex:1;min-width:0">
+        <div class="rot-col-label">${isLeaders ? 'Top Sectors' : 'Bottom Sectors'}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          ${sectors.map(s => rotSectorCard(s, isLeaders)).join('')}
+        </div>
+      </div>
+    </div>
   </div>`;
 }
 
