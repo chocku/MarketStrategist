@@ -1946,7 +1946,7 @@ function buildRotationEntry(d) {
 }
 
 async function loadRotationLog() {
-  const STORE_KEY = 'rotationLog_v4';
+  const STORE_KEY = 'rotationLog_v5';
   let log = [];
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
   const existingDates = new Set(log.map(e => e.date));
