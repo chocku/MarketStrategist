@@ -393,30 +393,41 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .rot-sf {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   background: var(--bg3);
   border: 0.5px solid var(--border);
+  border-left-width: 3px;   /* sector color stripe */
   border-radius: 7px;
   padding: 6px 11px;
   width: 100%;
   box-sizing: border-box;
 }
-.rot-sf-meta {
-  font-size: 10px;
-  color: var(--text2);
+.rot-sf-sector {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.rot-sf-industry {
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -1px;
 }
 .rot-sf-main {
   display: flex;
   align-items: center;
   gap: 7px;
+  margin-top: 1px;
 }
 .rot-sf-main a {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);   /* dimmed ticker */
   text-decoration: none;
   flex-shrink: 0;
 }
@@ -1972,19 +1983,38 @@ function rotStockCard(s, opts = {}) {
     </div>
   </div>`;
 }
+// Sector → distinct color map (11 GICS sectors)
+const SECTOR_COLOR = {
+  'Information Technology':  '#4a9eff',  // blue
+  'Health Care':             '#22c87a',  // green
+  'Financials':              '#f0a020',  // amber
+  'Consumer Discretionary':  '#f07030',  // orange
+  'Consumer Staples':        '#20c8b0',  // teal
+  'Energy':                  '#f0d040',  // yellow
+  'Industrials':             '#a878ff',  // purple
+  'Materials':               '#c89050',  // copper
+  'Real Estate':             '#f060a8',  // pink
+  'Utilities':               '#40d8f0',  // cyan
+  'Communication Services':  '#ff6060',  // coral
+};
+function sectorColor(sec) {
+  return SECTOR_COLOR[sec] || '#8a92a2';
+}
+
 // Full-width stacked card for the Top/Bottom Stocks column
 function rotStockCardFull(s) {
-  const c    = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
+  const rc   = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
   const sec  = s.sector   || '';
   const ind  = s.industry || '';
-  const meta = [sec, ind].filter(Boolean).join(' › ');
+  const sc   = sectorColor(sec);
   const name = s.name || '';
-  return `<div class="rot-sf">
-    ${meta ? `<div class="rot-sf-meta">${meta}</div>` : ''}
+  return `<div class="rot-sf" style="border-left-color:${sc}">
+    ${sec  ? `<div class="rot-sf-sector"  style="color:${sc}">${sec}</div>` : ''}
+    ${ind  ? `<div class="rot-sf-industry">${ind}</div>` : ''}
     <div class="rot-sf-main">
       <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
       ${name ? `<span class="rot-sf-name">${name}</span>` : ''}
-      <b style="color:${c};flex-shrink:0">${pp(s.return1d,true)}%</b>
+      <b style="color:${rc};flex-shrink:0">${pp(s.return1d,true)}%</b>
     </div>
   </div>`;
 }
@@ -1999,15 +2029,18 @@ function rotSectorCard(sec, isTop) {
   const c = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
   const subStocks = isTop ? sec.topStocks : sec.botStocks;
   // Sector is the card header — show industry on each stock, no redundant industry sub-line
-  return `<div class="rot-sec-card">
-    <div class="rot-sec-name">${sec.name} <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
+  const sc = sectorColor(sec.name);
+  return `<div class="rot-sec-card" style="border-left:3px solid ${sc}">
+    <div class="rot-sec-name"><span style="color:${sc}">${sec.name}</span> <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
     <div class="rot-sec-stocks">${subStocks.map(s => rotStockCard(s, { showIndustry: true })).join('')}</div>
   </div>`;
 }
 
 function rotHighLowChip(i) {
-  const sector = (i.stocks[0] && i.stocks[0].sector) ? i.stocks[0].sector + ' › ' : '';
-  const header = `${sector}${i.name} (${i.count})`;
+  const secName = (i.stocks[0] && i.stocks[0].sector) || '';
+  const sc      = sectorColor(secName);
+  const sector  = secName ? `<span style="color:${sc};font-weight:700">${secName}</span> › ` : '';
+  const header  = `${sector}${i.name} (${i.count})`;
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
     return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
