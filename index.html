@@ -1466,9 +1466,9 @@ function renderIndustry() {
   const weakIndBr2  = [...industries].filter(i => i.total >= 3).sort((a,b) => a.pct - b.pct).slice(0,2);
 
   const indCallout = callout(C.blue, [
-    `<strong>YTD leaders:</strong> ${topInds2.map(i=>`${i.name} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botInds2.map(i=>`${i.name} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
-    `<strong>Since ${recentLowDate} low — leaders:</strong> ${topLowInds2.map(i=>`${i.name} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botLowInds2.map(i=>`${i.name} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
-    `<strong>Broadest participation:</strong> ${bestIndBr2.map(i=>`${i.name} (${i.pct}% of ${i.total} stocks)`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Narrowest:</strong> ${weakIndBr2.map(i=>`${i.name} (${i.pct}% of ${i.total})`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`
+    `<strong>YTD leaders:</strong> ${topInds2.map(i=>`${shortInd(i.name)} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botInds2.map(i=>`${shortInd(i.name)} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
+    `<strong>Since ${recentLowDate} low — leaders:</strong> ${topLowInds2.map(i=>`${shortInd(i.name)} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botLowInds2.map(i=>`${shortInd(i.name)} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
+    `<strong>Broadest participation:</strong> ${bestIndBr2.map(i=>`${shortInd(i.name)} (${i.pct}% of ${i.total} stocks)`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Narrowest:</strong> ${weakIndBr2.map(i=>`${shortInd(i.name)} (${i.pct}% of ${i.total})`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`
   ]);
 
   document.getElementById('root').innerHTML = tabHdr(
@@ -1624,7 +1624,7 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
     const realHighs = r.newHighs >= 3 && (r.newHighs / r.total) >= 0.05;
     const bar = `<div style="width:40px;height:4px;border-radius:2px;background:var(--bg3);overflow:hidden"><div style="width:${r.pct}%;height:100%;background:${reg.color}"></div></div>`;
     return `<tr>
-      <td style="${fs}font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.name}">${r.name}</td>
+      <td style="${fs}font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.name}">${shortInd(r.name)}</td>
       <td style="${fs}color:var(--text3);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.sector}">${r.sector}</td>
       <td style="${fs}color:var(--text2);border-left:0.5px solid var(--border)">${r.total}</td>
       <td style="${fs}color:var(--text2)">${fmtMcap(r.mcap)}</td>
@@ -1994,7 +1994,7 @@ function rotStockCard(s, opts = {}) {
   const sc  = sectorColor(sec);
   const name = s.name ? `<span class="rot-sc-name">${s.name.length > 18 ? s.name.slice(0,17)+'…' : s.name}</span>` : '';
   // Industry is the primary label; ticker is dimmed
-  const indHtml = (opts.showIndustry && ind) ? `<div class="rot-sc-industry">${ind}</div>` : '';
+  const indHtml = (opts.showIndustry && ind) ? `<div class="rot-sc-industry">${shortInd(ind)}</div>` : '';
   return `<div class="rot-sc" style="border-left-color:${sc}">
     ${indHtml}
     <div class="rot-sc-ticker">
@@ -2022,6 +2022,59 @@ function sectorColor(sec) {
   return SECTOR_COLOR[sec] || '#8a92a2';
 }
 
+// Abbreviated industry names (≤25 chars)
+const IND_SHORT = {
+  'Agricultural & Farm Machinery':              'Ag & Farm Machinery',
+  'Agricultural Products & Services':           'Ag Products & Services',
+  'Apparel, Accessories & Luxury Goods':        'Apparel & Luxury Goods',
+  'Asset Management & Custody Banks':           'Asset Management',
+  'Construction Machinery & Heavy Transportation Equipment': 'Construction Machinery',
+  'Consumer Staples Merchandise Retail':        'Staples Merch Retail',
+  'Data Processing & Outsourced Services':      'Data Processing & Outsrc',
+  'Electrical Components & Equipment':          'Electrical Components',
+  'Electronic Equipment & Instruments':         'Electronic Equipment',
+  'Electronic Manufacturing Services':          'Electronic Mfg Services',
+  'Environmental & Facilities Services':        'Environmental Services',
+  'Fertilizers & Agricultural Chemicals':       'Fertilizers & Ag Chem',
+  'Human Resource & Employment Services':       'HR & Employment Services',
+  'IT Consulting & Other Services':             'IT Consulting',
+  'Independent Power Producers & Energy Traders':'Indep. Power Producers',
+  'Industrial Machinery & Supplies & Components':'Industrial Machinery',
+  'Integrated Telecommunication Services':      'Integrated Telecom',
+  'Internet Services & Infrastructure':         'Internet Infrastructure',
+  'Investment Banking & Brokerage':             'Investment Banking',
+  'Life Sciences Tools & Services':             'Life Sciences Tools',
+  'Metal, Glass & Plastic Containers':          'Metal & Plastic Containers',
+  'Multi-Family Residential REITs':             'Multi-Family REITs',
+  'Oil & Gas Equipment & Services':             'O&G Equipment & Services',
+  'Oil & Gas Exploration & Production':         'O&G Exploration & Prod',
+  'Oil & Gas Refining & Marketing':             'O&G Refining & Mktg',
+  'Oil & Gas Storage & Transportation':         'O&G Storage & Transport',
+  'Paper & Plastic Packaging Products & Materials': 'Paper & Plastic Pkg',
+  'Passenger Ground Transportation':            'Passenger Ground Trans',
+  'Property & Casualty Insurance':              'P&C Insurance',
+  'Research & Consulting Services':             'Research & Consulting',
+  'Semiconductor Materials & Equipment':        'Semicond. Materials',
+  'Single-Family Residential REITs':            'Single-Family REITs',
+  'Soft Drinks & Non-alcoholic Beverages':      'Soft Drinks & NA Bev',
+  'Specialized Consumer Services':              'Specialized Cons Svcs',
+  'Technology Hardware, Storage & Peripherals': 'Tech Hardware & Storage',
+  'Transaction & Payment Processing Services':  'Payment Processing',
+  'Trading Companies & Distributors':           'Trading & Distributors',
+  'Wireless Telecommunication Services':        'Wireless Telecom',
+  'Hotels, Resorts & Cruise Lines':             'Hotels & Cruise Lines',
+  'Interactive Home Entertainment':             'Interactive Entertain.',
+  'Interactive Media & Services':               'Interactive Media',
+  'Financial Exchanges & Data':                 'Financial Exchanges',
+  'Diversified Support Services':               'Diversified Support Svcs',
+  'Computer & Electronics Retail':              'Computer & Elec Retail',
+  'Construction & Engineering':                 'Construction & Eng',
+  'Air Freight & Logistics':                    'Air Freight & Logistics',
+};
+function shortInd(ind) {
+  return IND_SHORT[ind] || ind;
+}
+
 // Full-width stacked card for the Top/Bottom Stocks column
 function rotStockCardFull(s) {
   const rc   = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
@@ -2031,7 +2084,7 @@ function rotStockCardFull(s) {
   const name = s.name || '';
   return `<div class="rot-sf" style="border-left-color:${sc}">
     ${sec  ? `<div class="rot-sf-sector"  style="color:${sc}">${sec}</div>` : ''}
-    ${ind  ? `<div class="rot-sf-industry">${ind}</div>` : ''}
+    ${ind  ? `<div class="rot-sf-industry">${shortInd(ind)}</div>` : ''}
     <div class="rot-sf-main">
       <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
       ${name ? `<span class="rot-sf-name">${name}</span>` : ''}
@@ -2067,7 +2120,7 @@ function rotHighLowChip(i) {
   }).join('<span style="color:var(--border2)"> · </span>');
   return `<div class="rot-sf" style="border-left-color:${sc}">
     ${secName ? `<div class="rot-sf-sector" style="color:${sc}">${secName}</div>` : ''}
-    <div class="rot-sf-industry">${i.name}</div>
+    <div class="rot-sf-industry">${shortInd(i.name)}</div>
     <div style="margin-top:2px;font-size:10px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${tickers}</div>
   </div>`;
 }
@@ -2313,7 +2366,7 @@ function renderTable(stocks) {
       <td style="width:58px;font-weight:700;letter-spacing:.02em"><a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" title="${s.name||s.ticker}" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--text3)">${s.ticker}</a>${hlTag}</td>
       <td style="width:68px">$${s.price.toFixed(2)}</td>
       <td class="muted">${fmtMcap(s.marketCap)}</td>
-      <td style="font-size:10px;line-height:1.3;width:160px;max-width:160px;white-space:nowrap;overflow:hidden"><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.sector||'—'}</div><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.industry||'—'}</div></td>
+      <td style="font-size:10px;line-height:1.3;width:160px;max-width:160px;white-space:nowrap;overflow:hidden"><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${s.sector||'—'}</div><div style="color:#fff;overflow:hidden;text-overflow:ellipsis">${shortInd(s.industry||'—')}</div></td>
       <td style="${borderL}" class="${s.above50?'up':'dn'}">${vsPct(s.price,s.ma50)}</td>
       <td class="${s.above200?'up':'dn'}">${vsPct(s.price,s.ma200)}</td>
       <td>${maBadge(s.above50,s.above200)}</td>
