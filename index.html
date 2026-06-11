@@ -1975,19 +1975,35 @@ async function loadRotationLog() {
   try { log = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) {}
   const existingDates = new Set(log.map(e => e.date));
 
+  // Build probe list: today's data.json + up to 30 weekdays back, skip already cached
   const today = new Date();
-  const probeUrls = [{ url: 'data.json', date: (_data || {}).asOf }];
-  for (let i = 0; i < 60; i++) {
+  const probeUrls = [];
+  const todayDate = (_data || {}).asOf;
+  if (todayDate && !existingDates.has(todayDate)) probeUrls.push({ url: 'data.json', date: todayDate });
+
+  let newProbes = 0;
+  for (let i = 1; i <= 90 && newProbes < 20; i++) {
     const d = new Date(today);
     d.setDate(d.getDate() - i);
+    const dow = d.getDay();
+    if (dow === 0 || dow === 6) continue; // skip weekends
     const iso = d.toISOString().slice(0,10);
-    if (!existingDates.has(iso)) probeUrls.push({ url: `history/data_${iso}.json`, date: iso });
+    if (!existingDates.has(iso)) { probeUrls.push({ url: `history/data_${iso}.json`, date: iso }); newProbes++; }
   }
 
-  await Promise.all(probeUrls.filter(s => s.date && !existingDates.has(s.date)).map(async src => {
+  // Fetch with a 3-second timeout so 404s fail fast
+  const fetchWithTimeout = async (url) => {
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), 3000);
+    try { return await fetch(url, { signal: ctrl.signal }); }
+    catch(e) { return null; }
+    finally { clearTimeout(tid); }
+  };
+
+  await Promise.all(probeUrls.map(async src => {
     try {
-      const r = await fetch(src.url);
-      if (!r.ok) return;
+      const r = await fetchWithTimeout(src.url);
+      if (!r || !r.ok) return;
       const d = await r.json();
       if (!d.asOf || !d.stocks) return;
       if (!existingDates.has(d.asOf)) { log.push(buildRotationEntry(d)); existingDates.add(d.asOf); }
@@ -1995,7 +2011,7 @@ async function loadRotationLog() {
   }));
 
   log.sort((a,b) => b.date.localeCompare(a.date));
-  localStorage.setItem(STORE_KEY, JSON.stringify(log));
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(log)); } catch(e) {}
   return log;
 }
 
