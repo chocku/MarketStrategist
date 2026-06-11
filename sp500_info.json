@@ -2503,5 +2503,10 @@
     "industry": "Pharmaceuticals",
     "name": "Zoetis",
     "sector": "Health Care"
+  },
+  "FDXF": {
+    "name": "FedEx Freight",
+    "sector": "Industrials",
+    "industry": "Integrated Freight & Logistics"
   }
 }

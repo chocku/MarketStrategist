@@ -360,9 +360,223 @@ def backfill_breadth_history():
     print(f"Saved {hist_path} — {len(history)} entries")
 
 
+def generate_history(days=30):
+    """
+    Backfill history/data_YYYY-MM-DD.json for the last N trading days.
+    Uses the same 400-day price download; market cap / industry are current values
+    (best available — historical mcap not provided by yfinance free tier).
+
+    Usage:
+        python fetch_breadth.py history        # last 30 trading days
+        python fetch_breadth.py history 60     # last 60 trading days
+    """
+    import os, glob as _glob
+
+    sp500_info = get_sp500_info()
+    TICKERS = list(sp500_info.keys())
+
+    end = datetime.today()
+    # Need (backfill_days + 252) trading days of history to compute MA200 for the earliest date.
+    # 700 calendar days (~490 trading days) supports up to ~240 days of backfill safely.
+    start = end - timedelta(days=700)
+    all_tickers = TICKERS + [SPX, SPY, RSP]
+    current_year = end.year
+
+    print(f"Downloading price history for {len(TICKERS)} stocks + SPX/SPY/RSP ...")
+    raw = yf.download(all_tickers, start=start, end=end, auto_adjust=True, progress=False)
+    closes = raw['Close']
+
+    # Fetch current meta (mcap + industry) once
+    print(f"Fetching current market caps + industry for {len(TICKERS)} tickers ...")
+    ticker_meta = {}
+    with ThreadPoolExecutor(max_workers=20) as ex:
+        futures = {ex.submit(fetch_ticker_info, t): t for t in TICKERS}
+        done = 0
+        for future in as_completed(futures):
+            ticker, mcap, industry = future.result()
+            ticker_meta[ticker] = {'mcap': mcap, 'industry': industry}
+            done += 1
+            if done % 100 == 0:
+                print(f"  Ticker info: {done}/{len(TICKERS)}")
+    print("  Ticker info complete.")
+
+    # All trading dates available, pick the last `days`
+    all_dates = closes.index
+    target_dates = all_dates[-days:]
+
+    os.makedirs('history', exist_ok=True)
+
+    for dt in target_dates:
+        date_str = str(dt.date())
+        hist_file = f"history/data_{date_str}.json"
+
+        # Prices up to and including this date
+        prices_to_date = closes.loc[:dt]
+
+        spx_prices = prices_to_date[SPX].dropna()
+        if len(spx_prices) < 21:
+            print(f"  {date_str}: skipping — not enough SPX data")
+            continue
+
+        spx_1d  = float((spx_prices.iloc[-1] / spx_prices.iloc[-2]  - 1) * 100)
+        spx_1w  = float((spx_prices.iloc[-1] / spx_prices.iloc[-5]  - 1) * 100)
+        spx_1m  = float((spx_prices.iloc[-1] / spx_prices.iloc[-21] - 1) * 100)
+        spx_ytd_p = spx_prices[spx_prices.index.year == dt.year]
+        spx_ytd = float((spx_prices.iloc[-1] / spx_ytd_p.iloc[0] - 1) * 100) if len(spx_ytd_p) > 0 else 0.0
+        spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0]  - 1) * 100)
+
+        spy_1d = spy_1w = spy_1m = spy_ytd = spy_12m = None
+        rsp_1d = rsp_1w = rsp_1m = rsp_ytd = rsp_12m = None
+        spy_from_low = rsp_from_low = recent_low_date = None
+        chart_dates = chart_spy = chart_rsp = None
+        low_ts = None
+        try:
+            spy_p = prices_to_date[SPY].dropna()
+            spy_ytd_p = spy_p[spy_p.index.year == dt.year]
+            spy_1d  = float((spy_p.iloc[-1] / spy_p.iloc[-2]  - 1) * 100)
+            spy_1w  = float((spy_p.iloc[-1] / spy_p.iloc[-5]  - 1) * 100)
+            spy_1m  = float((spy_p.iloc[-1] / spy_p.iloc[-21] - 1) * 100)
+            spy_ytd = float((spy_p.iloc[-1] / spy_ytd_p.iloc[0] - 1) * 100) if len(spy_ytd_p) > 0 else 0.0
+            spy_12m = float((spy_p.iloc[-1] / spy_p.iloc[0]  - 1) * 100)
+
+            rsp_p = prices_to_date[RSP].dropna()
+            rsp_ytd_p = rsp_p[rsp_p.index.year == dt.year]
+            rsp_1d  = float((rsp_p.iloc[-1] / rsp_p.iloc[-2]  - 1) * 100)
+            rsp_1w  = float((rsp_p.iloc[-1] / rsp_p.iloc[-5]  - 1) * 100)
+            rsp_1m  = float((rsp_p.iloc[-1] / rsp_p.iloc[-21] - 1) * 100)
+            rsp_ytd = float((rsp_p.iloc[-1] / rsp_ytd_p.iloc[0] - 1) * 100) if len(rsp_ytd_p) > 0 else 0.0
+            rsp_12m = float((rsp_p.iloc[-1] / rsp_p.iloc[0]  - 1) * 100)
+
+            spy_3m = spy_p.iloc[-63:]
+            low_ts = spy_3m.idxmin()
+            recent_low_date = str(low_ts.date())
+            spy_from_low = float((spy_p.iloc[-1] / spy_3m.min() - 1) * 100)
+            rsp_from_low = float((rsp_p.iloc[-1] / rsp_p.loc[low_ts] - 1) * 100)
+
+            spy_ytd_chart = spy_p[spy_p.index.year == dt.year]
+            rsp_ytd_chart = rsp_p.reindex(spy_ytd_chart.index).ffill()
+            spy_base = float(spy_ytd_chart.iloc[0])
+            rsp_base = float(rsp_ytd_chart.iloc[0])
+            chart_dates = [str(d.date()) for d in spy_ytd_chart.index]
+            chart_spy   = [round((float(p) / spy_base - 1) * 100, 2) for p in spy_ytd_chart.values]
+            chart_rsp   = [round((float(p) / rsp_base - 1) * 100, 2) for p in rsp_ytd_chart.values]
+        except Exception as e:
+            print(f"  {date_str}: SPY/RSP error (non-critical): {e}")
+
+        results = []
+        for ticker in TICKERS:
+            try:
+                prices = prices_to_date[ticker].dropna()
+                if len(prices) < 210:
+                    continue
+                price = float(prices.iloc[-1])
+                ma50  = float(prices.iloc[-50:].mean())
+                ma200 = float(prices.iloc[-200:].mean())
+
+                def ret(n):
+                    return float((prices.iloc[-1] / prices.iloc[-n] - 1) * 100) if len(prices) >= n else 0.0
+
+                ret_1d = float((prices.iloc[-1] / prices.iloc[-2]  - 1) * 100) if len(prices) >= 2  else 0.0
+                ret_1w = float((prices.iloc[-1] / prices.iloc[-5]  - 1) * 100) if len(prices) >= 5  else 0.0
+
+                ytd_prices = prices[prices.index.year == dt.year]
+                ret_ytd = float((price / float(ytd_prices.iloc[0]) - 1) * 100) if len(ytd_prices) > 0 else 0.0
+
+                prices_252 = prices.iloc[-252:]
+                high52 = float(prices_252.max())
+                low52  = float(prices_252.min())
+                new_high = bool(price >= high52 * 0.98)
+                new_low  = bool(price <= low52  * 1.02)
+
+                ret_from_low = None
+                if low_ts is not None:
+                    try:
+                        base = prices.asof(low_ts)
+                        if pd.notna(base) and base > 0:
+                            ret_from_low = round(float((price / float(base) - 1) * 100), 2)
+                    except Exception:
+                        pass
+
+                r12m = ret(252)
+                meta = sp500_info.get(ticker, {})
+
+                results.append({
+                    "ticker":        ticker,
+                    "price":         round(price, 2),
+                    "ma50":          round(ma50, 2),
+                    "ma200":         round(ma200, 2),
+                    "above50":       price > ma50,
+                    "above200":      price > ma200,
+                    "return1d":      round(ret_1d, 2),
+                    "return1w":      round(ret_1w, 2),
+                    "return1m":      round(ret(21), 2),
+                    "return3m":      round(ret(63), 2),
+                    "returnYtd":     round(ret_ytd, 2),
+                    "return12m":     round(r12m, 2),
+                    "returnFromLow": ret_from_low,
+                    "vsSpx1d":       round(ret_1d  - spx_1d,  2),
+                    "vsSpx1w":       round(ret_1w  - spx_1w,  2),
+                    "vsSpx1m":       round(ret(21) - spx_1m,  2),
+                    "vsSpxYtd":      round(ret_ytd - spx_ytd, 2),
+                    "vsSpx12m":      round(r12m    - spx_12m, 2),
+                    "high52":        round(high52, 2),
+                    "low52":         round(low52, 2),
+                    "newHigh":       new_high,
+                    "newLow":        new_low,
+                    "name":          meta.get('name', ''),
+                    "sector":        meta.get('sector', 'Unknown'),
+                    "industry":      meta.get('industry', 'Unknown'),
+                    "marketCap":     ticker_meta.get(ticker, {}).get('mcap'),
+                })
+            except Exception:
+                pass
+
+        above50  = sum(1 for s in results if s['above50'])
+        above200 = sum(1 for s in results if s['above200'])
+
+        output = {
+            "asOf":          date_str,
+            "spxReturn1d":   round(spx_1d, 2),
+            "spxReturn1w":   round(spx_1w, 2),
+            "spxReturn1m":   round(spx_1m, 2),
+            "spxReturnYtd":  round(spx_ytd, 2),
+            "spxReturn12m":  round(spx_12m, 2),
+            "spyReturn1d":   round(spy_1d,  2) if spy_1d  is not None else None,
+            "spyReturn1w":   round(spy_1w,  2) if spy_1w  is not None else None,
+            "spyReturn1m":   round(spy_1m,  2) if spy_1m  is not None else None,
+            "spyReturnYtd":  round(spy_ytd, 2) if spy_ytd is not None else None,
+            "spyReturn12m":  round(spy_12m, 2) if spy_12m is not None else None,
+            "rspReturn1d":   round(rsp_1d,  2) if rsp_1d  is not None else None,
+            "rspReturn1w":   round(rsp_1w,  2) if rsp_1w  is not None else None,
+            "rspReturn1m":   round(rsp_1m,  2) if rsp_1m  is not None else None,
+            "rspReturnYtd":  round(rsp_ytd, 2) if rsp_ytd is not None else None,
+            "rspReturn12m":  round(rsp_12m, 2) if rsp_12m is not None else None,
+            "recentLowDate": recent_low_date,
+            "spyFromLow":    round(spy_from_low, 2) if spy_from_low is not None else None,
+            "rspFromLow":    round(rsp_from_low, 2) if rsp_from_low is not None else None,
+            "chartDates":    chart_dates,
+            "chartSpy":      chart_spy,
+            "chartRsp":      chart_rsp,
+            "newHighCount":  sum(1 for s in results if s['newHigh']),
+            "newLowCount":   sum(1 for s in results if s['newLow']),
+            "stocks":        results,
+        }
+
+        with open(hist_file, 'w') as f:
+            json.dump(output, f, indent=2)
+        print(f"  {date_str}: {len(results)} stocks, {above50} above50MA, {above200} above200MA -> {hist_file}")
+
+    # Rebuild breadth_history.json from all history snapshots
+    backfill_breadth_history()
+    print(f"\nDone. Run 'python fetch_breadth.py backfill' to rebuild breadth_history.json anytime.")
+
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == 'backfill':
         backfill_breadth_history()
+    elif len(sys.argv) > 1 and sys.argv[1] == 'history':
+        days = int(sys.argv[2]) if len(sys.argv) > 2 else 30
+        generate_history(days)
     else:
         fetch()
