@@ -1690,17 +1690,19 @@ function getInternalsData() {
   if (!_breadthHistory || !_breadthHistory.length) return null;
   if (internalsFilterSector === 'all' && internalsFilterIndustry === 'all') {
     return _breadthHistory.map(e => ({
-      date:         e.date,
-      total:        e.total,
-      above50:      e.above50,
-      above200:     e.above200,
-      both:         e.both,
-      newHighs:     e.newHighs,
-      newLows:      e.newLows,
-      mcapTotal:    e.mcapTotal    || 0,
-      mcapAbove50:  e.mcapAbove50  || 0,
-      mcapAbove200: e.mcapAbove200 || 0,
-      mcapBoth:     e.mcapBoth     || 0,
+      date:          e.date,
+      total:         e.total,
+      above50:       e.above50,
+      above200:      e.above200,
+      both:          e.both,
+      newHighs:      e.newHighs,
+      newLows:       e.newLows,
+      mcapTotal:     e.mcapTotal    || 0,
+      mcapAbove50:   e.mcapAbove50  || 0,
+      mcapAbove200:  e.mcapAbove200 || 0,
+      mcapBoth:      e.mcapBoth     || 0,
+      mcapNewHighs:  e.mcapNewHighs || 0,
+      mcapNewLows:   e.mcapNewLows  || 0,
     }));
   }
   return _breadthHistory.map(e => {
@@ -1710,9 +1712,10 @@ function getInternalsData() {
     } else {
       src = e.sectors && e.sectors[internalsFilterSector];
     }
-    if (!src) return { date: e.date, total: 0, above50: 0, above200: 0, both: 0, newHighs: 0, newLows: 0, mcapTotal: 0, mcapAbove50: 0, mcapAbove200: 0, mcapBoth: 0 };
+    if (!src) return { date: e.date, total: 0, above50: 0, above200: 0, both: 0, newHighs: 0, newLows: 0, mcapTotal: 0, mcapAbove50: 0, mcapAbove200: 0, mcapBoth: 0, mcapNewHighs: 0, mcapNewLows: 0 };
     return { date: e.date, total: src.total, above50: src.above50, above200: src.above200, both: src.both, newHighs: src.newHighs, newLows: src.newLows,
-             mcapTotal: src.mcapTotal || 0, mcapAbove50: src.mcapAbove50 || 0, mcapAbove200: src.mcapAbove200 || 0, mcapBoth: src.mcapBoth || 0 };
+             mcapTotal: src.mcapTotal || 0, mcapAbove50: src.mcapAbove50 || 0, mcapAbove200: src.mcapAbove200 || 0, mcapBoth: src.mcapBoth || 0,
+             mcapNewHighs: src.mcapNewHighs || 0, mcapNewLows: src.mcapNewLows || 0 };
   });
 }
 
@@ -1760,7 +1763,7 @@ function buildInternalsPanel() {
           </select>` : ''}
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <div>
           <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">MA Participation — Stock Count</div>
           <div style="height:200px;position:relative"><canvas id="c-int-ma-count"></canvas></div>
@@ -1770,8 +1773,12 @@ function buildInternalsPanel() {
           <div style="height:200px;position:relative"><canvas id="c-int-ma-mcap"></canvas></div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows</div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows — Count</div>
           <div style="height:200px;position:relative"><canvas id="c-int-hl"></canvas></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">New 52-Week Highs vs Lows — % by Market Cap</div>
+          <div style="height:200px;position:relative"><canvas id="c-int-hl-mcap"></canvas></div>
         </div>
       </div>
     </div>
@@ -1779,13 +1786,14 @@ function buildInternalsPanel() {
 }
 
 let chart4b = null;
+let chart5b = null;
 
 function initInternalsCharts() {
   const data = getInternalsData();
   if (!data || !data.length) return;
 
   const labels = data.map(e => e.date);
-  const pct = (n, t) => t > 0 ? Math.round(n / t * 100) : 0;
+  const pct = (n, t) => t > 0 ? +((n / t) * 100).toFixed(1) : 0;
 
   // Stock count (absolute)
   const cnt50   = data.map(e => e.above50);
@@ -1797,70 +1805,56 @@ function initInternalsCharts() {
   const mc200  = data.map(e => pct(e.mcapAbove200, e.mcapTotal));
   const mcBoth = data.map(e => pct(e.mcapBoth,     e.mcapTotal));
 
+  // 52W high/low — count
   const highs = data.map(e => e.newHighs);
   const lows  = data.map(e => e.newLows);
+
+  // 52W high/low — % by market cap
+  const mcHighs = data.map(e => pct(e.mcapNewHighs, e.mcapTotal));
+  const mcLows  = data.map(e => pct(e.mcapNewLows,  e.mcapTotal));
 
   const axisStyle = { color: '#555e6e', font: { size: 10 } };
   const gridStyle = { color: 'rgba(255,255,255,0.05)' };
   const xScale = { ticks: { ...axisStyle, maxTicksLimit: 8, callback: (_, i) => labels[i] ? labels[i].slice(5) : '' }, grid: gridStyle };
   const lineDs = (label, data, color) => ({ label, data, borderColor: color, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 2, tension: 0.3 });
+  const baseOpts = {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: { legend: { display: true, labels: { color: '#8a92a2', font: { size: 10 }, boxWidth: 16 } } },
+  };
 
   if (chart4)  { chart4.destroy();  chart4  = null; }
   if (chart4b) { chart4b.destroy(); chart4b = null; }
   if (chart5)  { chart5.destroy();  chart5  = null; }
+  if (chart5b) { chart5b.destroy(); chart5b = null; }
 
   const c4 = document.getElementById('c-int-ma-count');
-  if (c4) {
-    chart4 = new Chart(c4, {
-      type: 'line',
-      data: { labels, datasets: [
-        lineDs('> 50 MA',   cnt50,   C.blue),
-        lineDs('> 200 MA',  cnt200,  C.amber),
-        lineDs('> Both',    cntBoth, C.green),
-      ]},
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: true, labels: { color: '#8a92a2', font: { size: 10 }, boxWidth: 16 } } },
-        scales: { x: xScale, y: { ticks: axisStyle, grid: gridStyle, min: 0 } }
-      }
-    });
-  }
+  if (c4) chart4 = new Chart(c4, {
+    type: 'line',
+    data: { labels, datasets: [lineDs('> 50 MA', cnt50, C.blue), lineDs('> 200 MA', cnt200, C.amber), lineDs('> Both', cntBoth, C.green)] },
+    options: { ...baseOpts, scales: { x: xScale, y: { ticks: axisStyle, grid: gridStyle, min: 0 } } }
+  });
 
   const c4b = document.getElementById('c-int-ma-mcap');
-  if (c4b) {
-    chart4b = new Chart(c4b, {
-      type: 'line',
-      data: { labels, datasets: [
-        lineDs('> 50 MA',   mc50,   C.blue),
-        lineDs('> 200 MA',  mc200,  C.amber),
-        lineDs('> Both',    mcBoth, C.green),
-      ]},
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: true, labels: { color: '#8a92a2', font: { size: 10 }, boxWidth: 16 } } },
-        scales: { x: xScale, y: { ticks: { ...axisStyle, callback: v => v + '%' }, grid: gridStyle, min: 0, max: 100 } }
-      }
-    });
-  }
+  if (c4b) chart4b = new Chart(c4b, {
+    type: 'line',
+    data: { labels, datasets: [lineDs('> 50 MA', mc50, C.blue), lineDs('> 200 MA', mc200, C.amber), lineDs('> Both', mcBoth, C.green)] },
+    options: { ...baseOpts, scales: { x: xScale, y: { ticks: { ...axisStyle, callback: v => v + '%' }, grid: gridStyle, min: 0, max: 100 } } }
+  });
 
   const c5 = document.getElementById('c-int-hl');
-  if (c5) {
-    chart5 = new Chart(c5, {
-      type: 'line',
-      data: { labels, datasets: [
-        lineDs('New Highs', highs, C.green),
-        lineDs('New Lows',  lows,  C.red),
-      ]},
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: true, labels: { color: '#8a92a2', font: { size: 10 }, boxWidth: 16 } } },
-        scales: { x: xScale, y: { ticks: axisStyle, grid: gridStyle, min: 0 } }
-      }
-    });
-  }
+  if (c5) chart5 = new Chart(c5, {
+    type: 'line',
+    data: { labels, datasets: [lineDs('New Highs', highs, C.green), lineDs('New Lows', lows, C.red)] },
+    options: { ...baseOpts, scales: { x: xScale, y: { ticks: axisStyle, grid: gridStyle, min: 0 } } }
+  });
+
+  const c5b = document.getElementById('c-int-hl-mcap');
+  if (c5b) chart5b = new Chart(c5b, {
+    type: 'line',
+    data: { labels, datasets: [lineDs('Highs % Mcap', mcHighs, C.green), lineDs('Lows % Mcap', mcLows, C.red)] },
+    options: { ...baseOpts, scales: { x: xScale, y: { ticks: { ...axisStyle, callback: v => v + '%' }, grid: gridStyle, min: 0 } } }
+  });
 }
 
 // ── Tab 3: Rotation — Where's the Money? ─────────────────────────────
