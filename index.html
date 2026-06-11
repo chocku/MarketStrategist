@@ -1920,39 +1920,28 @@ function rotStockLink(s) {
 
 function rotSectorCard(sec, isTop) {
   const c = sec.ret > 0 ? 'var(--green)' : sec.ret < 0 ? 'var(--red)' : 'var(--text2)';
-  const subInd    = isTop ? sec.topInd    : sec.botInd;
   const subStocks = isTop ? sec.topStocks : sec.botStocks;
-  const indLine = subInd
-    ? `<div class="rot-sec-ind">${subInd.name.length>30?subInd.name.slice(0,28)+'…':subInd.name} <b style="color:${subInd.ret>0?'var(--green)':subInd.ret<0?'var(--red)':'var(--text2)'}">${pp(subInd.ret,true)}%</b></div>`
-    : '';
-  // Sector is shown as card header — only add industry per stock
+  // Sector is the card header — show industry on each stock, no redundant industry sub-line
   return `<div class="rot-sec-card">
     <div class="rot-sec-name">${sec.name} <b style="color:${c}">${pp(sec.ret,true)}%</b></div>
-    ${indLine}
     <div class="rot-sec-stocks">${subStocks.map(s => rotStockCard(s, { showIndustry: true })).join('')}</div>
   </div>`;
 }
 
-function rotChipHighInd(i) {
+function rotHighLowChip(i) {
+  const sector = (i.stocks[0] && i.stocks[0].sector) ? i.stocks[0].sector + ' › ' : '';
+  const header = `${sector}${i.name} (${i.count})`;
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
     return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
   }).join('<span style="color:var(--text2)"> · </span>');
   return `<div class="rot-chip-2l" title="${i.name}">
-    <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
+    <span class="r2l-ind">${header}</span>
     <span class="r2l-ticker" style="flex-wrap:wrap;gap:3px 8px">${tickers || '—'}</span>
   </div>`;
 }
-function rotChipLowInd(i) {
-  const tickers = i.stocks.map(s => {
-    const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
-    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
-  }).join('<span style="color:var(--text2)"> · </span>');
-  return `<div class="rot-chip-2l" title="${i.name}">
-    <span class="r2l-ind">${i.name} <span style="color:var(--text2)">(${i.count})</span></span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:3px 8px">${tickers || '—'}</span>
-  </div>`;
-}
+function rotChipHighInd(i) { return rotHighLowChip(i); }
+function rotChipLowInd(i)  { return rotHighLowChip(i); }
 
 function rotRowHtml(entry, isLeaders) {
   const spx = entry.spxReturn1d;
