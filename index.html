@@ -2052,22 +2052,18 @@ function rotSectorCard(sec, isTop) {
   </div>`;
 }
 
-let _rotChipId = 0;
+// 52W group card: Sector (colored border+name) / Industry / tickers
 function rotHighLowChip(i) {
   const secName = (i.stocks[0] && i.stocks[0].sector) || '';
   const sc      = sectorColor(secName);
-  const secHtml = secName ? `<span style="color:${sc};font-weight:700">${secName}</span> › ` : '';
-  const id      = 'rhl' + (++_rotChipId);
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
-    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a><b style="color:${c}"> ${pp(s.return1d,true)}%</b>`;
-  }).join('<span style="color:var(--text2)"> · </span>');
-  return `<div class="rot-chip-2l" id="${id}">
-    <div class="r2l-header" onclick="document.getElementById('${id}').classList.toggle('open')">
-      <span class="r2l-ind">${secHtml}${i.name} (${i.count})</span>
-      <span class="r2l-toggle">▶</span>
-    </div>
-    <div class="r2l-body">${tickers || '—'}</div>
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b>`;
+  }).join('<span style="color:var(--border2)"> · </span>');
+  return `<div class="rot-sf" style="border-left-color:${sc}">
+    ${secName ? `<div class="rot-sf-sector" style="color:${sc}">${secName}</div>` : ''}
+    <div class="rot-sf-industry">${i.name}</div>
+    <div style="margin-top:3px;font-size:12px;color:var(--text2);flex-wrap:wrap;display:flex;gap:2px 6px;line-height:1.8">${tickers}</div>
   </div>`;
 }
 function rotChipHighInd(i) { return rotHighLowChip(i); }
@@ -2093,7 +2089,7 @@ function rotRowHtml(entry, isLeaders) {
     <div class="rot-col">
       <div class="rot-col-label">${isLeaders ? '52W Highs' : '52W Lows'}</div>
       <div style="display:flex;flex-direction:column;gap:5px">
-        ${highLow.flatMap(i => i.stocks).map(s => rotStockCardFull(s)).join('')}
+        ${highLow.map(i => rotHighLowChip(i)).join('')}
       </div>
     </div>` : ''}`;
 
