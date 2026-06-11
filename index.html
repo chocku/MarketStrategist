@@ -474,9 +474,11 @@ tr:hover td { background:rgba(255,255,255,0.02); }
         <div>Last close: <span style="color:var(--text2)" id="dataDate">—</span></div>
       </div>
       <div class="tab-nav">
-        <button class="tab-btn active" id="tab-breadth"  onclick="switchTab('breadth')"><div class="tb-name">Breadth</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn active" id="tab-overview"  onclick="switchTab('overview')"><div class="tb-name">Market Overview</div><div class="tb-sub">Broad or Narrow?</div></button>
+        <button class="tab-btn"        id="tab-sector"   onclick="switchTab('sector')"><div class="tb-name">Sector</div><div class="tb-sub">Which Groups Lead?</div></button>
+        <button class="tab-btn"        id="tab-industry" onclick="switchTab('industry')"><div class="tb-name">Industry</div><div class="tb-sub">Drill Deeper</div></button>
+        <button class="tab-btn"        id="tab-stock"    onclick="switchTab('stock')"><div class="tb-name">Stock</div><div class="tb-sub">What to Buy?</div></button>
         <button class="tab-btn"        id="tab-rotation" onclick="switchTab('rotation')"><div class="tb-name">Rotation</div><div class="tb-sub">Where's the Money?</div></button>
-        <button class="tab-btn"        id="tab-leaders"  onclick="switchTab('leaders')"><div class="tb-name">Leaders</div><div class="tb-sub">What to Buy?</div></button>
         <button class="tab-btn"        id="tab-news"     onclick="switchTab('news')"><div class="tb-name">News</div><div class="tb-sub">What Happened?</div></button>
       </div>
       <button class="btn" onclick="init()">↻ Refresh</button>
@@ -623,7 +625,7 @@ let leadersIndustry = 'all';
 let leadersMaStatus = 'all';
 let leadersRsYtd = 'all';
 let searchTicker = '';
-let activeTab = 'breadth';
+let activeTab = 'overview';
 let _news = {};
 let breadthSortCol = 'contribYtd', breadthSortDir = -1;
 let industryBreadthSortCol = 'contribYtd', industryBreadthSortDir = -1;
@@ -1140,8 +1142,10 @@ function newsGoWeek(idx) {
 function switchTab(tab) {
   if (chart2) { chart2.destroy(); chart2 = null; }
   if (chart3) { chart3.destroy(); chart3 = null; }
+  if (chart4) { chart4.destroy(); chart4 = null; }
+  if (chart5) { chart5.destroy(); chart5 = null; }
   activeTab = tab;
-  ['breadth','rotation','leaders','news'].forEach(t =>
+  ['overview','sector','industry','stock','rotation','news'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
   renderCurrent();
@@ -1156,10 +1160,12 @@ function renderCurrent() {
   const label = filterSector === 'all' ? `${n} stocks` : `${n} stocks · ${filterSector}`;
   document.getElementById('sub').textContent =
     `${label} · ${fmtDate(asOf)} · SPY  1d: ${pp(spyReturn1d??0,true)}%  YTD: ${pp(spyReturnYtd??0,true)}%  12m: ${pp(spyReturn12m,true)}%`;
-  if      (activeTab === 'breadth')  renderBreadth();
-  else if (activeTab === 'rotation') renderRotation();
-  else if (activeTab === 'news')     renderNews();
-  else                               renderLeaders();
+  if      (activeTab === 'overview')  renderOverview();
+  else if (activeTab === 'sector')    renderSector();
+  else if (activeTab === 'industry')  renderIndustry();
+  else if (activeTab === 'stock')     renderLeaders();
+  else if (activeTab === 'rotation')  renderRotation();
+  else if (activeTab === 'news')      renderNews();
 }
 
 // ── Tab header helper ─────────────────────────────────────────────────
@@ -1170,22 +1176,14 @@ function tabHdr(question, why) {
   </div>`;
 }
 
-// ── Tab 1: Breadth — Broad or Narrow? ────────────────────────────────
-function renderBreadth() {
-  const { stocks: allStocks, spxReturn1d, spxReturn1w, spxReturn1m, spxReturnYtd, spxReturn12m,
-          rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m,
-          recentLowDate, spyFromLow, rspFromLow, chartDates, chartSpy, chartRsp,
-          spyReturn1d, spyReturn1w, spyReturn1m, spyReturnYtd, spyReturn12m } = _data;
-
-  // ── Build sector map ──
+// ── Shared computation — builds secMap / indMap from _data ───────────
+function computeMaps() {
+  const { stocks: allStocks, spyReturnYtd, spyFromLow } = _data;
   const secMap = {};
+  const indMap = {};
   const totalMcap = allStocks.reduce((s, st) => s + (st.marketCap || 0), 0);
-
-  // Beginning-of-period totals for attribution math (computed over all stocks)
   let totalAdjMcYtd = 0, totalAdjMcLow = 0;
 
-  // Also build industry map in same pass
-  const indMap = {};
   allStocks.forEach(s => {
     const sec = s.sector || 'Unknown';
     const ind = s.industry || 'Unknown';
@@ -1200,44 +1198,30 @@ function renderBreadth() {
       mcap:0, mcapRet1d:0, mcapRet1w:0, mcapRetYtd:0, mcapAboveBoth:0,
       adjMcYtd:0, adjMcLow:0, adjRetYtd:0, adjRetLow:0
     };
-    const m = secMap[sec];
-    const mi = indMap[ind];
-    m.total++;  mi.total++;
+    const m = secMap[sec], mi = indMap[ind];
+    m.total++; mi.total++;
     if (s.above50)  { m.above50++;  mi.above50++; }
     if (s.above200) { m.above200++; mi.above200++; }
-    if (s.above50 && s.above200) {
-      m.both++;  mi.both++;
-    }
-    if (s.newHigh)  { m.newHighs++; mi.newHighs++; }
-    if (s.newLow)   { m.newLows++;  mi.newLows++;  }
-    const mc   = s.marketCap || 0;
+    if (s.above50 && s.above200) { m.both++; mi.both++; }
+    if (s.newHigh) { m.newHighs++; mi.newHighs++; }
+    if (s.newLow)  { m.newLows++;  mi.newLows++; }
+    const mc = s.marketCap || 0;
     const rYtd = (s.returnYtd     || 0) / 100;
     const rLow = (s.returnFromLow || 0) / 100;
-    // Current-weight mcap — for size and weight % display
-    m.mcap        += mc;  mi.mcap        += mc;
-    m.mcapRet1d   += mc * (s.return1d  || 0);  mi.mcapRet1d  += mc * (s.return1d  || 0);
-    m.mcapRet1w   += mc * (s.return1w  || 0);  mi.mcapRet1w  += mc * (s.return1w  || 0);
-    m.mcapRetYtd  += mc * (s.returnYtd || 0);
-    mi.mcapRetYtd += mc * (s.returnYtd || 0);
-    // mcapAboveBoth: sum mcap of stocks above both MAs
-    if (s.above50 && s.above200) {
-      m.mcapAboveBoth  += mc;
-      mi.mcapAboveBoth += mc;
-    }
-    // Beginning-of-period weights for correct attribution
-    const adjYtd = mc / (1 + rYtd);
-    const adjLow = mc / (1 + rLow);
-    m.adjMcYtd  += adjYtd;  mi.adjMcYtd  += adjYtd;
-    m.adjMcLow  += adjLow;  mi.adjMcLow  += adjLow;
-    m.adjRetYtd += adjYtd * (s.returnYtd     || 0);
-    mi.adjRetYtd+= adjYtd * (s.returnYtd     || 0);
-    m.adjRetLow += adjLow * (s.returnFromLow || 0);
-    mi.adjRetLow+= adjLow * (s.returnFromLow || 0);
+    m.mcap += mc; mi.mcap += mc;
+    m.mcapRet1d  += mc * (s.return1d  || 0); mi.mcapRet1d  += mc * (s.return1d  || 0);
+    m.mcapRet1w  += mc * (s.return1w  || 0); mi.mcapRet1w  += mc * (s.return1w  || 0);
+    m.mcapRetYtd += mc * (s.returnYtd || 0); mi.mcapRetYtd += mc * (s.returnYtd || 0);
+    if (s.above50 && s.above200) { m.mcapAboveBoth += mc; mi.mcapAboveBoth += mc; }
+    const adjYtd = mc / (1 + rYtd), adjLow = mc / (1 + rLow);
+    m.adjMcYtd  += adjYtd; mi.adjMcYtd  += adjYtd;
+    m.adjMcLow  += adjLow; mi.adjMcLow  += adjLow;
+    m.adjRetYtd += adjYtd * (s.returnYtd     || 0); mi.adjRetYtd += adjYtd * (s.returnYtd     || 0);
+    m.adjRetLow += adjLow * (s.returnFromLow || 0); mi.adjRetLow += adjLow * (s.returnFromLow || 0);
     totalAdjMcYtd += adjYtd;
     totalAdjMcLow += adjLow;
   });
 
-  // Sectors array (for callout bullets — sorted by contribYtd)
   const sectors = Object.entries(secMap).map(([name, d]) => {
     const wt             = totalMcap > 0 ? d.mcap / totalMcap : 0;
     const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
@@ -1257,10 +1241,40 @@ function renderBreadth() {
     };
   });
 
-  const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
+  const industries = Object.entries(indMap).map(([name, d]) => {
+    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
+    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
+    return {
+      name,
+      pct:            Math.round(d.both / d.total * 100),
+      total:          d.total, both: d.both,
+      contribYtd:     +contribYtd.toFixed(2),
+      contribFromLow: +contribFromLow.toFixed(2),
+      newHighs:       d.newHighs, newLows: d.newLows
+    };
+  });
 
-  const rspVsSpyYtd    = hasRsp ? rspReturnYtd - spyReturnYtd : null;
-  const rspVsSpy12m    = hasRsp ? rspReturn12m  - spyReturn12m  : null;
+  return { secMap, indMap, sectors, industries, totalMcap, totalAdjMcYtd, totalAdjMcLow };
+}
+
+// ── Key takeaways callout box ─────────────────────────────────────────
+function callout(color, bullets) {
+  const items = bullets.map(b => `<li style="margin-bottom:7px">${b}</li>`).join('');
+  return `<div style="margin-top:12px;padding:12px 16px;border-left:3px solid ${color};background:${color}12;border-radius:0 6px 6px 0;color:var(--text)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:${color};margin-bottom:9px">Key Takeaways</div>
+    <ul style="margin:0;padding-left:18px;font-size:12.5px;line-height:1.7">${items}</ul>
+  </div>`;
+}
+
+// ── Tab 1: Market Overview ────────────────────────────────────────────
+function renderOverview() {
+  const { rspReturn1d, rspReturn1w, rspReturn1m, rspReturnYtd, rspReturn12m,
+          recentLowDate, spyFromLow, rspFromLow, chartDates, chartSpy, chartRsp,
+          spyReturn1d, spyReturn1m, spyReturnYtd, spyReturn12m } = _data;
+
+  const hasRsp = rspReturnYtd != null && spyReturnYtd != null;
+  const rspVsSpyYtd     = hasRsp ? rspReturnYtd - spyReturnYtd : null;
+  const rspVsSpy12m     = hasRsp ? rspReturn12m  - spyReturn12m  : null;
   const rspVsSpyFromLow = (rspFromLow != null && spyFromLow != null) ? rspFromLow - spyFromLow : null;
 
   const ewRows = hasRsp ? [
@@ -1271,90 +1285,96 @@ function renderBreadth() {
     {lbl:`From low (${recentLowDate})`,  rsp:rspFromLow,   spy:spyFromLow,   diff:rspVsSpyFromLow, highlight:true},
   ] : null;
 
-  // ── Key takeaways — bullet callout boxes ──
-  function callout(color, bullets) {
-    const items = bullets.map(b => `<li style="margin-bottom:7px">${b}</li>`).join('');
-    return `<div style="margin-top:12px;padding:12px 16px;border-left:3px solid ${color};background:${color}12;border-radius:0 6px 6px 0;color:var(--text)">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:${color};margin-bottom:9px">Key Takeaways</div>
-      <ul style="margin:0;padding-left:18px;font-size:12.5px;line-height:1.7">${items}</ul>
-    </div>`;
-  }
-
-  // RSP vs SPY — single consolidated callout (covers table + chart)
   let rspCallout = '';
-  let chartCallout = '';
   if (hasRsp) {
-    const worstGap  = Math.min(rspVsSpyYtd ?? 0, rspVsSpyFromLow ?? 0);
-    const color     = worstGap < -6 ? C.red : worstGap < -2 ? C.amber : C.green;
-    const ytdColor  = rspVsSpyYtd >= -2 ? C.green : rspVsSpyYtd >= -6 ? C.amber : C.red;
-    const lowColor  = rspVsSpyFromLow >= -2 ? C.green : rspVsSpyFromLow >= -6 ? C.amber : C.red;
-    const signal    = worstGap < -6
-      ? `<strong>What it means:</strong> The recovery since ${recentLowDate} has been <strong style="color:${C.red}">narrow</strong> — a small group of large-cap stocks is driving most of the gain while the average stock is being left behind.`
+    const worstGap = Math.min(rspVsSpyYtd ?? 0, rspVsSpyFromLow ?? 0);
+    const color    = worstGap < -6 ? C.red : worstGap < -2 ? C.amber : C.green;
+    const ytdColor = rspVsSpyYtd >= -2 ? C.green : rspVsSpyYtd >= -6 ? C.amber : C.red;
+    const lowColor = rspVsSpyFromLow >= -2 ? C.green : rspVsSpyFromLow >= -6 ? C.amber : C.red;
+    const signal   = worstGap < -6
+      ? `<strong>What it means:</strong> The recovery since ${recentLowDate} has been <strong style="color:${C.red}">narrow</strong> — a small group of large-cap stocks is driving most of the gain.`
       : worstGap < -2
-      ? `<strong>What it means:</strong> Breadth is <strong style="color:${C.amber}">mixed</strong> — SPY is pulling ahead of RSP, suggesting the rally is becoming more concentrated in bigger names.`
-      : `<strong>What it means:</strong> Breadth is <strong style="color:${C.green}">healthy</strong> — the average stock is keeping pace with the index, indicating wide participation across the market.`;
+      ? `<strong>What it means:</strong> Breadth is <strong style="color:${C.amber}">mixed</strong> — SPY is pulling ahead of RSP, suggesting concentration in bigger names.`
+      : `<strong>What it means:</strong> Breadth is <strong style="color:${C.green}">healthy</strong> — the average stock is keeping pace with the index.`;
     rspCallout = callout(color, [
-      `<strong>What we're comparing:</strong> <strong>SPY</strong> is the S&P 500 weighted by market cap — the biggest companies (Apple, Nvidia, Microsoft…) dominate its return. <strong>RSP</strong> gives every S&P 500 stock an equal share, making it a proxy for the <em>average</em> stock. When RSP keeps up, the rally is broad. When SPY pulls away, a handful of giants are doing all the work.`,
+      `<strong>What we're comparing:</strong> <strong>SPY</strong> is the S&P 500 weighted by market cap. <strong>RSP</strong> gives every stock an equal share — a proxy for the <em>average</em> stock. When RSP keeps up, the rally is broad. When SPY pulls away, a handful of giants are doing all the work.`,
       `<strong>YTD:</strong> SPY <strong>${cPP(spyReturnYtd)}</strong> vs RSP <strong>${cPP(rspReturnYtd)}</strong> &nbsp;·&nbsp; Spread <strong style="color:${ytdColor}">${pp(rspVsSpyYtd,true)}%</strong>`,
       `<strong>Since ${recentLowDate} low:</strong> SPY <strong>${cPP(spyFromLow)}</strong> vs RSP <strong>${cPP(rspFromLow)}</strong> &nbsp;·&nbsp; Spread <strong style="color:${lowColor}">${pp(rspVsSpyFromLow,true)}%</strong>`,
       signal
     ]);
   }
 
-  // Sector participation takeaway
+  document.getElementById('root').innerHTML = tabHdr(
+    'Is the rally broad or carried by a few?',
+    'Market Internals track how many S&P 500 stocks are above key moving averages and making new highs/lows. RSP vs SPY shows whether the average stock is keeping up with the cap-weighted index.'
+  ) +
+  buildInternalsPanel() +
+  buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, '');
+
+  initInternalsCharts();
+  initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
+}
+
+// ── Tab 2: Sector ─────────────────────────────────────────────────────
+function renderSector() {
+  const { recentLowDate, spyFromLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyReturn12m } = _data;
+  const { secMap, sectors, totalMcap, totalAdjMcYtd, totalAdjMcLow } = computeMaps();
+
   const topContrib    = [...sectors].sort((a,b) => b.contribYtd     - a.contribYtd)[0];
   const bottomContrib = [...sectors].sort((a,b) => a.contribYtd     - b.contribYtd)[0];
   const topLow        = [...sectors].sort((a,b) => b.contribFromLow - a.contribFromLow)[0];
   const bottomLow     = [...sectors].sort((a,b) => a.contribFromLow - b.contribFromLow)[0];
   const bestBreadth   = [...sectors].sort((a,b) => b.pct - a.pct)[0];
   const weakBreadth   = [...sectors].sort((a,b) => a.pct - b.pct)[0];
-  const secBullets = [
+
+  const secCallout = callout(C.blue, [
     `<strong>YTD — Leading sector:</strong> ${topContrib.name} contributed <strong>${cPP(topContrib.contribYtd)}</strong> of SPY's ${cPP(spyReturnYtd)} return`
       + (bottomContrib.contribYtd < -0.15 ? `&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Drag:</strong> ${bottomContrib.name} (${cPP(bottomContrib.contribYtd)})` : ''),
     `<strong>Since ${recentLowDate} low — Leading sector:</strong> ${topLow.name} contributed <strong>${cPP(topLow.contribFromLow)}</strong> of SPY's ${cPP(spyFromLow)} recovery`
       + (bottomLow.contribFromLow < -0.15 ? `&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Drag:</strong> ${bottomLow.name} (${cPP(bottomLow.contribFromLow)})` : ''),
     `<strong>Breadth — Most stocks above both MAs:</strong> ${bestBreadth.name} (${bestBreadth.pct}% of ${bestBreadth.total} stocks)&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Fewest:</strong> ${weakBreadth.name} (${weakBreadth.pct}% of ${weakBreadth.total} stocks)`
-  ];
-  const secCallout = callout(C.blue, secBullets);
+  ]);
 
-  // Industry participation takeaway
-  const industries = Object.entries(indMap).map(([name, d]) => {
-    const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
-    const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / d.adjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0 : 0;
-    return {
-      name,
-      pct:          Math.round(d.both / d.total * 100),
-      total:        d.total,
-      both:         d.both,
-      contribYtd:   +contribYtd.toFixed(2),
-      contribFromLow: +(totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0).toFixed(2),
-      newHighs:     d.newHighs,
-      newLows:      d.newLows
-    };
-  });
+  document.getElementById('root').innerHTML = tabHdr(
+    'Which sectors are leading — and how wide is participation?',
+    'Sector returns, breadth (% above both MAs), and SPY contribution. Click any column header to sort.'
+  ) + `
+    <div class="sec-health">
+      ${secCallout}
+      <div class="ptitle" style="margin-top:8px">Sector participation — click any column header to sort</div>
+      ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · Relative Strength (vs SPY) = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
+    </div>`;
+}
+
+// ── Tab 3: Industry ───────────────────────────────────────────────────
+function renderIndustry() {
+  const { recentLowDate, spyFromLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyReturn12m } = _data;
+  const { indMap, industries, totalMcap, totalAdjMcYtd, totalAdjMcLow } = computeMaps();
+
   const topInds2    = [...industries].sort((a,b) => b.contribYtd     - a.contribYtd).slice(0,2);
   const botInds2    = [...industries].sort((a,b) => a.contribYtd     - b.contribYtd).slice(0,2);
   const topLowInds2 = [...industries].sort((a,b) => b.contribFromLow - a.contribFromLow).slice(0,2);
   const botLowInds2 = [...industries].sort((a,b) => a.contribFromLow - b.contribFromLow).slice(0,2);
   const bestIndBr2  = [...industries].filter(i => i.total >= 3).sort((a,b) => b.pct - a.pct).slice(0,2);
   const weakIndBr2  = [...industries].filter(i => i.total >= 3).sort((a,b) => a.pct - b.pct).slice(0,2);
-  const indBullets  = [
+
+  const indCallout = callout(C.blue, [
     `<strong>YTD leaders:</strong> ${topInds2.map(i=>`${i.name} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botInds2.map(i=>`${i.name} <strong>${cPP(i.contribYtd)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
     `<strong>Since ${recentLowDate} low — leaders:</strong> ${topLowInds2.map(i=>`${i.name} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Laggards:</strong> ${botLowInds2.map(i=>`${i.name} <strong>${cPP(i.contribFromLow)}</strong>`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`,
     `<strong>Broadest participation:</strong> ${bestIndBr2.map(i=>`${i.name} (${i.pct}% of ${i.total} stocks)`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}&nbsp;&nbsp;·&nbsp;&nbsp;<strong>Narrowest:</strong> ${weakIndBr2.map(i=>`${i.name} (${i.pct}% of ${i.total})`).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}`
-  ];
-  const indCallout = callout(C.blue, indBullets);
+  ]);
 
   document.getElementById('root').innerHTML = tabHdr(
-    'Is the rally broad or carried by a few Sectors/Industries?',
-    'RSP vs SPY shows whether the average stock keeps up with the index. The sector and industry tables show which groups are driving the move and how wide the participation is within each.'
-  ) +
-  buildInternalsPanel() +
-  buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) +
-  buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyFromLow, recentLowDate, indCallout, indMap);
-
-  initInternalsCharts();
-  initBreadthChart(chartDates, chartSpy, chartRsp, recentLowDate);
+    'Which industries are leading within each sector?',
+    'Industry returns, breadth, and contribution to SPY. Use the sector filter to focus on a group. Click any column header to sort.'
+  ) + `
+    <div class="sec-health">
+      ${indCallout}
+      <div class="ptitle" style="margin-top:8px">Industry participation — click any column header to sort</div>
+      ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spyReturn1d, spyReturn1w, spyReturnYtd, spyFromLow, recentLowDate)}
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Return = mcap-weighted avg · Relative Strength (vs SPY) = industry return minus SPY return · Contrib = beginning-of-period weighted attribution summing to actual SPY · Wt%↑MA = % of industry market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of industry</div>
+    </div>`;
 }
 
 function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout) {
@@ -1396,19 +1416,6 @@ function buildRspVsSpyPanel(hasRsp, ewRows, rspCallout, chartDates, chartCallout
     </div>`;
 }
 
-function buildSectorSection(secCallout, secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow, recentLowDate, indCallout, indMap) {
-  return `
-    <div class="sec-health">
-      ${secCallout}
-      <div class="ptitle" style="margin-top:8px">Sector participation — click any column header to sort</div>
-      ${buildGroupTable(secMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow, recentLowDate, breadthSortCol, breadthSortDir, false, 'sortBreadth')}
-      <div style="font-size:10px;color:var(--text3);margin-top:8px">Return = mcap-weighted avg · Relative Strength (vs SPY) = sector return minus SPY return · Contrib = beginning-of-year weighted attribution summing to actual SPY · Wt% Above = % of sector market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of sector</div>
-      <div class="ptitle" style="margin-top:24px">Industry participation — click any column header to sort</div>
-      ${indCallout}
-      ${buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow, recentLowDate)}
-      <div style="font-size:10px;color:var(--text3);margin-top:6px">Return = mcap-weighted avg · Relative Strength (vs SPY) = industry return minus SPY return · Contrib = beginning-of-period weighted attribution summing to actual SPY · Wt%↑MA = % of industry market cap above both MAs · ★ = ≥3 stocks at 52W high AND ≥5% of industry</div>
-    </div>`;
-}
 
 function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1d, spy1w, spyReturnYtd, spyFromLow, recentLowDate) {
   const sectors = [...new Set(Object.values(indMap).map(d => d.sector).filter(Boolean))].sort();
