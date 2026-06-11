@@ -240,11 +240,111 @@ def fetch():
         json.dump(output, f, indent=2)
     print(f"  Archived snapshot -> {hist_file}")
 
+    # ── breadth_history.json — daily breadth time series ─────────────────
+    update_breadth_history(last_date, results)
+
     print(f"\nSaved data.json -- {len(results)} stocks")
     print(f"  Above 50-MA:    {above50}/{len(results)} ({above50/len(results)*100:.0f}%)")
     print(f"  Above 200-MA:   {above200}/{len(results)} ({above200/len(results)*100:.0f}%)")
     print(f"  Above both:     {both}/{len(results)} ({both/len(results)*100:.0f}%)")
     print(f"  New 52W Highs:  {new_highs}  |  New 52W Lows: {new_lows}")
 
+def compute_breadth_entry(date_str, stocks):
+    """Build one breadth_history entry from a list of stock dicts."""
+    total = len(stocks)
+    sec_map = {}
+    for s in stocks:
+        sec = s.get('sector') or 'Unknown'
+        ind = s.get('industry') or 'Unknown'
+        if sec not in sec_map:
+            sec_map[sec] = {'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0,'industries':{}}
+        m = sec_map[sec]
+        m['total'] += 1
+        if s.get('above50'):  m['above50']  += 1
+        if s.get('above200'): m['above200'] += 1
+        if s.get('above50') and s.get('above200'): m['both'] += 1
+        if s.get('newHigh'):  m['newHighs'] += 1
+        if s.get('newLow'):   m['newLows']  += 1
+        inds = m['industries']
+        if ind not in inds:
+            inds[ind] = {'sector':sec,'total':0,'above50':0,'above200':0,'both':0,'newHighs':0,'newLows':0}
+        mi = inds[ind]
+        mi['total'] += 1
+        if s.get('above50'):  mi['above50']  += 1
+        if s.get('above200'): mi['above200'] += 1
+        if s.get('above50') and s.get('above200'): mi['both'] += 1
+        if s.get('newHigh'):  mi['newHighs'] += 1
+        if s.get('newLow'):   mi['newLows']  += 1
+
+    # Flatten industries into a single dict across all sectors
+    industries = {}
+    for sec_data in sec_map.values():
+        for ind_name, ind_data in sec_data.pop('industries').items():
+            industries[ind_name] = ind_data
+
+    return {
+        'date':     date_str,
+        'total':    total,
+        'above50':  sum(1 for s in stocks if s.get('above50')),
+        'above200': sum(1 for s in stocks if s.get('above200')),
+        'both':     sum(1 for s in stocks if s.get('above50') and s.get('above200')),
+        'newHighs': sum(1 for s in stocks if s.get('newHigh')),
+        'newLows':  sum(1 for s in stocks if s.get('newLow')),
+        'sectors':  sec_map,
+        'industries': industries,
+    }
+
+
+def update_breadth_history(date_str, stocks):
+    """Append or update today's entry in breadth_history.json."""
+    hist_path = 'breadth_history.json'
+    history = []
+    if os.path.exists(hist_path):
+        try:
+            with open(hist_path) as f:
+                history = json.load(f)
+        except Exception:
+            history = []
+
+    entry = compute_breadth_entry(date_str, stocks)
+    # Replace existing entry for this date or append
+    existing = next((i for i, e in enumerate(history) if e.get('date') == date_str), None)
+    if existing is not None:
+        history[existing] = entry
+    else:
+        history.append(entry)
+
+    history.sort(key=lambda e: e['date'])
+    with open(hist_path, 'w') as f:
+        json.dump(history, f, separators=(',', ':'))
+    print(f"  Updated breadth_history.json ({len(history)} entries)")
+
+
+def backfill_breadth_history():
+    """Build breadth_history.json from all files in history/ folder."""
+    import glob
+    files = sorted(glob.glob('history/data_*.json'))
+    print(f"Backfilling from {len(files)} history snapshots...")
+    hist_path = 'breadth_history.json'
+    history = []
+    for fp in files:
+        try:
+            with open(fp) as f:
+                d = json.load(f)
+            entry = compute_breadth_entry(d['asOf'], d['stocks'])
+            history.append(entry)
+            print(f"  {d['asOf']}: {entry['above50']}/{entry['total']} above50, {entry['newHighs']} highs, {entry['newLows']} lows")
+        except Exception as e:
+            print(f"  ERROR {fp}: {e}")
+    history.sort(key=lambda e: e['date'])
+    with open(hist_path, 'w') as f:
+        json.dump(history, f, separators=(',', ':'))
+    print(f"Saved {hist_path} — {len(history)} entries")
+
+
 if __name__ == '__main__':
-    fetch()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == 'backfill':
+        backfill_breadth_history()
+    else:
+        fetch()
