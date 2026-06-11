@@ -2052,7 +2052,7 @@ function rotHighLowChip(i) {
   const sc      = sectorColor(secName);
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
-    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b>`;
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text2);font-weight:600;text-decoration:none">${s.ticker}</a> <b style="color:${c}">${pp(s.return1d,true)}%</b>`;
   }).join('<span style="color:var(--border2)"> · </span>');
   return `<div class="rot-sf" style="border-left-color:${sc}">
     ${secName ? `<div class="rot-sf-sector" style="color:${sc}">${secName}</div>` : ''}
