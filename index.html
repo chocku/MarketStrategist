@@ -377,17 +377,25 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   font-weight: 700;
 }
 .rot-chip a:hover { text-decoration: underline; color: var(--blue); }
-/* compact stock card — used inside sector cards */
+/* compact stock card — used inside sector cards (mirrors rot-sf style) */
 .rot-sc {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
   background: var(--bg3);
   border: 0.5px solid var(--border);
+  border-left-width: 3px;
   border-radius: 7px;
   padding: 5px 9px;
   min-width: 130px;
   max-width: 200px;
+}
+.rot-sc-industry {
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* full-width stock card — used in Top Stocks column */
 .rot-sf {
@@ -440,25 +448,17 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.rot-sc-meta {
-  font-size: 10px;
-  color: var(--text2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.4;
-}
 .rot-sc-ticker {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 1px;
 }
 .rot-sc-ticker a {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text2);   /* dimmed ticker */
   text-decoration: none;
+  flex-shrink: 0;
 }
 .rot-sc-ticker a:hover { text-decoration: underline; color: var(--blue); }
 .rot-sc-ticker .rot-sc-name {
@@ -467,32 +467,52 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 90px;
+  flex: 1;
 }
 .rot-chip-2l {
   display: flex;
   flex-direction: column;
-  gap: 2px;
   background: var(--bg3);
   border: 0.5px solid var(--border);
   border-radius: 6px;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: var(--text2);
   min-width: 0;
+  overflow: hidden;
 }
+.rot-chip-2l .r2l-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 9px;
+  cursor: pointer;
+  user-select: none;
+}
+.rot-chip-2l .r2l-header:hover { background: rgba(255,255,255,0.04); }
 .rot-chip-2l .r2l-ind {
-  font-size: 11px;
-  color: var(--text2);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex: 1;
 }
-.rot-chip-2l .r2l-ticker {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.rot-chip-2l .r2l-toggle {
+  font-size: 9px;
+  color: var(--text2);
+  flex-shrink: 0;
+  transition: transform 0.15s;
 }
+.rot-chip-2l.open .r2l-toggle { transform: rotate(90deg); }
+.rot-chip-2l .r2l-body {
+  display: none;
+  padding: 0 9px 7px;
+  font-size: 12px;
+  color: var(--text2);
+  flex-wrap: wrap;
+  gap: 3px 8px;
+}
+.rot-chip-2l.open .r2l-body { display: flex; }
 .rot-chip-2l a {
   color: var(--text);
   text-decoration: none;
@@ -1961,25 +1981,21 @@ async function loadRotationLog() {
   return log;
 }
 
-// opts: { showSector, showIndustry }
-// Always shows ticker+return. Adds sector/industry breadcrumb as context.
+// Compact card — used inside sector cards (industry prominent, ticker dimmed)
 function rotStockCard(s, opts = {}) {
-  const c = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
+  const rc  = s.return1d > 0 ? 'var(--green)' : s.return1d < 0 ? 'var(--red)' : 'var(--text2)';
   const sec = s.sector   || '';
   const ind = s.industry || '';
-  const metaParts = [];
-  if (opts.showSector   && sec) metaParts.push(sec);
-  if (opts.showIndustry && ind) metaParts.push(ind);
-  const meta = metaParts.length
-    ? `<div class="rot-sc-meta">${metaParts.join(' › ')}</div>`
-    : '';
+  const sc  = sectorColor(sec);
   const name = s.name ? `<span class="rot-sc-name">${s.name.length > 18 ? s.name.slice(0,17)+'…' : s.name}</span>` : '';
-  return `<div class="rot-sc">
-    ${meta}
+  // Industry is the primary label; ticker is dimmed
+  const indHtml = (opts.showIndustry && ind) ? `<div class="rot-sc-industry">${ind}</div>` : '';
+  return `<div class="rot-sc" style="border-left-color:${sc}">
+    ${indHtml}
     <div class="rot-sc-ticker">
       <a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a>
       ${name}
-      <b style="color:${c};font-size:12px">${pp(s.return1d,true)}%</b>
+      <b style="color:${rc};font-size:11.5px;flex-shrink:0">${pp(s.return1d,true)}%</b>
     </div>
   </div>`;
 }
@@ -2036,18 +2052,22 @@ function rotSectorCard(sec, isTop) {
   </div>`;
 }
 
+let _rotChipId = 0;
 function rotHighLowChip(i) {
   const secName = (i.stocks[0] && i.stocks[0].sector) || '';
   const sc      = sectorColor(secName);
-  const sector  = secName ? `<span style="color:${sc};font-weight:700">${secName}</span> › ` : '';
-  const header  = `${sector}${i.name} (${i.count})`;
+  const secHtml = secName ? `<span style="color:${sc};font-weight:700">${secName}</span> › ` : '';
+  const id      = 'rhl' + (++_rotChipId);
   const tickers = i.stocks.map(s => {
     const c = s.return1d >= 0 ? 'var(--green)' : 'var(--red)';
-    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener" style="color:var(--text);font-weight:700;text-decoration:none">${s.ticker}</a><b style="color:${c};font-size:11px"> ${pp(s.return1d,true)}%</b>`;
+    return `<a href="https://finance.yahoo.com/quote/${s.ticker}" target="_blank" rel="noopener">${s.ticker}</a><b style="color:${c}"> ${pp(s.return1d,true)}%</b>`;
   }).join('<span style="color:var(--text2)"> · </span>');
-  return `<div class="rot-chip-2l" title="${i.name}">
-    <span class="r2l-ind">${header}</span>
-    <span class="r2l-ticker" style="flex-wrap:wrap;gap:3px 8px">${tickers || '—'}</span>
+  return `<div class="rot-chip-2l" id="${id}">
+    <div class="r2l-header" onclick="document.getElementById('${id}').classList.toggle('open')">
+      <span class="r2l-ind">${secHtml}${i.name} (${i.count})</span>
+      <span class="r2l-toggle">▶</span>
+    </div>
+    <div class="r2l-body">${tickers || '—'}</div>
   </div>`;
 }
 function rotChipHighInd(i) { return rotHighLowChip(i); }
