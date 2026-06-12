@@ -23,7 +23,7 @@ async function init() {
   _data = d;
   document.getElementById('dataDate').textContent = fmtDate(d.asOf);
   try {
-    const nr = await fetch('news_archive.json');
+    const nr = await fetch('news_archive.json?v=' + Date.now(), { cache: 'no-store' });
     if (nr.ok) _news = await nr.json();
   } catch(e) { _news = {}; }
   try {
