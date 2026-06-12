@@ -860,5 +860,75 @@
       "source": "Yahoo Finance / TradingKey",
       "url": "https://finance.yahoo.com/markets/stocks/articles/spcx-ipo-record-75-billion-155245946.html"
     }
+  ],
+  "2026-06-11": [
+    {
+      "headline": "Dow surges 930 pts to 50,849; S&P 500 +1.75% to 7,394; Nasdaq +2.54% to 25,810 — tech leads recovery",
+      "summary": "All three major indexes staged their best single-day rally in weeks as Trump cancelled planned Iran strikes and signaled a deal was close; tech, industrials, and materials led the charge while oil dropped more than 3%.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-11-2026"
+    },
+    {
+      "headline": "May PPI +1.1% MoM, +6.5% YoY — fastest wholesale inflation since November 2022; energy surges 10.7%",
+      "summary": "The BLS reported May producer prices rose 1.1% month-over-month (vs 0.7% expected) and 6.5% year-over-year, the highest reading since late 2022; gasoline wholesale prices jumped 23.4% on Iran-driven supply fears. Markets looked past the hot print as Iran de-escalation dominated.",
+      "source": "BLS / CBS News / Marketplace",
+      "url": "https://www.cbsnews.com/news/ppi-report-today-may-2026-highest-since-2022/"
+    },
+    {
+      "headline": "Trump cancels Iran strikes, signals deal 'agreed in principle' with regional allies — oil tumbles 3%",
+      "summary": "President Trump posted that the U.S. cancelled planned strikes on Iran and that an agreement had been reached in principle with several Middle Eastern allies including Israel; crude oil fell more than 3% on the news, sparking a broad risk-on rally.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-11-2026"
+    },
+    {
+      "headline": "Micron +12%, Lam Research +12.7%, Intel +10% (BofA upgrade), AMD +8% — chip stocks roar back",
+      "summary": "Semiconductor stocks snapped a brutal three-day losing streak; Bank of America upgraded Intel citing surging CPU orders, Micron recovered nearly all of its week-to-date losses, and Lam Research posted its best session in months as Iran peace hopes revived the AI infrastructure trade.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-june-11-211829069.html"
+    },
+    {
+      "headline": "Oracle -9% despite earnings beat — cloud revenue miss and rising AI capex costs spook investors",
+      "summary": "Oracle reported fiscal Q4 results that beat EPS estimates but missed cloud revenue expectations; management's elevated AI infrastructure spending guidance overshadowed the top-line beat, sending shares down nearly 9% in the biggest single-session drop since late 2024.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-june-11-211829069.html"
+    },
+    {
+      "headline": "SpaceX IPO priced at $135/share for Friday Nasdaq debut — retail demand exceeds $100B",
+      "summary": "SpaceX confirmed a fixed $135 IPO price for its SPCX Nasdaq debut on June 12, valuing the company at $1.77 trillion and raising $75 billion in the largest IPO in history; retail investor demand alone reportedly exceeded $100 billion ahead of Friday's opening.",
+      "source": "Yahoo Finance / NPR",
+      "url": "https://finance.yahoo.com/markets/stocks/article/spacex-ipo-set-to-price-thursday-night-ahead-of-friday-nasdaq-debut--heres-whats-next-101955450.html"
+    }
+  ],
+  "2026-06-12": [
+    {
+      "headline": "SpaceX (SPCX) begins trading on Nasdaq at $135/share — $1.77T valuation makes it largest IPO in history",
+      "summary": "Space Exploration Technologies Corp. debuted on the Nasdaq Global Select Market under ticker SPCX, raising $75 billion at a $1.77 trillion valuation; the offering eclipsed Saudi Aramco's $35B record set in 2019. Investor demand for the stock was massive with $250B of buy orders submitted.",
+      "source": "CNBC / NPR / TradingKey",
+      "url": "https://www.cnbc.com/2026/05/20/spacex-ipo-live-updates.html"
+    },
+    {
+      "headline": "Dow and Nasdaq surge as SpaceX IPO and falling oil buoy sentiment; S&P 500 recovers weekly losses",
+      "summary": "U.S. equities rallied on Friday, with the Nasdaq and Dow extending Thursday's gains; the SpaceX debut drew heavy volume to the Nasdaq while continued oil-price declines on Iran deal hopes lifted consumer and industrial stocks, pushing the S&P 500 back toward the 7,400 level for the week.",
+      "source": "Sunday Guardian / Yahoo Finance",
+      "url": "https://sundayguardianlive.com/business/dow-jones-nasdaq-us-stock-market-today-live-updates-check-latest-moves-in-futures-dow-nasdaq-surges-as-spacex-launches-record-breaking-ipo-falling-oil-price-why-are-stocks-up-today-205277/"
+    },
+    {
+      "headline": "S&P 500 snubs SpaceX — index committee keeps seasoning rules, SPCX cannot join for at least a year",
+      "summary": "S&P Dow Jones Indices confirmed it will not change its IPO eligibility criteria — including financial viability screens and seasoning periods — meaning SPCX is blocked from the S&P 500 for at least 12 months; Nasdaq-100 inclusion is expected within 15 days, forcing QQQ to buy SPCX.",
+      "source": "Bloomberg / SpotGamma / InvestmentNews",
+      "url": "https://www.bloomberg.com/news/articles/2026-06-04/s-p-dow-jones-keeps-megacap-ipo-rules-as-is-after-consultation"
+    },
+    {
+      "headline": "Iran ceasefire closer — Trump says deal 'agreed in principle'; oil prices extend decline for second day",
+      "summary": "President Trump and allied leaders indicated a formal ceasefire framework with Iran was nearing completion; crude oil extended Thursday's 3% drop as traders priced in reduced supply-disruption risk, giving further relief to inflation-sensitive assets and consumer spending outlooks.",
+      "source": "CNBC / Bloomberg",
+      "url": "https://www.cnbc.com/2026/06/04/stock-market-today-live-updates.html"
+    },
+    {
+      "headline": "Markets head into FOMC week with rate-hike odds at 72% — Warsh presides June 16-17; dot plot in focus",
+      "summary": "After hot May CPI (4.2% YoY) and PPI (+6.5% YoY) readings this week, traders have priced in a 72% chance of a rate hike at next week's FOMC meeting — Fed Chair Kevin Warsh's first as Chair; the new dot plot and press conference are expected to be major market catalysts.",
+      "source": "Charles Schwab",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open"
+    }
   ]
 }
