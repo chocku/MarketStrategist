@@ -5,6 +5,7 @@ Run this locally: python3 fetch_breadth.py
 Outputs data.json which the dashboard reads
 """
 
+import os
 import yfinance as yf
 import json
 import pandas as pd
@@ -233,7 +234,6 @@ def fetch():
     with open('data.json', 'w') as f:
         json.dump(output, f, indent=2)
 
-    import os
     os.makedirs('history', exist_ok=True)
     hist_file = f"history/data_{output['asOf']}.json"
     with open(hist_file, 'w') as f:
@@ -370,7 +370,7 @@ def generate_history(days=30):
         python fetch_breadth.py history        # last 30 trading days
         python fetch_breadth.py history 60     # last 60 trading days
     """
-    import os, glob as _glob
+    import glob as _glob
 
     sp500_info = get_sp500_info()
     TICKERS = list(sp500_info.keys())
