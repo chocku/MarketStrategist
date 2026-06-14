@@ -56,7 +56,7 @@ function renderLeaders() {
             ${grpTh('MA Status', 3, ';border-left:0.5px solid var(--border)')}
             ${grpTh('Return Profile', 5, ';border-left:0.5px solid var(--border)')}
             ${grpTh('Relative Strength (vs SPY)', 4, ';border-left:0.5px solid var(--border)')}
-            ${grpTh('Contribution to SPY', 2, ';border-left:0.5px solid var(--border)')}
+            ${grpTh('Contribution to SPY', 4, ';border-left:0.5px solid var(--border)')}
           </tr>
           <tr id="tableHead">
             <th style="width:28px">#</th>
@@ -76,7 +76,9 @@ function renderLeaders() {
             ${sh('vsSpxYtd','YTD','Excess return vs SPY YTD')}
             ${sh('vsSpx12m','12M','Excess return vs SPY 12m')}
             ${sh('vsSpyFromLow','Fr Low','Excess return vs SPY from recent low')}
-            <th style="border-left:0.5px solid var(--border)" data-col="contribYtd"  onclick="setSort('contribYtd')"  title="% pts of SPY YTD return"><span>YTD</span><span class="sort-ind"></span></th>
+            <th style="border-left:0.5px solid var(--border)" data-col="contrib1d" onclick="setSort('contrib1d')" title="% pts of SPY 1-day return"><span>1D</span><span class="sort-ind"></span></th>
+            ${sh('contrib1w','1W','% pts of SPY 1-week return')}
+            ${sh('contribYtd','YTD','% pts of SPY YTD return')}
             ${sh('contribFromLow','From Low','% pts of SPY return from recent low')}
           </tr>
         </thead>
@@ -99,11 +101,12 @@ function renderLeaders() {
 function renderTable(stocks) {
   // Compute per-stock contribution using all stocks as the index base
   const allStocks = _data ? _data.stocks : [];
-  let totalAdjMcYtd = 0, totalAdjMcLow = 0;
+  let totalMcap = 0, totalAdjMcYtd = 0, totalAdjMcLow = 0;
   allStocks.forEach(s => {
     const mc   = s.marketCap || 0;
     const rYtd = (s.returnYtd     || 0) / 100;
     const rLow = (s.returnFromLow || 0) / 100;
+    totalMcap     += mc;
     totalAdjMcYtd += mc / (1 + rYtd);
     totalAdjMcLow += mc / (1 + rLow);
   });
@@ -113,6 +116,8 @@ function renderTable(stocks) {
     if (col==='above50')  return (s.price-s.ma50)/s.ma50;
     if (col==='above200') return (s.price-s.ma200)/s.ma200;
     if (col==='vsSpyFromLow') return (s.returnFromLow||0) - (_data.spyFromLow||0);
+    if (col==='contrib1d') return totalMcap > 0 ? (s.marketCap||0) * (s.return1d||0) / totalMcap : 0;
+    if (col==='contrib1w') return totalMcap > 0 ? (s.marketCap||0) * (s.return1w||0) / totalMcap : 0;
     if (col==='contribYtd' || col==='contribFromLow') {
       const mc   = s.marketCap || 0;
       const rYtd = (s.returnYtd     || 0) / 100;
@@ -153,6 +158,8 @@ function renderTable(stocks) {
     const rLow = (s.returnFromLow || 0) / 100;
     const adjYtd = mc / (1 + rYtd);
     const adjLow = mc / (1 + rLow);
+    const c1d   = totalMcap > 0 ? +(mc * (s.return1d||0) / totalMcap).toFixed(3) : 0;
+    const c1w   = totalMcap > 0 ? +(mc * (s.return1w||0) / totalMcap).toFixed(3) : 0;
     const cYtd  = totalAdjMcYtd > 0 ? +(adjYtd * (s.returnYtd||0)     / totalAdjMcYtd).toFixed(2) : 0;
     const cLow  = totalAdjMcLow > 0 ? +(adjLow * (s.returnFromLow||0) / totalAdjMcLow).toFixed(2) : 0;
 
@@ -179,7 +186,9 @@ function renderTable(stocks) {
       <td class="${(s.vsSpxYtd||0)>=0?'up':'dn'}">${pp(s.vsSpxYtd||0,true)}%</td>
       <td class="${(s.vsSpx12m||0)>=0?'up':'dn'}">${pp(s.vsSpx12m||0,true)}%</td>
       <td class="${((s.returnFromLow||0)-(_data.spyFromLow||0))>=0?'up':'dn'}">${pp((s.returnFromLow||0)-(_data.spyFromLow||0),true)}%</td>
-      <td style="${borderL};font-weight:600" class="${cYtd>=0?'up':'dn'}">${cYtd>=0?'+':''}${cYtd}%</td>
+      <td style="${borderL};font-weight:600" class="${c1d>=0?'up':'dn'}">${c1d>=0?'+':''}${c1d}%</td>
+      <td style="font-weight:600" class="${c1w>=0?'up':'dn'}">${c1w>=0?'+':''}${c1w}%</td>
+      <td style="font-weight:600" class="${cYtd>=0?'up':'dn'}">${cYtd>=0?'+':''}${cYtd}%</td>
       <td style="font-weight:600" class="${cLow>=0?'up':'dn'}">${cLow>=0?'+':''}${cLow}%</td>
     </tr>`;
   }).join('');

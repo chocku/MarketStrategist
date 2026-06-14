@@ -54,6 +54,8 @@ function computeGroupRow(name, d, { totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
   const ret1w          = d.mcap > 0 ? d.mcapRet1w  / d.mcap : 0;
   const retYtd         = d.mcap > 0 ? d.mcapRetYtd / d.mcap : 0;
   const retFromLow     = d.adjMcLow > 0 ? d.adjRetLow / d.adjMcLow : 0;
+  const contrib1d      = totalMcap > 0 ? d.mcapRet1d  / totalMcap : 0;
+  const contrib1w      = totalMcap > 0 ? d.mcapRet1w  / totalMcap : 0;
   const contribYtd     = totalAdjMcYtd > 0 ? d.adjRetYtd / totalAdjMcYtd : 0;
   const contribFromLow = totalAdjMcLow > 0 ? d.adjRetLow / totalAdjMcLow : 0;
   const wtPctAbove     = d.mcap > 0 ? d.mcapAboveBoth / d.mcap * 100 : 0;
@@ -73,6 +75,8 @@ function computeGroupRow(name, d, { totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
     rs1w:           +(ret1w       - (spy1w        || 0)).toFixed(2),
     rsYtd:          +(retYtd      - (spyReturnYtd || 0)).toFixed(2),
     rsFromLow:      +(retFromLow  - (spyFromLow   || 0)).toFixed(2),
+    contrib1d:      +contrib1d.toFixed(2),
+    contrib1w:      +contrib1w.toFixed(2),
     contribYtd:     +contribYtd.toFixed(2),
     contribFromLow: +contribFromLow.toFixed(2),
     newHighs:       d.newHighs,
