@@ -68,7 +68,7 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
       ${grp(4,'Trend Health',true)}
       ${grp(4,'Return',true)}
       ${grp(4,'Relative Strength (vs SPY)',true)}
-      ${grp(2,'Contrib',true)}
+      ${grp(4,'Contrib',true)}
       ${grp(2,'52W',true)}
     </tr>
     <tr>
@@ -89,7 +89,9 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
       ${th('rs1w','1W')}
       ${th('rsYtd','YTD')}
       ${th('rsFromLow','Fr Low')}
-      ${th('contribYtd','YTD',';border-left:0.5px solid var(--border)')}
+      ${th('contrib1d','1D',';border-left:0.5px solid var(--border)')}
+      ${th('contrib1w','1W')}
+      ${th('contribYtd','YTD')}
       ${th('contribFromLow','Fr Low')}
       ${th('newHighs','Highs',';border-left:0.5px solid var(--border)')}
       ${th('newLows','Lows')}
@@ -118,7 +120,9 @@ function buildIndustryTable(indMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy
       <td style="${fs}color:${cc(r.rs1w)}">${pp(r.rs1w,true)}%</td>
       <td style="${fs}color:${cc(r.rsYtd)}">${pp(r.rsYtd,true)}%</td>
       <td style="${fs}color:${cc(r.rsFromLow)}">${pp(r.rsFromLow,true)}%</td>
-      <td style="${fs}font-weight:600;color:${cc(r.contribYtd)};border-left:0.5px solid var(--border)">${r.contribYtd>=0?'+':''}${r.contribYtd}%</td>
+      <td style="${fs}font-weight:600;color:${cc(r.contrib1d)};border-left:0.5px solid var(--border)">${r.contrib1d>=0?'+':''}${r.contrib1d}%</td>
+      <td style="${fs}font-weight:600;color:${cc(r.contrib1w)}">${r.contrib1w>=0?'+':''}${r.contrib1w}%</td>
+      <td style="${fs}font-weight:600;color:${cc(r.contribYtd)}">${r.contribYtd>=0?'+':''}${r.contribYtd}%</td>
       <td style="${fs}font-weight:600;color:${cc(r.contribFromLow)}">${r.contribFromLow>=0?'+':''}${r.contribFromLow}%</td>
       <td style="${fs}color:${realHighs?C.green:r.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${r.newHighs||'—'}${realHighs?' ★':''}</td>
       <td style="${fs}color:${r.newLows>0?C.red:'var(--text3)'};font-weight:${r.newLows>0?700:400}">${r.newLows||'—'}</td>
@@ -134,10 +138,10 @@ function sortIndustry(col) {
   if (industryBreadthSortCol === col) industryBreadthSortDir *= -1;
   else { industryBreadthSortCol = col; industryBreadthSortDir = -1; }
   if (chart3) { chart3.destroy(); chart3 = null; }
-  renderBreadth();
+  renderCurrent();
 }
 
 function onIndustryFilter(val) {
   industryFilterSector = val;
-  renderBreadth();
+  renderCurrent();
 }

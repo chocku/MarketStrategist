@@ -60,7 +60,7 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
         <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Trend Health</th>
         <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Return</th>
         <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Relative Strength (vs SPY)</th>
-        <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Contribution</th>
+        <th colspan="4" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Contribution</th>
         <th colspan="2" style="text-align:center;padding-bottom:2px;border-bottom:none;border-left:0.5px solid var(--border)">Current 52W</th>
       </tr>
       <tr>
@@ -87,7 +87,9 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
         <th onclick="${onSortFn}('rs1w')" style="cursor:pointer" title="1-week return minus SPY">1W${si('rs1w')}</th>
         <th onclick="${onSortFn}('rsYtd')" style="cursor:pointer" title="Return minus SPY YTD">YTD${si('rsYtd')}</th>
         <th onclick="${onSortFn}('rsFromLow')" style="cursor:pointer" title="Return minus SPY from-low">From Low${si('rsFromLow')}</th>
-        <th onclick="${onSortFn}('contribYtd')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="% pts of SPY YTD return">YTD${si('contribYtd')}</th>
+        <th onclick="${onSortFn}('contrib1d')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="% pts of SPY 1-day return">1D${si('contrib1d')}</th>
+        <th onclick="${onSortFn}('contrib1w')" style="cursor:pointer" title="% pts of SPY 1-week return">1W${si('contrib1w')}</th>
+        <th onclick="${onSortFn}('contribYtd')" style="cursor:pointer" title="% pts of SPY YTD return">YTD${si('contribYtd')}</th>
         <th onclick="${onSortFn}('contribFromLow')" style="cursor:pointer" title="% pts of SPY from-low return">From Low${si('contribFromLow')}</th>
         <th onclick="${onSortFn}('newHighs')" style="cursor:pointer;border-left:0.5px solid var(--border)" title="Stocks within 2% of 52W high · ★ = ≥3 stocks &amp; ≥5% of sector">Highs${si('newHighs')}</th>
         <th onclick="${onSortFn}('newLows')" style="cursor:pointer" title="Stocks within 2% of 52W low">Lows${si('newLows')}</th>
@@ -122,7 +124,9 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
         <td style="color:${s.rs1w>0?C.green:s.rs1w<0?C.red:'var(--text2)'}">${pp(s.rs1w,true)}%</td>
         <td style="color:${rsYtdC}">${pp(s.rsYtd,true)}%</td>
         <td style="color:${rsLowC}">${pp(s.rsFromLow,true)}%</td>
-        <td style="font-weight:600;color:${cYtdC};border-left:0.5px solid var(--border)">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
+        <td style="font-weight:600;color:${s.contrib1d>0?C.green:s.contrib1d<0?C.red:'var(--text2)'};border-left:0.5px solid var(--border)">${s.contrib1d >= 0 ? '+' : ''}${s.contrib1d}%</td>
+        <td style="font-weight:600;color:${s.contrib1w>0?C.green:s.contrib1w<0?C.red:'var(--text2)'}">${s.contrib1w >= 0 ? '+' : ''}${s.contrib1w}%</td>
+        <td style="font-weight:600;color:${cYtdC}">${s.contribYtd >= 0 ? '+' : ''}${s.contribYtd}%</td>
         <td style="font-weight:600;color:${cLowC}">${s.contribFromLow >= 0 ? '+' : ''}${s.contribFromLow}%</td>
         <td style="color:${realHighs?C.green:s.newHighs>0?'var(--text2)':'var(--text3)'};font-weight:${realHighs?700:400};border-left:0.5px solid var(--border)">${s.newHighs||'—'}${realHighs?' ★':''}</td>
         <td style="color:${s.newLows>0?C.red:'var(--text3)'};font-weight:${s.newLows>0?700:400}">${s.newLows||'—'}</td>
@@ -151,7 +155,9 @@ function buildGroupTable(groupMap, totalMcap, totalAdjMcYtd, totalAdjMcLow, spy1
       <td style="color:var(--text3)" title="SPY is benchmark">—</td>
       <td style="color:var(--text3)" title="SPY is benchmark">—</td>
       <td style="color:var(--text3)" title="SPY is benchmark">—</td>
-      <td style="font-weight:700;color:${spyReturnYtd>=0?C.green:C.red};border-left:0.5px solid var(--border)">${spyReturnYtd>=0?'+':''}${(spyReturnYtd||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spy1d>=0?C.green:C.red};border-left:0.5px solid var(--border)">${spy1d>=0?'+':''}${(spy1d||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spy1w>=0?C.green:C.red}">${spy1w>=0?'+':''}${(spy1w||0).toFixed(2)}%</td>
+      <td style="font-weight:700;color:${spyReturnYtd>=0?C.green:C.red}">${spyReturnYtd>=0?'+':''}${(spyReturnYtd||0).toFixed(2)}%</td>
       <td style="font-weight:700;color:${spyFromLow>=0?C.green:C.red}">${spyFromLow>=0?'+':''}${(spyFromLow||0).toFixed(2)}%</td>
       <td style="color:${totalNewHighs>0?'var(--text2)':'var(--text3)'};border-left:0.5px solid var(--border)">${totalNewHighs||'—'}</td>
       <td style="color:${totalNewLows>0?C.red:'var(--text3)'}">${totalNewLows||'—'}</td>
@@ -165,5 +171,5 @@ function sortBreadth(col) {
   if (breadthSortCol === col) breadthSortDir *= -1;
   else { breadthSortCol = col; breadthSortDir = -1; }
   if (chart3) { chart3.destroy(); chart3 = null; }
-  renderBreadth();
+  renderCurrent();
 }
