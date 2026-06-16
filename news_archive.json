@@ -930,5 +930,69 @@
       "source": "Charles Schwab",
       "url": "https://www.schwab.com/learn/story/stock-market-update-open"
     }
+  ],
+  "2026-06-15": [
+    {
+      "headline": "S&P 500 edges up 0.3% to 7,422 as markets brace for FOMC; Iran ceasefire holds",
+      "summary": "Equities opened the week quietly with modest gains as traders positioned ahead of the two-day FOMC meeting beginning Tuesday; the Iran-U.S. ceasefire agreed in principle last week remained intact, keeping oil prices subdued near $83/barrel and supporting risk sentiment.",
+      "source": "Yahoo Finance / Bloomberg",
+      "url": null
+    },
+    {
+      "headline": "SPCX added to Nasdaq-100 effective today; QQQ forced to buy $8.4B in SpaceX shares",
+      "summary": "Nasdaq confirmed SpaceX (SPCX) joined the Nasdaq-100 index ahead of Monday open, triggering mandatory purchases by QQQ and other index-tracking funds; SPCX surged 6.2% to $143.37 on the ETF inflows, pushing its market cap past $1.88 trillion.",
+      "source": "Bloomberg / CNBC",
+      "url": null
+    },
+    {
+      "headline": "Rate hike odds hold at 74% ahead of Warsh's first FOMC decision Wednesday",
+      "summary": "Fed funds futures continue to price in a 74% probability of a 25bp rate hike at Wednesday's FOMC statement; traders expect new Chair Kevin Warsh to signal a data-dependent but hawkish posture given May CPI at 4.2% and PPI at +6.5% YoY.",
+      "source": "Charles Schwab / CME FedWatch",
+      "url": null
+    },
+    {
+      "headline": "Defensives and energy lag; tech leads as Nasdaq-100 rebalance fuels momentum stocks",
+      "summary": "Sector rotation favored growth and tech on Monday with the Nasdaq gaining 0.7% outpacing the S&P's 0.3% rise; energy pulled back as oil stabilized post-ceasefire, while utilities and REITs sold off as rate-hike expectations kept the 10-year Treasury yield elevated near 4.85%.",
+      "source": "Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Empire State Manufacturing index beats: +14.3 vs +6.0 expected in June",
+      "summary": "The New York Fed's manufacturing survey printed well above consensus, signaling factory activity accelerated in early June; new orders and shipments sub-indexes both rose sharply, adding to the case for continued Fed tightening and lifting industrial stocks modestly.",
+      "source": "New York Federal Reserve / Yahoo Finance",
+      "url": null
+    }
+  ],
+  "2026-06-16": [
+    {
+      "headline": "FOMC begins 2-day meeting; markets flat as traders await Warsh's first rate decision tomorrow",
+      "summary": "The Federal Open Market Committee convened its June 2026 meeting Tuesday under new Chair Kevin Warsh; markets were largely range-bound with the S&P 500 oscillating near 7,410-7,430, as participants held positions ahead of Wednesday's 2:00 PM ET rate statement and dot plot release.",
+      "source": "Federal Reserve / Bloomberg",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "headline": "Retail Sales +0.2% in May, below +0.5% estimate; consumer showing signs of fatigue",
+      "summary": "The Commerce Department reported May retail sales rose just 0.2% MoM, missing the +0.5% consensus; ex-autos and gas, sales were flat. The soft print adds to debate over whether the Fed should hike Wednesday or pause, though bond markets barely moved given the still-hot inflation backdrop.",
+      "source": "Commerce Department / Yahoo Finance",
+      "url": null
+    },
+    {
+      "headline": "Iran formal ceasefire treaty signed in Geneva; Brent crude falls to $80.50, lowest since January",
+      "summary": "The United States, Iran, and Gulf mediators signed a formal 90-day ceasefire agreement in Geneva Tuesday, removing the Strait of Hormuz shipping risk premium from oil markets; Brent crude fell 3.4% to $80.50/barrel, a 5-month low, benefiting airlines, consumer discretionary, and transport stocks.",
+      "source": "Reuters / CNBC",
+      "url": null
+    },
+    {
+      "headline": "Nvidia (NVDA) unveils Blackwell Ultra GPU at GTC; data center revenue guidance raised",
+      "summary": "Nvidia CEO Jensen Huang announced the Blackwell Ultra architecture at the company's GPU Technology Conference, citing 2x performance gains over prior-gen; the company raised fiscal 2027 data center revenue guidance to $185-190B, sending NVDA up 4.1% and lifting the broader AI infrastructure trade.",
+      "source": "Nvidia / CNBC",
+      "url": null
+    },
+    {
+      "headline": "S&P 500 dips 0.1% to 7,415 as pre-FOMC caution caps gains despite oil relief and NVDA surge",
+      "summary": "The index ended Tuesday near flat as rate-hike anxiety offset positive catalysts from the Iran ceasefire and Nvidia's bullish guidance; the 10-year Treasury yield eased 4 basis points to 4.81% on the retail sales miss, while the VIX ticked up to 14.2 ahead of Wednesday's Fed decision.",
+      "source": "Yahoo Finance / Bloomberg",
+      "url": null
+    }
   ]
 }
