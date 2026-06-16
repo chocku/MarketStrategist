@@ -11,6 +11,20 @@ import json
 import pandas as pd
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    from backports.zoneinfo import ZoneInfo
+
+
+def is_market_hours():
+    """True if current ET time is a weekday between 9:30 AM and 4:00 PM."""
+    et = datetime.now(ZoneInfo('America/New_York'))
+    if et.weekday() >= 5:
+        return False
+    open_  = et.replace(hour=9,  minute=30, second=0, microsecond=0)
+    close_ = et.replace(hour=16, minute=0,  second=0, microsecond=0)
+    return open_ <= et < close_
 
 SPX = '^GSPC'
 SPY = 'SPY'   # SPDR S&P 500 ETF — cap-weight benchmark (ETF, comparable to RSP)
@@ -38,7 +52,8 @@ def fetch_ticker_info(ticker):
         return ticker, None, None
 
 def fetch():
-    print("Fetching S&P 500 ticker list and sector data from Wikipedia...")
+    live_mode = is_market_hours()
+    print(f"{'[LIVE MODE] ' if live_mode else ''}Fetching S&P 500 ticker list and sector data...")
     sp500_info = get_sp500_info()
     TICKERS = list(sp500_info.keys())
     print(f"Found {len(TICKERS)} tickers.")
@@ -52,15 +67,37 @@ def fetch():
     raw = yf.download(all_tickers, start=start, end=end, auto_adjust=True, progress=False)
     closes = raw['Close']
 
+    # In live mode, fetch today's intraday prices (partial-day bar)
+    live_prices = {}
+    if live_mode:
+        print("Fetching live intraday prices (period=2d to capture today's partial bar)...")
+        try:
+            live_raw = yf.download(all_tickers, period='2d', auto_adjust=True, progress=False)
+            live_close = live_raw['Close']
+            # iloc[-1] is today's most recent bar when market is open
+            for col in live_close.columns:
+                val = live_close[col].dropna()
+                if len(val) > 0:
+                    live_prices[col] = float(val.iloc[-1])
+            print(f"  Got live prices for {len(live_prices)} tickers.")
+        except Exception as e:
+            print(f"  Live price fetch failed, falling back to EOD: {e}")
+            live_mode = False
+
     last_date = str(closes.index[-1].date())
+    if live_mode:
+        last_date = str(datetime.today().date())
+
     spx_prices = closes[SPX].dropna()
-    spx_1d  = float((spx_prices.iloc[-1] / spx_prices.iloc[-2]  - 1) * 100)
-    spx_1w  = float((spx_prices.iloc[-1] / spx_prices.iloc[-5]  - 1) * 100)
-    spx_1m  = float((spx_prices.iloc[-1] / spx_prices.iloc[-21] - 1) * 100)
+    spx_prev_close = float(spx_prices.iloc[-1])
+    spx_live = live_prices.get(SPX, spx_prev_close) if live_mode else spx_prev_close
+    spx_1d  = float((spx_live / spx_prev_close - 1) * 100) if live_mode else float((spx_prices.iloc[-1] / spx_prices.iloc[-2] - 1) * 100)
+    spx_1w  = float((spx_live / spx_prices.iloc[-5]  - 1) * 100) if live_mode else float((spx_prices.iloc[-1] / spx_prices.iloc[-5]  - 1) * 100)
+    spx_1m  = float((spx_live / spx_prices.iloc[-21] - 1) * 100) if live_mode else float((spx_prices.iloc[-1] / spx_prices.iloc[-21] - 1) * 100)
     spx_ytd_prices = spx_prices[spx_prices.index.year == current_year]
-    spx_ytd = float((spx_prices.iloc[-1] / spx_ytd_prices.iloc[0] - 1) * 100)
-    spx_12m = float((spx_prices.iloc[-1] / spx_prices.iloc[0]  - 1) * 100)
-    print(f"SPX: 1d {spx_1d:+.2f}%  1w {spx_1w:+.2f}%  1m {spx_1m:+.1f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  {last_date}")
+    spx_ytd = float((spx_live / spx_ytd_prices.iloc[0] - 1) * 100)
+    spx_12m = float((spx_live / spx_prices.iloc[0]  - 1) * 100)
+    print(f"SPX: 1d {spx_1d:+.2f}%  1w {spx_1w:+.2f}%  1m {spx_1m:+.1f}%  YTD {spx_ytd:+.1f}%  12m {spx_12m:+.1f}%  |  {last_date}{' (live)' if live_mode else ''}")
 
     # SPY — cap-weight ETF benchmark (used for RSP comparison; ETF vs ETF is apples-to-apples)
     spy_1d = spy_1w = spy_1m = spy_ytd = spy_12m = None
@@ -72,21 +109,25 @@ def fetch():
     chart_dates = chart_spy = chart_rsp = None
     try:
         spy_prices = closes[SPY].dropna()
+        spy_prev  = float(spy_prices.iloc[-1])
+        spy_live  = live_prices.get(SPY, spy_prev) if live_mode else spy_prev
         spy_ytd_prices = spy_prices[spy_prices.index.year == current_year]
-        spy_1d  = float((spy_prices.iloc[-1] / spy_prices.iloc[-2]  - 1) * 100)
-        spy_1w  = float((spy_prices.iloc[-1] / spy_prices.iloc[-5]  - 1) * 100)
-        spy_1m  = float((spy_prices.iloc[-1] / spy_prices.iloc[-21] - 1) * 100)
-        spy_ytd = float((spy_prices.iloc[-1] / spy_ytd_prices.iloc[0] - 1) * 100)
-        spy_12m = float((spy_prices.iloc[-1] / spy_prices.iloc[0]  - 1) * 100)
+        spy_1d  = float((spy_live / spy_prev           - 1) * 100) if live_mode else float((spy_prev / float(spy_prices.iloc[-2]) - 1) * 100)
+        spy_1w  = float((spy_live / spy_prices.iloc[-5]  - 1) * 100)
+        spy_1m  = float((spy_live / spy_prices.iloc[-21] - 1) * 100)
+        spy_ytd = float((spy_live / spy_ytd_prices.iloc[0] - 1) * 100)
+        spy_12m = float((spy_live / spy_prices.iloc[0]  - 1) * 100)
         print(f"SPY: 1d {spy_1d:+.2f}%  1w {spy_1w:+.2f}%  1m {spy_1m:+.1f}%  YTD {spy_ytd:+.1f}%  12m {spy_12m:+.1f}%")
 
         rsp_prices = closes[RSP].dropna()
+        rsp_prev  = float(rsp_prices.iloc[-1])
+        rsp_live  = live_prices.get(RSP, rsp_prev) if live_mode else rsp_prev
         rsp_ytd_prices = rsp_prices[rsp_prices.index.year == current_year]
-        rsp_1d  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-2]  - 1) * 100)
-        rsp_1w  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-5]  - 1) * 100)
-        rsp_1m  = float((rsp_prices.iloc[-1] / rsp_prices.iloc[-21] - 1) * 100)
-        rsp_ytd = float((rsp_prices.iloc[-1] / rsp_ytd_prices.iloc[0] - 1) * 100)
-        rsp_12m = float((rsp_prices.iloc[-1] / rsp_prices.iloc[0]  - 1) * 100)
+        rsp_1d  = float((rsp_live / rsp_prev           - 1) * 100) if live_mode else float((rsp_prev / float(rsp_prices.iloc[-2]) - 1) * 100)
+        rsp_1w  = float((rsp_live / rsp_prices.iloc[-5]  - 1) * 100)
+        rsp_1m  = float((rsp_live / rsp_prices.iloc[-21] - 1) * 100)
+        rsp_ytd = float((rsp_live / rsp_ytd_prices.iloc[0] - 1) * 100)
+        rsp_12m = float((rsp_live / rsp_prices.iloc[0]  - 1) * 100)
         print(f"RSP: 1d {rsp_1d:+.2f}%  1w {rsp_1w:+.2f}%  1m {rsp_1m:+.1f}%  YTD {rsp_ytd:+.1f}%  12m {rsp_12m:+.1f}%")
 
         # Recent low — lowest SPY close in last 63 trading days (~3 months)
@@ -129,17 +170,20 @@ def fetch():
                 print(f"  {ticker}: skipped (only {len(prices)} rows)")
                 continue
 
-            price = float(prices.iloc[-1])
+            eod_price = float(prices.iloc[-1])
+            # In live mode, override with intraday price if available
+            price = live_prices.get(ticker, eod_price) if live_mode else eod_price
             ma50  = float(prices.iloc[-50:].mean())
             ma200 = float(prices.iloc[-200:].mean())
 
             def ret(n):
-                return float((prices.iloc[-1] / prices.iloc[-n] - 1) * 100) if len(prices) >= n else 0.0
+                return float((price / prices.iloc[-n] - 1) * 100) if len(prices) >= n else 0.0
 
-            ret_1d = float((prices.iloc[-1] / prices.iloc[-2]  - 1) * 100) if len(prices) >= 2  else 0.0
-            ret_1w = float((prices.iloc[-1] / prices.iloc[-5]  - 1) * 100) if len(prices) >= 5  else 0.0
+            # 1d: live price vs yesterday's close; 1w: live price vs 5 closes ago
+            ret_1d = float((price / eod_price - 1) * 100) if live_mode else (float((eod_price / prices.iloc[-2] - 1) * 100) if len(prices) >= 2 else 0.0)
+            ret_1w = float((price / prices.iloc[-5]  - 1) * 100) if len(prices) >= 5  else 0.0
 
-            # YTD return — first trading day of current year
+            # YTD return — first trading day of current year vs live/eod price
             ytd_prices = prices[prices.index.year == current_year]
             ret_ytd = float((price / float(ytd_prices.iloc[0]) - 1) * 100) if len(ytd_prices) > 0 else 0.0
 
@@ -205,6 +249,7 @@ def fetch():
 
     output = {
         "asOf":          last_date,
+        "isLive":        live_mode,
         "spxReturn1d":   round(spx_1d, 2),
         "spxReturn1w":   round(spx_1w, 2),
         "spxReturn1m":   round(spx_1m, 2),
@@ -234,14 +279,17 @@ def fetch():
     with open('data.json', 'w') as f:
         json.dump(output, f, indent=2)
 
-    os.makedirs('history', exist_ok=True)
-    hist_file = f"history/data_{output['asOf']}.json"
-    with open(hist_file, 'w') as f:
-        json.dump(output, f, indent=2)
-    print(f"  Archived snapshot -> {hist_file}")
+    if not live_mode:
+        os.makedirs('history', exist_ok=True)
+        hist_file = f"history/data_{output['asOf']}.json"
+        with open(hist_file, 'w') as f:
+            json.dump(output, f, indent=2)
+        print(f"  Archived snapshot -> {hist_file}")
 
-    # ── breadth_history.json — daily breadth time series ─────────────────
-    update_breadth_history(last_date, results)
+        # ── breadth_history.json — daily breadth time series ─────────────────
+        update_breadth_history(last_date, results)
+    else:
+        print("  Live mode: skipping history snapshot and breadth_history update.")
 
     print(f"\nSaved data.json -- {len(results)} stocks")
     print(f"  Above 50-MA:    {above50}/{len(results)} ({above50/len(results)*100:.0f}%)")
