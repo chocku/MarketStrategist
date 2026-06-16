@@ -4,7 +4,7 @@ async function init() {
   document.getElementById('root').innerHTML = `<div class="loading"><div class="spinner"></div>Fetching data.json...</div>`;
   let d;
   try {
-    const r = await fetch('data.json');
+    const r = await fetch('data.json?t=' + Date.now());
     if (!r.ok) throw new Error('data.json not found');
     d = await r.json();
   } catch(e) {
@@ -23,11 +23,11 @@ async function init() {
   _data = d;
   document.getElementById('dataDate').textContent = fmtDate(d.asOf);
   try {
-    const nr = await fetch('news_archive.json');
+    const nr = await fetch('news_archive.json?t=' + Date.now());
     if (nr.ok) _news = await nr.json();
   } catch(e) { _news = {}; }
   try {
-    const bhr = await fetch('breadth_history.json');
+    const bhr = await fetch('breadth_history.json?t=' + Date.now());
     if (bhr.ok) _breadthHistory = await bhr.json();
   } catch(e) { _breadthHistory = []; }
   filterSector = 'all';
