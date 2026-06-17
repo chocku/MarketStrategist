@@ -965,34 +965,34 @@
   ],
   "2026-06-16": [
     {
-      "headline": "FOMC begins 2-day meeting; markets flat as traders await Warsh's first rate decision tomorrow",
-      "summary": "The Federal Open Market Committee convened its June 2026 meeting Tuesday under new Chair Kevin Warsh; markets were largely range-bound with the S&P 500 oscillating near 7,410-7,430, as participants held positions ahead of Wednesday's 2:00 PM ET rate statement and dot plot release.",
-      "source": "Federal Reserve / Bloomberg",
-      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+      "headline": "Dow hits record 51,999 as S&P 500 slips 0.57% to 7,511; Nasdaq pulls back 1.15% ahead of FOMC",
+      "summary": "Divergence defined Tuesday trading: the Dow climbed 329 points to a new all-time high on defensive and value buying, while the Nasdaq sank as chip stocks rotated lower following their sharp Iran-ceasefire rally of the prior week.",
+      "source": "TheStreet / Bloomberg",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-16-2026"
     },
     {
-      "headline": "Retail Sales +0.2% in May, below +0.5% estimate; consumer showing signs of fatigue",
-      "summary": "The Commerce Department reported May retail sales rose just 0.2% MoM, missing the +0.5% consensus; ex-autos and gas, sales were flat. The soft print adds to debate over whether the Fed should hike Wednesday or pause, though bond markets barely moved given the still-hot inflation backdrop.",
-      "source": "Commerce Department / Yahoo Finance",
-      "url": null
+      "headline": "Chip stocks sink: AMD -7%, Micron -6%, Broadcom -4%, Nvidia -2% on profit-taking after ceasefire surge",
+      "summary": "Semiconductor names that surged on Strait of Hormuz reopening news last week faced heavy rotation out as traders locked in gains ahead of the Fed decision; AMD led losses after analysts flagged near-term data center order delays.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/06/16/stock-market-today-live-updates.html"
     },
     {
-      "headline": "Iran formal ceasefire treaty signed in Geneva; Brent crude falls to $80.50, lowest since January",
-      "summary": "The United States, Iran, and Gulf mediators signed a formal 90-day ceasefire agreement in Geneva Tuesday, removing the Strait of Hormuz shipping risk premium from oil markets; Brent crude fell 3.4% to $80.50/barrel, a 5-month low, benefiting airlines, consumer discretionary, and transport stocks.",
-      "source": "Reuters / CNBC",
-      "url": null
+      "headline": "Oil extends slide: Brent -5% to 8.96, WTI -5.8% to 6.05 as Iran ceasefire holds and Hormuz reopens",
+      "summary": "Crude fell to multi-month lows as tanker traffic resumed through the Strait of Hormuz for the first time since March; the relief rally in airlines, trucking, and consumer discretionary continued while energy sector stocks retreated.",
+      "source": "Reuters / Trading Economics",
+      "url": "https://tradingeconomics.com/united-states/stock-market/news/540305"
     },
     {
-      "headline": "Nvidia (NVDA) unveils Blackwell Ultra GPU at GTC; data center revenue guidance raised",
-      "summary": "Nvidia CEO Jensen Huang announced the Blackwell Ultra architecture at the company's GPU Technology Conference, citing 2x performance gains over prior-gen; the company raised fiscal 2027 data center revenue guidance to $185-190B, sending NVDA up 4.1% and lifting the broader AI infrastructure trade.",
-      "source": "Nvidia / CNBC",
-      "url": null
+      "headline": "FOMC Day 1: Fed holds rates, dot plot shows no cuts in 2026; Warsh debut in focus Wednesday",
+      "summary": "The Fed left rates unchanged at its June meeting with Chair Kevin Warsh presiding for the first time; the new dot plot showed median members expect zero cuts in 2026 amid sticky inflation (CPI 4.2% YoY, core PCE 3.3%), with all eyes on Wednesday's 2 PM ET press conference.",
+      "source": "Kiplinger / Conference Board",
+      "url": "https://www.kiplinger.com/news/live/fed-meeting-updates-and-commentary-june-2026"
     },
     {
-      "headline": "S&P 500 dips 0.1% to 7,415 as pre-FOMC caution caps gains despite oil relief and NVDA surge",
-      "summary": "The index ended Tuesday near flat as rate-hike anxiety offset positive catalysts from the Iran ceasefire and Nvidia's bullish guidance; the 10-year Treasury yield eased 4 basis points to 4.81% on the retail sales miss, while the VIX ticked up to 14.2 ahead of Wednesday's Fed decision.",
-      "source": "Yahoo Finance / Bloomberg",
-      "url": null
+      "headline": "Retail sales +0.9% in May, beat +0.5% estimate; strong consumer defies war-era inflation headwinds",
+      "summary": "May retail sales blew past expectations, suggesting consumer spending remains resilient despite 4.2% CPI; the data complicates the Fed's path and reinforces the higher-for-longer rate outlook heading into Warsh's first press conference.",
+      "source": "Charles Schwab / Yahoo Finance",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open"
     }
   ]
 }
