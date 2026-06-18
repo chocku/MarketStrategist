@@ -149,14 +149,12 @@ function renderAdditions() {
       <td style="text-align:center;color:var(--text2);white-space:nowrap">${r.announcement_date ? fmtDate(r.announcement_date) : '<span style="color:var(--text3)">TBD</span>'}</td>
       <td style="text-align:center;color:var(--text2);white-space:nowrap">${r.effective_date ? fmtDate(r.effective_date) : '<span style="color:var(--text3)">TBD</span>'}</td>
       <td style="text-align:right;color:var(--text2)">${ds !== null ? ds + 'd' : '<span style="color:var(--text3)">—</span>'}</td>
-      <td style="text-align:right">${returnCell(r)}</td>
-      <td style="text-align:center;color:var(--text3);font-size:11px">${r.price_last_updated ? fmtDate(r.price_last_updated) : '—'}</td>
       <td style="font-size:11px;color:var(--text3);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${(r.notes||'').replace(/"/g,'&quot;')}">${r.notes || ''}</td>
     </tr>`;
   }).join('');
 
   const noRows = rows.length === 0
-    ? `<tr><td colspan="12" style="text-align:center;padding:32px;color:var(--text3)">No additions match your filters.</td></tr>`
+    ? `<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--text3)">No additions match your filters.</td></tr>`
     : tableRows;
 
   const fmtLastUpdated = last_updated
@@ -200,8 +198,6 @@ function renderAdditions() {
             ${thBtn('Announced', 'announcement_date')}
             ${thBtn('Effective', 'effective_date')}
             ${thBtn('Days Since', null)}
-            ${thBtn('Return % (Ann→)', 'return_pct_announcement')}
-            <th>Price Updated</th>
             <th>Notes</th>
           </tr>
         </thead>
