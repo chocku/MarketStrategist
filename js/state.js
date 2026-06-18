@@ -12,6 +12,7 @@ let _data = null;
 let _breadthHistory = [];
 let _news = {};
 let _rotationLog = null;
+let _additions = null;
 let _rotView = 'leaders';
 let sortCol = 'vsSpx12m', sortDir = -1;
 let filterSector = 'all';

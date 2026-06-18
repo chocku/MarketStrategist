@@ -30,6 +30,10 @@ async function init() {
     const bhr = await fetch('breadth_history.json?t=' + Date.now());
     if (bhr.ok) _breadthHistory = await bhr.json();
   } catch(e) { _breadthHistory = []; }
+  try {
+    const ar = await fetch('index-additions.json?t=' + Date.now());
+    if (ar.ok) _additions = await ar.json();
+  } catch(e) { _additions = null; }
   filterSector = 'all';
   industryFilterSector = 'all';
   leadersSector = 'all';

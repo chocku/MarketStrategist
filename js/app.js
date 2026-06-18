@@ -73,7 +73,7 @@ function switchTab(tab) {
   if (chart4) { chart4.destroy(); chart4 = null; }
   if (chart5) { chart5.destroy(); chart5 = null; }
   activeTab = tab;
-  ['overview','sector','industry','stock','rotation','news'].forEach(t =>
+  ['overview','sector','industry','stock','rotation','news','additions'].forEach(t =>
     document.getElementById('tab-'+t).classList.toggle('active', t === tab)
   );
   renderCurrent();
@@ -94,6 +94,7 @@ function renderCurrent() {
   else if (activeTab === 'stock')     renderLeaders();
   else if (activeTab === 'rotation')  renderRotation();
   else if (activeTab === 'news')      renderNews();
+  else if (activeTab === 'additions') renderAdditions();
 }
 
 showDisclaimerIfNeeded();
