@@ -187,8 +187,8 @@ function renderAdditions() {
 
     <div style="font-size:11px;color:var(--text3);margin-bottom:10px">${rows.length} row${rows.length !== 1 ? 's' : ''} · Upcoming pinned to top · Click column headers to sort</div>
 
-    <div class="sticky-table-wrap">
-      <table style="font-size:12.5px">
+    <div style="overflow-x:auto;border-radius:6px;border:0.5px solid var(--border)">
+      <table style="font-size:12.5px;min-width:1400px;width:100%">
         <thead>
           <tr>
             ${thBtn('Status', 'status')}
