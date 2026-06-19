@@ -1031,5 +1031,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-dow-rises-sp-500-and-nasdaq-slip-ahead-of-fed-rate-decision-225641465.html",
       "period": "PM"
     }
+  ],
+  "2026-06-18": [
+    {
+      "headline": "S&P 500 +1.08% to ~7,500, Nasdaq +1.91% to ~26,518, Dow +0.14% to 51,564 — Russell 2000 leads at +2.12% to 2,979",
+      "summary": "Markets staged a broad rebound the day after the Fed-driven selloff as Iran geopolitical relief and fading tail-risk uncertainty drew buyers back into equities across all sectors.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-18-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "U.S. formally ends Iran blockade — oil slides as Strait of Hormuz supply risk recedes",
+      "summary": "The blockade's end is the week's biggest geopolitical development, directly cutting the oil supply-risk premium and improving the near-term inflation outlook heading into the next FOMC meeting.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-18-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Marvell Technology +12.12%, Sandisk +11.1%, Intel +10.5% — semiconductor sector surges on Iran relief",
+      "summary": "Chip stocks staged their biggest single-session rally in weeks as the Iran blockade end revived the AI infrastructure trade that had been interrupted by the Broadcom guidance miss and Middle East escalation in early June.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://sg.finance.yahoo.com/news/stock-market-news-jun-18-105700249.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Kroger Q1 EPS $1.58 slightly misses $1.59 estimate; revenue of $46.12B beats $45.59B consensus",
+      "summary": "Mixed Kroger results show grocery demand remains solid even as margin pressure prevents earnings outperformance; consumer staples attracted defensive rotation as investors balanced rate uncertainty with Iran relief.",
+      "source": "Yahoo Finance",
+      "url": "https://sg.finance.yahoo.com/news/stock-market-news-jun-18-105700249.html",
+      "period": "PM"
+    },
+    {
+      "headline": "VIX drops to 18.44; Treasury yields ease as Iran blockade end tempers post-FOMC hawkish shock",
+      "summary": "The fear gauge retreated from Wednesday's spike as the dual tailwind of Iran de-escalation and markets digesting Warsh's data-dependent framework reduced binary tail-risk, with small caps and cyclicals outperforming as yields pulled back modestly.",
+      "source": "TheStreet / Charles Schwab",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+      "period": "PM"
+    }
   ]
 }
