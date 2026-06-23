@@ -1140,5 +1140,42 @@
       "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-22-2026",
       "period": "PM"
     }
+  ],
+  "2026-06-23": [
+    {
+      "headline": "S&P 500 -1.44% to ~7,365; Nasdaq -2.21% to ~25,588; Dow -0.09% — global chip rout hammers tech",
+      "summary": "A cascade triggered by South Korea's chip-heavy KOSPI plunging nearly 10% swept through U.S. markets, with defensives (staples, healthcare, utilities) the only sectors closing higher.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-23-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "South Korea's KOSPI collapses ~10% on semiconductor fears; Micron tumbles ~10% ahead of earnings",
+      "summary": "Asian chip stocks led a global selloff as demand-growth concerns spread to U.S. names; Micron's drop amplifies pressure with the company reporting fiscal Q3 earnings Wednesday after the close.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-23-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "BofA rate-hike note rattles markets; 2-year Treasury yield hits highest level since February 2025",
+      "summary": "A Bank of America research note flagging elevated probability of a 2026 Fed rate hike — combined with the chip rout — pushed the 2-year yield to a 16-month high and amplified the tech selloff.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield rises to 4.499% as rate-hike fears combine with Asian market shock",
+      "summary": "Dual pressures — the BofA rate-hike note and the global risk-off move — kept the long end elevated, tightening financial conditions further without any Fed action.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Trump: Iran \"fully and completely agreed\" to highest-level nuclear inspections; oil prices ease",
+      "summary": "President Trump's statement that Iran has committed to long-term nuclear inspection protocols revived hopes for a lasting diplomatic resolution, pushing crude oil lower and providing a modest tailwind to consumer and transport stocks against the broader tape.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
   ]
 }
