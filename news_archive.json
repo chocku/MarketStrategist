@@ -1104,6 +1104,41 @@
       "source": "Kiplinger",
       "url": "https://www.kiplinger.com/investing/economy/this-weeks-economic-calendar",
       "period": "PM"
+    },
+    {
+      "headline": "S&P 500 closes -0.37% at 7,472.79; Nasdaq -1.32% at 26,166.60; Dow +0.29%; Russell 2000 hits 3,000 milestone",
+      "summary": "Large-cap tech dragged the S&P and Nasdaq lower at the close while the Dow edged higher and the Russell 2000 made history above 3,000, confirming a divergence between small-cap strength and mega-cap weakness.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-22-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Russell 2000 closes above 3,000 for the first time ever, gaining +0.65% on the session",
+      "summary": "The small-cap index's historic milestone reflects a broadening rotation away from concentrated mega-cap tech exposure toward domestic cyclicals and value stocks that benefit from lower rates.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-22-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "SpaceX (SPCX) tumbles 16.4% for third straight decline, erasing ~$600B in market cap from its all-time high",
+      "summary": "The post-IPO euphoria has reversed sharply with SpaceX down roughly 25% from its peak in just three sessions, raising questions about whether the initial valuation fully priced in execution and regulatory risk.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-ipo-over-history-says-182000112.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Big Tech selloff deepens at close: Alphabet -5%, Amazon -4.8%, Meta -2.3%, Microsoft -3%",
+      "summary": "Hawkish Fed rate-hike expectations pulling forward to October combined with AI talent-departure concerns at Alphabet drove broad selling across high-multiple mega-cap tech names into the close.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-monday-june-22-225817825.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil falls as negotiators report \"encouraging progress\" toward ending U.S.-Iran conflict; Strait of Hormuz remains open",
+      "summary": "Diplomatic progress toward an Iran deal and the ongoing ceasefire extension eased the geopolitical risk premium in crude, with lower oil prices providing a tailwind for consumer and transport stocks even as equities were mixed.",
+      "source": "TheStreet / Schwab",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-22-2026",
+      "period": "PM"
     }
   ]
 }
