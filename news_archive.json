@@ -1143,7 +1143,7 @@
   ],
   "2026-06-23": [
     {
-      "headline": "S&P 500 -1.44% to ~7,365; Nasdaq -2.21% to ~25,588; Dow -0.09% — global chip rout hammers tech",
+      "headline": "S&P 500 -1.44% to ~7,365; Nasdaq -2.21% to ~25,588; Dow -0.09% \u2014 global chip rout hammers tech",
       "summary": "A cascade triggered by South Korea's chip-heavy KOSPI plunging nearly 10% swept through U.S. markets, with defensives (staples, healthcare, utilities) the only sectors closing higher.",
       "source": "TheStreet / CNBC",
       "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-23-2026",
@@ -1158,14 +1158,14 @@
     },
     {
       "headline": "BofA rate-hike note rattles markets; 2-year Treasury yield hits highest level since February 2025",
-      "summary": "A Bank of America research note flagging elevated probability of a 2026 Fed rate hike — combined with the chip rout — pushed the 2-year yield to a 16-month high and amplified the tech selloff.",
+      "summary": "A Bank of America research note flagging elevated probability of a 2026 Fed rate hike \u2014 combined with the chip rout \u2014 pushed the 2-year yield to a 16-month high and amplified the tech selloff.",
       "source": "TheStreet / CNBC",
       "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
       "period": "PM"
     },
     {
       "headline": "10-year Treasury yield rises to 4.499% as rate-hike fears combine with Asian market shock",
-      "summary": "Dual pressures — the BofA rate-hike note and the global risk-off move — kept the long end elevated, tightening financial conditions further without any Fed action.",
+      "summary": "Dual pressures \u2014 the BofA rate-hike note and the global risk-off move \u2014 kept the long end elevated, tightening financial conditions further without any Fed action.",
       "source": "CNBC / Yahoo Finance",
       "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
       "period": "PM"
@@ -1175,6 +1175,43 @@
       "summary": "President Trump's statement that Iran has committed to long-term nuclear inspection protocols revived hopes for a lasting diplomatic resolution, pushing crude oil lower and providing a modest tailwind to consumer and transport stocks against the broader tape.",
       "source": "CNBC / TheStreet",
       "url": "https://www.cnbc.com/2026/06/22/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
+  ],
+  "2026-06-26": [
+    {
+      "headline": "Nasdaq drops 0.46% to 25,358.60 marking four-day losing streak; S&P 500 slips to 7,357.49; Dow +0.14% to 51,920.62",
+      "summary": "Tech-led selling drags Nasdaq to its first four-day slide since February while rotation into non-tech sectors cushions the broader market.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-26-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Micron surges 17% after Q3 EPS of $25.11 crushes $20.78 estimate on booming AI memory demand",
+      "summary": "Micron's blowout quarter signals that AI infrastructure spending on high-bandwidth memory remains robust, lifting the broader chip sector.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Qualcomm jumps 9% after nearly doubling 2029 non-handset revenue target to $40 billion",
+      "summary": "Qualcomm's bullish AI-edge and automotive growth outlook reassures investors that its diversification beyond smartphones is on track.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-26-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "OpenAI reportedly delays IPO to 2027; AI data center cost concerns trigger broad tech sell-off",
+      "summary": "Reports that OpenAI may push its IPO to next year amplify existing fears about spiraling AI capex, pressuring mega-cap tech stocks this week.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-26-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "UMich Consumer Sentiment holds at 48.9% near historic lows; futures price three Fed hikes by year-end to 4.25-4.50%",
+      "summary": "Soft consumer confidence combined with a hawkish Fed repricing adds macro headwinds to a market already under pressure from tech weakness.",
+      "source": "Yahoo Finance / Bank of America",
+      "url": null,
       "period": "PM"
     }
   ]
