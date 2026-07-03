@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23",
+  "last_updated": "2026-07-02",
   "additions": [
     {
       "ticker": "SPCX",
@@ -8,11 +8,24 @@
       "sector": "Industrials",
       "status": "confirmed",
       "market_cap_at_addition": 1770000000000,
-      "announcement_date": "2026-06-25",
-      "effective_date": "2026-07-02",
+      "announcement_date": "2026-06-26",
+      "effective_date": "2026-07-07",
       "return_pct_announcement": null,
-      "price_last_updated": "2026-06-22",
-      "notes": "IPO'd Jun 12, 2026 at $135/share ($1.77T valuation). Nasdaq's revised fast-entry rule (≥top-40 by mcap, 15 trading days post-IPO) puts effective date ~Jul 2. Confirmed pending official Nasdaq announcement."
+      "price_last_updated": "2026-07-02",
+      "notes": "IPO'd Jun 12, 2026 at $135/share ($1.77T valuation). Officially confirmed by Nasdaq on Jun 26, 2026 under the revised fast-entry rule (top-40 by mcap, 15 trading days post-IPO). Becomes a Nasdaq-100 component prior to market open Jul 7, 2026 -- the fastest index inclusion in the benchmark's history. Index funds begin buying after the close Jul 6."
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet Inc.",
+      "index": "DJIA",
+      "sector": "Communication Services",
+      "status": "effective",
+      "market_cap_at_addition": 4170000000000,
+      "announcement_date": "2026-06-23",
+      "effective_date": "2026-06-29",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-06-25",
+      "notes": "Replaces Verizon Communications (VZ) in the Dow after Verizon's 22-year run in the index. S&P Dow Jones Indices cited Alphabet's larger market cap and breadth of businesses as more representative of the Communication Services sector in a price-weighted index. Separately, Honeywell International remains in the DJIA and renames to Honeywell Technologies Inc. after spinning off Honeywell Aerospace on the same date (Jun 29)."
     },
     {
       "ticker": "SPCX",
