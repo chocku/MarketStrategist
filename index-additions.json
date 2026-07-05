@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-02",
+  "last_updated": "2026-07-05",
   "additions": [
     {
       "ticker": "SPCX",
@@ -28,6 +28,19 @@
       "notes": "Replaces Verizon Communications (VZ) in the Dow after Verizon's 22-year run in the index. S&P Dow Jones Indices cited Alphabet's larger market cap and breadth of businesses as more representative of the Communication Services sector in a price-weighted index. Separately, Honeywell International remains in the DJIA and renames to Honeywell Technologies Inc. after spinning off Honeywell Aerospace on the same date (Jun 29)."
     },
     {
+      "ticker": "HONA",
+      "company": "Honeywell Aerospace Inc.",
+      "index": "S&P 500",
+      "sector": "Industrials",
+      "status": "effective",
+      "market_cap_at_addition": 72000000000,
+      "announcement_date": "2026-06-23",
+      "effective_date": "2026-06-29",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-07-05",
+      "notes": "Spin-off addition; joined S&P 500 and S&P 100 as Honeywell International completed the spin-off of its aerospace unit on Jun 29, 2026 (parent renamed Honeywell Technologies Inc., remains in S&P 500/DJIA). Replaced Conagra Brands (CAG), which moved to the S&P SmallCap 600. Began trading on Nasdaq under HONA with ~158M shares outstanding."
+    },
+    {
       "ticker": "SPCX",
       "company": "SpaceX",
       "index": "S&P 500",
@@ -37,21 +50,21 @@
       "announcement_date": null,
       "effective_date": null,
       "return_pct_announcement": null,
-      "price_last_updated": "2026-06-22",
-      "notes": "S&P 500 blocked by profitability requirement — SpaceX posted $4.9B net loss in 2025. S&P declined to loosen the GAAP threshold. Earliest realistic inclusion: mid-2027 if profitable by then."
+      "price_last_updated": "2026-07-05",
+      "notes": "S&P 500 blocked by profitability requirement — SpaceX posted $4.9B net loss in 2025. On Jun 4, 2026 S&P Dow Jones Indices confirmed it will keep existing GAAP profitability eligibility criteria intact (no fast-entry exception). Earliest realistic inclusion pushed to Jun 2027, and could slip further if profitability isn't reached by then."
     },
     {
       "ticker": "DDOG",
-      "company": "Datadog",
+      "company": "Datadog, Inc.",
       "index": "S&P 500",
       "sector": "Information Technology",
-      "status": "rumored",
-      "market_cap_at_addition": null,
-      "announcement_date": null,
-      "effective_date": null,
-      "return_pct_announcement": null,
-      "price_last_updated": "2026-06-22",
-      "notes": "Frequently cited candidate; market cap and GAAP profitability thresholds met. No official announcement."
+      "status": "effective",
+      "market_cap_at_addition": 46600000000,
+      "announcement_date": "2025-07-02",
+      "effective_date": "2025-07-09",
+      "return_pct_announcement": 10.0,
+      "price_last_updated": "2026-07-05",
+      "notes": "Replaced Juniper Networks (JNPR) after Juniper was acquired by Hewlett Packard Enterprise. Shares jumped ~10% in after-hours trading on the announcement. Corrected from a prior 'rumored' entry -- this addition was already confirmed and effective as of mid-2025."
     },
     {
       "ticker": "RBLX",
@@ -63,8 +76,8 @@
       "announcement_date": null,
       "effective_date": null,
       "return_pct_announcement": null,
-      "price_last_updated": "2026-06-22",
-      "notes": "Speculation circulating; still needs sustained GAAP profitability to clear S&P 500 inclusion threshold."
+      "price_last_updated": "2026-07-05",
+      "notes": "Speculation circulating; still needs sustained GAAP profitability to clear S&P 500 inclusion threshold. No official announcement found as of Jul 2026."
     },
     {
       "ticker": "ALAB",
