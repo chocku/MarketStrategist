@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-07-05",
+  "last_updated": "2026-07-23",
   "additions": [
     {
       "ticker": "SPCX",
       "company": "SpaceX",
       "index": "Nasdaq-100",
       "sector": "Industrials",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 1770000000000,
       "announcement_date": "2026-06-26",
       "effective_date": "2026-07-07",
       "return_pct_announcement": null,
-      "price_last_updated": "2026-07-02",
-      "notes": "IPO'd Jun 12, 2026 at $135/share ($1.77T valuation). Officially confirmed by Nasdaq on Jun 26, 2026 under the revised fast-entry rule (top-40 by mcap, 15 trading days post-IPO). Becomes a Nasdaq-100 component prior to market open Jul 7, 2026 -- the fastest index inclusion in the benchmark's history. Index funds begin buying after the close Jul 6."
+      "price_last_updated": "2026-07-23",
+      "notes": "IPO'd Jun 12, 2026 at $135/share ($1.77T valuation). Officially confirmed by Nasdaq on Jun 26, 2026 under the revised fast-entry rule (top-40 by mcap, 15 trading days post-IPO). Became a Nasdaq-100 component prior to market open Jul 7, 2026 -- the fastest index inclusion in the benchmark's history, added via proportional trims across existing members rather than a standard replacement (index temporarily exceeded 100 names)."
     },
     {
       "ticker": "GOOGL",
