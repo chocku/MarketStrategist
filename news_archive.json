@@ -1178,6 +1178,80 @@
       "period": "PM"
     }
   ],
+  "2026-06-24": [
+    {
+      "headline": "Dow +0.35% to 51,848.90; S&P 500 -0.10% to 7,358.22; Nasdaq -0.43% to 25,476.64 as investors await Micron earnings",
+      "summary": "Mixed session with the Dow eking out a gain while tech lagged ahead of Micron's after-hours report, a bellwether for AI memory chip demand.",
+      "source": "Washington Post / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-24-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude falls 4.33% to $73.74 — lowest since before US-Israel airstrikes on Iran began",
+      "summary": "Continued de-escalation in the Middle East drives oil to a multi-month low; the 10-year Treasury yield dropped below 4.5% as the energy-driven inflation risk faded further.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "FedEx sheds about 6% despite Q4 revenue narrowly beating Wall Street estimates",
+      "summary": "Investors focused on soft forward guidance and margin pressure rather than the modest top-line beat, extending logistics-sector weakness.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Cerebras drops 11% in its first earnings report since May IPO, forecasting a decline in core gross margin",
+      "summary": "The AI chipmaker's post-IPO honeymoon fades as margin guidance disappoints, adding to caution around richly valued recent AI listings.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "KB Home +3% after fiscal Q2 revenue of $1.11B tops the $1.10B analyst estimate",
+      "summary": "A modest homebuilder beat offers a bright spot in an otherwise mixed session, suggesting housing demand is holding up despite elevated mortgage rates.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
+  ],
+  "2026-06-25": [
+    {
+      "headline": "S&P 500 -0.05% to 7,354.02; Dow -0.09% to 51,876.11; Nasdaq -0.24% to 25,297.62 in a choppy session",
+      "summary": "Indexes swung between gains and losses as strong Micron earnings were offset by a hot PCE inflation print and hawkish Fed commentary.",
+      "source": "Washington Post / CNBC",
+      "url": "https://www.washingtonpost.com/business/2026/06/25/wall-street-stocks-dow-nasdaq/90909508-70d3-11f1-8730-e7fd0e2a6404_story.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Micron crushes Q3 estimates and shares surge nearly 17% premarket on strong AI memory chip demand",
+      "summary": "Blowout results driven by pricing and demand for AI data center memory reinforce the AI infrastructure buildout narrative after Monday's chip-sector rout.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/25/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "May PCE inflation hits 4.1% YoY — highest since April 2023",
+      "summary": "The Fed's preferred inflation gauge runs hotter than expected, undercutting hopes for near-term rate cuts and pressuring rate-sensitive stocks.",
+      "source": "Commerce Department / CNBC",
+      "url": "https://www.cnbc.com/2026/06/25/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Chicago Fed President Goolsbee says core inflation is \"too high\" and trending the wrong way",
+      "summary": "Hawkish commentary just hours after the PCE report reinforces market concern that the Fed's patience with elevated inflation is wearing thin.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/25/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Apple and Microsoft announce price increases on iPhone and Xbox, pressuring Mag7 stocks",
+      "summary": "Both tech giants cite rising component and tariff-related costs; investors weigh whether price hikes will dent unit demand heading into the holiday season.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-25-2026",
+      "period": "PM"
+    }
+  ],
   "2026-06-26": [
     {
       "headline": "Nasdaq drops 0.46% to 25,358.60 marking four-day losing streak; S&P 500 slips to 7,357.49; Dow +0.14% to 51,920.62",
@@ -1215,6 +1289,68 @@
       "period": "PM"
     }
   ],
+  "2026-06-29": [
+    {
+      "headline": "Dow gains 306.63 points (+0.59%) to close above 52,000 for the first time at 52,182.74 as Alphabet debuts in the index",
+      "summary": "Alphabet's addition to the Dow Jones Industrial Average marked a milestone session, with the stock climbing nearly 5% on its first day as a Dow component.",
+      "source": "Yahoo Finance / Washington Post",
+      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-monday-june-29-224230573.html",
+      "period": "PM"
+    },
+    {
+      "headline": "S&P 500 rallies 1.18% to 7,440.43; Nasdaq surges 2.07% to 25,820.14 in a broad tech-led advance",
+      "summary": "A sharp risk-on session reversed the prior week's chip-driven selloff, with growth and tech names leading gains across the board.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-monday-june-29-224230573.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Alphabet shares climb nearly 5% on debut as a Dow Jones Industrial Average component",
+      "summary": "The index reshuffle drew fresh institutional buying into Alphabet as index funds rebalanced to include the stock.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-monday-june-29-224230573.html",
+      "period": "PM"
+    }
+  ],
+  "2026-06-30": [
+    {
+      "headline": "S&P 500 +0.8% to 7,499.36; Dow +0.3% to 52,319.20; Nasdaq +1.5% to 26,213.72 as Q2 closes out at multi-year highs",
+      "summary": "All three major indexes extended their winning streak into the final trading day of the quarter, capping the strongest Q2 for US stocks since 2020.",
+      "source": "TheStreet / Washington Post",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-30-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Q2 2026 wraps as best quarter for US stocks since 2020; Dow +12.9% for the quarter",
+      "summary": "The S&P 500 gained 9.6% and the Nasdaq more than 12% in the first half of 2026, with the Dow posting its best first half since 2021 on the back of an AI-driven rally.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-30-2026",
+      "period": "PM"
+    }
+  ],
+  "2026-07-01": [
+    {
+      "headline": "Dow slips 0.03% to 52,305.24 after hitting a fresh intraday record of 52,742.66; S&P 500 -0.22% to 7,483.23, Nasdaq -0.66% to 26,040.03",
+      "summary": "Markets opened Q3 at record highs before fading as chipmakers sold off on profit-taking following a more than 80% first-half surge in semiconductor stocks.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.cnbc.com/2026/07/01/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Caterpillar drops nearly 7%, dragging the Dow off its record intraday high",
+      "summary": "Profit-taking in the AI-infrastructure-adjacent industrial name pulled the index back from a fresh all-time high reached earlier in the session.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/01/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Meta Platforms jumps nearly 9% after announcing plans to launch a cloud business selling excess computing power",
+      "summary": "Meta's move to monetize spare AI data center capacity is seen as a new revenue stream; Microsoft and Apple also gained roughly 3% and 2% respectively on the news.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/01/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
+  ],
   "2026-07-02": [
     {
       "headline": "Dow surges nearly 600 points (+1.1%) to a record close ahead of July 4 holiday, while S&P 500 slips 0.2% to 7,483.23 and Nasdaq falls 0.8%",
@@ -1249,6 +1385,250 @@
       "summary": "Diverging EV maker fortunes highlight investor focus on forward guidance over backward-looking results, with Rivian rewarded for raised targets and Tesla punished on other concerns.",
       "source": "Yahoo Finance / CNBC",
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-2-223136955.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-06": [
+    {
+      "headline": "Dow closes above 53,000 for the first time, +0.29% to 53,055.91; S&P 500 +0.72% to 7,537.43; Nasdaq +1.12% to 26,121.16",
+      "summary": "Markets extended gains after the July 4th holiday weekend as semiconductor momentum and revived AI optimism lifted tech broadly.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-6-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Semiconductor momentum lifts Nasdaq, led by notable gains in Western Digital and Teradyne",
+      "summary": "Chip-adjacent names outperformed as the AI infrastructure trade regained steam entering the new trading week.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-july-6-214111950.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-07": [
+    {
+      "headline": "Dow falls 130.76 points (-0.25%) to 52,925.15; S&P 500 -0.45% to 7,503.85; Nasdaq -1.16% to 25,818.69",
+      "summary": "Markets pulled back from Monday's record close as investors rotated out of AI-linked names while oil prices advanced.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/amp/2026/07/06/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-08": [
+    {
+      "headline": "Dow plunges 576.76 points (-1.09%) to 52,348.39 as Trump declares Iran ceasefire \"over\"; S&P 500 -0.28% to 7,482.71, Nasdaq +0.20% to 25,870.65",
+      "summary": "Renewed Middle East hostilities after Trump's NATO summit comments sent oil sharply higher and triggered the steepest Dow drop of the week.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-8-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude jumps 5.43% to $78.19; WTI rises 4.37% to $73.52 as Iran ceasefire collapses",
+      "summary": "Energy stocks (XLE +2%) rallied on the renewed hostilities while tech (XLK -2%) sold off, with Micron and Sandisk each down about 4%.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-8-2026",
+      "period": "PM"
+    }
+  ],
+  "2026-07-09": [
+    {
+      "headline": "Dow +0.27% to 52,487.44; S&P 500 +0.81% to 7,543.64; Nasdaq +1.30% to 26,206.89 as chip stocks rebound",
+      "summary": "Markets shrugged off news that the US struck 90 Iranian targets and Iran retaliated against US allies, with a semiconductor rally offsetting geopolitical risk.",
+      "source": "Yahoo Finance / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-9-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "US launches strikes on 90 Iranian targets; Iran retaliates against US-allied Middle East countries",
+      "summary": "A significant escalation in the conflict failed to derail the equity rally as investors focused on chip-sector strength instead.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-9-us-strikes-iran-dow-sp-nasdaq-223149196.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Micron jumps over 7% after pledging up to $3B investment to strengthen the US semiconductor supply chain; SK Hynix prices IPO at $149/share, 7x oversubscribed",
+      "summary": "Strong chip-sector catalysts, including Micron's domestic investment pledge and heavy demand for SK Hynix's upcoming US listing, drove the Nasdaq's outperformance.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-9-us-strikes-iran-dow-sp-nasdaq-223149196.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-10": [
+    {
+      "headline": "S&P 500 +0.42% to 7,575.39; Nasdaq +0.29% to 26,281.61; Dow +0.29% to 52,637.01, capping a choppy week",
+      "summary": "Markets closed the week higher despite the mid-week Iran-driven selloff, as chip strength and IPO enthusiasm carried through to Friday.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/live/stock-market-today-friday-july-10-dow-sp-nasdaq-113921604.html",
+      "period": "PM"
+    },
+    {
+      "headline": "SK Hynix pops in US debut after pricing its IPO at $149/share",
+      "summary": "The largest first-time foreign offering on record drew strong demand, capping a volatile week dominated by Iran conflict headlines and chip-sector strength.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/live/stock-market-today-friday-july-10-dow-sp-nasdaq-113921604.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-13": [
+    {
+      "headline": "S&P 500 slides 0.79% to 7,515.34; Nasdaq drops 1.55% to 25,873.18; Dow falls 138.37 points (-0.26%) to 52,498.64",
+      "summary": "Trump's announcement of a renewed blockade on Iranian shipping through the Strait of Hormuz sent oil prices higher and pressured equities to start the week.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/12/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-14": [
+    {
+      "headline": "S&P 500 +0.38% to 7,543.59; Nasdaq +0.9% to 26,107.01; Dow +0.02% to 52,508.27 as tech leads on cooler inflation",
+      "summary": "June inflation data came in weaker than expected, boosting semiconductor stocks and helping markets recover most of Monday's Strait of Hormuz-driven losses.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-14-2026",
+      "period": "PM"
+    }
+  ],
+  "2026-07-15": [
+    {
+      "headline": "S&P 500 +0.38% to 7,572.40; Nasdaq +0.62% to 26,269.23; Dow +0.29% to 52,658.64 as cooling CPI lifts sentiment",
+      "summary": "Traders continued digesting signs that inflation is cooling, strengthening expectations that the Fed will hold rates steady; Apple notched a fresh record high.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-july-15-dow-sp-nasdaq-091813320.html",
+      "period": "PM"
+    },
+    {
+      "headline": "SpaceX shares dip below their IPO price for the first time since the June listing",
+      "summary": "Post-IPO enthusiasm fades as SPCX trades under its $135 offer price, an early test of investor patience with the largest US IPO in history.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-15-2026",
+      "period": "PM"
+    }
+  ],
+  "2026-07-16": [
+    {
+      "headline": "Dow falls 105.67 points (-0.20%) to 52,552.97; S&P 500 -0.51% to 7,533.77; Nasdaq -1.47% to 25,881.95 as chip stocks slide",
+      "summary": "Taiwan Semiconductor raised its 2026 capex forecast to $60-64B from a prior $52-56B range, overshadowing an otherwise better-than-expected Q2 report and spooking chip investors; Alphabet shares also sank.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-16-dow-sp-500-nasdaq-chip-stocks-slide-103116735.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-17": [
+    {
+      "headline": "S&P 500 falls 76.08 points (-1%) to 7,475.69; Dow drops 406.55 points (-0.8%) to 52,146.42; Nasdaq sinks 1.4% to ~25,520, posting the week's first losing week in three",
+      "summary": "Nvidia led chip-sector weakness as investors questioned whether AI stock valuations have outrun fundamentals, a worry that hit Asian markets even harder overnight.",
+      "source": "Washington Post / AP",
+      "url": "https://www.washingtonpost.com/business/2026/07/17/wall-street-stocks-dow-nasdaq/64463f38-821d-11f1-8a16-393bd03340b0_story.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Chinese startup Moonshot debuts a new open AI model it says performs on par with OpenAI and Anthropic's leading systems",
+      "summary": "The surprise release intensified concerns about US AI leadership and valuation premiums, driving the PHLX Semiconductor Index into a bear market as SMH and chip names like Applied Materials, Lam Research, Intel, KLA, and Arm each fell about 4%.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-july-17-dow-sp-500-nasdaq-092345307.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude jumps another 4.6% on renewed worries about the Iran conflict",
+      "summary": "Continued Middle East escalation added a second headwind alongside the AI valuation selloff, compounding pressure on risk assets to close the week.",
+      "source": "Washington Post / AP",
+      "url": "https://www.washingtonpost.com/business/2026/07/17/wall-street-stocks-dow-nasdaq/64463f38-821d-11f1-8a16-393bd03340b0_story.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-20": [
+    {
+      "headline": "Dow falls 307.16 points (-0.59%) to 51,839.26; S&P 500 -0.19% to 7,443.28; Nasdaq -0.05% to 25,508.07 as Iran strikes continue",
+      "summary": "The US completed a ninth consecutive day of strikes on Iran overnight, lifting oil prices, while an ongoing AI/chip selloff and a 2%+ drop in Apple weighed on the Dow.",
+      "source": "TheStreet / Washington Post",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-20-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Markets pare early losses after Iranian Foreign Ministry spokesman signals openness to a diplomatic settlement",
+      "summary": "Midday comments from Tehran eased some geopolitical anxiety, helping indexes recover off session lows even as the broader risk-off tone persisted.",
+      "source": "Washington Post",
+      "url": "https://www.washingtonpost.com/business/2026/07/20/stocks-market-ai-oil-iran-war/02b02034-83f5-11f1-9cec-0fb26676f07e_story.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-21": [
+    {
+      "headline": "Dow gains 385.38 points (+0.74%) to 52,224.64; S&P 500 +0.89% to 7,509.20; Nasdaq +1.29% to 25,837.21 as chip stocks rebound",
+      "summary": "A steep semiconductor rally shifted investor focus away from Middle East hostilities and tariff concerns ahead of major tech earnings.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-july-21-dow-sp-500-nasdaq-084631499.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Micron surges 12% as the Philadelphia Semiconductor Index rallies 5.2% in a second straight advance",
+      "summary": "Chip stocks bounced back after falling more than 20% below their late-June record high, providing broad support to the major indexes.",
+      "source": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/21/stock-market-today-july-21-micron-surges-12-as-semiconductor-strength-lifts-nasdaq/",
+      "period": "PM"
+    }
+  ],
+  "2026-07-22": [
+    {
+      "headline": "Dow -0.01% to 52,218.58; S&P 500 -0.14% to 7,498.96; Nasdaq -0.57% to 25,690.90 in a choppy session ahead of Big Tech earnings",
+      "summary": "Stocks opened lower, recovered intraday, then faded into the close as investors positioned for after-hours results from Alphabet and Tesla; oil prices rose.",
+      "source": "Yahoo Finance / Washington Post",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-july-22-dow-sp-500-nasdaq-alphabet-tesla-earnings-083644887.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-23": [
+    {
+      "headline": "Dow drops 506.93 points (-0.97%) to 51,711.65; S&P 500 -1.21% to 7,408.30; Nasdaq -2.15% to 25,137.69 as oil surges on Middle East escalation",
+      "summary": "Equities fell sharply as oil jumped on renewed conflict in the region while investors digested Big Tech results overnight.",
+      "source": "Washington Post",
+      "url": "https://www.washingtonpost.com/business/2026/07/23/wall-street-dow-nasdaq-stocks/70df2dda-86d3-11f1-9cec-0fb26676f07e_story.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Alphabet drops 7% and Tesla plunges 14% following their quarterly earnings reports",
+      "summary": "Weak reactions to two of the largest companies' results dragged the Nasdaq down more than 2% and were the single biggest driver of the session's tech-led selloff.",
+      "source": "Washington Post",
+      "url": "https://www.washingtonpost.com/business/2026/07/23/wall-street-dow-nasdaq-stocks/70df2dda-86d3-11f1-9cec-0fb26676f07e_story.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-24": [
+    {
+      "headline": "Dow rebounds 235.60 points (+0.46%) to 51,947.25; S&P 500 +0.05% to 7,411.98; Nasdaq -0.64% to 24,975.82 as markets attempt to stabilize",
+      "summary": "Wall Street steadied after Thursday's sharp tech-led selloff, with real estate and financials leading gains while technology stocks fell another 2.37%.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-july-24-dow-sp-500-nasdaq-081854465.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Sandisk tumbles 11% as tech capex fears continue to weigh on chip and hardware names",
+      "summary": "Lingering concerns about the sustainability of AI infrastructure spending kept pressure on semiconductor and storage stocks even as the broader market recovered.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-july-24-212453736.html",
+      "period": "PM"
+    }
+  ],
+  "2026-07-27": [
+    {
+      "headline": "Dow rises 262.83 points (+0.51%) to 52,210.08; S&P 500 +0.02% to 7,413.18; Nasdaq -0.18% to 24,932.08 as oil retreats",
+      "summary": "The US and Iran paused military strikes and resumed ceasefire negotiations, sending Brent crude down nearly 4% to $96.78 and lifting non-tech sectors even as a 5% drop in Nvidia weighed on the Nasdaq.",
+      "source": "The Motley Fool / Washington Post",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/27/stock-market-today-july-27-dow-rises-on-oil-retreat-and-sandisk-plunges-11-on-memory-weakness/",
+      "period": "PM"
+    },
+    {
+      "headline": "Sandisk plunges 11% on memory-market weakness",
+      "summary": "Continued softness in memory chip pricing extended the stock's recent slide, adding to broader semiconductor sector pressure.",
+      "source": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/27/stock-market-today-july-27-dow-rises-on-oil-retreat-and-sandisk-plunges-11-on-memory-weakness/",
+      "period": "PM"
+    }
+  ],
+  "2026-07-28": [
+    {
+      "headline": "Dow jumps 537.24 points (+1.03%) to 52,747.32; S&P 500 +0.21% to 7,428.78; Nasdaq -0.22% to 24,876.91 as rotation out of chips continues",
+      "summary": "Strong earnings and falling oil prices fueled a rally outside of tech, while the VanEck Semiconductor ETF (SMH) fell more than 3% for a fourth straight day of losses.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/07/27/stock-market-today-live-updates.html",
       "period": "PM"
     }
   ],
