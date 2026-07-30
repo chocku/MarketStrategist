@@ -1251,5 +1251,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-2-223136955.html",
       "period": "PM"
     }
+  ],
+  "2026-07-29": [
+    {
+      "headline": "Dow tumbles 2.19% to 51,594, S&P 500 falls 1.52% to 7,316, and Nasdaq drops 1.74% to 24,443 in a broad sell-off",
+      "summary": "A hawkish Fed rate hold combined with escalating Middle East tensions triggered the worst single-day decline for major indexes in weeks.",
+      "source": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/29/stock-market-today-july-29-stocks-slide-on-hawkish-fed-and-increased-middle-east-tensions/",
+      "period": "PM"
+    },
+    {
+      "headline": "FOMC holds rates steady at 3.50%-3.75% in a 9-3 vote, with three governors dissenting in favor of a hike",
+      "summary": "The first three-way hawkish dissent since September 2016 signals a more restrictive Fed stance than markets had priced in, rattling equities and lifting yields.",
+      "source": "CNBC / Federal Reserve",
+      "url": "https://www.cnbc.com/2026/07/29/fed-rate-decision-july-2026.html",
+      "period": "PM"
+    },
+    {
+      "headline": "US-Iran tensions escalate sharply, sending oil prices higher and adding pressure on equities",
+      "summary": "A surprise flare-up in the Middle East compounded the hawkish Fed reaction, driving a risk-off move across global markets including a 6% drop in South Korea's Kospi on semiconductor weakness.",
+      "source": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/29/stock-market-today-july-29-stocks-slide-on-hawkish-fed-and-increased-middle-east-tensions/",
+      "period": "PM"
+    },
+    {
+      "headline": "Qualcomm shares tumble after missing bottom-line earnings estimates on persistent memory segment headwinds",
+      "summary": "The chipmaker's disappointing results added to semiconductor sector weakness on an already risk-off session for tech.",
+      "source": "Yahoo Finance",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Ford beats Q2 earnings with $0.42 adjusted EPS and raises full-year 2026 guidance on production strength; Coca-Cola and Sherwin-Williams also top estimates",
+      "summary": "Solid earnings beats from Ford, Coca-Cola, and Sherwin-Williams provided pockets of strength even as the broader market sold off on Fed and geopolitical concerns.",
+      "source": "Zacks / The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/07/29/stock-market-today-july-29-ford-beats-earnings-raises-2026-guidance-on-production-strength/",
+      "period": "PM"
+    }
   ]
 }
