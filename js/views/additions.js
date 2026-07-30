@@ -67,13 +67,6 @@ function renderAdditions() {
   });
 
   // ── Helpers ────────────────────────────────────────────────────────────
-  function daysSince(dateStr) {
-    if (!dateStr) return null;
-    const d = new Date(dateStr + 'T12:00:00');
-    if (d > today) return null;
-    return Math.floor((today - d) / 86400000);
-  }
-
   function statusBadge(s) {
     const cfg = {
       rumored:   { color:'#f0a020', bg:'rgba(240,160,32,0.15)',  label:'Rumored'   },
@@ -135,26 +128,24 @@ function renderAdditions() {
 
   // ── Table rows ────────────────────────────────────────────────────────
   const tableRows = rows.map(r => {
-    const ds = r.effective_date ? daysSince(r.effective_date) : null;
     const isUpcoming = !r.effective_date || new Date(r.effective_date) > today;
     const rowStyle = isUpcoming ? 'background:rgba(74,158,255,0.04)' : '';
     const tvUrl = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(r.ticker)}`;
     return `<tr style="${rowStyle}">
       <td style="text-align:center">${statusBadge(r.status)}</td>
       <td><a href="${tvUrl}" target="_blank" rel="noopener" style="color:#4a9eff;font-weight:700;text-decoration:none;font-family:monospace">${r.ticker}</a></td>
-      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.company}">${r.company}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.company}">${r.company}</td>
       <td><span style="font-size:11px;color:var(--text2)">${r.index}</span></td>
       <td><span style="font-size:11px;color:var(--text2)">${r.sector}</span></td>
       <td style="text-align:right;color:var(--text2)">${r.market_cap_at_addition ? fmtMcap(r.market_cap_at_addition) : '<span style="color:var(--text3)">—</span>'}</td>
       <td style="text-align:center;color:var(--text2);white-space:nowrap">${r.announcement_date ? fmtDate(r.announcement_date) : '<span style="color:var(--text3)">TBD</span>'}</td>
       <td style="text-align:center;color:var(--text2);white-space:nowrap">${r.effective_date ? fmtDate(r.effective_date) : '<span style="color:var(--text3)">TBD</span>'}</td>
-      <td style="text-align:right;color:var(--text2)">${ds !== null ? ds + 'd' : '<span style="color:var(--text3)">—</span>'}</td>
-      <td style="font-size:11px;color:var(--text3);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${(r.notes||'').replace(/"/g,'&quot;')}">${r.notes || ''}</td>
+      <td style="font-size:11px;color:var(--text3);white-space:normal;word-break:break-word;line-height:1.4">${r.notes || ''}</td>
     </tr>`;
   }).join('');
 
   const noRows = rows.length === 0
-    ? `<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--text3)">No additions match your filters.</td></tr>`
+    ? `<tr><td colspan="9" style="text-align:center;padding:32px;color:var(--text3)">No additions match your filters.</td></tr>`
     : tableRows;
 
   const fmtLastUpdated = last_updated
@@ -186,7 +177,18 @@ function renderAdditions() {
     <div style="font-size:11px;color:var(--text3);margin-bottom:10px">${rows.length} row${rows.length !== 1 ? 's' : ''} · Upcoming pinned to top · Click column headers to sort</div>
 
     <div style="overflow-x:auto;border-radius:6px;border:0.5px solid var(--border)">
-      <table style="font-size:12.5px;min-width:1400px;width:100%">
+      <table style="font-size:12.5px;min-width:1150px;width:100%;table-layout:fixed">
+        <colgroup>
+          <col style="width:80px">
+          <col style="width:70px">
+          <col style="width:150px">
+          <col style="width:90px">
+          <col style="width:110px">
+          <col style="width:90px">
+          <col style="width:85px">
+          <col style="width:85px">
+          <col>
+        </colgroup>
         <thead>
           <tr>
             ${thBtn('Status', 'status')}
@@ -197,7 +199,6 @@ function renderAdditions() {
             ${thBtn('Mkt Cap @ Add', 'market_cap_at_addition')}
             ${thBtn('Announced', 'announcement_date')}
             ${thBtn('Effective', 'effective_date')}
-            ${thBtn('Days Since', null)}
             <th>Notes</th>
           </tr>
         </thead>
