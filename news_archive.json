@@ -1705,5 +1705,42 @@
       "url": "https://www.cnbc.com/2026/07/29/stock-market-today-live-updates.html",
       "period": "PM"
     }
+  ],
+  "2026-08-03": [
+    {
+      "headline": "Dow closes at record high of 53,178.41, up 693.38 points (1.32%); S&P 500 gains 1.28% to 7,600.50 and Nasdaq jumps 2.1% to 25,913.9",
+      "summary": "Big Tech led a broad rally that reversed July's AI-spending jitters, with all three major indexes posting their best session in weeks.",
+      "source": "Yahoo Finance / UPI",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-august-3-dow-sp-500-nasdaq-big-tech-oil-092516872.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Amazon shares rise more than 4%, pushing its market capitalization above $3 trillion for the first time after AWS revenue grew 37%, its fastest pace in 18 quarters",
+      "summary": "AWS's contracted backlog surged $132 billion in a single quarter to $496 billion, reinforcing investor confidence that AI infrastructure spending is starting to pay off.",
+      "source": "Bloomberg",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-03/us-futures-climb-as-focus-shifts-back-to-earnings-oil-slides",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil prices slide after President Trump says renewed talks with Iran will begin, easing Strait of Hormuz supply-disruption fears",
+      "summary": "The diplomatic thaw removed a key geopolitical risk premium that had weighed on energy and shipping-sensitive stocks through July.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-aug-3-2026-dow-futures-climb-as-oil-slides-on-renewed-iran-talks",
+      "period": "PM"
+    },
+    {
+      "headline": "Big Tech broadly rallies as Meta climbs 6%, Alphabet and Microsoft each gain 5%, and Nvidia advances 3%",
+      "summary": "Stronger-than-expected corporate earnings helped restore confidence that heavy AI infrastructure investment is beginning to deliver financial returns.",
+      "source": "UPI",
+      "url": "https://www.upi.com/Top_News/US/2026/08/03/dow-jones-record/4331785790693/",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed holds interest rates steady as Q2 GDP grows slightly below trend, with the July non-farm payrolls report due Friday to test the labor-market outlook",
+      "summary": "Investors are looking to this week's jobs data to validate the Fed's recent assessment of a resilient but cooling labor market.",
+      "source": "Clearbrook",
+      "url": "https://www.clearbrookglobal.com/weekly-market-commentary-august-3-2026/",
+      "period": "PM"
+    }
   ]
 }
