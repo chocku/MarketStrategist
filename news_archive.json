@@ -1668,5 +1668,42 @@
       "url": "https://www.fool.com/coverage/stock-market-today/2026/07/29/stock-market-today-july-29-ford-beats-earnings-raises-2026-guidance-on-production-strength/",
       "period": "PM"
     }
+  ],
+  "2026-07-30": [
+    {
+      "headline": "S&P 500 climbs 1.7% to 7,437.63, Dow surges 613.92 points (1.2%) to 52,208.06, and Nasdaq jumps 2.8% to 25,122.18, ending a six-day losing streak",
+      "summary": "Markets rebounded sharply from the prior day's hawkish-Fed sell-off as strong tech earnings, led by Microsoft, drove the broad rally.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-30-dow-sp-500-nasdaq-treasury-yields-microsoft-082255995.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Microsoft shares jump 16% after reporting record Azure cloud growth, marking the largest single-day market value gain for any company",
+      "summary": "The blowout cloud results reassured investors on AI-driven demand and were the primary catalyst behind the Nasdaq's 2.8% surge.",
+      "source": "Bloomberg / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-july-30-dow-sp-500-nasdaq-treasury-yields-microsoft-082255995.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Meta Platforms posts Q2 EPS of .18, missing estimates by .04, on .6B in legal and severance charges; shares tumble about 11% after hours",
+      "summary": "Light Q3 revenue guidance and one-time charges overshadowed in-line revenue of 0.8B, spooking investors about rising AI-related costs.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/meta-misses-on-q2-earnings-stock-tumbles-121325403.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Robinhood Q2 revenue rises 32% YoY to $1.31B with adjusted EPS of $0.48 beating the $0.44 estimate, driven by record prediction-markets trading",
+      "summary": "Event-contract revenue surged more than 10x year-over-year to $156M, underscoring fast-growing demand for Robinhood's prediction-market products.",
+      "source": "Yahoo Finance / Benzinga",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/robinhood-q2-2026-earnings-beat-132303262.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Lam Research shares surge 14.1% after the semiconductor equipment maker reported record quarterly revenue and earnings",
+      "summary": "Strong chip-equipment demand added to a broad rebound in tech and semiconductor names following the prior session's sell-off.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/29/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
   ]
 }
