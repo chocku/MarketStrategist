@@ -1742,5 +1742,42 @@
       "url": "https://www.clearbrookglobal.com/weekly-market-commentary-august-3-2026/",
       "period": "PM"
     }
+  ],
+  "2026-08-04": [
+    {
+      "headline": "S&P 500 jumped 1.79% to a record 7,737 as the Dow surged 907 points (1.71%) to close above 54,000 for the first time; Nasdaq gained 2.59% to 26,585.",
+      "summary": "Record closes were fueled by a tech-stock rebound, strong corporate earnings, and easing Strait of Hormuz tensions.",
+      "source": "CNBC / CNN Business",
+      "url": "https://www.cnn.com/2026/08/04/investing/us-stock-market",
+      "period": "PM"
+    },
+    {
+      "headline": "AMD posted record Q2 revenue of $11.54B (+50% YoY) and EPS of $1.66, both above estimates, but shares fell about 9% in after-hours trading.",
+      "summary": "Data center revenue more than doubled to $6.7B, yet investors wanted a bigger beat given sky-high expectations for AI chip growth.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/08/04/amd-earnings-report-q2-2026.html",
+      "period": "PM"
+    },
+    {
+      "headline": "SpaceX posted $7.8B in Q2 revenue (vs $6.8B expected) in its first earnings report as a public company, narrowing its net loss to $541M, but shares dropped nearly 9% after hours on $18.4B in capital spending.",
+      "summary": "Heavy AI-infrastructure investment overshadowed a broad revenue beat across the Space, Connectivity, and AI segments.",
+      "source": "Bloomberg / CNN Business",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-04/spacex-exceeds-revenue-estimates-in-first-earnings-since-ipo",
+      "period": "PM"
+    },
+    {
+      "headline": "Crude oil extended its slide, with WTI falling to around $76/barrel and Brent under $80, on growing optimism for a US-Iran deal to reopen the Strait of Hormuz.",
+      "summary": "Falling oil prices eased inflation worries and lifted consumer-facing and transport stocks even as energy shares lagged.",
+      "source": "Yahoo Finance / The National",
+      "url": "https://finance.yahoo.com/energy/articles/oil-prices-fall-hopes-strait-150509690.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Strong earnings from Palantir and Caterpillar continued to fuel the tech and industrial rally into Tuesday, pushing the Nasdaq-100 up over 3% on the week.",
+      "summary": "Broad-based earnings strength across AI-linked and industrial names reinforced the record-high push in major indexes.",
+      "source": "TheStreet / Investrade",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-4-2026",
+      "period": "PM"
+    }
   ]
 }
