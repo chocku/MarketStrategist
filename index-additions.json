@@ -1,6 +1,19 @@
 {
-  "last_updated": "2026-07-30",
+  "last_updated": "2026-08-06",
   "additions": [
+    {
+      "ticker": "FERG",
+      "company": "Ferguson Enterprises Inc.",
+      "index": "S&P 500",
+      "sector": "Industrials",
+      "status": "effective",
+      "market_cap_at_addition": 45500000000,
+      "announcement_date": "2026-07-31",
+      "effective_date": "2026-08-05",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-08-05",
+      "notes": "Off-cycle addition; replaces Electronic Arts (EA), which is being acquired by an investor consortium (Public Investment Fund, Silver Lake, and Affinity Partners) in a take-private deal expected to close soon. Ferguson is a NYSE-listed plumbing, HVAC, and industrial building-products distributor. Effective prior to market open Aug 5, 2026."
+    },
     {
       "ticker": "SPCX",
       "company": "SpaceX",
