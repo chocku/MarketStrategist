@@ -1816,5 +1816,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-august-5-dow-sp-500-nasdaq-oil-hormuz-093653327.html",
       "period": "PM"
     }
+  ],
+  "2026-08-06": [
+    {
+      "headline": "Dow Jones fell 464.02 points (0.85%) to 53,885.10, snapping its record win streak, while the S&P 500 slipped 0.18% to 7,709.96 and the Nasdaq Composite dropped 0.06% to 26,348.35.",
+      "summary": "Major indexes retreated from record highs as rising oil prices and Treasury yields weighed on sentiment heading into Friday's jobs report.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-6-dow-sp-nasdaq-091620000.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Sandisk and Western Digital led steep tech-sector declines as investors grew increasingly wary of AI capital spending requirements and unclear monetization paths for high-valuation names.",
+      "summary": "Renewed scrutiny of AI infrastructure spending versus returns triggered a punishing reaction in richly valued tech and storage stocks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-6-dow-sp-nasdaq-091620000.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Crude oil rose to about $83 per barrel after Iran floated a tentative shipping-route agreement through the Strait of Hormuz, though key details remained uncertain.",
+      "summary": "Persistent geopolitical uncertainty around the Strait of Hormuz kept a risk premium in oil markets, pressuring rate-sensitive and consumer stocks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-6-dow-sp-nasdaq-091620000.html",
+      "period": "PM"
+    },
+    {
+      "headline": "The 10-year Treasury yield climbed to 4.67% and the 30-year to 5.21% as higher oil prices pushed borrowing costs upward.",
+      "summary": "Rising yields increased the discount rate applied to future earnings, adding pressure to equity valuations already under strain from tech weakness.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-6-dow-sp-nasdaq-091620000.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Initial jobless claims ticked up to 199,000 for the week ending August 1, while July layoffs hit their lowest level in two years.",
+      "summary": "Mixed labor-market signals left investors uncertain heading into Friday's more closely watched nonfarm payrolls report.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-6-dow-sp-nasdaq-091620000.html",
+      "period": "PM"
+    }
   ]
 }
