@@ -1779,5 +1779,42 @@
       "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-4-2026",
       "period": "PM"
     }
+  ],
+  "2026-08-05": [
+    {
+      "headline": "Dow Jones climbed about 0.5% to a fresh record high, while the S&P 500 slipped roughly 0.2% (snapping a four-day win streak) and the Nasdaq fell about 0.8%.",
+      "summary": "Mixed close reflects rotation out of high-flying tech names even as Dow components extended the week's record-setting run.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-august-5-dow-sp-500-nasdaq-oil-hormuz-093653327.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Eli Lilly posted Q2 EPS of $8.38 vs $6.07 expected and revenue of $22.97B vs $20.93B expected, then raised full-year revenue guidance to $85B-$87B from $82B-$85B on Mounjaro and Zepbound strength.",
+      "summary": "Blowout weight-loss drug demand drove the beat, though shares gave back most of their premarket surge to close well off intraday highs.",
+      "source": "QZ / Cryptonomist",
+      "url": "https://qz.com/eli-lilly-earnings-q2-2026-revenue-forecast-weight-loss-080526",
+      "period": "PM"
+    },
+    {
+      "headline": "Disney beat on Q3 adjusted EPS ($2.06 vs $1.88 expected) despite revenue of $25.2B narrowly missing the $25.41B estimate, as streaming operating income more than doubled to $712M; shares rose about 3%.",
+      "summary": "Strength in parks and a swing to solid streaming profitability offset the top-line miss and reassured investors on Disney's turnaround.",
+      "source": "GuruFocus / LevelFields",
+      "url": "https://www.levelfields.ai/news/disney-reports-eps-beat-despite-revenue-miss",
+      "period": "PM"
+    },
+    {
+      "headline": "ADP reported private employers added just 44,000 jobs in July, the weakest reading in six months and well below the 70,000 forecast.",
+      "summary": "Soft private payrolls add to evidence of a cooling labor market, keeping alive expectations for Fed rate cuts later this year.",
+      "source": "Trading Economics / Investing.com",
+      "url": "https://tradingeconomics.com/united-states/adp-employment-change",
+      "period": "PM"
+    },
+    {
+      "headline": "Crude oil extended its decline on hopes for a US-Iran deal to reopen the Strait of Hormuz, with Brent above $79/barrel and WTI near $75.",
+      "summary": "Easing geopolitical risk premium in oil markets helped lift the Dow to its record close while pressuring energy shares.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-august-5-dow-sp-500-nasdaq-oil-hormuz-093653327.html",
+      "period": "PM"
+    }
   ]
 }
