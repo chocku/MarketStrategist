@@ -1890,5 +1890,42 @@
       "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-aug-7-213800176.html",
       "period": "PM"
     }
+  ],
+  "2026-08-10": [
+    {
+      "headline": "S&P 500 slipped 4.53 points (-0.06%) to close at 7,753.11, the Dow fell 60.95 points (-0.11%) to 53,975.98, and the Nasdaq Composite declined about 0.3%, as all three indexes pulled back slightly after last week's record-setting rally.",
+      "summary": "A modest pause after the S&P 500's best week since April, as investors digested a surprisingly weak July jobs report alongside rising oil prices.",
+      "source": "Bloomberg / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-august-10-dow-sp-500-nasdaq-104358890.html",
+      "period": "PM"
+    },
+    {
+      "headline": "WTI crude oil jumped over 5% (topping $80/barrel) after Houthi militants claimed an attack on a Saudi refinery near the Red Sea, adding to Strait of Hormuz supply concerns.",
+      "summary": "The oil spike pushed 10-year Treasury yields up to 4.70% and stoked fresh inflation fears, pressuring rate-sensitive sectors like real estate, utilities, and consumer staples.",
+      "source": "TheStreet / Charles Schwab",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-10-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Nvidia shares fell nearly 3%, the biggest drag on the major indexes, after a Financial Times report that the company is working with Apollo Global and Blackstone on a $500 billion AI infrastructure funding package.",
+      "summary": "The pullback in the market's most influential mega-cap stock weighed disproportionately on the Nasdaq and S&P 500 despite the news reflecting continued AI capex expansion.",
+      "source": "Financial Times / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-august-10-dow-sp-500-nasdaq-104358890.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Federal Reserve officials remained divided on interest rate policy, with hawkish commentary on inflation risk from the Middle East oil shock offsetting the dovish tilt from Friday's weak jobs report.",
+      "summary": "Uncertainty over the Fed's next move kept markets range-bound as traders weighed a softening labor market against a fresh energy-driven inflation threat.",
+      "source": "Edward Jones / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-aug-10-085400959.html",
+      "period": "PM"
+    },
+    {
+      "headline": "With 443 of the S&P 500 (89%) having reported Q2 results through last Friday, 86% beat earnings expectations, keeping the season's beat rate historically strong even as TSMC posted 45% year-over-year sales growth.",
+      "summary": "Continued earnings strength and robust AI-chip demand reinforced the bull case underpinning the market's recent record highs.",
+      "source": "Yahoo Finance / Oppenheimer",
+      "url": "https://www.oppenheimer.com/news-media/2026/market-strategy/08-10-2026",
+      "period": "PM"
+    }
   ]
 }
