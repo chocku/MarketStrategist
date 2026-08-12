@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-10",
+  "last_updated": "2026-08-12",
   "additions": [
     {
       "ticker": "FERG",
@@ -197,6 +197,19 @@
       "notes": "Spin-off addition; FedEx's LTL (less-than-truckload) freight unit completed spinoff from FedEx Corp. on June 1, 2026 and immediately joined the S&P 500 on first day of trading. Replaced EPAM Systems (EPAM)."
     },
     {
+      "ticker": "VEEV",
+      "company": "Veeva Systems Inc.",
+      "index": "S&P 500",
+      "sector": "Health Care",
+      "status": "effective",
+      "market_cap_at_addition": 25440000000,
+      "announcement_date": "2026-04-30",
+      "effective_date": "2026-05-07",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-08-12",
+      "notes": "Off-cycle addition; replaced Coterra Energy (CTRA) after Devon Energy agreed to acquire Coterra. Cloud software provider for life sciences and pharma companies."
+    },
+    {
       "ticker": "CASY",
       "company": "Casey's General Stores, Inc.",
       "index": "S&P 500",
@@ -351,6 +364,19 @@
       "return_pct_announcement": 7.0,
       "price_last_updated": "2026-06-22",
       "notes": "Irish building materials giant; moved primary listing to NYSE in 2023 to qualify. Part of Dec 2025 rebalance; replaced LKQ Corp."
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corporation",
+      "index": "S&P 500",
+      "sector": "Information Technology",
+      "status": "effective",
+      "market_cap_at_addition": 29210000000,
+      "announcement_date": "2025-11-24",
+      "effective_date": "2025-11-28",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-08-12",
+      "notes": "Off-cycle addition; promoted from S&P SmallCap 600, replaced Interpublic Group (IPG) after Omnicom agreed to acquire IPG. Flash memory and storage products maker, spun off from Western Digital in 2025."
     },
     {
       "ticker": "EME",
