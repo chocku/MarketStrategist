@@ -1,17 +1,17 @@
 {
-  "last_updated": "2026-08-16",
+  "last_updated": "2026-08-20",
   "additions": [
     {
       "ticker": "RDDT",
       "company": "Reddit, Inc.",
       "index": "S&P 500",
       "sector": "Communication Services",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 29500000000,
       "announcement_date": "2026-08-13",
       "effective_date": "2026-08-18",
       "return_pct_announcement": 11.0,
-      "price_last_updated": "2026-08-16",
+      "price_last_updated": "2026-08-20",
       "notes": "Off-cycle addition; replaces AvalonBay Communities (AVB), which is being acquired by fellow S&P 500 constituent Equity Residential (EQR) -- the combined company will be renamed Vivmark Residential and remain in the S&P 500. Reddit becomes only the second major social media company in the index after Meta. Shares jumped ~11% on the announcement. Effective prior to market open Aug 18, 2026."
     },
     {
