@@ -1927,5 +1927,42 @@
       "url": "https://www.oppenheimer.com/news-media/2026/market-strategy/08-10-2026",
       "period": "PM"
     }
+  ],
+  "2026-08-20": [
+    {
+      "headline": "S&P 500 fell 0.36% to 7,680.26, the Dow dropped 393.73 points (-0.74%) to 53,069.32, and the Nasdaq Composite lost 0.70% to 26,145.51 as Thursday's session reversed the prior day's bond rally.",
+      "summary": "A broad pullback across all three major indexes as rising Treasury yields pressured rate-sensitive and high-multiple growth stocks.",
+      "source": "Yahoo Finance / Bloomberg",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-20-dow-sp-500-nasdaq-081139322.html",
+      "period": "PM"
+    },
+    {
+      "headline": "The Treasury Department announced it will more than double repurchases of 10-, 20-, and 30-year government debt over the coming months, reversing the prior session's sharp bond-yield decline.",
+      "summary": "The buyback expansion sent long-dated Treasury yields back up, undercutting the rate-relief trade that had lifted stocks earlier in the week.",
+      "source": "Bloomberg",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-19/stock-market-today-dow-s-p-live-updates",
+      "period": "PM"
+    },
+    {
+      "headline": "Newly released FOMC minutes showed a more hawkish tone than expected, with markets now focused on Fed Chair Kevin Warsh's upcoming Jackson Hole speech for clues on the central bank's next policy move.",
+      "summary": "Hawkish minutes reduced hopes for near-term rate relief, adding to the yield-driven pressure on equities heading into next week.",
+      "source": "TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-20-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Walmart shares fell nearly 6% after the retailer beat second-quarter EPS estimates but missed on comparable sales growth, posting 2.6% versus the 3.8% analysts expected.",
+      "summary": "The soft same-store sales figure from the largest US retailer raised concerns about the resilience of consumer spending.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-aug-20-135212527.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Initial jobless claims fell 6,000 to a seasonally adjusted 206,000 for the week ended August 15, beating the Reuters forecast of 210,000.",
+      "summary": "The stronger-than-expected claims data suggested the labor market remains stable despite July's surprise employment drop.",
+      "source": "Investing.com / Reuters",
+      "url": "https://www.investing.com/news/economy-news/us-weekly-jobless-claims-dip-in-latest-week-4869737",
+      "period": "PM"
+    }
   ]
 }
