@@ -1964,5 +1964,42 @@
       "url": "https://www.investing.com/news/economy-news/us-weekly-jobless-claims-dip-in-latest-week-4869737",
       "period": "PM"
     }
+  ],
+  "2026-08-27": [
+    {
+      "headline": "The S&P 500 closed up 0.62% to 7,723.12, the Nasdaq Composite jumped 1.31% to 26,473.11, and the Dow gained 0.28% to 53,615.56 as blowout tech and software earnings lifted the market.",
+      "summary": "Strong results from Nvidia, Salesforce, and CrowdStrike drove the Nasdaq's outperformance and pushed all three major indexes to solid gains for the session.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-27-dow-sp-500-nasdaq-082144520.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Nvidia shares surged 6-8% after Q2 earnings beat expectations and management guided for roughly $108 billion in Q3 revenue.",
+      "summary": "The strong outlook eased investor concerns about slowing AI infrastructure spending and helped anchor the broader tech rally.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-27-dow-sp-500-nasdaq-082144520.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Salesforce jumped 20% and CrowdStrike gained 18% after both companies posted strong earnings, with CrowdStrike reporting record net new annual recurring revenue of $333 million.",
+      "summary": "The results pushed back on fears of an AI-driven slowdown in enterprise software spending and drove a broad rally in SaaS stocks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-27-dow-sp-500-nasdaq-082144520.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Initial jobless claims fell to a seasonally adjusted 203,000 for the week ended August 22, below the 208,000 economists had forecast and the second straight weekly decline.",
+      "summary": "The stronger-than-expected claims data pointed to a stable labor market despite July's surprise employment drop.",
+      "source": "Reuters / Bloomberg",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Kansas City Fed President Jeff Schmid said interest rates remain too accommodative given inflation concerns, a day ahead of Fed Chair Kevin Warsh's closely watched Jackson Hole speech.",
+      "summary": "The hawkish comment kept markets on edge over the Fed's rate path even as strong earnings drove stocks higher.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-27-dow-sp-500-nasdaq-082144520.html",
+      "period": "PM"
+    }
   ]
 }
