@@ -546,7 +546,7 @@
       "name": "Agilent Technologies",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
-      "marketCap": 44536693249
+      "marketCap": 44463189051
     },
     {
       "ticker": "AAPL",
@@ -3794,7 +3794,7 @@
       "name": "Salesforce",
       "sector": "Information Technology",
       "industry": "Application Software",
-      "marketCap": null
+      "marketCap": 207437150000
     },
     {
       "ticker": "CRWD",
@@ -3822,7 +3822,7 @@
       "name": "CrowdStrike",
       "sector": "Information Technology",
       "industry": "Systems Software",
-      "marketCap": 232122385468
+      "marketCap": 233416186582
     },
     {
       "ticker": "CSCO",
@@ -4326,7 +4326,7 @@
       "name": "Dollar General",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 27769652990
+      "marketCap": 27773447693
     },
     {
       "ticker": "DGX",
@@ -4494,7 +4494,7 @@
       "name": "Dollar Tree",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 24406172676
+      "marketCap": 23829047973
     },
     {
       "ticker": "DOC",
@@ -4582,18 +4582,18 @@
     },
     {
       "ticker": "DPZ",
-      "price": 332.05,
+      "price": 332.06,
       "ma50": 327.91,
       "ma200": 363.74,
       "above50": true,
       "above200": false,
       "return1d": -3.63,
-      "return1w": -2.87,
+      "return1w": -2.86,
       "return1m": -5.73,
       "return3m": 7.58,
       "returnYtd": -21.04,
       "return12m": -25.21,
-      "returnFromLow": 6.14,
+      "returnFromLow": 6.15,
       "vsSpx1d": -4.35,
       "vsSpx1w": -3.6,
       "vsSpx1m": -9.68,
@@ -5236,7 +5236,7 @@
       "return1m": 7.8,
       "return3m": 4.11,
       "returnYtd": 28.17,
-      "return12m": 19.72,
+      "return12m": 19.71,
       "returnFromLow": 11.08,
       "vsSpx1d": -1.53,
       "vsSpx1w": -1.49,
@@ -5423,24 +5423,24 @@
     {
       "ticker": "EXPE",
       "price": 318.92,
-      "ma50": 287.06,
-      "ma200": 256.72,
+      "ma50": 286.65,
+      "ma200": 256.35,
       "above50": true,
       "above200": true,
-      "return1d": -4.35,
-      "return1w": -0.84,
-      "return1m": 8.87,
-      "return3m": 41.25,
-      "returnYtd": 13.2,
-      "return12m": 51.47,
-      "returnFromLow": 45.67,
-      "vsSpx1d": -5.07,
-      "vsSpx1w": -1.58,
-      "vsSpx1m": 4.93,
-      "vsSpxYtd": 0.48,
-      "vsSpx12m": 29.98,
-      "high52": 339.13,
-      "low52": 187.7,
+      "return1d": -4.22,
+      "return1w": -0.7,
+      "return1m": 9.03,
+      "return3m": 41.45,
+      "returnYtd": 13.36,
+      "return12m": 51.69,
+      "returnFromLow": 45.88,
+      "vsSpx1d": -4.94,
+      "vsSpx1w": -1.44,
+      "vsSpx1m": 5.09,
+      "vsSpxYtd": 0.64,
+      "vsSpx12m": 30.19,
+      "high52": 338.64,
+      "low52": 187.43,
       "newHigh": false,
       "newLow": false,
       "name": "Expedia Group",
@@ -5534,23 +5534,23 @@
     },
     {
       "ticker": "FAST",
-      "price": 51.13,
+      "price": 51.14,
       "ma50": 48.16,
       "ma200": 44.71,
       "above50": true,
       "above200": true,
-      "return1d": -0.03,
-      "return1w": -0.24,
-      "return1m": 9.59,
-      "return3m": 16.32,
-      "returnYtd": 28.53,
-      "return12m": 4.08,
-      "returnFromLow": 11.7,
-      "vsSpx1d": -0.75,
-      "vsSpx1w": -0.98,
-      "vsSpx1m": 5.65,
-      "vsSpxYtd": 15.8,
-      "vsSpx12m": -17.42,
+      "return1d": -0.02,
+      "return1w": -0.23,
+      "return1m": 9.6,
+      "return3m": 16.34,
+      "returnYtd": 28.54,
+      "return12m": 4.09,
+      "returnFromLow": 11.71,
+      "vsSpx1d": -0.74,
+      "vsSpx1w": -0.97,
+      "vsSpx1m": 5.66,
+      "vsSpxYtd": 15.82,
+      "vsSpx12m": -17.41,
       "high52": 52.38,
       "low52": 38.52,
       "newHigh": false,
@@ -6874,7 +6874,7 @@
       "name": "HP Inc.",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": null
+      "marketCap": 26720066411
     },
     {
       "ticker": "HRL",
@@ -8881,7 +8881,7 @@
       "vsSpx1d": -2.95,
       "vsSpx1w": -4.36,
       "vsSpx1m": 1.03,
-      "vsSpxYtd": -17.44,
+      "vsSpxYtd": -17.43,
       "vsSpx12m": -20.57,
       "high52": 102.81,
       "low52": 73.09,
@@ -9926,7 +9926,7 @@
       "name": "Nvidia",
       "sector": "Information Technology",
       "industry": "Semiconductors",
-      "marketCap": 5521903580000
+      "marketCap": 5505033060000
     },
     {
       "ticker": "NVR",
@@ -9982,7 +9982,7 @@
       "name": "News Corp (Class B)",
       "sector": "Communication Services",
       "industry": "Publishing",
-      "marketCap": 6278127951
+      "marketCap": 6277346920
     },
     {
       "ticker": "NWSA",
@@ -10010,7 +10010,7 @@
       "name": "News Corp (Class A)",
       "sector": "Communication Services",
       "industry": "Publishing",
-      "marketCap": 11212271682
+      "marketCap": 11210687199
     },
     {
       "ticker": "NXPI",
@@ -11690,7 +11690,7 @@
       "name": "J.M. Smucker Company (The)",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
-      "marketCap": 14091150169
+      "marketCap": 14083568446
     },
     {
       "ticker": "SLB",
@@ -11830,7 +11830,7 @@
       "name": "Synopsys",
       "sector": "Information Technology",
       "industry": "Application Software",
-      "marketCap": 89016823399
+      "marketCap": 89089960358
     },
     {
       "ticker": "SO",
@@ -14126,7 +14126,7 @@
       "name": "West Pharmaceutical Services",
       "sector": "Health Care",
       "industry": "Health Care Supplies",
-      "marketCap": null
+      "marketCap": 24356347470
     },
     {
       "ticker": "WTW",
@@ -14182,7 +14182,7 @@
       "name": "Weyerhaeuser",
       "sector": "Real Estate",
       "industry": "Timber REITs",
-      "marketCap": null
+      "marketCap": 17081443200
     },
     {
       "ticker": "WYNN",
@@ -14210,7 +14210,7 @@
       "name": "Wynn Resorts",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
-      "marketCap": null
+      "marketCap": 9639385936
     },
     {
       "ticker": "XEL",
@@ -14238,7 +14238,7 @@
       "name": "Xcel Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
-      "marketCap": null
+      "marketCap": 48196783050
     },
     {
       "ticker": "XOM",
@@ -14266,35 +14266,35 @@
       "name": "ExxonMobil",
       "sector": "Energy",
       "industry": "Integrated Oil & Gas",
-      "marketCap": null
+      "marketCap": 643267507022
     },
     {
       "ticker": "XYL",
       "price": 112.65,
-      "ma50": 118.01,
-      "ma200": 124.88,
+      "ma50": 117.57,
+      "ma200": 124.41,
       "above50": false,
       "above200": false,
-      "return1d": -0.68,
-      "return1w": -0.68,
-      "return1m": -3.57,
-      "return3m": 2.84,
-      "returnYtd": -17.24,
-      "return12m": -21.1,
-      "returnFromLow": 5.15,
-      "vsSpx1d": -1.4,
-      "vsSpx1w": -1.42,
-      "vsSpx1m": -7.51,
-      "vsSpxYtd": -29.96,
-      "vsSpx12m": -42.59,
-      "high52": 151.41,
-      "low52": 105.92,
+      "return1d": -0.3,
+      "return1w": -0.3,
+      "return1m": -3.2,
+      "return3m": 3.23,
+      "returnYtd": -16.92,
+      "return12m": -20.8,
+      "returnFromLow": 5.55,
+      "vsSpx1d": -1.02,
+      "vsSpx1w": -1.04,
+      "vsSpx1m": -7.15,
+      "vsSpxYtd": -29.64,
+      "vsSpx12m": -42.29,
+      "high52": 150.84,
+      "low52": 105.52,
       "newHigh": false,
       "newLow": false,
       "name": "Xylem Inc.",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": null
+      "marketCap": 26302289371
     },
     {
       "ticker": "XYZ",
@@ -14322,7 +14322,7 @@
       "name": "Block, Inc.",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "marketCap": null
+      "marketCap": 45888237600
     },
     {
       "ticker": "YUM",
@@ -14350,7 +14350,7 @@
       "name": "Yum! Brands",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
-      "marketCap": null
+      "marketCap": 41139838563
     },
     {
       "ticker": "ZBH",
@@ -14378,7 +14378,7 @@
       "name": "Zimmer Biomet",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": null
+      "marketCap": 18974585301
     },
     {
       "ticker": "ZBRA",
@@ -14406,7 +14406,7 @@
       "name": "Zebra Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": null
+      "marketCap": 17084352432
     },
     {
       "ticker": "ZTS",
@@ -14434,7 +14434,7 @@
       "name": "Zoetis",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
-      "marketCap": null
+      "marketCap": 31000034622
     }
   ]
 }
