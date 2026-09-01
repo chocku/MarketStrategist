@@ -2001,5 +2001,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-august-27-dow-sp-500-nasdaq-082144520.html",
       "period": "PM"
     }
+  ],
+  "2026-08-31": [
+    {
+      "headline": "The S&P 500 fell 0.33% to 7,686.14 and the Dow dropped 464 points (0.9%) to 53,885.10 on Monday, while the Nasdaq slipped 0.12%, even as all three indexes closed out August with solid monthly gains.",
+      "summary": "Geopolitical tensions and inflation fears cut into a month of strong gains that had been driven by big tech and AI earnings.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/08/31/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed Chair Kevin Warsh said at Jackson Hole that inflation is running too hot and the central bank has \"work to do,\" and traders lifted the odds of a 25bp rate hike at the next meeting to 62%, up from about 40% a week earlier.",
+      "summary": "The hawkish tone reignited rate-hike fears and pressured risk assets into month-end.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/08/31/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "The U.S. and Iran exchanged strikes for the first time in a month, sending crude oil more than 2% higher and above $85 a barrel.",
+      "summary": "Renewed Middle East conflict stoked inflation concerns and weighed on equities while lifting energy prices.",
+      "source": "The Motley Fool / Yahoo Finance",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/08/31/stock-market-today-aug-31-stocks-edge-lower-as-oil-prices-surge-again/",
+      "period": "PM"
+    },
+    {
+      "headline": "The 10-year Treasury yield climbed to around 4.72-4.76%, its highest level since January 2025, while the 30-year yield rose to about 5.27%.",
+      "summary": "Rising energy costs and a hawkish Fed pushed long-term borrowing costs to multi-month highs, pressuring rate-sensitive stocks.",
+      "source": "Investrade Market Review",
+      "url": "https://investrade.com/market-review-august-31-2026/",
+      "period": "PM"
+    },
+    {
+      "headline": "Despite Monday's pullback, the S&P 500 gained roughly 2.6-3.0% in August, the Nasdaq Composite rose about 4.05%, and the Dow added around 2.05%, capping a winning month for stocks.",
+      "summary": "August's rally, led by Nvidia, Salesforce, and other tech/AI earnings beats, held up despite the late-month geopolitical and rate scare.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-august-31-dow-sp-500-nasdaq-113851714.html",
+      "period": "PM"
+    }
   ]
 }
