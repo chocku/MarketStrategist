@@ -2038,5 +2038,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-august-31-dow-sp-500-nasdaq-113851714.html",
       "period": "PM"
     }
+  ],
+  "2026-09-01": [
+    {
+      "headline": "The S&P 500 fell 0.71% to 7,631.47, the Nasdaq Composite dropped 1.03% to 26,099.77, and the Dow lost 419.02 points (0.79%) to 52,766.88 as renewed U.S.-Iran conflict rattled markets.",
+      "summary": "A broad selloff hit equities as investors reacted to escalating Middle East tensions, with megacap tech names leading the decline.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-1-135016820.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Crude oil spiked on renewed U.S. airstrikes against Iran, with WTI settling up 5.2% at $90.22 a barrel and Brent crude jumping 4.6% to $94.65.",
+      "summary": "Escalating conflict in the Strait of Hormuz reignited supply-disruption fears, pushing energy prices to their highest levels in months and adding to inflation concerns.",
+      "source": "Trading Economics / Yahoo Finance",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Fed funds futures now show a 68% probability of a rate hike at the next FOMC meeting, up sharply from about 57.5% priced in earlier, per the CME FedWatch tool.",
+      "summary": "Rising oil-driven inflation fears pushed traders to price in tighter Fed policy, pressuring rate-sensitive stocks alongside the geopolitical selloff.",
+      "source": "CME FedWatch / CNBC",
+      "url": "https://www.cnbc.com/2026/08/31/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "The ISM Manufacturing PMI fell to 54.6 in August from July's near four-year high of 55.6, missing the 55.2 consensus estimate, with the new orders index dropping to 53.7 from 56.7.",
+      "summary": "The cooling factory-sector reading added to a cautious tone for markets already on edge over oil prices and Fed policy.",
+      "source": "ISM / Trading Economics",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Technology stocks led the session's losses, with the Nasdaq's roughly 1% decline about triple the S&P 500's drop as megacap tech names that have carried this year's gains sold off hardest.",
+      "summary": "Concentrated selling in the stocks most responsible for 2026's rally raised concerns about market breadth heading into September.",
+      "source": "24/7 Wall St.",
+      "url": "https://247wallst.com/cards/the-nasdaq-s-1-02-slide-was-triple-the-s-p-500-s-loss-so-t-gspc-market-bell-01m1f95kv8c17b0rdk9z8mq85y",
+      "period": "PM"
+    }
   ]
 }
