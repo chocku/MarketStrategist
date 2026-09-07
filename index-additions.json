@@ -1,6 +1,45 @@
 {
-  "last_updated": "2026-09-01",
+  "last_updated": "2026-09-07",
   "additions": [
+    {
+      "ticker": "BE",
+      "company": "Bloom Energy Corporation",
+      "index": "S&P 500",
+      "sector": "Industrials",
+      "status": "confirmed",
+      "market_cap_at_addition": 74500000000,
+      "announcement_date": "2026-09-04",
+      "effective_date": "2026-09-21",
+      "return_pct_announcement": 6.0,
+      "price_last_updated": "2026-09-07",
+      "notes": "Sep 2026 quarterly S&P 500 rebalance; fuel cell power generation company benefiting from AI data center power demand. Replaces Molson Coors Beverage (TAP), which moves to the S&P SmallCap 600. Shares jumped ~6% in after-hours trading on the announcement. Effective prior to market open Sep 21, 2026."
+    },
+    {
+      "ticker": "ILMN",
+      "company": "Illumina, Inc.",
+      "index": "S&P 500",
+      "sector": "Health Care",
+      "status": "confirmed",
+      "market_cap_at_addition": 32950000000,
+      "announcement_date": "2026-09-04",
+      "effective_date": "2026-09-21",
+      "return_pct_announcement": 2.0,
+      "price_last_updated": "2026-09-07",
+      "notes": "Sep 2026 quarterly S&P 500 rebalance; gene-sequencing and genomics company. Replaces Builders FirstSource (BLDR), which moves to the S&P SmallCap 600. Shares rose ~2% in after-hours trading on the announcement. Effective prior to market open Sep 21, 2026."
+    },
+    {
+      "ticker": "P",
+      "company": "Everpure, Inc.",
+      "index": "S&P 500",
+      "sector": "Information Technology",
+      "status": "confirmed",
+      "market_cap_at_addition": 33050000000,
+      "announcement_date": "2026-09-04",
+      "effective_date": "2026-09-21",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-09-07",
+      "notes": "Sep 2026 quarterly S&P 500 rebalance; data storage and management company formerly known as Pure Storage, rebranded Everpure in Feb 2026. Replaces The Trade Desk (TTD), which moves to the S&P SmallCap 600. Effective prior to market open Sep 21, 2026."
+    },
     {
       "ticker": "RDDT",
       "company": "Reddit, Inc.",
