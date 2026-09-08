@@ -2075,5 +2075,42 @@
       "url": "https://247wallst.com/cards/the-nasdaq-s-1-02-slide-was-triple-the-s-p-500-s-loss-so-t-gspc-market-bell-01m1f95kv8c17b0rdk9z8mq85y",
       "period": "PM"
     }
+  ],
+  "2026-09-08": [
+    {
+      "headline": "The S&P 500 fell 0.52% to 7,678.60, the Dow dropped 1.26% (670.51 points) to 52,743.74, and the Nasdaq slipped 0.49% to 26,376.80 as stocks opened the shortened trading week lower.",
+      "summary": "A broad selloff hit equities as rising oil prices, Middle East tensions, and rate-hike fears weighed on sentiment.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Crude oil jumped 1.89% to $93.21 a barrel after military activity between the U.S. and Iran in the Strait of Hormuz raised fears of a supply disruption.",
+      "summary": "Escalating Middle East conflict reignited the energy-driven inflation risk that has weighed on markets for weeks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Canada implemented retaliatory tariffs on U.S. goods after trade negotiations between the two countries collapsed.",
+      "summary": "The escalating U.S.-Canada trade dispute added another layer of uncertainty for markets already on edge over oil and rates.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Friday's unexpectedly strong jobs report continued to boost expectations for a Fed rate hike at the September 16-17 FOMC meeting, keeping Treasury yields elevated with prediction markets pricing roughly 48% odds of a 25bp hike.",
+      "summary": "Hawkish rate repricing pressured equities as investors looked ahead to this week's PPI and CPI reports for further clues on Fed policy.",
+      "source": "Yahoo Finance / Kalshi",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Megacap tech led the session's losses, with Apple down 2.51-2.55%, Microsoft down about 2.0-2.05%, and Alphabet down roughly 1.05-1.11%.",
+      "summary": "Rate-sensitive tech names sold off hardest as rising yields and geopolitical risk drove the broader index declines.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html",
+      "period": "PM"
+    }
   ]
 }
