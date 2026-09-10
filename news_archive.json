@@ -2147,5 +2147,42 @@
       "url": "https://tradingstrategyguides.com/5-stocks-to-watch-on-september-8-2026-oil-spikes-and-trade-crosscurrents/",
       "period": "PM"
     }
+  ],
+  "2026-09-09": [
+    {
+      "headline": "S&P 500 falls 0.48% to 7,636.36, Dow drops 405 points (0.77%) to 52,380.66, Nasdaq sheds 0.64% to 26,253.34",
+      "summary": "All three major indexes closed lower for a third straight session as surging Treasury yields and rising oil prices weighed on risk appetite.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/08/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield jumps to 4.857%, its highest level since November 2023",
+      "summary": "Yields spiked after the Treasury Department said it would triple its buyback operation of longer-dated government debt to $6 billion, pressuring equity valuations.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/08/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude tops $100 a barrel for the first time since July",
+      "summary": "The oil rally raised inflation and cost concerns for consumers and businesses, adding to the day's risk-off tone across equities.",
+      "source": "Yahoo Finance / Charles Schwab",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-september-9-dow-sp-500-nasdaq-futures-080411279.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Apple held its fall hardware event, with a foldable iPhone and touch-screen MacBook expected to headline the announcements",
+      "summary": "Investors watched closely for signs of a new upgrade cycle, though AAPL shares saw muted trading ahead of the reveal.",
+      "source": "Bloomberg / Charles Schwab",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+      "period": "PM"
+    },
+    {
+      "headline": "PepsiCo kicked off large-cap earnings season with its Q3 report as September FOMC minutes showed most officials backing a 25bp rate cut",
+      "summary": "Early earnings and Fed commentary gave investors a read on both corporate health and the rate-cut path heading into next week's decision.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/08/stock-market-today-live-updates.html",
+      "period": "PM"
+    }
   ]
 }
