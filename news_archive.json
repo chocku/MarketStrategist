@@ -2184,5 +2184,42 @@
       "url": "https://www.cnbc.com/2026/09/08/stock-market-today-live-updates.html",
       "period": "PM"
     }
+  ],
+  "2026-09-16": [
+    {
+      "headline": "Fed raises interest rates 25 basis points to 3.75%-4.00%, the first hike since 2023, under new Chair Kevin Warsh",
+      "summary": "The widely-expected move, backed by roughly 93% odds on the CME FedWatch tool, marks a hawkish pivot as the Fed prioritizes inflation control despite pressure from President Trump for lower rates.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/09/16/fed-meeting-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "S&P 500 closes at 7,601, up about 0.2%, on a volatile Fed decision day",
+      "summary": "Stocks held modest gains through the rate hike announcement and Chair Warsh's press conference as investors weighed the new dot plot against a stark bond-market backdrop.",
+      "source": "Trading Economics",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "period": "PM"
+    },
+    {
+      "headline": "August retail sales jumped 1.2% month-over-month, well above the roughly 0.8-0.9% forecast, with core sales ex-autos up 1.4%",
+      "summary": "The surprisingly strong consumer spending data, released hours before the Fed decision, reinforced the case for a rate hike by showing the economy still running hot.",
+      "source": "Commerce Department / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-september-16-dow-sp-500-nasdaq-fed-meeting-decision-080356525.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield held near 4.98% after briefly touching the 5.00% mark Tuesday, its highest level in nearly two decades",
+      "summary": "Elevated long-term borrowing costs ahead of and through the Fed decision kept pressure on equity valuations, particularly rate-sensitive growth stocks.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-september-15-dow-sp-500-nasdaq-081307838.html",
+      "period": "PM"
+    },
+    {
+      "headline": "WTI crude slipped 1.8% to $103.89 a barrel even as diesel prices hit a record $5.262/gallon",
+      "summary": "Energy markets stayed volatile into the Fed decision, with elevated fuel costs continuing to feed the inflation pressures driving the central bank's hawkish shift.",
+      "source": "Trading Economics",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "period": "PM"
+    }
   ]
 }
