@@ -2221,5 +2221,42 @@
       "url": "https://tradingeconomics.com/united-states/stock-market",
       "period": "PM"
     }
+  ],
+  "2026-09-17": [
+    {
+      "headline": "Wall Street rebounds sharply as S&P 500 gains 0.9% and Nasdaq Composite jumps 1.5%, clawing back Wednesday's Fed-hike selloff",
+      "summary": "Stocks bounced back as falling Treasury yields and oil prices revived risk appetite in tech and small-cap names a day after the Fed's rate hike triggered a steep drop.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-17-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Dow surges to lead the rebound, recovering a large chunk of the prior session's roughly 600-point drop tied to the Fed's rate decision",
+      "summary": "Blue chips bounced back hard as investors reassessed the likely pace of future Fed tightening following Wednesday's hawkish hike.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-17-134502255.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Initial jobless claims fell 10,000 to 196,000 for the week ended Sept. 12, well below the 207,000 forecast",
+      "summary": "The larger-than-expected drop in claims reinforced a resilient labor market, giving the Fed room to keep tightening without an immediate growth scare.",
+      "source": "Bloomberg / Labor Department",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-17/us-jobless-claims-fall-to-196-000-continuing-applications-drop",
+      "period": "PM"
+    },
+    {
+      "headline": "US Dollar extends its post-Fed rally, with the Bloomberg Dollar Spot Index up about 0.5% on the day and 1.1% on the week",
+      "summary": "The dollar strengthened broadly against G-10 currencies as traders priced in additional Fed rate hikes following Chair Kevin Warsh's hawkish commentary.",
+      "source": "Saxo Bank",
+      "url": "https://www.home.saxo/content/articles/macro/market-quick-take---first-fed-hike-since-2023-lifts-the-dollar---17-september-2026-17092026",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed's updated dot plot points to up to two more possible rate hikes this year as Chair Warsh reiterates inflation is 'too high'",
+      "summary": "Following Wednesday's 25bp hike to 3.75%-4.00%, policymakers' projections kept markets bracing for a longer tightening cycle even as stocks rallied Thursday.",
+      "source": "Kiplinger / CNBC",
+      "url": "https://www.kiplinger.com/investing/stocks/dow-falls-631-points-after-fed-hikes-rates-stock-market-today",
+      "period": "PM"
+    }
   ]
 }
