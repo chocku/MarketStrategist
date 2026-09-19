@@ -2258,5 +2258,42 @@
       "url": "https://www.kiplinger.com/investing/stocks/dow-falls-631-points-after-fed-hikes-rates-stock-market-today",
       "period": "PM"
     }
+  ],
+  "2026-09-18": [
+    {
+      "headline": "S&P 500 rose 0.17% to 7,650.50 and Nasdaq Composite advanced 0.39% to 26,522.55, while the Dow slid 95.40 points (0.18%) to 51,682.64",
+      "summary": "Tech-heavy indexes eked out gains to close out a volatile Fed-hike week, even as the Dow lagged on rate-sensitive names.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-18-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed's September dot plot and updated forecasts confirmed this week's 25bp hike to 3.75%-4.00% with Chair Kevin Warsh signaling up to two more hikes this year",
+      "summary": "Policymakers lifted their 2026 PCE inflation forecast to 3.7% and core PCE to 3.4%, keeping markets braced for a longer tightening cycle despite Friday's rebound.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/17/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Netflix fell more than 3% after Wells Fargo downgraded the stock to underweight",
+      "summary": "Analysts flagged worsening engagement trends and a weaker content slate for H2 2026 that could pressure margin expansion into 2027-2028.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-18-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Lennar dropped more than 4% after missing both top- and bottom-line earnings estimates",
+      "summary": "Homebuilders came under pressure as this week's Fed rate hike lifts mortgage rates, adding to affordability headwinds for the sector.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-18-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Bitcoin crossed $78,000, lifting crypto-linked stocks with Robinhood up about 2.5% and Coinbase up about 1%",
+      "summary": "Renewed risk appetite in crypto markets spilled into trading-platform equities even as broader indexes traded mixed post-Fed.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-18-2026",
+      "period": "PM"
+    }
   ]
 }
