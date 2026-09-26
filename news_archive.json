@@ -2295,5 +2295,42 @@
       "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-18-2026",
       "period": "PM"
     }
+  ],
+  "2026-09-26": [
+    {
+      "headline": "Dow surges 478.64 points (+0.93%) to 51,828.62 Friday as S&P 500 gains 0.51% to 7,743.41, capping a 1.2% weekly rise",
+      "summary": "Wall Street closed out a volatile week strong, with the S&P 500 nearing a fresh all-time high despite a spike in Treasury yields.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-september-25-dow-sp-500-nasdaq-081738529.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield eases to 5.17% after touching multidecade highs, relieving pressure on equities",
+      "summary": "Falling yields helped stocks rally into the weekend after a week of bond-market volatility had weighed on cyclical and rate-sensitive sectors.",
+      "source": "Seeking Alpha",
+      "url": "https://seekingalpha.com/article/4949989-the-1-minute-market-report-september-26-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed funds futures price roughly 64% odds of an October rate hike after hawkish comments from Fed Governor Michael Barr",
+      "summary": "Hawkish Fed commentary combined with a hot PMI report kept rate-hike expectations elevated, a key driver of this week's yield spike.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil prices ease as US and Iran negotiators discuss phased deal to end Persian Gulf standoff",
+      "summary": "Progress toward defusing the Strait of Hormuz shipping crisis lifted equities by reducing the geopolitical risk premium built into energy and transport costs.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/24/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "VIX drops 5.11% to 14.87 and gold rises to $4,285/oz as market leadership narrows to Mag 7 and large-cap tech",
+      "summary": "Falling volatility signals traders see fewer near-term shocks, though narrowing breadth toward mega-cap growth stocks raises concentration risk.",
+      "source": "Seeking Alpha",
+      "url": "https://seekingalpha.com/article/4949989-the-1-minute-market-report-september-26-2026",
+      "period": "PM"
+    }
   ]
 }
