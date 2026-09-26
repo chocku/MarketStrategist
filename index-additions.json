@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-09-18",
+  "last_updated": "2026-09-26",
   "additions": [
     {
       "ticker": "BE",
       "company": "Bloom Energy Corporation",
       "index": "S&P 500",
       "sector": "Industrials",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 74500000000,
       "announcement_date": "2026-09-04",
       "effective_date": "2026-09-21",
@@ -19,7 +19,7 @@
       "company": "Illumina, Inc.",
       "index": "S&P 500",
       "sector": "Health Care",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 32950000000,
       "announcement_date": "2026-09-04",
       "effective_date": "2026-09-21",
@@ -32,7 +32,7 @@
       "company": "Everpure, Inc.",
       "index": "S&P 500",
       "sector": "Information Technology",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 33050000000,
       "announcement_date": "2026-09-04",
       "effective_date": "2026-09-21",
