@@ -2332,5 +2332,42 @@
       "url": "https://seekingalpha.com/article/4949989-the-1-minute-market-report-september-26-2026",
       "period": "PM"
     }
+  ],
+  "2026-09-28": [
+    {
+      "headline": "Dow falls 347.11 points (-0.67%) to 51,481.51 Monday as S&P 500 slides 0.77% to 7,683.69 and Nasdaq drops 0.92% to 26,820.38",
+      "summary": "All three major indexes finished lower, with the S&P 500 erasing its September gain as rising yields and oil hit every sector.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://www.cnbc.com/2026/09/27/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield climbs to ~5.2%, its highest level since 2007, while the 30-year pushes toward 5.5%+",
+      "summary": "The deepening bond selloff raises borrowing costs and pressures equity valuations, especially long-duration tech.",
+      "source": "Babypips / Bloomberg",
+      "url": "https://www.babypips.com/news/headline-us-treasury-yields-september-28-2026-selloff-iran-fed-hike",
+      "period": "PM"
+    },
+    {
+      "headline": "Trump rejects Iran's proposal to reopen the Strait of Hormuz, sending Brent crude above $100/barrel intraday",
+      "summary": "Renewed U.S.-Iran tensions revived inflation fears and boosted money-market bets on an October Fed rate hike.",
+      "source": "Washington Times / TheStreet",
+      "url": "https://www.washingtontimes.com/news/2026/sep/28/oil-prices-rising-knocking-us-stocks/",
+      "period": "PM"
+    },
+    {
+      "headline": "AI stocks lead the decline: Meta sheds 4.8%, AMD falls 3.6%, Micron drops 2.6%, and Amazon and Microsoft slip ~1%",
+      "summary": "Higher yields hit richly valued AI names hardest, dragging the Nasdaq 100 down about 1.1%.",
+      "source": "Yahoo Finance / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-28-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Boeing tumbles 6-7% after the FAA says it won't certify the 737 Max 10 until it assesses a new navigation software glitch",
+      "summary": "The certification delay weighs on Boeing's delivery outlook and was a major drag on the Dow.",
+      "source": "Yahoo Finance / Bloomberg",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-september-28-dow-sp-500-nasdaq-080420627.html",
+      "period": "PM"
+    }
   ]
 }
