@@ -2369,5 +2369,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-september-28-dow-sp-500-nasdaq-080420627.html",
       "period": "PM"
     }
+  ],
+  "2026-09-29": [
+    {
+      "headline": "Dow slips 131.59 points (-0.26%) to 51,349.92 Tuesday as S&P 500 edges down 0.16% to 7,670.84 and Nasdaq dips 0.09% to 26,797.54",
+      "summary": "A second straight losing session for the S&P 500 shows equities remain hostage to the bond selloff, though losses were far milder than Monday's.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-29-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "30-year Treasury yield touches 5.62%, its highest since 2002, while the 10-year edges up to ~5.25%",
+      "summary": "Multi-decade-high long-end yields raise borrowing costs across the economy and pressure equity valuations, especially rate-sensitive and growth stocks.",
+      "source": "Yahoo Finance / BNN Bloomberg",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-september-29-dow-sp-500-nasdaq-080526442.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Conference Board consumer confidence plunges 6.7 points to 81.9 in September, lowest in 12 years vs. 89 expected; JOLTS openings slip to 7.08 million",
+      "summary": "A sharp miss on sentiment alongside cooling job openings signals household strain from high rates and energy costs, raising stagflation concerns.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.cnbc.com/2026/09/28/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "WTI crude tumbles about 4.8% to near $91.70 a barrel",
+      "summary": "The oil pullback offers some relief on inflation, but prices remain elevated enough that markets still fear energy-driven Fed rate hikes.",
+      "source": "BabyPips / Yahoo Finance",
+      "url": "https://www.babypips.com/news/financial-forex-market-recap-2026-09-29",
+      "period": "PM"
+    },
+    {
+      "headline": "NY Fed President John Williams says there is no urgency to act and the Fed has time to gather data before its October meeting",
+      "summary": "Williams' comments tempered fears of another quick hike after September's 25 bp increase, helping limit equity losses despite surging yields.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-sep-29-083000758.html",
+      "period": "PM"
+    }
   ]
 }
