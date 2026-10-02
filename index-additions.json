@@ -1,6 +1,45 @@
 {
-  "last_updated": "2026-09-29",
+  "last_updated": "2026-10-01",
   "additions": [
+    {
+      "ticker": "MRNA",
+      "company": "Moderna, Inc.",
+      "index": "Nasdaq-100",
+      "sector": "Health Care",
+      "status": "confirmed",
+      "market_cap_at_addition": 75000000000,
+      "announcement_date": "2026-10-01",
+      "effective_date": "2026-10-09",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-10-01",
+      "notes": "Replaces Warner Bros. Discovery (WBD), which is being acquired by Paramount Skydance ($31/share cash; deal expected to close ~Oct 6, 2026). Moderna shares have risen more than sixfold in 2026 to a ~$75B valuation. Effective prior to market open Fri, Oct 9, 2026."
+    },
+    {
+      "ticker": "TWLO",
+      "company": "Twilio Inc.",
+      "index": "S&P 500",
+      "sector": "Information Technology",
+      "status": "confirmed",
+      "market_cap_at_addition": 45000000000,
+      "announcement_date": "2026-10-01",
+      "effective_date": "2026-10-06",
+      "return_pct_announcement": 1.2,
+      "price_last_updated": "2026-10-01",
+      "notes": "Off-cycle addition; moves up from the S&P MidCap 400 (member since Aug 2025) to replace Warner Bros. Discovery (WBD), which is being acquired by S&P 500 constituent Paramount Skydance. FormFactor (FORM) replaces Twilio in the MidCap 400. Shares rose ~1.2% after hours on the announcement. Market cap approximate (~$44-46B). Effective prior to market open Tue, Oct 6, 2026."
+    },
+    {
+      "ticker": "VYLR",
+      "company": "Vylor Inc.",
+      "index": "S&P 500",
+      "sector": "Consumer Staples",
+      "status": "effective",
+      "market_cap_at_addition": 46000000000,
+      "announcement_date": "2026-10-01",
+      "effective_date": "2026-10-01",
+      "return_pct_announcement": 3.0,
+      "price_last_updated": "2026-10-01",
+      "notes": "Spin-off addition; Corteva's seed and genetics business began trading on the NYSE Oct 1, 2026 (1:1 distribution) and was added to the S&P 500 the same day, taking Corteva's seat. Corteva (CTVA) moves to the S&P MidCap 400 effective Oct 6, replacing Olin (OLN). Closed first day at $67.74; market cap approximate (~$46B, implied by Corteva's ~$42B+ market-cap drop). Rose ~3% after hours on the S&P announcement."
+    },
     {
       "ticker": "BE",
       "company": "Bloom Energy Corporation",
