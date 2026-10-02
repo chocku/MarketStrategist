@@ -2406,5 +2406,42 @@
       "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-sep-29-083000758.html",
       "period": "PM"
     }
+  ],
+  "2026-10-01": [
+    {
+      "headline": "S&P 500 rose 0.2% to close at 7,666.45 on the first trading day of October, while the Dow and Nasdaq each gained about 0.04%, after recovering from earlier losses",
+      "summary": "Stocks pared morning losses as Treasury yields eased off their highs, which shows equities are still holding up against a historic bond selloff.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-01-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield topped 5.3%, the highest since 2002, and the 30-year hit about 5.66% before both pulled back later in the session",
+      "summary": "Multi-decade-high long rates are the biggest headwind for equity valuations, and the 10-year is on track for an eighth straight weekly gain.",
+      "source": "Motley Fool / CNBC",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/10/01/stock-market-midday-oct-1-stocks-edge-lower-as-treasury-yields-surge-to-24-year-high/",
+      "period": "PM"
+    },
+    {
+      "headline": "Micron closed up 3% after reporting that quarterly revenue quadrupled and giving strong guidance, which lifted chip stocks worldwide",
+      "summary": "Micron's results reignited the AI trade and helped offset rate pressure, with Japan's Nikkei up 2.9% on a semiconductor squeeze.",
+      "source": "Yahoo Finance / Tickmill",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-oct-1-dow-sp-500-nasdaq-080602402.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Accenture jumped 21.4% on a fiscal Q4 earnings beat and a strong FY2027 revenue outlook, and Synopsys rose 12.3% on an AWS deal worth more than $1B and an OpenAI partnership",
+      "summary": "The big gains in IT services and chip-design software show that AI-driven demand is widening beyond semiconductors.",
+      "source": "Investrade / CNBC",
+      "url": "https://investrade.com/market-review-october-01-2026/",
+      "period": "PM"
+    },
+    {
+      "headline": "Initial jobless claims fell to 197,000, near a 57-year low, ahead of Friday's September jobs report; markets price about 38% odds of an October Fed hike",
+      "summary": "A tight labor market keeps another Fed hike possible, so tomorrow's payrolls report is a key catalyst for rates and stocks.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://www.cnbc.com/2026/10/01/stock-market-today-live-updates-.html",
+      "period": "PM"
+    }
   ]
 }
