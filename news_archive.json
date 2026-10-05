@@ -2480,5 +2480,35 @@
       "url": "https://www.alainguillot.com/stock-market-recap-october-2-2026/",
       "period": "PM"
     }
+  ],
+  "2026-10-05": [
+    {
+      "headline": "S&P 500 climbed 0.66% to 7,773.95, the Dow added 90.94 points (0.18%) to 51,267.90 and the Nasdaq rose 1.05% to a record close of 27,477.31",
+      "summary": "Tech-led strength pushed the Nasdaq to a fresh record, extending the rebound after last week's bond-driven pressure.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "AI-linked megacaps led the Nasdaq: SpaceX jumped more than 7%, Meta rose nearly 2%, Microsoft over 1%, and Nvidia and Tesla each gained about 2%",
+      "summary": "AI leadership continues to drive index-level gains and Nvidia also hit a record high.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-october-5-dow-sp-500-nasdaq-081220790.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Stocks rallied as the lackluster September jobs report eased worries about another Fed rate hike, offering relief after a week of rising bond yields",
+      "summary": "Softer labor data reduces the odds of further tightening, a key support for equity valuations ahead of the October FOMC.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-october-5-dow-sp-500-nasdaq-081220790.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Yields stayed elevated after ISM data, with tech strength outshining bond weakness as the 10-year hovered near multi-year highs",
+      "summary": "Persistently high yields remain the main risk to equity multiples even as growth stocks make records.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026",
+      "period": "PM"
+    }
   ]
 }
