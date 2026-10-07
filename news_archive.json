@@ -2547,5 +2547,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-6-dow-sp-500-nasdaq-080526166.html",
       "period": "PM"
     }
+  ],
+  "2026-10-07": [
+    {
+      "headline": "Dow fell 341.41 points (0.66%) to 51,179.87, the S&P 500 slipped 0.22% to 7,801.77 and the Nasdaq lost 0.22% to 27,538.69, retreating from Tuesday's record highs.",
+      "summary": "A pullback from record levels as bond-market jitters returned and gains from the prior session faded.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-07-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "The 10-year Treasury yield rebounded to about 5.31% and the 30-year to roughly 5.68% as global bond yields rose.",
+      "summary": "Renewed upward pressure on long-dated yields, near their highest since 2002, weighs on equity valuations.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Investors parsed minutes of the Fed's Sept. 15-16 meeting, where the Fed raised rates 25 bps to 3.75%-4.00%, its first hike since 2023.",
+      "summary": "The minutes show how much appetite officials have for further tightening, key for the October FOMC outlook.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil prices climbed again on Iran-war supply concerns, adding to elevated energy costs.",
+      "summary": "Higher crude feeds inflation worries that argue for continued Fed tightening despite softer jobs data.",
+      "source": "CNBC / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html",
+      "period": "PM"
+    },
+    {
+      "headline": "October Fed hike odds sat near 20%, down from about 70% before the weak September jobs report (+29,000 payrolls), as core PCE ran at 3.0% for August.",
+      "summary": "Markets are balancing cooling labor data against sticky inflation in pricing the Fed's next move.",
+      "source": "Yahoo Finance / CME FedWatch",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html",
+      "period": "PM"
+    }
   ]
 }
