@@ -2510,5 +2510,42 @@
       "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026",
       "period": "PM"
     }
+  ],
+  "2026-10-06": [
+    {
+      "headline": "S&P 500 closed at a record 7,818.93, up 0.58%, with the Nasdaq also hitting a record high.",
+      "summary": "Tech-led gains pushed the broad market to new all-time highs as bond and oil pressure eased.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-06-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Dow Jones Industrial Average rose 0.49% to close at 51,521.28.",
+      "summary": "Participation beyond tech suggests the rally was not confined to mega-cap growth names.",
+      "source": "TheStreet / CNBC",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-06-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield eased to about 5.27-5.29% after Monday's close at its highest level since 2002; 30-year near 5.64-5.66%.",
+      "summary": "A pause in the bond selloff removed a key headwind for equity valuations.",
+      "source": "CNBC / Detroit News",
+      "url": "https://www.detroitnews.com/story/business/2026/10/06/sp-500-nasdaq-touch-new-peaks-as-treasury-yields-cool-oil-slips/92117491007/",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil fell more than 2% on resilient Middle East exports and a G7 emergency stockpile release; S&P 500 energy stocks slipped 0.6%.",
+      "summary": "Cooler crude eases energy-driven inflation worries that have fueled Fed rate-hike expectations.",
+      "source": "CNBC / Detroit News",
+      "url": "https://www.detroitnews.com/story/business/2026/10/06/sp-500-nasdaq-touch-new-peaks-as-treasury-yields-cool-oil-slips/92117491007/",
+      "period": "PM"
+    },
+    {
+      "headline": "Nvidia and AMD led tech higher, helped by optimism over a Constellation Energy-Alphabet nuclear power deal, ahead of Q3 earnings season expected to show S&P 500 profit growth above 30%.",
+      "summary": "AI-driven earnings expectations are underpinning the record highs even with yields near multi-decade peaks.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-6-dow-sp-500-nasdaq-080526166.html",
+      "period": "PM"
+    }
   ]
 }
