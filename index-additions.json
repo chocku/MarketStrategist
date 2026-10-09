@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-10-07",
+  "last_updated": "2026-10-09",
   "additions": [
     {
       "ticker": "MRNA",
       "company": "Moderna, Inc.",
       "index": "Nasdaq-100",
       "sector": "Health Care",
-      "status": "confirmed",
+      "status": "effective",
       "market_cap_at_addition": 75000000000,
       "announcement_date": "2026-10-01",
       "effective_date": "2026-10-09",
