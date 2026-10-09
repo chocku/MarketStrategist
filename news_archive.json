@@ -2584,5 +2584,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html",
       "period": "PM"
     }
+  ],
+  "2026-10-09": [
+    {
+      "headline": "S&P 500 trades near 7,798 (+0.4%), Dow ~51,447 (+0.4%) and Nasdaq ~27,337 (+0.5%) in Friday's session, with indexes on track for weekly gains (levels as of late morning; final close not confirmed).",
+      "summary": "Tech rebounded after Thursday's losses, keeping the S&P 500 and Nasdaq on pace for weekly gains after record highs earlier in the week.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude slips over 1% but stays above $100 (WTI ~$91.6) after Trump said the US won't attack Iran before the midterm elections.",
+      "summary": "Easing near-term Middle East supply fears relieved some inflation pressure and supported the equity rebound.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
+      "period": "PM"
+    },
+    {
+      "headline": "10-year Treasury yield holds around 5.25-5.28%, near its highest level since 2002.",
+      "summary": "Persistently high yields on inflation and borrowing concerns remain the main headwind for equity valuations.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Delta Air Lines Q3 adjusted EPS of $1.72 misses the $1.82 estimate and revenue of $17.58B (+15.7%) trails $17.76B; fuel costs jump 62% to $4.1B and guidance is cut.",
+      "summary": "Delta's roughly $6B higher full-year fuel bill shows how oil prices from the Iran conflict are squeezing airline earnings as earnings season nears.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
+      "period": "PM"
+    },
+    {
+      "headline": "University of Michigan preliminary October sentiment falls to 46.3 from 48.1, below the 48 expected and the lowest since May.",
+      "summary": "Consumers cite inflation pressure from the Iran war and tariffs, adding to concerns about spending ahead of big-bank earnings kicking off Tuesday.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
+      "period": "PM"
+    }
   ]
 }
