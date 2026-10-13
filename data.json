@@ -639,7 +639,7 @@
       "name": "Agilent Technologies",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
-      "marketCap": 48309202741
+      "marketCap": 48302870555
     },
     {
       "ticker": "AAPL",
@@ -751,7 +751,7 @@
       "name": "Abbott Laboratories",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 176187627198
+      "marketCap": 177351415340
     },
     {
       "ticker": "ACGL",
@@ -779,7 +779,7 @@
       "name": "Arch Capital Group",
       "sector": "Financials",
       "industry": "Property & Casualty Insurance",
-      "marketCap": 33153821882
+      "marketCap": 33131560000
     },
     {
       "ticker": "ACN",
@@ -839,7 +839,7 @@
     },
     {
       "ticker": "ADI",
-      "price": 406.24,
+      "price": 406.25,
       "ma50": 380.42,
       "ma200": 361.96,
       "above50": true,
@@ -891,7 +891,7 @@
       "name": "Archer Daniels Midland",
       "sector": "Consumer Staples",
       "industry": "Agricultural Products & Services",
-      "marketCap": 38759189664
+      "marketCap": 38758943901
     },
     {
       "ticker": "ADP",
@@ -1031,7 +1031,7 @@
       "name": "AES Corporation",
       "sector": "Utilities",
       "industry": "Independent Power Producers & Energy Traders",
-      "marketCap": 10687310677
+      "marketCap": 10683102540
     },
     {
       "ticker": "AFL",
@@ -1395,7 +1395,7 @@
       "name": "Ametek",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
-      "marketCap": 57290092263
+      "marketCap": 57275538169
     },
     {
       "ticker": "AMGN",
@@ -1451,7 +1451,7 @@
       "name": "Ameriprise Financial",
       "sector": "Financials",
       "industry": "Asset Management & Custody Banks",
-      "marketCap": 44168376164
+      "marketCap": 44201768000
     },
     {
       "ticker": "AMT",
@@ -1731,7 +1731,7 @@
       "name": "AppLovin",
       "sector": "Information Technology",
       "industry": "Application Software",
-      "marketCap": 82813626840
+      "marketCap": 82464475410
     },
     {
       "ticker": "APTV",
@@ -1759,7 +1759,7 @@
       "name": "Aptiv",
       "sector": "Consumer Discretionary",
       "industry": "Automotive Parts & Equipment",
-      "marketCap": 9042431565
+      "marketCap": 9216073950
     },
     {
       "ticker": "ARE",
@@ -1899,7 +1899,7 @@
       "name": "Avery Dennison",
       "sector": "Materials",
       "industry": "Paper & Plastic Packaging Products & Materials",
-      "marketCap": 12705882006
+      "marketCap": 12823613045
     },
     {
       "ticker": "AWK",
@@ -2039,7 +2039,7 @@
       "name": "Boeing",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "marketCap": 149775118790
+      "marketCap": 149665685193
     },
     {
       "ticker": "BAC",
@@ -2095,7 +2095,7 @@
       "name": "Ball Corporation",
       "sector": "Materials",
       "industry": "Metal, Glass & Plastic Containers",
-      "marketCap": 15667791700
+      "marketCap": 15759130986
     },
     {
       "ticker": "BAX",
@@ -2319,7 +2319,7 @@
       "name": "Booking Holdings",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 119041212615
+      "marketCap": 122763990615
     },
     {
       "ticker": "BKR",
@@ -2739,7 +2739,7 @@
       "name": "Carrier Global",
       "sector": "Industrials",
       "industry": "Building Products",
-      "marketCap": 45684094658
+      "marketCap": 46030767042
     },
     {
       "ticker": "CASY",
@@ -2907,7 +2907,7 @@
       "name": "Crown Castle",
       "sector": "Real Estate",
       "industry": "Telecom Tower REITs",
-      "marketCap": 35401370000
+      "marketCap": 34466145113
     },
     {
       "ticker": "CCL",
@@ -2963,7 +2963,7 @@
       "name": "Cadence Design Systems",
       "sector": "Information Technology",
       "industry": "Application Software",
-      "marketCap": 95952429060
+      "marketCap": 96099810720
     },
     {
       "ticker": "CDW",
@@ -3411,7 +3411,7 @@
       "name": "Cummins",
       "sector": "Industrials",
       "industry": "Construction Machinery & Heavy Transportation Equipment",
-      "marketCap": 72667576107
+      "marketCap": 72838908906
     },
     {
       "ticker": "CMS",
@@ -3439,7 +3439,7 @@
       "name": "CMS Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
-      "marketCap": 20652190176
+      "marketCap": 20345444987
     },
     {
       "ticker": "CNC",
@@ -3523,7 +3523,7 @@
       "name": "Capital One",
       "sector": "Financials",
       "industry": "Consumer Finance",
-      "marketCap": 123396339913
+      "marketCap": 123399389999
     },
     {
       "ticker": "COHR",
@@ -3583,23 +3583,23 @@
     },
     {
       "ticker": "COO",
-      "price": 55.54,
+      "price": 55.55,
       "ma50": 65.0,
       "ma200": 70.56,
       "above50": false,
       "above200": false,
-      "return1d": 2.16,
-      "return1w": -1.57,
-      "return1m": 2.44,
+      "return1d": 2.17,
+      "return1w": -1.56,
+      "return1m": 2.45,
       "return3m": -21.32,
-      "returnYtd": -31.52,
-      "return12m": -18.76,
+      "returnYtd": -31.51,
+      "return12m": -18.75,
       "returnFromLow": -23.97,
-      "vsSpx1d": 2.22,
-      "vsSpx1w": -1.42,
-      "vsSpx1m": -0.01,
+      "vsSpx1d": 2.23,
+      "vsSpx1w": -1.41,
+      "vsSpx1m": -0.0,
       "vsSpxYtd": -45.35,
-      "vsSpx12m": -38.96,
+      "vsSpx12m": -38.95,
       "high52": 84.32,
       "low52": 53.27,
       "newHigh": false,
@@ -3803,7 +3803,7 @@
       "name": "Camden Property Trust",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
-      "marketCap": 11295499612
+      "marketCap": 9812640560
     },
     {
       "ticker": "CRH",
@@ -3859,7 +3859,7 @@
       "name": "Charles River Laboratories",
       "sector": "Health Care",
       "industry": "Life Sciences Tools & Services",
-      "marketCap": 14539910977
+      "marketCap": 14410455901
     },
     {
       "ticker": "CRM",
@@ -4055,7 +4055,7 @@
       "name": "Cognizant",
       "sector": "Information Technology",
       "industry": "IT Consulting & Other Services",
-      "marketCap": 26882510393
+      "marketCap": 28228640000
     },
     {
       "ticker": "CTVA",
@@ -4279,7 +4279,7 @@
       "name": "DuPont",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
-      "marketCap": 17470509675
+      "marketCap": 17467459907
     },
     {
       "ticker": "DDOG",
@@ -4811,7 +4811,7 @@
       "name": "DaVita",
       "sector": "Health Care",
       "industry": "Health Care Services",
-      "marketCap": 11597564000
+      "marketCap": 11667549300
     },
     {
       "ticker": "DVN",
@@ -5147,7 +5147,7 @@
       "name": "Emerson Electric",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
-      "marketCap": 90620188000
+      "marketCap": 90993846000
     },
     {
       "ticker": "EOG",
@@ -5175,7 +5175,7 @@
       "name": "EOG Resources",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 78946886279
+      "marketCap": 80165920050
     },
     {
       "ticker": "EQIX",
@@ -5315,7 +5315,7 @@
       "name": "Essex Property Trust",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
-      "marketCap": 17377543221
+      "marketCap": 17375731608
     },
     {
       "ticker": "ETN",
@@ -5343,7 +5343,7 @@
       "name": "Eaton Corporation",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
-      "marketCap": 165726396000
+      "marketCap": 165683727000
     },
     {
       "ticker": "ETR",
@@ -5427,7 +5427,7 @@
       "name": "Edwards Lifesciences",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 49795196000
+      "marketCap": 49743362000
     },
     {
       "ticker": "EXC",
@@ -5483,7 +5483,7 @@
       "name": "Expand Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 20559851501
+      "marketCap": 21245914079
     },
     {
       "ticker": "EXPD",
@@ -5539,7 +5539,7 @@
       "name": "Expedia Group",
       "sector": "Consumer Discretionary",
       "industry": "Hotels, Resorts & Cruise Lines",
-      "marketCap": 30739445853
+      "marketCap": 30738711856
     },
     {
       "ticker": "EXR",
@@ -5623,7 +5623,7 @@
       "name": "Diamondback Energy",
       "sector": "Energy",
       "industry": "Oil & Gas Exploration & Production",
-      "marketCap": 54634661617
+      "marketCap": 54887037377
     },
     {
       "ticker": "FAST",
@@ -5763,7 +5763,7 @@
       "name": "FirstEnergy",
       "sector": "Utilities",
       "industry": "Electric Utilities",
-      "marketCap": 26247107315
+      "marketCap": 26237638098
     },
     {
       "ticker": "FFIV",
@@ -5847,7 +5847,7 @@
       "name": "Fidelity National Information Services",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "marketCap": 17668084716
+      "marketCap": 17708279713
     },
     {
       "ticker": "FISV",
@@ -5903,7 +5903,7 @@
       "name": "Fifth Third Bancorp",
       "sector": "Financials",
       "industry": "Regional Banks",
-      "marketCap": 46088280102
+      "marketCap": 46072039860
     },
     {
       "ticker": "FIX",
@@ -6015,7 +6015,7 @@
       "name": "Federal Realty Investment Trust",
       "sector": "Real Estate",
       "industry": "Retail REITs",
-      "marketCap": 9246741533
+      "marketCap": 9193538344
     },
     {
       "ticker": "FSLR",
@@ -6099,7 +6099,7 @@
       "name": "Fortive",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 17326718273
+      "marketCap": 17489876774
     },
     {
       "ticker": "GD",
@@ -6211,7 +6211,7 @@
       "name": "GE HealthCare",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 30597226710
+      "marketCap": 30814369583
     },
     {
       "ticker": "GEN",
@@ -6379,7 +6379,7 @@
       "name": "Corning Inc.",
       "sector": "Information Technology",
       "industry": "Electronic Components",
-      "marketCap": 126865273389
+      "marketCap": 126607458866
     },
     {
       "ticker": "GM",
@@ -6575,7 +6575,7 @@
       "name": "Garmin",
       "sector": "Consumer Discretionary",
       "industry": "Consumer Electronics",
-      "marketCap": 51445342503
+      "marketCap": 51446321512
     },
     {
       "ticker": "GS",
@@ -6631,7 +6631,7 @@
       "name": "W. W. Grainger",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 61548213939
+      "marketCap": 61694798990
     },
     {
       "ticker": "HAL",
@@ -6659,7 +6659,7 @@
       "name": "Halliburton",
       "sector": "Energy",
       "industry": "Oil & Gas Equipment & Services",
-      "marketCap": 27160049964
+      "marketCap": 27233966161
     },
     {
       "ticker": "HAS",
@@ -6743,7 +6743,7 @@
       "name": "HCA Healthcare",
       "sector": "Health Care",
       "industry": "Health Care Facilities",
-      "marketCap": 99287587900
+      "marketCap": 101735732280
     },
     {
       "ticker": "HD",
@@ -7023,7 +7023,7 @@
       "name": "Henry Schein",
       "sector": "Health Care",
       "industry": "Health Care Distributors",
-      "marketCap": 9387142232
+      "marketCap": 9595208442
     },
     {
       "ticker": "HST",
@@ -7083,23 +7083,23 @@
     },
     {
       "ticker": "HUBB",
-      "price": 474.05,
-      "ma50": 471.69,
-      "ma200": 486.49,
+      "price": 474.11,
+      "ma50": 471.63,
+      "ma200": 486.38,
       "above50": true,
       "above200": false,
-      "return1d": -0.01,
-      "return1w": -2.34,
-      "return1m": 7.16,
-      "return3m": -0.92,
-      "returnYtd": 3.29,
-      "return12m": 17.47,
-      "returnFromLow": 3.16,
-      "vsSpx1d": 0.04,
-      "vsSpx1w": -2.19,
-      "vsSpx1m": 4.7,
-      "vsSpxYtd": -10.55,
-      "vsSpx12m": -2.73,
+      "return1d": -0.27,
+      "return1w": -1.36,
+      "return1m": 2.98,
+      "return3m": -1.72,
+      "returnYtd": 3.3,
+      "return12m": 14.56,
+      "returnFromLow": 3.17,
+      "vsSpx1d": -0.22,
+      "vsSpx1w": -1.21,
+      "vsSpx1m": 0.52,
+      "vsSpxYtd": -10.53,
+      "vsSpx12m": -5.64,
       "high52": 554.46,
       "low52": 402.45,
       "newHigh": false,
@@ -7107,7 +7107,7 @@
       "name": "Hubbell Incorporated",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 25045280282
+      "marketCap": 25049644386
     },
     {
       "ticker": "HUM",
@@ -7275,7 +7275,7 @@
       "name": "Idexx Laboratories",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 41276577917
+      "marketCap": 41329957448
     },
     {
       "ticker": "IEX",
@@ -7331,7 +7331,7 @@
       "name": "International Flavors & Fragrances",
       "sector": "Materials",
       "industry": "Specialty Chemicals",
-      "marketCap": 21677540856
+      "marketCap": 21690583066
     },
     {
       "ticker": "INCY",
@@ -7695,7 +7695,7 @@
       "name": "Jacobs Solutions",
       "sector": "Industrials",
       "industry": "Construction & Engineering",
-      "marketCap": 16318693531
+      "marketCap": 16464016958
     },
     {
       "ticker": "JBHT",
@@ -7723,7 +7723,7 @@
       "name": "J.B. Hunt",
       "sector": "Industrials",
       "industry": "Cargo Ground Transportation",
-      "marketCap": 21441719723
+      "marketCap": 21438309000
     },
     {
       "ticker": "JBL",
@@ -8087,7 +8087,7 @@
       "name": "Kimberly-Clark",
       "sector": "Consumer Staples",
       "industry": "Household Products",
-      "marketCap": 32848831583
+      "marketCap": 32785749060
     },
     {
       "ticker": "KMI",
@@ -8115,7 +8115,7 @@
       "name": "Kinder Morgan",
       "sector": "Energy",
       "industry": "Oil & Gas Storage & Transportation",
-      "marketCap": 73662613104
+      "marketCap": 73597236041
     },
     {
       "ticker": "KO",
@@ -8255,7 +8255,7 @@
       "name": "Leidos",
       "sector": "Industrials",
       "industry": "Diversified Support Services",
-      "marketCap": 15259852614
+      "marketCap": 15295512665
     },
     {
       "ticker": "LEN",
@@ -8451,7 +8451,7 @@
       "name": "Lilly (Eli)",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
-      "marketCap": 1054591221563
+      "marketCap": 1054136692210
     },
     {
       "ticker": "LMT",
@@ -8759,7 +8759,7 @@
       "name": "Mid-America Apartment Communities",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
-      "marketCap": 13520038649
+      "marketCap": 13562320977
     },
     {
       "ticker": "MAR",
@@ -8955,7 +8955,7 @@
       "name": "Mondelez International",
       "sector": "Consumer Staples",
       "industry": "Packaged Foods & Meats",
-      "marketCap": 78863074842
+      "marketCap": 79316719041
     },
     {
       "ticker": "MDT",
@@ -9067,7 +9067,7 @@
       "name": "MGM Resorts",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
-      "marketCap": 7501558210
+      "marketCap": 7376699605
     },
     {
       "ticker": "MKC",
@@ -9263,7 +9263,7 @@
       "name": "Marathon Petroleum",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
-      "marketCap": 128845209512
+      "marketCap": 133943447504
     },
     {
       "ticker": "MPWR",
@@ -9389,7 +9389,7 @@
       "return1m": -8.02,
       "return3m": -16.4,
       "returnYtd": 6.19,
-      "return12m": 27.97,
+      "return12m": 27.96,
       "returnFromLow": -5.94,
       "vsSpx1d": 0.06,
       "vsSpx1w": -0.37,
@@ -9515,7 +9515,7 @@
       "name": "M&T Bank",
       "sector": "Financials",
       "industry": "Regional Banks",
-      "marketCap": 31755691851
+      "marketCap": 31869317369
     },
     {
       "ticker": "MTD",
@@ -9655,7 +9655,7 @@
       "name": "Nordson Corporation",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 18405298501
+      "marketCap": 18411438737
     },
     {
       "ticker": "NEE",
@@ -9683,7 +9683,7 @@
       "name": "NextEra Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
-      "marketCap": 163770149188
+      "marketCap": 163740876656
     },
     {
       "ticker": "NEM",
@@ -9696,7 +9696,7 @@
       "return1w": 0.65,
       "return1m": -4.81,
       "return3m": 23.3,
-      "returnYtd": 16.49,
+      "returnYtd": 16.48,
       "return12m": 38.89,
       "returnFromLow": 28.52,
       "vsSpx1d": -0.53,
@@ -10047,7 +10047,7 @@
       "name": "NVR, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Homebuilding",
-      "marketCap": 15399272623
+      "marketCap": 15322838405
     },
     {
       "ticker": "NWS",
@@ -10187,7 +10187,7 @@
       "name": "Old Dominion",
       "sector": "Industrials",
       "industry": "Cargo Ground Transportation",
-      "marketCap": 37831510360
+      "marketCap": 37720243108
     },
     {
       "ticker": "OKE",
@@ -10243,7 +10243,7 @@
       "name": "Omnicom Group",
       "sector": "Communication Services",
       "industry": "Advertising",
-      "marketCap": 21143843676
+      "marketCap": 21965427525
     },
     {
       "ticker": "ON",
@@ -10523,7 +10523,7 @@
       "name": "Public Service Enterprise Group",
       "sector": "Utilities",
       "industry": "Electric Utilities",
-      "marketCap": 35268201322
+      "marketCap": 35261222405
     },
     {
       "ticker": "PEP",
@@ -10635,7 +10635,7 @@
       "name": "Procter & Gamble",
       "sector": "Consumer Staples",
       "industry": "Personal Care Products",
-      "marketCap": 355833398198
+      "marketCap": 356103144792
     },
     {
       "ticker": "PGR",
@@ -10887,7 +10887,7 @@
       "name": "Pentair",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 8351868000
+      "marketCap": 8456817960
     },
     {
       "ticker": "PNW",
@@ -11088,23 +11088,23 @@
     {
       "ticker": "PSKY",
       "price": 9.16,
-      "ma50": 10.0,
-      "ma200": 10.37,
+      "ma50": 10.03,
+      "ma200": 10.35,
       "above50": false,
       "above200": false,
-      "return1d": -1.29,
-      "return1w": -6.34,
-      "return1m": -13.19,
-      "return3m": 0.9,
+      "return1d": 0.0,
+      "return1w": -3.88,
+      "return1m": -15.34,
+      "return3m": -0.52,
       "returnYtd": -29.48,
-      "return12m": -48.08,
+      "return12m": -45.12,
       "returnFromLow": 15.75,
-      "vsSpx1d": -1.24,
-      "vsSpx1w": -6.19,
-      "vsSpx1m": -15.64,
+      "vsSpx1d": 0.06,
+      "vsSpx1w": -3.73,
+      "vsSpx1m": -17.8,
       "vsSpxYtd": -43.32,
-      "vsSpx12m": -68.28,
-      "high52": 17.64,
+      "vsSpx12m": -65.32,
+      "high52": 17.11,
       "low52": 7.77,
       "newHigh": false,
       "newLow": false,
@@ -11139,7 +11139,7 @@
       "name": "Phillips 66",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
-      "marketCap": 112851180079
+      "marketCap": 112312417226
     },
     {
       "ticker": "PTC",
@@ -11223,7 +11223,7 @@
       "name": "PayPal",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "marketCap": 47948581987
+      "marketCap": 48315100000
     },
     {
       "ticker": "QCOM",
@@ -11391,7 +11391,7 @@
       "name": "Raymond James Financial",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
-      "marketCap": 30476665000
+      "marketCap": 30518185450
     },
     {
       "ticker": "RL",
@@ -11475,7 +11475,7 @@
       "name": "Rockwell Automation",
       "sector": "Industrials",
       "industry": "Electrical Components & Equipment",
-      "marketCap": 48289557383
+      "marketCap": 48191793923
     },
     {
       "ticker": "ROL",
@@ -11559,7 +11559,7 @@
       "name": "Ross Stores",
       "sector": "Consumer Discretionary",
       "industry": "Apparel Retail",
-      "marketCap": 72445198203
+      "marketCap": 72145290362
     },
     {
       "ticker": "RSG",
@@ -11680,18 +11680,18 @@
       "ma200": 98.15,
       "above50": false,
       "above200": false,
-      "return1d": 1.69,
-      "return1w": -3.98,
-      "return1m": -6.85,
-      "return3m": -11.7,
+      "return1d": 1.7,
+      "return1w": -3.97,
+      "return1m": -6.84,
+      "return3m": -11.69,
       "returnYtd": 11.9,
-      "return12m": 20.62,
+      "return12m": 20.63,
       "returnFromLow": -10.87,
       "vsSpx1d": 1.75,
       "vsSpx1w": -3.83,
-      "vsSpx1m": -9.31,
-      "vsSpxYtd": -1.94,
-      "vsSpx12m": 0.42,
+      "vsSpx1m": -9.3,
+      "vsSpxYtd": -1.93,
+      "vsSpx12m": 0.43,
       "high52": 108.49,
       "low52": 76.51,
       "newHigh": false,
@@ -11839,7 +11839,7 @@
       "name": "Supermicro",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
-      "marketCap": 26265476052
+      "marketCap": 25861983619
     },
     {
       "ticker": "SNA",
@@ -12455,7 +12455,7 @@
       "name": "TransDigm Group",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "marketCap": 61906391408
+      "marketCap": 62642256945
     },
     {
       "ticker": "TDY",
@@ -12483,7 +12483,7 @@
       "name": "Teledyne Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": 28446622293
+      "marketCap": 28430338825
     },
     {
       "ticker": "TECH",
@@ -12539,7 +12539,7 @@
       "name": "TE Connectivity",
       "sector": "Information Technology",
       "industry": "Electronic Manufacturing Services",
-      "marketCap": 62905434179
+      "marketCap": 62998309212
     },
     {
       "ticker": "TER",
@@ -12623,7 +12623,7 @@
       "name": "Target Corporation",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 69789064584
+      "marketCap": 69788254238
     },
     {
       "ticker": "TJX",
@@ -12651,7 +12651,7 @@
       "name": "TJX Companies",
       "sector": "Consumer Discretionary",
       "industry": "Apparel Retail",
-      "marketCap": 156108318737
+      "marketCap": 156779654976
     },
     {
       "ticker": "TKO",
@@ -13127,7 +13127,7 @@
       "name": "Textron",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "marketCap": 13033168570
+      "marketCap": 13177306980
     },
     {
       "ticker": "TYL",
@@ -13239,7 +13239,7 @@
       "name": "UDR, Inc.",
       "sector": "Real Estate",
       "industry": "Multi-Family Residential REITs",
-      "marketCap": 10929408832
+      "marketCap": 11053630515
     },
     {
       "ticker": "UHS",
@@ -13631,7 +13631,7 @@
       "name": "Verisk Analytics",
       "sector": "Industrials",
       "industry": "Research & Consulting Services",
-      "marketCap": 23101390569
+      "marketCap": 23255066381
     },
     {
       "ticker": "VRSN",
@@ -13715,7 +13715,7 @@
       "name": "Vertex Pharmaceuticals",
       "sector": "Health Care",
       "industry": "Biotechnology",
-      "marketCap": 128504688468
+      "marketCap": 128423100000
     },
     {
       "ticker": "VST",
@@ -14107,7 +14107,7 @@
       "name": "Walmart",
       "sector": "Consumer Staples",
       "industry": "Consumer Staples Merchandise Retail",
-      "marketCap": 899899590847
+      "marketCap": 897148024932
     },
     {
       "ticker": "WRB",
@@ -14163,7 +14163,7 @@
       "name": "Williams-Sonoma, Inc.",
       "sector": "Consumer Discretionary",
       "industry": "Homefurnishing Retail",
-      "marketCap": 28132733262
+      "marketCap": 28130064480
     },
     {
       "ticker": "WST",
@@ -14471,7 +14471,7 @@
       "name": "Zebra Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": 18362213359
+      "marketCap": 18487472103
     },
     {
       "ticker": "ZTS",
