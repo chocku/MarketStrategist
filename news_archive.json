@@ -2621,5 +2621,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html",
       "period": "PM"
     }
+  ],
+  "2026-10-12": [
+    {
+      "headline": "Wall Street ended a holiday-thinned Columbus Day session mixed: Dow +0.4% (~215 pts), S&P 500 -0.1%, Nasdaq -0.3%, with bond markets closed.",
+      "summary": "Thin volume and a shut Treasury market left equities without a yield signal ahead of bank earnings and CPI.",
+      "source": "AP / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-dow-rises-105032549.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Nasdaq 100 fell as chip names weighed on tech, with Sandisk tumbling about 6% as the AI trade faltered.",
+      "summary": "Semiconductor weakness dragged the growth-heavy Nasdaq lower even as the Dow gained, signaling rotation away from AI leaders.",
+      "source": "Benzinga",
+      "url": "https://www.benzinga.com/markets/market-summary/26/10/62306422/nasdaq-100-falls-sandisk-tumbles-6-percent-ai-trade-falters-markets-monday",
+      "period": "PM"
+    },
+    {
+      "headline": "US crude oil rose more than 2% and energy led S&P 500 sector gainers.",
+      "summary": "Surging oil adds to inflation concerns and supported cyclical and energy stocks while pressuring tech.",
+      "source": "Sunday Guardian / Benzinga",
+      "url": "https://sundayguardianlive.com/business/why-is-the-us-stock-market-mixed-today-october-12-dow-jones-gains-04-sp-500-slips-01-nasdaq-falls-03-as-oil-prices-surge-and-fed-rate-hike-bets-weigh-check-what-investors-should-know-304308/",
+      "period": "PM"
+    },
+    {
+      "headline": "Markets weighed Fed rate-hike bets with the 10-year Treasury yield near a 24-year high ahead of Wednesday's September CPI report.",
+      "summary": "The CPI print could shape the Fed's October decision and set the tone for rate-sensitive equities.",
+      "source": "Schwab / Sunday Guardian",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+      "period": "PM"
+    },
+    {
+      "headline": "Q3 earnings season kicks off Tuesday with JPMorgan, Goldman Sachs, Citigroup, Wells Fargo, UNH and JNJ; financials are expected to grow only ~3% vs 29.6% for the S&P 500.",
+      "summary": "Bank results will test a financials sector that has lagged over the past month and gauge credit and rate-driven earnings.",
+      "source": "Schwab / Newsquawk",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+      "period": "PM"
+    }
   ]
 }
