@@ -2658,5 +2658,42 @@
       "url": "https://www.schwab.com/learn/story/stock-market-update-open",
       "period": "PM"
     }
+  ],
+  "2026-10-13": [
+    {
+      "headline": "Wall Street closed slightly lower Tuesday: Dow -180.45 pts (-0.35%) to 51,670.10, S&P 500 -0.02% to 7,805.45, Nasdaq -0.15% to 27,204.38.",
+      "summary": "A flat S&P with a weaker Dow and Nasdaq shows a cautious tape as investors positioned for Wednesday's CPI.",
+      "source": "TheStreet / Yahoo Finance",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "JPMorgan Q3 EPS of $5.57 and revenue of $50.91B missed consensus (~$5.90 / $51.22B), though the bank raised its 2026 net interest income guidance; shares closed 0.9% lower.",
+      "summary": "The largest US bank missing despite higher NII guidance set a muted tone for the start of earnings season.",
+      "source": "CNBC / TheStreet",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "All six large companies reporting Tuesday morning (JPMorgan, Citigroup, Wells Fargo, Goldman Sachs, UnitedHealth, J&J) finished lower after mixed results.",
+      "summary": "Broad negative reactions to the first big earnings batch show a high bar for Q3 results.",
+      "source": "Yahoo Finance / TheStreet",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-13-dow-sp-500-nasdaq-080236234.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Memory chip stocks, including SK Hynix and Micron, slumped again, dragging the Nasdaq lower.",
+      "summary": "Continued weakness in AI-linked semiconductors is pressuring growth-heavy indexes.",
+      "source": "Stocktwits / Yahoo Finance",
+      "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-ends-flat-while-nasdaq-drops-as-memory-chipmakers-sell-off-bac-gme-spcx-arm-qcom-in-focus/cZxBUZgRBYr",
+      "period": "PM"
+    },
+    {
+      "headline": "Investors braced for Wednesday's September CPI, forecast at 3.6% y/y vs 3.4% prior, with the 10-year Treasury yield near 5.24% after a Sept Fed hike.",
+      "summary": "A hot CPI could cement further Fed tightening ahead of the Oct 28 decision and hit rate-sensitive stocks.",
+      "source": "Schwab / Stocktwits",
+      "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+      "period": "PM"
+    }
   ]
 }
