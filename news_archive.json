@@ -2732,5 +2732,42 @@
       "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
       "period": "PM"
     }
+  ],
+  "2026-10-22": [
+    {
+      "headline": "S&P 500 fell 1.2% to 7,663.43 (worst day since July) and Nasdaq dropped 2.6% to 26,008.86, while the Dow edged up 11.89 pts to 52,867.98 and Russell 2000 rose 0.1%.",
+      "summary": "A renewed AI/tech selloff on interest-rate worries hit megacaps while most other U.S. stocks held up, masking breadth beneath the headline drop.",
+      "source": "AP / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/world-indices/articles/major-us-stock-indexes-fared-202801299.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Meta fell nearly 7% after Q3 results and a 2-for-1 stock split announcement, while Tesla slid about 3% despite an adjusted EPS beat ($0.48 vs $0.44) on slightly light $28.05B revenue.",
+      "summary": "Mega-cap earnings reactions reignited AI-spending and capex concerns that dragged the Nasdaq lower.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Semiconductor and AI-linked names sank: Lam Research fell about 9%, CoreWeave about 10%, and SpaceX gave back more than half of Wednesday's post-earnings gain.",
+      "summary": "Weakness in chip equipment and AI infrastructure stocks signals investors are questioning the cost of capital behind the AI build-out.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Treasury yields fell sharply as the 10-year dropped about 11 bps to 5.02% (later below 5%) and the 30-year fell about 10 bps to 5.32%, as investors sought bonds.",
+      "summary": "The flight to bonds reflects risk-off sentiment, though yields remain near multi-year highs that pressure equity valuations.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Oil jumped to its highest level since May, with Brent above $111 and WTI near $98-100, on fears of renewed US-Israel strikes on Iran after the Nov. 3 midterms; initial jobless claims fell to 194,000.",
+      "summary": "Higher energy prices raise inflation risk, while a still-tight labor market complicates the rate outlook.",
+      "source": "Yahoo Finance / CNBC",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
+      "period": "PM"
+    }
   ]
 }
