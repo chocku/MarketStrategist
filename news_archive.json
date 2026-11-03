@@ -2769,5 +2769,42 @@
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
       "period": "PM"
     }
+  ],
+  "2026-11-03": [
+    {
+      "headline": "US stocks mixed in morning trade on midterm Election Day (as of ~10:30am ET): Nasdaq +0.4%, S&P 500 +0.1%, Dow -188 pts (-0.4%).",
+      "summary": "Investors are positioning cautiously ahead of midterm results, with tech leading and the Dow lagging.",
+      "source": "TheStreet / StockTitan",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-03-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Chip stocks rebounded: Micron +4%, while Nvidia, AMD, Broadcom and Intel each gained about 3% ahead of AMD's earnings.",
+      "summary": "The semiconductor bounce after a Nasdaq correction (about -10% from its Oct 6 peak) lifted the tech-heavy index.",
+      "source": "StockTitan / Yahoo Finance",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-3-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Apple fell about 1.7% (~$83B in market value) on a weak holiday-quarter gross margin forecast despite record revenue of $114.5B.",
+      "summary": "Apple's margin guidance weighed on the price-weighted Dow and raised questions on consumer-hardware profitability.",
+      "source": "StockTitan",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-3-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Palantir dropped about 4.4% despite Q3 revenue up 96% to $2.313B, as total contract value grew only 6%.",
+      "summary": "Slowing contract growth highlights how high the bar is for AI software valuations.",
+      "source": "StockTitan",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-3-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Brent crude slipped about 1% to near $103 on US-Iran deal hopes, while the 10-year Treasury yield edged up to about 4.91%.",
+      "summary": "Easing oil helps the inflation outlook, but yields near 4.9% keep pressure on equity valuations.",
+      "source": "StockTitan / Benzinga",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-3-2026",
+      "period": "PM"
+    }
   ]
 }
