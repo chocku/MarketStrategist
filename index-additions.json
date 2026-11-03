@@ -1,6 +1,19 @@
 {
-  "last_updated": "2026-10-31",
+  "last_updated": "2026-11-03",
   "additions": [
+    {
+      "ticker": "OKTA",
+      "company": "Okta, Inc.",
+      "index": "S&P 500",
+      "sector": "Information Technology",
+      "status": "confirmed",
+      "market_cap_at_addition": null,
+      "announcement_date": "2026-10-30",
+      "effective_date": "2026-11-04",
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-11-03",
+      "notes": "Off-cycle addition; moves up from the S&P MidCap 400 to replace Kenvue (KVUE), which is being acquired by S&P 500 constituent Kimberly-Clark (KMB). Glaukos (GKOS) replaces Okta in the MidCap 400. Effective prior to market open Wed, Nov 4, 2026."
+    },
     {
       "ticker": "MRNA",
       "company": "Moderna, Inc.",
