@@ -2806,5 +2806,42 @@
       "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-3-2026",
       "period": "PM"
     }
+  ],
+  "2026-11-05": [
+    {
+      "headline": "Wall Street suffers worst day since April 2025: S&P 500 -4.36% to 7,353.73, Nasdaq -5.52% to 24,315.00 (correction), Dow -3.44% (-1,833 pts) to 51,523.06.",
+      "summary": "A broad, violent selloff erased Wednesday's post-election gains and pushed the Nasdaq and Russell 2000 into correction territory.",
+      "source": "CNBC / JournalArta",
+      "url": "https://www.cnbc.com/2026/11/04/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Chip stocks crater as AI selloff extends a second day: Nvidia ~-9%, Broadcom ~-10%, AMD and Micron ~-15% each; Magnificent 7 lose roughly $900B in value.",
+      "summary": "Fears that a Democratic sweep could slow data-center buildout hit the AI trade that has driven index gains, with SOXX posting its worst day since March 2020.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/04/stock-market-today-live-updates.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Qualcomm falls ~9% despite an earnings beat on a weak forecast, while Arm's beat (adj. EPS $0.52 vs $0.47 est.) failed to lift chip sentiment.",
+      "summary": "Even solid results are being sold as guidance disappoints in an AI-sensitive semiconductor group.",
+      "source": "CNBC",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Weekly jobless claims came in at 189,000 vs 197,000 expected; Q3 productivity rose 3.6% vs 2.9% forecast with unit labor costs down 0.7%.",
+      "summary": "Strong productivity with falling labor costs is disinflationary, though it was overshadowed by the equity selloff.",
+      "source": "CNBC",
+      "url": null,
+      "period": "PM"
+    },
+    {
+      "headline": "Safe havens and defensives diverge: 10-year yield eased to 4.84% from 4.89%, VIX spiked to 28.09, Brent gained 4.1% on Iran war risks, Bitcoin fell ~6%.",
+      "summary": "Falling yields and a volatility spike signal a risk-off tilt, while rising oil adds an inflation wrinkle.",
+      "source": "JournalArta / CNBC",
+      "url": "https://journalarta.com/en/2026/11/06/wall-street-close-nasdaq-sinks-5-52-and-sp-500-falls-4-36-as-ai-stocks-slide/",
+      "period": "PM"
+    }
   ]
 }
