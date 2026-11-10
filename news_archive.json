@@ -2843,5 +2843,42 @@
       "url": "https://journalarta.com/en/2026/11/06/wall-street-close-nasdaq-sinks-5-52-and-sp-500-falls-4-36-as-ai-stocks-slide/",
       "period": "PM"
     }
+  ],
+  "2026-11-10": [
+    {
+      "headline": "October CPI rose 0.4% m/m vs 0.3% expected, with core up 0.3% vs 0.2% expected; energy +0.7% after +5.2% in September.",
+      "summary": "A hotter-than-forecast inflation print reinforces the case for further Fed tightening and pressured equities after Monday's rally.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed Gov. Waller favors a 25 bp December hike and would weigh 50 bp after the hot CPI; odds of a 25 bp hike sit near 84%, with 50 bp bets near 15%.",
+      "summary": "Rising odds of a larger hike lift the policy-rate path and weigh on rate-sensitive growth stocks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Treasury yields climbed after CPI: 5-year near 4.75%, 10-year near 4.93-4.95%, 30-year near 5.29%.",
+      "summary": "Higher long-end yields raise discount rates and tighten financial conditions for equity valuations.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Anthropic set an updated IPO range of 825M shares at $70-$78, raising up to about $64.4B, with Goldman Sachs and Morgan Stanley leading.",
+      "summary": "One of the largest IPOs ever could absorb significant market liquidity and set the tone for AI valuations.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
+      "period": "PM"
+    },
+    {
+      "headline": "S&P 500 futures fell about 0.4-0.6% and Nasdaq 100 futures about 1% after CPI, giving back part of Monday's 2.3% S&P rally; WTI crude slid about 3% to roughly $84.40.",
+      "summary": "Tech-led pressure alongside falling oil shows markets weighing hot inflation against easing energy costs (closing levels not yet available at time of writing).",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
+      "period": "PM"
+    }
   ]
 }
