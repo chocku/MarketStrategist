@@ -2879,6 +2879,41 @@
       "source": "Yahoo Finance",
       "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
       "period": "PM"
+    },
+    {
+      "headline": "S&P 500 falls 0.38% to 7,520.93, Dow slips 0.30% to 52,231.89 and Nasdaq drops 0.74% to 25,065.88 after hot October CPI",
+      "summary": "Broad risk-off close, led by tech, as inflation data revived rate-hike fears.",
+      "source": "Washington Post / AP / CNBC",
+      "url": "https://www.washingtonpost.com/business/2026/11/10/wall-street-stocks-dow-nasdaq/a8f8d958-dd4c-11f1-912c-4fbb80d73f7f_story.html",
+      "period": "PM"
+    },
+    {
+      "headline": "October CPI rises 0.4% m/m (vs 0.3% expected) with core up 0.3% (vs 0.2% expected)",
+      "summary": "A hotter-than-expected print keeps inflation sticky and strengthens the case for further Fed tightening.",
+      "source": "CNBC / Reuters",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-10-2026",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed's Waller leans toward a 25bp December hike and floats 50bp if core CPI hits 0.3%; Logan says two more hikes needed",
+      "summary": "Hawkish Fed speak plus the CPI print raised odds of a half-point December move.",
+      "source": "CNBC / Reuters",
+      "url": "https://www.marketscholars.com/market-outlook-november-10-2026/",
+      "period": "PM"
+    },
+    {
+      "headline": "Treasury yields jump: 2-year up 17bp to 4.73%, 10-year up 10bp to 4.98% after a weak $42B 10-year auction (5.020% stop-out)",
+      "summary": "Surging yields pressured growth stocks, homebuilders (-3.3%) and bond ETFs (TLT -1.3%).",
+      "source": "Reuters / MarketScholars",
+      "url": "https://www.marketscholars.com/market-outlook-november-10-2026/",
+      "period": "PM"
+    },
+    {
+      "headline": "Nvidia sinks 5.5%, briefly dropping below $4 trillion market cap, amid board investigation and China shipment questions",
+      "summary": "The heavily weighted chip leader dragged all three major indexes lower.",
+      "source": "CNBC / StockTitan",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-10-2026",
+      "period": "PM"
     }
   ]
 }
