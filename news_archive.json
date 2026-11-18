@@ -2952,5 +2952,42 @@
       "url": "https://koreatimes.co.kr/world/20261114/stocks-sway-as-wall-street-heads-for-winning-week-after-several-turbulent-days",
       "period": "PM"
     }
+  ],
+  "2026-11-17": [
+    {
+      "headline": "Stocks fell for a second straight session: S&P 500 -1.03% to 7,340.53 (five-month low), Dow -1.64% (-848.75) to 50,759.42, Nasdaq -0.74% to 24,328.38.",
+      "summary": "Broad risk-off ahead of Nvidia earnings pushed the S&P 500 to its lowest close in five months.",
+      "source": "Closing Look / CNBC",
+      "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
+      "period": "PM"
+    },
+    {
+      "headline": "VIX jumped 11.1% to 25.46 as selling accelerated into the close.",
+      "summary": "Rising volatility signals growing hedging demand and fragile sentiment.",
+      "source": "Closing Look / CNBC",
+      "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
+      "period": "PM"
+    },
+    {
+      "headline": "October retail sales rose 0.2% (vs 0.1% expected) and 0.6% excluding autos; Home Depot fell 2.45% despite a Q3 beat after naming CFO McPhail as CEO.",
+      "summary": "Resilient consumer spending supports hawkish Fed pricing, while HD's leadership change outweighed its earnings beat.",
+      "source": "Closing Look / CNBC",
+      "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
+      "period": "PM"
+    },
+    {
+      "headline": "Fed's Musalem said up to four more rate hikes may be needed by spring; Kalshi priced a 91% chance of a 25 bp hike on Dec. 9.",
+      "summary": "Hawkish Fed commentary keeps rate-hike risk and yields pressuring equity valuations.",
+      "source": "Closing Look / CNBC",
+      "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
+      "period": "PM"
+    },
+    {
+      "headline": "Nvidia (-0.44% in regular session) beat after the bell: revenue $115.84B vs $109.10B est., adj. EPS $2.68 vs $2.48, Q4 guide ~$130B vs $125.1B; shares rose ~3% after hours. Salesforce fell 9.45% on the day.",
+      "summary": "A strong AI-bellwether report could ease AI-spending fears that drove the recent tech selloff.",
+      "source": "Closing Look / CNBC",
+      "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
+      "period": "PM"
+    }
   ]
 }
