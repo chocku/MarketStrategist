@@ -2989,5 +2989,42 @@
       "url": "https://cappnotes.substack.com/p/closing-look-tuesday-november-17",
       "period": "PM"
     }
+  ],
+  "2026-11-25": [
+    {
+      "headline": "Dow rose 164.25 points (+0.33%) to 50,182.95 after falling more than 1,100 intraday, while the S&P 500 slipped 0.25% to 7,182.78 and the Nasdaq lost 0.62% to 23,585.80 after being down about 4.6%.",
+      "summary": "The sharp rebound in thin pre-Thanksgiving trading limited the damage, but a VIX up about 7% to 28.3 shows investors remain on edge.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/24/stock-market-today-live-updates-.html",
+      "period": "PM"
+    },
+    {
+      "headline": "October core PCE inflation rose 0.3% on the month and 3.3% year over year (vs. 3.2% expected), with headline PCE at 3.8%; futures priced roughly 97-98% odds of a Fed rate hike in December.",
+      "summary": "Sticky inflation in the Fed's preferred gauge reinforces a tightening path that pressures richly valued growth stocks.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html",
+      "period": "PM"
+    },
+    {
+      "headline": "Q3 GDP was revised up to a 4.3% annualized pace from 3.4%, and initial jobless claims fell to 189,000 vs. 200,000 expected.",
+      "summary": "A strong economy and tight labor market give the Fed more room to raise rates.",
+      "source": "Daily Economics",
+      "url": "https://dailyeconomics.substack.com/p/growth-surges-inflation-hardens",
+      "period": "PM"
+    },
+    {
+      "headline": "AI and chip stocks led the selloff: Nvidia closed down 3.9% at $149.30 after falling as much as 8%, Lam Research fell 5.7%, Oracle 5.1% and Micron 4.5%.",
+      "summary": "Worries about AI profitability and overinvestment are driving a wide split between AI-linked shares and the rest of the market.",
+      "source": "Investing.com / Yahoo Finance",
+      "url": "https://www.investing.com/news/stock-market-news/us-stocks-mixed-at-close-of-trade-dow-jones-industrial-average-up-033-5051523",
+      "period": "PM"
+    },
+    {
+      "headline": "USTR proposed new Section 301 tariffs on 14 trading partners, including 20% on China, 15% on the EU and up to 25% on India.",
+      "summary": "The proposal, which is not yet final, revives trade-war and import-cost risk just as inflation is running hot.",
+      "source": "ABC News / CBS News / Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/article/us-announces-new-tariffs-of-up-to-20-on-china-the-eu-and-12-other-nations-131802359.html",
+      "period": "PM"
+    }
   ]
 }
