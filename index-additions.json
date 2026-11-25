@@ -1,6 +1,58 @@
 {
-  "last_updated": "2026-11-17",
+  "last_updated": "2026-11-25",
   "additions": [
+    {
+      "ticker": "SN",
+      "company": "SharkNinja, Inc.",
+      "index": "S&P 500",
+      "sector": "Consumer Discretionary",
+      "status": "confirmed",
+      "market_cap_at_addition": 32000000000,
+      "announcement_date": "2026-11-23",
+      "effective_date": "2026-12-02",
+      "return_pct_announcement": 1.2,
+      "price_last_updated": "2026-11-23",
+      "notes": "Off-cycle addition; moves up from the S&P MidCap 400 (member since May 2026) to replace AES Corp. (AES), which is being acquired by a consortium including Global Infrastructure Partners and EQT Infrastructure. Paycom Software (PAYC) replaces SharkNinja in the MidCap 400. Shares rose ~1.2% after hours on the announcement (reports vary, up to ~2.1%). Market cap approximate (~$32B at Nov 23 close). Effective prior to market open Wed, Dec 2, 2026."
+    },
+    {
+      "ticker": "ANT",
+      "company": "Anthropic, PBC",
+      "index": "Nasdaq-100",
+      "sector": "Information Technology",
+      "status": "rumored",
+      "market_cap_at_addition": null,
+      "announcement_date": null,
+      "effective_date": null,
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-11-25",
+      "notes": "Not yet announced by Nasdaq. IPO'd on Nasdaq Nov 19, 2026 at $83/share and is a candidate for the fast-entry rule (top-40 by market cap). Bloomberg reporting (Nov 16, via StockAnalysis) expects an announcement after the close on Dec 11 and entry at the open on Dec 21, 2026. Sector is provisional."
+    },
+    {
+      "ticker": "SPCX",
+      "company": "SpaceX",
+      "index": "S&P 500",
+      "sector": "Industrials",
+      "status": "rumored",
+      "market_cap_at_addition": null,
+      "announcement_date": null,
+      "effective_date": null,
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-07-05",
+      "notes": "S&P 500 blocked by profitability requirement — SpaceX posted $4.9B net loss in 2025. On Jun 4, 2026 S&P Dow Jones Indices confirmed it will keep existing GAAP profitability eligibility criteria intact (no fast-entry exception). Earliest realistic inclusion pushed to Jun 2027, and could slip further if profitability isn't reached by then."
+    },
+    {
+      "ticker": "RBLX",
+      "company": "Roblox Corporation",
+      "index": "S&P 500",
+      "sector": "Communication Services",
+      "status": "rumored",
+      "market_cap_at_addition": null,
+      "announcement_date": null,
+      "effective_date": null,
+      "return_pct_announcement": null,
+      "price_last_updated": "2026-07-05",
+      "notes": "Speculation circulating; still needs sustained GAAP profitability to clear S&P 500 inclusion threshold. No official announcement found as of Jul 2026."
+    },
     {
       "ticker": "OKTA",
       "company": "Okta, Inc.",
@@ -156,45 +208,6 @@
       "return_pct_announcement": null,
       "price_last_updated": "2026-07-05",
       "notes": "Spin-off addition; joined S&P 500 and S&P 100 as Honeywell International completed the spin-off of its aerospace unit on Jun 29, 2026 (parent renamed Honeywell Technologies Inc., remains in S&P 500/DJIA). Replaced Conagra Brands (CAG), which moved to the S&P SmallCap 600. Began trading on Nasdaq under HONA with ~158M shares outstanding."
-    },
-    {
-      "ticker": "SPCX",
-      "company": "SpaceX",
-      "index": "S&P 500",
-      "sector": "Industrials",
-      "status": "rumored",
-      "market_cap_at_addition": null,
-      "announcement_date": null,
-      "effective_date": null,
-      "return_pct_announcement": null,
-      "price_last_updated": "2026-07-05",
-      "notes": "S&P 500 blocked by profitability requirement — SpaceX posted $4.9B net loss in 2025. On Jun 4, 2026 S&P Dow Jones Indices confirmed it will keep existing GAAP profitability eligibility criteria intact (no fast-entry exception). Earliest realistic inclusion pushed to Jun 2027, and could slip further if profitability isn't reached by then."
-    },
-    {
-      "ticker": "DDOG",
-      "company": "Datadog, Inc.",
-      "index": "S&P 500",
-      "sector": "Information Technology",
-      "status": "effective",
-      "market_cap_at_addition": 46600000000,
-      "announcement_date": "2025-07-02",
-      "effective_date": "2025-07-09",
-      "return_pct_announcement": 10.0,
-      "price_last_updated": "2026-07-05",
-      "notes": "Replaced Juniper Networks (JNPR) after Juniper was acquired by Hewlett Packard Enterprise. Shares jumped ~10% in after-hours trading on the announcement. Corrected from a prior 'rumored' entry -- this addition was already confirmed and effective as of mid-2025."
-    },
-    {
-      "ticker": "RBLX",
-      "company": "Roblox Corporation",
-      "index": "S&P 500",
-      "sector": "Communication Services",
-      "status": "rumored",
-      "market_cap_at_addition": null,
-      "announcement_date": null,
-      "effective_date": null,
-      "return_pct_announcement": null,
-      "price_last_updated": "2026-07-05",
-      "notes": "Speculation circulating; still needs sustained GAAP profitability to clear S&P 500 inclusion threshold. No official announcement found as of Jul 2026."
     },
     {
       "ticker": "ALAB",
@@ -546,6 +559,19 @@
       "return_pct_announcement": 10.4,
       "price_last_updated": "2026-06-22",
       "notes": "Off-cycle addition; replaced Hess Corp. following Chevron's acquisition close on Jul 18, 2025."
+    },
+    {
+      "ticker": "DDOG",
+      "company": "Datadog, Inc.",
+      "index": "S&P 500",
+      "sector": "Information Technology",
+      "status": "effective",
+      "market_cap_at_addition": 46600000000,
+      "announcement_date": "2025-07-02",
+      "effective_date": "2025-07-09",
+      "return_pct_announcement": 10.0,
+      "price_last_updated": "2026-07-05",
+      "notes": "Replaced Juniper Networks (JNPR) after Juniper was acquired by Hewlett Packard Enterprise. Shares jumped ~10% in after-hours trading on the announcement. Corrected from a prior 'rumored' entry -- this addition was already confirmed and effective as of mid-2025."
     },
     {
       "ticker": "COIN",
