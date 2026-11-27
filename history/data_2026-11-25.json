@@ -14287,7 +14287,7 @@
       "name": "Weyerhaeuser",
       "sector": "Real Estate",
       "industry": "Timber REITs",
-      "marketCap": 14781458880
+      "marketCap": null
     },
     {
       "ticker": "WYNN",
@@ -14315,7 +14315,7 @@
       "name": "Wynn Resorts",
       "sector": "Consumer Discretionary",
       "industry": "Casinos & Gaming",
-      "marketCap": 8827642674
+      "marketCap": null
     },
     {
       "ticker": "XEL",
@@ -14343,7 +14343,7 @@
       "name": "Xcel Energy",
       "sector": "Utilities",
       "industry": "Multi-Utilities",
-      "marketCap": 52062436477
+      "marketCap": null
     },
     {
       "ticker": "XOM",
@@ -14371,7 +14371,7 @@
       "name": "ExxonMobil",
       "sector": "Energy",
       "industry": "Integrated Oil & Gas",
-      "marketCap": 644843483947
+      "marketCap": null
     },
     {
       "ticker": "XYL",
@@ -14399,7 +14399,7 @@
       "name": "Xylem Inc.",
       "sector": "Industrials",
       "industry": "Industrial Machinery & Supplies & Components",
-      "marketCap": 22112441360
+      "marketCap": null
     },
     {
       "ticker": "XYZ",
@@ -14427,7 +14427,7 @@
       "name": "Block, Inc.",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "marketCap": 41439950600
+      "marketCap": null
     },
     {
       "ticker": "YUM",
@@ -14455,7 +14455,7 @@
       "name": "Yum! Brands",
       "sector": "Consumer Discretionary",
       "industry": "Restaurants",
-      "marketCap": 44831386757
+      "marketCap": null
     },
     {
       "ticker": "ZBH",
@@ -14483,7 +14483,7 @@
       "name": "Zimmer Biomet",
       "sector": "Health Care",
       "industry": "Health Care Equipment",
-      "marketCap": 20829282913
+      "marketCap": null
     },
     {
       "ticker": "ZBRA",
@@ -14511,7 +14511,7 @@
       "name": "Zebra Technologies",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
-      "marketCap": 14991232729
+      "marketCap": null
     },
     {
       "ticker": "ZTS",
@@ -14539,7 +14539,7 @@
       "name": "Zoetis",
       "sector": "Health Care",
       "industry": "Pharmaceuticals",
-      "marketCap": 33561713742
+      "marketCap": null
     }
   ]
 }
